@@ -23,7 +23,6 @@ const { phoneNumber, name } = schema.tree
  * @apiError 401 user access only.
  */
 router.post('/',
-  token({ required: true }),
   body({ phoneNumber, name }),
   create)
 
@@ -40,7 +39,6 @@ router.post('/',
  * @apiError 401 user access only.
  */
 router.get('/',
-  token({ required: true }),
   query(),
   index)
 

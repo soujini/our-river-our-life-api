@@ -5,6 +5,13 @@
 - [Auth](#auth)
 	- [Authenticate](#authenticate)
 	
+- [Test](#test)
+	- [Create test](#create-test)
+	- [Delete test](#delete-test)
+	- [Retrieve test](#retrieve-test)
+	- [Retrieve tests](#retrieve-tests)
+	- [Update test](#update-test)
+	
 - [User](#user)
 	- [Create user](#create-user)
 	- [Delete user](#delete-user)
@@ -35,6 +42,82 @@
 | Name    | Type      | Description                          |
 |---------|-----------|--------------------------------------|
 | access_token			| String			|  <p>Master access_token.</p>							|
+
+# Test
+
+## Create test
+
+
+
+	POST /tests
+
+
+### Parameters
+
+| Name    | Type      | Description                          |
+|---------|-----------|--------------------------------------|
+| access_token			| String			|  <p>user access token.</p>							|
+| phoneNumber			| 			|  <p>Test's phoneNumber.</p>							|
+| name			| 			|  <p>Test's name.</p>							|
+
+## Delete test
+
+
+
+	DELETE /tests/:id
+
+
+### Parameters
+
+| Name    | Type      | Description                          |
+|---------|-----------|--------------------------------------|
+| access_token			| String			|  <p>user access token.</p>							|
+
+## Retrieve test
+
+
+
+	GET /tests/:id
+
+
+### Parameters
+
+| Name    | Type      | Description                          |
+|---------|-----------|--------------------------------------|
+| access_token			| String			|  <p>user access token.</p>							|
+
+## Retrieve tests
+
+
+
+	GET /tests
+
+
+### Parameters
+
+| Name    | Type      | Description                          |
+|---------|-----------|--------------------------------------|
+| access_token			| String			|  <p>user access token.</p>							|
+| q			| String			| **optional** <p>Query to search.</p>							|
+| page			| Number			| **optional** <p>Page number.</p>							|
+| limit			| Number			| **optional** <p>Amount of returned items.</p>							|
+| sort			| String[]			| **optional** <p>Order of returned items.</p>							|
+| fields			| String[]			| **optional** <p>Fields to be returned.</p>							|
+
+## Update test
+
+
+
+	PUT /tests/:id
+
+
+### Parameters
+
+| Name    | Type      | Description                          |
+|---------|-----------|--------------------------------------|
+| access_token			| String			|  <p>user access token.</p>							|
+| phoneNumber			| 			|  <p>Test's phoneNumber.</p>							|
+| name			| 			|  <p>Test's name.</p>							|
 
 # User
 
