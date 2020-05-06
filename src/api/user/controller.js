@@ -31,8 +31,8 @@ export const create = ({ bodymen: { body } }, res, next) =>
       if (err.name === 'MongoError' && err.code === 11000) {
         res.status(409).json({
           valid: false,
-          param: 'email',
-          message: 'email already registered'
+          param: 'phone_number',
+          message: 'Phone Number already registered'
         })
       } else {
         next(err)
