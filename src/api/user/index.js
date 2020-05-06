@@ -66,7 +66,7 @@ router.get('/:id',
  */
 router.post('/',
   master(),
-  body({ phone_number }),
+  body({ phone_number, email }),
   create)
 
 /**
