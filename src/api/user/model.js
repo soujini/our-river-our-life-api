@@ -13,29 +13,29 @@ const userSchema = new Schema({
     unique: true,
     trim: true,
   },
-  // email: {
-  //   type: String,
-  //   match: /^\S+@\S+\.\S+$/,
-  //   required: true,
-  //   unique: true,
-  //   trim: true,
-  //   lowercase: true
-  // },
-  // password: {
-  //   type: String,
-  //   required: true,
-  //   minlength: 6
-  // },
-  // name: {
-  //   type: String,
-  //   index: true,
-  //   trim: true
-  // },
-  // role: {
-  //   type: String,
-  //   enum: roles,
-  //   default: 'user'
-  // },
+  email: {
+    type: String,
+    match: /^\S+@\S+\.\S+$/,
+    required: true,
+    unique: true,
+    trim: true,
+    lowercase: true
+  },
+  password: {
+    type: String,
+    required: true,
+    minlength: 6
+  },
+  name: {
+    type: String,
+    index: true,
+    trim: true
+  },
+  role: {
+    type: String,
+    enum: roles,
+    default: 'user'
+  },
   picture: {
     type: String,
     trim: true
