@@ -7,9 +7,6 @@ import { env } from '../../config'
 const roles = ['user', 'admin']
 
 const userSchema = new Schema({
-  phoneNumber:{
-    type: String,
-  },
   email: {
     type: String,
     match: /^\S+@\S+\.\S+$/,
@@ -69,10 +66,10 @@ userSchema.pre('save', function (next) {
 userSchema.methods = {
   view (full) {
     const view = {}
-    let fields = ['id', 'name', 'picture', 'phoneNumber']
+    let fields = ['id', 'name', 'picture', ]
 
     if (full) {
-      fields = [...fields, 'email', 'createdAt', 'phoneNumber']
+      fields = [...fields, 'email', 'createdAt',]
     }
 
     fields.forEach((field) => { view[field] = this[field] })
@@ -90,7 +87,7 @@ userSchema.statics = {
   roles
 }
 
-userSchema.plugin(mongooseKeywords, { paths: ['email', 'name', 'phoneNumber'] })
+userSchema.plugin(mongooseKeywords, { paths: ['email', 'name', ] })
 
 const model = mongoose.model('User', userSchema)
 
