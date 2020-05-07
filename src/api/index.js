@@ -3,8 +3,6 @@ import user from './user'
 import auth from './auth'
 import test from './test'
 import waterTestDetails from './water-test-details'
-import souj from './souj'
-import souj2 from './souj2'
 
 const router = new Router()
 
@@ -35,7 +33,5 @@ router.use('/users', user)
 router.use('/auth', auth)
 router.use('/tests', test)
 router.use('/water-test-details', waterTestDetails)
-router.use('/souj', souj)
-router.use('/souj2', souj2)
 
 export default router
