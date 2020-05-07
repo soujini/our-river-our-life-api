@@ -32,7 +32,6 @@ const waterTestDetailsSchema = new Schema({
       type: String
     },
   },
-  surroundings:{[]},
   waterTesting:{
     waterTemperature: {
       type: String
