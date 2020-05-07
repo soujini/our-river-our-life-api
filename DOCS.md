@@ -21,6 +21,12 @@
 	- [Update password](#update-password)
 	- [Update user](#update-user)
 	
+- [WaterTestDetails](#watertestdetails)
+	- [Create water test details](#create-water-test-details)
+	- [Delete water test details](#delete-water-test-details)
+	- [Retrieve water test details](#retrieve-water-test-details)
+	- [Update water test details](#update-water-test-details)
+	
 
 
 # Auth
@@ -222,5 +228,61 @@
 | access_token			| String			|  <p>User access_token.</p>							|
 | name			| String			| **optional** <p>User's name.</p>							|
 | picture			| String			| **optional** <p>User's picture.</p>							|
+
+# WaterTestDetails
+
+## Create water test details
+
+
+
+	POST /water-test-details
+
+
+### Parameters
+
+| Name    | Type      | Description                          |
+|---------|-----------|--------------------------------------|
+| phoneNumber			| 			|  <p>Water test details's phoneNumber.</p>							|
+| generalInformation:			| 			|  <p>{name Water test details's generalInformation:{name.</p>							|
+| test			| 			|  <p>} Water test details's test}.</p>							|
+
+## Delete water test details
+
+
+
+	DELETE /water-test-details/:id
+
+
+## Retrieve water test details
+
+
+
+	GET /water-test-details
+
+
+### Parameters
+
+| Name    | Type      | Description                          |
+|---------|-----------|--------------------------------------|
+| q			| String			| **optional** <p>Query to search.</p>							|
+| page			| Number			| **optional** <p>Page number.</p>							|
+| limit			| Number			| **optional** <p>Amount of returned items.</p>							|
+| sort			| String[]			| **optional** <p>Order of returned items.</p>							|
+| fields			| String[]			| **optional** <p>Fields to be returned.</p>							|
+
+## Update water test details
+
+
+
+	PUT /water-test-details/:id
+
+
+### Parameters
+
+| Name    | Type      | Description                          |
+|---------|-----------|--------------------------------------|
+| phoneNumber			| 			|  <p>Water test details's phoneNumber.</p>							|
+| generalInformation:			| 			|  <p>{name Water test details's generalInformation:{name.</p>							|
+| test			| 			|  <p>} Water test details's test}.</p>							|
 
 

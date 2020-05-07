@@ -81,7 +81,9 @@ waterTestDetailsSchema.methods = {
       // simple view
       id: this.id,
       phoneNumber: this.phoneNumber,
-      generalInformation:this.generalInformation,
+      generalInformation:{
+        testerName:this.generalInformation.testerName
+      },
       waterLevelAndWeather:this.waterLevelAndWeather,
       waterTesting:this.waterTesting,
       surroundings:this.surroundings,
