@@ -68,7 +68,7 @@ const waterTestDetailsSchema = new Schema({
       type: String
     },
   },
-  {
+},{
   timestamps: true,
   toJSON: {
     virtuals: true,
