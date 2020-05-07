@@ -31,7 +31,6 @@ const waterTestDetailsSchema = new Schema({
     weather: {
       type: String
     },
-
   },
   surroundings:{[]},
   waterTesting:{
@@ -68,10 +67,8 @@ const waterTestDetailsSchema = new Schema({
     turbidity: {
       type: String
     },
-  }
-
-
-},  {
+  },
+  {
   timestamps: true,
   toJSON: {
     virtuals: true,
