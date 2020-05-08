@@ -67,6 +67,7 @@ const waterTestDetailsSchema = new Schema({
       type: String
     },
   },
+  // surroundings:{[]}
 },{
   timestamps: true,
   toJSON: {
@@ -93,7 +94,7 @@ waterTestDetailsSchema.methods = {
         waterLevel:this.waterLevelAndWeather.waterLevel,
         weather:this.waterLevelAndWeather.weather,
       },
-      surroundings:this.surroundings,
+      // surroundings:this.surroundings,
       waterTesting:{
         waterTemperature:this.waterTesting.waterTemperature,
         pH:this.waterTesting.pH,
