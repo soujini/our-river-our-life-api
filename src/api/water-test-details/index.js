@@ -20,7 +20,13 @@ const { phoneNumber, generalInformation:{name, test} } = schema.tree
  * @apiError 404 Water test details not found.
  */
 router.post('/',
-  body({ phoneNumber, generalInformation:{name, test} }),
+  body({
+    phoneNumber,
+    generalInformation,
+    waterLevelAndWeather,
+    surroundings,
+    waterTesting
+  }),
   create)
 
 /**
