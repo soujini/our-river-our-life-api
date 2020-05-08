@@ -5,7 +5,6 @@ const waterTestDetailsSchema = new Schema({
     type: String
   },
   generalInformation:{
-    type:Object,
     activityDate: {
       type: String
     },
@@ -23,7 +22,6 @@ const waterTestDetailsSchema = new Schema({
     }
   },
   waterLevelAndWeather:{
-    type:Object,
     airTemperature: {
       type: Number
     },
@@ -35,7 +33,6 @@ const waterTestDetailsSchema = new Schema({
     },
   },
   waterTesting:{
-    type:Object,
     waterTemperature: {
       type: String
     },
