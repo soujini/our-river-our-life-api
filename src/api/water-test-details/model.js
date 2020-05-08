@@ -5,6 +5,7 @@ const waterTestDetailsSchema = new Schema({
     type: String
   },
   generalInformation:{
+    type:Object,
     activityDate: {
       type: String
     },
@@ -22,6 +23,7 @@ const waterTestDetailsSchema = new Schema({
     }
   },
   waterLevelAndWeather:{
+    type:Object,
     airTemperature: {
       type: Number
     },
@@ -33,6 +35,7 @@ const waterTestDetailsSchema = new Schema({
     },
   },
   waterTesting:{
+    type:Object,
     waterTemperature: {
       type: String
     },
@@ -86,7 +89,7 @@ waterTestDetailsSchema.methods = {
         testerName:this.generalInformation.testerName,
         location:this.generalInformation.location,
         latitude:this.generalInformation.latitude,
-        longitude:this.generalInformation.loongitude,
+        longitude:this.generalInformation.longitude,
       },
       waterLevelAndWeather:{
         airTemperature:this.waterLevelAndWeather.airTemperature,

@@ -1,92 +1,75 @@
 import { Router } from 'express'
 import { middleware as query } from 'querymen'
 import { middleware as body } from 'bodymen'
-import { token } from '../../services/passport'
 import { create, index, show, update, destroy } from './controller'
 import { schema } from './model'
 export Test, { schema } from './model'
 
 const router = new Router()
-const { phoneNumber, name } = schema.tree
+const { name, phone, email } = schema.tree
 
 /**
- * @api {post} /tests Create test
+ * @api {post} /test Create test
  * @apiName CreateTest
  * @apiGroup Test
- * @apiPermission user
- * @apiParam {String} access_token user access token.
- * @apiParam phoneNumber Test's phoneNumber.
  * @apiParam name Test's name.
+ * @apiParam phone Test's phone.
+ * @apiParam email Test's email.
  * @apiSuccess {Object} test Test's data.
  * @apiError {Object} 400 Some parameters may contain invalid values.
  * @apiError 404 Test not found.
- * @apiError 401 user access only.
  */
 router.post('/',
-  body({ phoneNumber, name }),
+  body({ name, phone, email }),
   create)
 
 /**
- * @api {get} /tests Retrieve tests
+ * @api {get} /test Retrieve tests
  * @apiName RetrieveTests
  * @apiGroup Test
- * @apiPermission user
- * @apiParam {String} access_token user access token.
  * @apiUse listParams
  * @apiSuccess {Number} count Total amount of tests.
  * @apiSuccess {Object[]} rows List of tests.
  * @apiError {Object} 400 Some parameters may contain invalid values.
- * @apiError 401 user access only.
  */
 router.get('/',
   query(),
   index)
 
 /**
- * @api {get} /tests/:id Retrieve test
+ * @api {get} /test/:id Retrieve test
  * @apiName RetrieveTest
  * @apiGroup Test
- * @apiPermission user
- * @apiParam {String} access_token user access token.
  * @apiSuccess {Object} test Test's data.
  * @apiError {Object} 400 Some parameters may contain invalid values.
  * @apiError 404 Test not found.
- * @apiError 401 user access only.
  */
 router.get('/:id',
-  token({ required: true }),
   show)
 
 /**
- * @api {put} /tests/:id Update test
+ * @api {put} /test/:id Update test
  * @apiName UpdateTest
  * @apiGroup Test
- * @apiPermission user
- * @apiParam {String} access_token user access token.
- * @apiParam phoneNumber Test's phoneNumber.
  * @apiParam name Test's name.
+ * @apiParam phone Test's phone.
+ * @apiParam email Test's email.
  * @apiSuccess {Object} test Test's data.
  * @apiError {Object} 400 Some parameters may contain invalid values.
  * @apiError 404 Test not found.
- * @apiError 401 user access only.
  */
 router.put('/:id',
-  token({ required: true }),
-  body({ phoneNumber, name }),
+  body({ name, phone, email }),
   update)
 
 /**
- * @api {delete} /tests/:id Delete test
+ * @api {delete} /test/:id Delete test
  * @apiName DeleteTest
  * @apiGroup Test
- * @apiPermission user
- * @apiParam {String} access_token user access token.
  * @apiSuccess (Success 204) 204 No Content.
  * @apiError 404 Test not found.
- * @apiError 401 user access only.
  */
 router.delete('/:id',
-  token({ required: true }),
   destroy)
 
 export default router

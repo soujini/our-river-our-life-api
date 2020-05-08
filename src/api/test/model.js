@@ -1,10 +1,20 @@
 import mongoose, { Schema } from 'mongoose'
 
 const testSchema = new Schema({
-  phoneNumber: {
+  name: {
     type: String
   },
-  name: {
+  email: {
+    type: String
+  },
+  phone: {
+    type: String
+  },
+  address:{
+    city: {
+    type: String
+  },
+  state: {
     type: String
   }
 }, {
@@ -20,8 +30,12 @@ testSchema.methods = {
     const view = {
       // simple view
       id: this.id,
-      phoneNumber: this.phoneNumber,
       name: this.name,
+      email: this.email,
+      phone: this.phone,
+      address:{
+        this.address.city: this.address{city,
+      state}: this.state},
       createdAt: this.createdAt,
       updatedAt: this.updatedAt
     }

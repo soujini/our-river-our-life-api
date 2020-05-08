@@ -31,7 +31,7 @@ const router = new Router()
  */
 router.use('/users', user)
 router.use('/auth', auth)
-router.use('/tests', test)
 router.use('/water-test-details', waterTestDetails)
+router.use('/test', test)
 
 export default router
