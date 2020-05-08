@@ -6,7 +6,7 @@ import { schema } from './model'
 export WaterTestDetails, { schema } from './model'
 
 const router = new Router()
-const { phoneNumber, generalInformation,waterLevelAndWeather,surroundings,waterTesting } = schema.tree
+const { phoneNumber, generalInformation:{},waterLevelAndWeather,surroundings,waterTesting } = schema.tree
 
 /**
  * @api {post} /water-test-details Create water test details
