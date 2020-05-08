@@ -65,7 +65,7 @@ router.get('/:id',
  * @apiError 404 Water test details not found.
  */
 router.put('/:id',
-  body({ phoneNumber, generalInformation:{name, test} }),
+  body({ phoneNumber, generalInformation }),
   update)
 
 /**
