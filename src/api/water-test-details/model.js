@@ -19,7 +19,7 @@ const waterTestDetailsSchema = new Schema({
     },
     longitude: {
       type: Number
-    }
+    },
   },
   waterLevelAndWeather:{
     airTemperature: {
