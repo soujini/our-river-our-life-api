@@ -82,11 +82,31 @@ waterTestDetailsSchema.methods = {
       id: this.id,
       phoneNumber: this.phoneNumber,
       generalInformation:{
-        testerName:this.generalInformation.testerName
+        activityDate:this.generalInformation.activityDate,
+        testerName:this.generalInformation.testerName,
+        location:this.generalInformation.location,
+        latitude:this.generalInformation.latitude,
+        longitude:this.generalInformation.loongitude,
       },
-      waterLevelAndWeather:this.waterLevelAndWeather,
-      waterTesting:this.waterTesting,
+      waterLevelAndWeather:{
+        airTemperature:this.waterLevelAndWeather.airTemperature,
+        waterLevel:this.waterLevelAndWeather.waterLevel,
+        weather:this.waterLevelAndWeather.weather,
+      },
       surroundings:this.surroundings,
+      waterTesting:{
+        waterTemperature:this.waterTesting.waterTemperature,
+        pH:this.waterTesting.pH,
+        dissolvedOxygen:this.waterTesting.dissolvedOxygen,
+        hardness:this.waterTesting.hardness,
+        nitrate:this.waterTesting.nitrate,
+        nitrite:this.waterTesting.nitrite,
+        chlorine:this.waterTesting.chlorine,
+        alkalinity:this.waterTesting.alkalinity,
+        iron:this.waterTesting.iron,
+        bacteria:this.waterTesting.bacteria,
+        turbidity:this.waterTesting.turbidity,
+      },
       createdAt: this.createdAt,
       updatedAt: this.updatedAt
     }
