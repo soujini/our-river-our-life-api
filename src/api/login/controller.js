@@ -8,11 +8,21 @@ Login.find({phoneNumber: "myPhoneNumber"}, {phoneNumber: body.phoneNumber}).limi
 .catch(next)
 
 
-export const create = ({ bodymen: { body } }, res, next) =>
-  Login.create(body)
+// export const create = ({ bodymen: { body } }, res, next) =>
+//   Login.create(body)
+//     .then((login) => login.view(true))
+//     .then(success(res, 201))
+//     .catch(next)
+
+    export const create = ({ bodymen: { body } }, res, next) =>
+    Login.find({phoneNumber: "myPhoneNumber"}, {phoneNumber: body.phoneNumber}).limit(1)
     .then((login) => login.view(true))
     .then(success(res, 201))
     .catch(next)
+      // Login.create(body)
+      //   .then((login) => login.view(true))
+      //   .then(success(res, 201))
+      //   .catch(next)
 
 export const index = ({ querymen: { query, select, cursor } }, res, next) =>
   Login.count(query)
