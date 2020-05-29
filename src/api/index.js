@@ -2,6 +2,8 @@ import { Router } from 'express'
 import user from './user'
 import auth from './auth'
 import waterTestDetails from './water-test-details'
+import test from './test'
+import login from './login'
 
 const router = new Router()
 
@@ -31,5 +33,7 @@ const router = new Router()
 router.use('/users', user)
 router.use('/auth', auth)
 router.use('/water-test-details', waterTestDetails)
+router.use('/test', test)
+router.use('/login', login)
 
 export default router
