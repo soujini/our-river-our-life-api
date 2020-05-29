@@ -8,6 +8,11 @@ export Login, { schema } from './model'
 const router = new Router()
 const { phoneNumber } = schema.tree
 
+
+router.post('/login',
+  body({ phoneNumber }),
+  login)
+
 /**
  * @api {post} /login Create login
  * @apiName CreateLogin

@@ -8,22 +8,30 @@ import { Login } from '.'
 // .catch(next)
 
 
-export const create = ({ bodymen: { body } }, res, next) =>
-  Login.update({body},{ $setOnInsert: { body } },{ upsert: true })
-    .then((login) => login.view(true))
-    .then(success(res, 201))
-    .catch(next)
+// export const create = ({ bodymen: { body } }, res, next) =>
+//   Login.update({body},{ $setOnInsert: { 'phoneNumber':body.phoneNumber } },{ upsert: true })
+//     .then((login) => login.view(true))
+//     .then(success(res, 201))
+//     .catch(next)
+export const login = ({ bodymen: { body } }, res, next) =>
+Login.findAndModify({
+  query: { phoneNumber: body.phoneNumber },
+  update: {
+    $setOnInsert: { phoneNumber: body.phoneNumber }
+  },
+  new: true,   // return new doc if one is upserted
+  upsert: true // insert the document if it does not exist
+})
 
-
-    // export const create = ({ bodymen: { body } }, res, next) =>
+     export const create = ({ bodymen: { body } }, res, next) =>
     // Login.find({phoneNumber: "myPhoneNumber"}, {phoneNumber: body.phoneNumber}).limit(1)
     // .then((login) => login.view(true))
     // .then(success(res, 201))
     // .catch(next)
-      // Login.create(body)
-      //   .then((login) => login.view(true))
-      //   .then(success(res, 201))
-      //   .catch(next)
+      Login.create(body)
+        .then((login) => login.view(true))
+        .then(success(res, 201))
+        .catch(next)
 
 export const index = ({ querymen: { query, select, cursor } }, res, next) =>
   Login.count(query)
