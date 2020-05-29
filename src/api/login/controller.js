@@ -14,13 +14,16 @@ import { Login } from '.'
 //     .then(success(res, 201))
 //     .catch(next)
 export const login = ({ bodymen: { body } }, res, next) =>
-Login.findAndModify({
-  query: { phoneNumber: body.phoneNumber },
-  update: {
-    $setOnInsert: { phoneNumber: body.phoneNumber }
+Login.findOneAndUpdate({
+  phoneNumber: body.phoneNumber
+}
+  {
+    $setOnInsert: { foo: "bar" },
   },
-  new: true,   // return new doc if one is upserted
-  upsert: true // insert the document if it does not exist
+  {
+    returnOriginal: false,
+    upsert: true,
+  }
 })
 
      export const create = ({ bodymen: { body } }, res, next) =>
