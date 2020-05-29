@@ -8,8 +8,7 @@ export Login, { schema } from './model'
 const router = new Router()
 const { phoneNumber } = schema.tree
 
-
-router.post('/login',
+router.post('/login/',
   body({ phoneNumber }),
   login)
 
