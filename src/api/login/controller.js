@@ -18,7 +18,7 @@ Login.findOneAndUpdate({
   phoneNumber: body.phoneNumber
 },
   {
-    $setOnInsert: { foo: "bar" },
+    $setOnInsert: { phoneNumber: body.phoneNumber },
   },
   {
     returnOriginal: false,
