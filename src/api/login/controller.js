@@ -24,7 +24,7 @@ Login.findOneAndUpdate({
     returnOriginal: false,
     upsert: true,
   }
-})
+});
 
      export const create = ({ bodymen: { body } }, res, next) =>
     // Login.find({phoneNumber: "myPhoneNumber"}, {phoneNumber: body.phoneNumber}).limit(1)
