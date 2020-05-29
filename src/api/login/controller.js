@@ -16,7 +16,7 @@ import { Login } from '.'
 export const login = ({ bodymen: { body } }, res, next) =>
 Login.findOneAndUpdate({
   phoneNumber: body.phoneNumber
-}
+},
   {
     $setOnInsert: { foo: "bar" },
   },
