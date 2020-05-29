@@ -8,7 +8,16 @@ export Login, { schema } from './model'
 const router = new Router()
 const { phoneNumber } = schema.tree
 
-router.post('/login/',
+/**
+ * @api {post} /login Create login
+ * @apiName CreateLogin
+ * @apiGroup Login
+ * @apiParam phoneNumber Login's phoneNumber.
+ * @apiSuccess {Object} login Login's data.
+ * @apiError {Object} 400 Some parameters may contain invalid values.
+ * @apiError 404 Login not found.
+ */
+router.post('/login',
   body({ phoneNumber }),
   login)
 
