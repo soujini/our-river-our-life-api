@@ -1,24 +1,25 @@
 import { success, notFound } from '../../services/response/'
 import { Login } from '.'
 
-export const login = ({ bodymen: { body } }, res, next) =>
-Login.find({phoneNumber: "myPhoneNumber"}, {phoneNumber: body.phoneNumber}).limit(1)
-.then((login) => login.view(true))
-.then(success(res, 201))
-.catch(next)
+// export const login = ({ bodymen: { body } }, res, next) =>
+// Login.find({phoneNumber: "myPhoneNumber"}, {phoneNumber: body.phoneNumber}).limit(1)
+// .then((login) => login.view(true))
+// .then(success(res, 201))
+// .catch(next)
 
 
-// export const create = ({ bodymen: { body } }, res, next) =>
-//   Login.create(body)
-//     .then((login) => login.view(true))
-//     .then(success(res, 201))
-//     .catch(next)
-
-    export const create = ({ bodymen: { body } }, res, next) =>
-    Login.find({phoneNumber: "myPhoneNumber"}, {phoneNumber: body.phoneNumber}).limit(1)
+export const create = ({ bodymen: { body } }, res, next) =>
+  Login.update({body},{ $setOnInsert: { body } },{ upsert: true })
     .then((login) => login.view(true))
     .then(success(res, 201))
     .catch(next)
+
+
+    // export const create = ({ bodymen: { body } }, res, next) =>
+    // Login.find({phoneNumber: "myPhoneNumber"}, {phoneNumber: body.phoneNumber}).limit(1)
+    // .then((login) => login.view(true))
+    // .then(success(res, 201))
+    // .catch(next)
       // Login.create(body)
       //   .then((login) => login.view(true))
       //   .then(success(res, 201))
