@@ -14,7 +14,7 @@ import { Login } from '.'
 //     .then(success(res, 201))
 //     .catch(next)
 export const login = ({ bodymen: { body } }, res, next) =>
-Login.findOneAndUpdate({phoneNumber:body.phoneNumber},{ body },{new: true, upsert: true, setDefaultsOnInsert: true })
+Login.findOneAndUpdate({phoneNumber:phoneNumber},{ body },{new: true, upsert: true, setDefaultsOnInsert: true })
 .then((login) => login.view(true))
 .then(success(res, 201))
 .catch(next)
