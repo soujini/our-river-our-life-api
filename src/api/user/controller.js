@@ -1,6 +1,15 @@
 import { success, notFound } from '../../services/response/'
 import { User } from '.'
 
+export const login = ({ bodymen: { body } }, res, next) =>
+const { id } = body.id;
+
+User.find(user => { return user.id === id })
+.then((user) => (user.view(true)))
+.then(success(res, 201))
+.catch(next)
+
+
 export const create = ({ bodymen: { body } }, res, next) =>
 User.findOneAndUpdate({phoneNumber:body.phoneNumber},{phoneNumber:body.phoneNumber},{new: true, upsert: true })
 .then((user) => (user.view(true)))
