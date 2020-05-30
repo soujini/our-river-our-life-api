@@ -2,7 +2,8 @@ import { success, notFound } from '../../services/response/'
 import { User } from '.'
 
 export const login = ({ bodymen: { body } }, res, next) =>{
-  console.log(body)
+  console.log("souj")
+  console.log(JSON.parse(body))
 const { id } = body.id
 
 User.find(user => { return user.id === id })

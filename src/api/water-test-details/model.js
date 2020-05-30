@@ -1,7 +1,7 @@
 import mongoose, { Schema } from 'mongoose'
 
 const waterTestDetailsSchema = new Schema({
-  phoneNumber: {
+  userId: {
     type: String
   },
   generalInformation:{
@@ -81,7 +81,7 @@ waterTestDetailsSchema.methods = {
     const view = {
       // simple view
       id: this.id,
-      phoneNumber: this.phoneNumber,
+      userId: this.userId,
       generalInformation:{
         activityDate:this.generalInformation.activityDate,
         testerName:this.generalInformation.testerName,

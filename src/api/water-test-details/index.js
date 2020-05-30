@@ -6,13 +6,13 @@ import { schema } from './model'
 export WaterTestDetails, { schema } from './model'
 
 const router = new Router()
-const { phoneNumber, generalInformation,waterLevelAndWeather,surroundings,waterTesting } = schema.tree
+const { userId, generalInformation,waterLevelAndWeather,surroundings,waterTesting } = schema.tree
 
 /**
  * @api {post} /water-test-details Create water test details
  * @apiName CreateWaterTestDetails
  * @apiGroup WaterTestDetails
- * @apiParam phoneNumber Water test details's phoneNumber.
+ * @apiParam userId Water test details's userId.
  * @apiParam generalInformation:{name Water test details's generalInformation:{name.
  * @apiParam test} Water test details's test}.
  * @apiSuccess {Object} waterTestDetails Water test details's data.
@@ -21,7 +21,7 @@ const { phoneNumber, generalInformation,waterLevelAndWeather,surroundings,waterT
  */
 router.post('/',
   body({
-    phoneNumber,
+    userId,
     generalInformation,
     waterLevelAndWeather,
     surroundings,
@@ -57,7 +57,7 @@ router.get('/:id',
  * @api {put} /water-test-details/:id Update water test details
  * @apiName UpdateWaterTestDetails
  * @apiGroup WaterTestDetails
- * @apiParam phoneNumber Water test details's phoneNumber.
+ * @apiParam userId Water test details's userId.
  * @apiParam generalInformation:{name Water test details's generalInformation:{name.
  * @apiParam test} Water test details's test}.
  * @apiSuccess {Object} waterTestDetails Water test details's data.
@@ -65,7 +65,7 @@ router.get('/:id',
  * @apiError 404 Water test details not found.
  */
 router.put('/:id',
-  body({ phoneNumber, generalInformation }),
+  body({ userId, generalInformation }),
   update)
 
 /**
