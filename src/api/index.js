@@ -1,5 +1,4 @@
 import { Router } from 'express'
-import auth from './auth'
 import waterTestDetails from './water-test-details'
 import login from './login'
 
@@ -28,7 +27,7 @@ const router = new Router()
  * @apiParam {String[]} [sort=-createdAt] Order of returned items.
  * @apiParam {String[]} [fields] Fields to be returned.
  */
-router.use('/auth', auth)
+
 router.use('/water-test-details', waterTestDetails)
 router.use('/login', login)
 
