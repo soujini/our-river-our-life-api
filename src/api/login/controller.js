@@ -2,17 +2,19 @@ import { success, notFound } from '../../services/response/'
 import { Login } from '.'
 
 export const login = ({ bodymen: { body } }, res, next) =>{
-console.log(bodymen)
+console.log(body)
 Login.findOneAndUpdate({phoneNumber:'9949512345'},{phoneNumber:'9949512345'},{new: true, upsert: true })
 .then((login) => login.view(true))
 .then(success(res, 201))
 .catch(next)
 }
-export const create = ({ bodymen: { body } }, res, next) =>
+export const create = ({ bodymen: { body } }, res, next) =>{
+  console.log("souj "+body)
 Login.create(body)
 .then((login) => login.view(true))
 .then(success(res, 201))
 .catch(next)
+}
 
 export const index = ({ querymen: { query, select, cursor } }, res, next) =>
 Login.count(query)
