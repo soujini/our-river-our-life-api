@@ -6,7 +6,7 @@ import { schema } from './model'
 export User, { schema } from './model'
 
 const router = new Router()
-const { phoneNumber } = schema.tree
+const { phoneNumber, id } = schema.tree
 
 /**
  * @api {post} /user Create user
