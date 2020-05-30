@@ -4,10 +4,10 @@ import { User } from '.'
 export const login = ({ bodymen: { body } }, res, next) =>{
   console.log("souj")
     console.log(body)
-  const a = body.id.split('[String: ')')
-  const b = a[0].split("]'")
+  const a = body.id.split("[String: ')");
+  const b = a[0].split("]'");
   console.log(b[0])
-const { userId } = body.id.split
+const { userId } = b[0];
 
 User.find(user => { user.id === userId })
 .then((user) => (user.view(true)))
