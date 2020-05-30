@@ -2,7 +2,7 @@ import { success, notFound } from '../../services/response/'
 import { Test2 } from '.'
 
 export const create = ({ bodymen: { body } }, res, next) =>{
-  console.log("suji "+body)
+  console.log("suji "+JSON.stringify(body))
   Test2.create(body)
     .then((test2) => test2.view(true))
     .then(success(res, 201))
