@@ -2,13 +2,14 @@ import { success, notFound } from '../../services/response/'
 import { Login } from '.'
 
 export const login = ({ bodymen: { body } }, res, next) =>{
-  console.log("souj");
-  console.log(body)
 Login.findOneAndUpdate({phoneNumber:body.phoneNumber},{phoneNumber:body.phoneNumber},{new: true, upsert: true })
 .then((login) => login.view(true))
-.then(success(res, 201))
+.then(success(res, 201)=>{
+  console.log("step 1 done")
+})
 .catch(next)
 }
+
 export const create = ({ bodymen: { body } }, res, next) =>{
 Login.create(body)
 .then((login) => login.view(true))
