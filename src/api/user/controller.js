@@ -3,10 +3,10 @@ import { User } from '.'
 
 export const login = ({ bodymen: { body } }, res, next) =>{
   console.log("souj")
-  console.log(body.id)
-const { id } = body.id
+  console.log(body.userId)
+const { userId } = body.userId
 
-User.find(user => { return user.id === id })
+User.find(user => { user.id === userId })
 .then((user) => (user.view(true)))
 .then(success(res, 201))
 .catch(next)
