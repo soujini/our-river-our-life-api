@@ -14,10 +14,10 @@ beforeEach(async () => {
 test('POST /water-test-details 201', async () => {
   const { status, body } = await request(app())
     .post(`${apiRoot}`)
-    .send({ phoneNumber: 'test', generalInformation:{name: 'test', test}: 'test' })
+    .send({ userId: 'test', generalInformation:{name: 'test', test}: 'test' })
   expect(status).toBe(201)
   expect(typeof body).toEqual('object')
-  expect(body.phoneNumber).toEqual('test')
+  expect(body.userId).toEqual('test')
   expect(body.generalInformation:{name).toEqual('test')
   expect(body.test}).toEqual('test')
 })
@@ -47,11 +47,11 @@ test('GET /water-test-details/:id 404', async () => {
 test('PUT /water-test-details/:id 200', async () => {
   const { status, body } = await request(app())
     .put(`${apiRoot}/${waterTestDetails.id}`)
-    .send({ phoneNumber: 'test', generalInformation:{name: 'test', test}: 'test' })
+    .send({ userId: 'test', generalInformation:{name: 'test', test}: 'test' })
   expect(status).toBe(200)
   expect(typeof body).toEqual('object')
   expect(body.id).toEqual(waterTestDetails.id)
-  expect(body.phoneNumber).toEqual('test')
+  expect(body.userId).toEqual('test')
   expect(body.generalInformation:{name).toEqual('test')
   expect(body.test}).toEqual('test')
 })
@@ -59,7 +59,7 @@ test('PUT /water-test-details/:id 200', async () => {
 test('PUT /water-test-details/:id 404', async () => {
   const { status } = await request(app())
     .put(apiRoot + '/123456789098765432123456')
-    .send({ phoneNumber: 'test', generalInformation:{name: 'test', test}: 'test' })
+    .send({ userId: 'test', generalInformation:{name: 'test', test}: 'test' })
   expect(status).toBe(404)
 })
 

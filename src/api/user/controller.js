@@ -3,7 +3,7 @@ import { User } from '.'
 
 export const login = ({ bodymen: { body } }, res, next) =>{
   console.log("souj")
-  console.log(JSON.parse(body))
+  console.log(body.id)
 const { id } = body.id
 
 User.find(user => { return user.id === id })

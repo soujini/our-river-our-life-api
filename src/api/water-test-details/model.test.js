@@ -3,7 +3,7 @@ import { WaterTestDetails } from '.'
 let waterTestDetails
 
 beforeEach(async () => {
-  waterTestDetails = await WaterTestDetails.create({ phoneNumber: 'test', generalInformation:{name: 'test', test}: 'test' })
+  waterTestDetails = await WaterTestDetails.create({ userId: 'test', generalInformation:{name: 'test', test}: 'test' })
 })
 
 describe('view', () => {
@@ -11,7 +11,7 @@ describe('view', () => {
     const view = waterTestDetails.view()
     expect(typeof view).toBe('object')
     expect(view.id).toBe(waterTestDetails.id)
-    expect(view.phoneNumber).toBe(waterTestDetails.phoneNumber)
+    expect(view.userId).toBe(waterTestDetails.userId)
     expect(view.generalInformation:{name).toBe(waterTestDetails.generalInformation:{name)
     expect(view.test}).toBe(waterTestDetails.test})
     expect(view.createdAt).toBeTruthy()
@@ -22,7 +22,7 @@ describe('view', () => {
     const view = waterTestDetails.view(true)
     expect(typeof view).toBe('object')
     expect(view.id).toBe(waterTestDetails.id)
-    expect(view.phoneNumber).toBe(waterTestDetails.phoneNumber)
+    expect(view.userId).toBe(waterTestDetails.userId)
     expect(view.generalInformation:{name).toBe(waterTestDetails.generalInformation:{name)
     expect(view.test}).toBe(waterTestDetails.test})
     expect(view.createdAt).toBeTruthy()
