@@ -7,7 +7,7 @@ export const login = ({ bodymen: { body } }, res, next) =>{
   const a = body.id.split("[String: ')");
   const b = a[0].split("]'");
   console.log(b[0])
-const { userId } = b[0];
+const { userId } = b[0].toString();
 
 User.find(user => { user.id === userId })
 .then((user) => (user.view(true)))
