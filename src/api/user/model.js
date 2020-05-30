@@ -1,6 +1,6 @@
 import mongoose, { Schema } from 'mongoose'
 
-const loginSchema = new Schema({
+const userSchema = new Schema({
   phoneNumber: {
     type: String
   }
@@ -12,7 +12,7 @@ const loginSchema = new Schema({
   }
 })
 
-loginSchema.methods = {
+userSchema.methods = {
   view (full) {
     const view = {
       // simple view
@@ -29,7 +29,7 @@ loginSchema.methods = {
   }
 }
 
-const model = mongoose.model('Login', loginSchema)
+const model = mongoose.model('User', userSchema)
 
 export const schema = model.schema
 export default model
