@@ -4,6 +4,7 @@ import auth from './auth'
 import waterTestDetails from './water-test-details'
 import test from './test'
 import login from './login'
+import test2 from './test2'
 
 const router = new Router()
 
@@ -35,5 +36,6 @@ router.use('/auth', auth)
 router.use('/water-test-details', waterTestDetails)
 router.use('/test', test)
 router.use('/login', login)
+router.use('/test2', test2)
 
 export default router
