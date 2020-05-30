@@ -1,9 +1,7 @@
 import { Router } from 'express'
 import auth from './auth'
 import waterTestDetails from './water-test-details'
-import test from './test'
 import login from './login'
-import test2 from './test2'
 
 const router = new Router()
 
