@@ -8,18 +8,6 @@ export User, { schema } from './model'
 const router = new Router()
 const { phoneNumber, id } = schema.tree
 
-/**
- * @api {post} /user Create user
- * @apiName CreateUser
- * @apiGroup User
- * @apiParam phoneNumber User's phoneNumber.
- * @apiSuccess {Object} user User's data.
- * @apiError {Object} 400 Some parameters may contain invalid values.
- * @apiError 404 User not found.
- */
-router.post('/login',
-  body({ id }),
-  login)
 
 /**
  * @api {post} /user Create user
