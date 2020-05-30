@@ -3,8 +3,9 @@ import { User } from '.'
 
 export const login = ({ bodymen: { body } }, res, next) =>{
   console.log("souj")
-  console.log(body.userId)
-const { userId } = body.userId
+    console.log(body)
+  console.log(body.id)
+const { userId } = body.id
 
 User.find(user => { user.id === userId })
 .then((user) => (user.view(true)))
