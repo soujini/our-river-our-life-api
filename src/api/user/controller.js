@@ -1,11 +1,13 @@
 import { success, notFound } from '../../services/response/'
 import { User } from '.'
 
-export const create = ({ bodymen: { body } }, res, next) =>
+export const create = ({ bodymen: { body } }, res, next) =>{
+console.log(body)
 User.findOneAndUpdate({phoneNumber:body.phoneNumber},{phoneNumber:body.phoneNumber},{new: true, upsert: true })
 .then((user) => (user.view(true)))
 .then(success(res, 201))
 .catch(next)
+}
 
 export const index = ({ querymen: { query, select, cursor } }, res, next) =>
   User.count(query)
