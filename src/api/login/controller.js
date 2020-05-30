@@ -1,9 +1,9 @@
 import { success, notFound } from '../../services/response/'
 import { Login } from '.'
 
-export const login = ({ bodymen: { body } }, res, next) =>
+export const login = ({ bodymen: { body } }, res, next) =>{
 const obj = JSON.parse(JSON.stringify(body))
-Login.findOneAndUpdate({phoneNumber:obj.phoneNumber},{ $set: {phoneNumber:obj.phoneNumber}},{new: true, upsert: true })
+Login.findOneAndUpdate({phoneNumber:obj.phoneNumber},{ $set: {phoneNumber:obj.phoneNumber}},{new: true, upsert: true })}
 .then((login) => login.view(true))
 .then(success(res, 201))
 .catch(next)
