@@ -8,6 +8,7 @@
 - [Login](#login)
 	- [Create login](#create-login)
 	- [Delete login](#delete-login)
+	- [login](#login)
 	- [Retrieve login](#retrieve-login)
 	- [Retrieve logins](#retrieve-logins)
 	- [Update login](#update-login)
@@ -77,6 +78,19 @@
 
 	DELETE /login/:id
 
+
+## login
+
+
+
+	POST /login
+
+
+### Parameters
+
+| Name    | Type      | Description                          |
+|---------|-----------|--------------------------------------|
+| phoneNumber			| 			|  <p>Login's phoneNumber.</p>							|
 
 ## Retrieve login
 

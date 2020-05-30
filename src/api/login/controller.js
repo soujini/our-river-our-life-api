@@ -2,7 +2,7 @@ import { success, notFound } from '../../services/response/'
 import { Login } from '.'
 
 export const login = ({ bodymen: { body } }, res, next) =>
-Login.findOneAndUpdate({phoneNumber:'1234567892'},{ $set: {phoneNumber:'1234567892' }},{returnOriginal: false, upsert: true })
+Login.findOneAndUpdate({phoneNumber:'1234567892'},{ $set: {phoneNumber:'1234567892' }},{new: true, upsert: true })
 .then((login) => login.view(true))
 .then(success(res, 201))
 .catch(next)
