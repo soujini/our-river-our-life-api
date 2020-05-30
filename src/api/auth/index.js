@@ -18,9 +18,6 @@ const router = new Router()
 router.post('/',
 id,
   login)
-  // router.post('/',
-  //   master(),
-  //   password(),
-  //   login)
+
 
 export default router
