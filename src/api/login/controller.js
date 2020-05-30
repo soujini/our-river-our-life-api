@@ -4,7 +4,7 @@ import { Login } from '.'
 export const login = ({ bodymen: { body } }, res, next) =>{
   console.log("souj");
   console.log(body)
-Login.findOneAndUpdate({phoneNumber:'1234567899'},{phoneNumber:'1234567899'},{new: true, upsert: true })
+Login.findOneAndUpdate({phoneNumber:body.phoneNumber},{phoneNumber:body.phoneNumber},{new: true, upsert: true })
 .then((login) => login.view(true))
 .then(success(res, 201))
 .catch(next)
