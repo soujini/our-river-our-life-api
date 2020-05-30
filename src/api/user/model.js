@@ -2,7 +2,8 @@ import mongoose, { Schema } from 'mongoose'
 
 const userSchema = new Schema({
   phoneNumber: {
-    type: String
+    type: String,
+    unique:true
   }
 }, {
   timestamps: true,
