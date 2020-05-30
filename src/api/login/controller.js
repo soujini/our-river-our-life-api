@@ -11,7 +11,9 @@ Login.findOneAndUpdate({phoneNumber:body.phoneNumber},{phoneNumber:body.phoneNum
 export const create = ({ bodymen: { body } }, res, next) =>{
 Login.create(body)
 .then((login) => login.view(true))
-.then(success(res, 201))
+.then(success(res, 201)=>{
+  
+})
 .catch(next)
 }
 
