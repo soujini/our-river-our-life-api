@@ -9,8 +9,8 @@ const router = new Router()
 const { phoneNumber } = schema.tree
 
 /**
- * @api {post} /login Create login
- * @apiName CreateLogin
+ * @api {post} /login login
+ * @apiName Login
  * @apiGroup Login
  * @apiParam phoneNumber Login's phoneNumber.
  * @apiSuccess {Object} login Login's data.

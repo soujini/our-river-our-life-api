@@ -5,6 +5,13 @@
 - [Auth](#auth)
 	- [Authenticate](#authenticate)
 	
+- [Login](#login)
+	- [Create login](#create-login)
+	- [Delete login](#delete-login)
+	- [Retrieve login](#retrieve-login)
+	- [Retrieve logins](#retrieve-logins)
+	- [Update login](#update-login)
+	
 - [Test](#test)
 	- [Create test](#create-test)
 	- [Delete test](#delete-test)
@@ -49,61 +56,118 @@
 |---------|-----------|--------------------------------------|
 | access_token			| String			|  <p>Master access_token.</p>							|
 
+# Login
+
+## Create login
+
+
+
+	POST /login
+
+
+### Parameters
+
+| Name    | Type      | Description                          |
+|---------|-----------|--------------------------------------|
+| phoneNumber			| 			|  <p>Login's phoneNumber.</p>							|
+
+## Delete login
+
+
+
+	DELETE /login/:id
+
+
+## Retrieve login
+
+
+
+	GET /login/:id
+
+
+## Retrieve logins
+
+
+
+	GET /login
+
+
+### Parameters
+
+| Name    | Type      | Description                          |
+|---------|-----------|--------------------------------------|
+| q			| String			| **optional** <p>Query to search.</p>							|
+| page			| Number			| **optional** <p>Page number.</p>							|
+| limit			| Number			| **optional** <p>Amount of returned items.</p>							|
+| sort			| String[]			| **optional** <p>Order of returned items.</p>							|
+| fields			| String[]			| **optional** <p>Fields to be returned.</p>							|
+
+## Update login
+
+
+
+	PUT /login/:id
+
+
+### Parameters
+
+| Name    | Type      | Description                          |
+|---------|-----------|--------------------------------------|
+| phoneNumber			| 			|  <p>Login's phoneNumber.</p>							|
+
 # Test
 
 ## Create test
 
 
 
-	POST /tests
+	POST /test
 
 
 ### Parameters
 
 | Name    | Type      | Description                          |
 |---------|-----------|--------------------------------------|
-| access_token			| String			|  <p>user access token.</p>							|
 | phoneNumber			| 			|  <p>Test's phoneNumber.</p>							|
-| name			| 			|  <p>Test's name.</p>							|
 
 ## Delete test
 
 
 
-	DELETE /tests/:id
+	DELETE /test/:id
 
 
 ### Parameters
 
 | Name    | Type      | Description                          |
 |---------|-----------|--------------------------------------|
-| access_token			| String			|  <p>user access token.</p>							|
+| access_token			| String			|  <p>master access token.</p>							|
 
 ## Retrieve test
 
 
 
-	GET /tests/:id
+	GET /test/:id
 
 
 ### Parameters
 
 | Name    | Type      | Description                          |
 |---------|-----------|--------------------------------------|
-| access_token			| String			|  <p>user access token.</p>							|
+| access_token			| String			|  <p>master access token.</p>							|
 
 ## Retrieve tests
 
 
 
-	GET /tests
+	GET /test
 
 
 ### Parameters
 
 | Name    | Type      | Description                          |
 |---------|-----------|--------------------------------------|
-| access_token			| String			|  <p>user access token.</p>							|
+| access_token			| String			|  <p>master access token.</p>							|
 | q			| String			| **optional** <p>Query to search.</p>							|
 | page			| Number			| **optional** <p>Page number.</p>							|
 | limit			| Number			| **optional** <p>Amount of returned items.</p>							|
@@ -114,16 +178,15 @@
 
 
 
-	PUT /tests/:id
+	PUT /test/:id
 
 
 ### Parameters
 
 | Name    | Type      | Description                          |
 |---------|-----------|--------------------------------------|
-| access_token			| String			|  <p>user access token.</p>							|
+| access_token			| String			|  <p>master access token.</p>							|
 | phoneNumber			| 			|  <p>Test's phoneNumber.</p>							|
-| name			| 			|  <p>Test's name.</p>							|
 
 # User
 
