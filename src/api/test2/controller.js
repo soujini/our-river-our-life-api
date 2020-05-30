@@ -1,11 +1,13 @@
 import { success, notFound } from '../../services/response/'
 import { Test2 } from '.'
 
-export const create = ({ bodymen: { body } }, res, next) =>
+export const create = ({ bodymen: { body } }, res, next) =>{
+  console.log(body.phoneNumber)
   Test2.create(body)
     .then((test2) => test2.view(true))
     .then(success(res, 201))
     .catch(next)
+  }
 
 export const index = ({ querymen: { query, select, cursor } }, res, next) =>
   Test2.count(query)

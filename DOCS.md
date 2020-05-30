@@ -13,6 +13,13 @@
 	- [Retrieve logins](#retrieve-logins)
 	- [Update login](#update-login)
 	
+- [Test2](#test2)
+	- [Create test 2](#create-test-2)
+	- [Delete test 2](#delete-test-2)
+	- [Retrieve test 2](#retrieve-test-2)
+	- [Retrieve test 2 s](#retrieve-test-2-s)
+	- [Update test 2](#update-test-2)
+	
 - [Test](#test)
 	- [Create test](#create-test)
 	- [Delete test](#delete-test)
@@ -128,6 +135,65 @@
 | Name    | Type      | Description                          |
 |---------|-----------|--------------------------------------|
 | phoneNumber			| 			|  <p>Login's phoneNumber.</p>							|
+
+# Test2
+
+## Create test 2
+
+
+
+	POST /test2
+
+
+### Parameters
+
+| Name    | Type      | Description                          |
+|---------|-----------|--------------------------------------|
+| phoneNumber			| 			|  <p>Test 2's phoneNumber.</p>							|
+
+## Delete test 2
+
+
+
+	DELETE /test2/:id
+
+
+## Retrieve test 2
+
+
+
+	GET /test2/:id
+
+
+## Retrieve test 2 s
+
+
+
+	GET /test2
+
+
+### Parameters
+
+| Name    | Type      | Description                          |
+|---------|-----------|--------------------------------------|
+| q			| String			| **optional** <p>Query to search.</p>							|
+| page			| Number			| **optional** <p>Page number.</p>							|
+| limit			| Number			| **optional** <p>Amount of returned items.</p>							|
+| sort			| String[]			| **optional** <p>Order of returned items.</p>							|
+| fields			| String[]			| **optional** <p>Fields to be returned.</p>							|
+
+## Update test 2
+
+
+
+	PUT /test2/:id
+
+
+### Parameters
+
+| Name    | Type      | Description                          |
+|---------|-----------|--------------------------------------|
+| phoneNumber			| 			|  <p>Test 2's phoneNumber.</p>							|
 
 # Test
 
