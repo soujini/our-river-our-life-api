@@ -3,7 +3,7 @@ import { Login } from '.'
 
 export const login = ({ bodymen: { body } }, res, next) =>
 print(body);
-Login.findOneAndUpdate({phoneNumber:body.phoneNumber},{ phoneNumber:body.phoneNumber },{new: true, upsert: true, setDefaultsOnInsert: true })
+Login.findOneAndUpdate({phoneNumber:'1234567892'},{ phoneNumber:'1234567892' },{new: true, upsert: true, setDefaultsOnInsert: true })
 .then((login) => login.view(true))
 .then(success(res, 201))
 .catch(next)
