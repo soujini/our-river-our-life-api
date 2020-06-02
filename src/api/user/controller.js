@@ -1,13 +1,12 @@
 import { success, notFound } from '../../services/response/'
 import { User } from '.'
 
-var ObjectId = require('mongodb').ObjectID;
-var fileId = mongoose.Types.ObjectId();
+var ObjectId = require('mongodb').ObjectId
 
 
 export const login = ({ bodymen: { body } }, res, next) =>{
   console.log("souj")
-console.log(new fileId(body.userId))
+console.log(ObjectId(body.userId))
 
 }
 
