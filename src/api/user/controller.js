@@ -10,8 +10,10 @@ export const login = ({ bodymen: { body } }, res, next) =>{
   console.log("souj")
 
   // Filter user from the users array by username and password
-  const user = User.find(u => {u.phoneNumber === body.phoneNumber });
+  const user = User.find(u => {return u.phoneNumber === body.phoneNumber });
   if (user) {
+    console.log(user.phoneNumber)
+      console.log(body.phoneNumber)
     // Generate an access token
     const accessToken = jwt.sign({ phoneNumber: body.phoneNumber }, accessTokenSecret);
 
