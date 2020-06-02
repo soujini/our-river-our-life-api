@@ -3,7 +3,7 @@ import { User } from '.'
 
 export const login = ({ bodymen: { body } }, res, next) =>{
   console.log("souj")
-console.log(body)
+console.log(new ObjectId(body.userId))
 
 }
 
