@@ -12,7 +12,16 @@ export const login = ({ bodymen: { body } }, res, next) =>{
   // Filter user from the users array by username and password
   User.findOne({phoneNumber: body.phoneNumber}, function(err,user){
     if(user){
-      console.log(user.phoneNumber)
+      // Generate an access token
+      const accessToken = jwt.sign({ phoneNumber: user.phoneNumber }, accessTokenSecret);
+
+      res.json({
+        accessToken
+      });
+
+    }
+    else{
+       res.send('Phone Number is incorrect');
     }
   });
 
