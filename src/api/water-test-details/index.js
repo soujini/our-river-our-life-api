@@ -8,6 +8,29 @@ export WaterTestDetails, { schema } from './model'
 const router = new Router()
 const { userId, generalInformation,waterLevelAndWeather,surroundings,waterTesting } = schema.tree
 
+const accessTokenSecret = 'youraccesstokensecret';
+const jwt = require('jsonwebtoken');
+
+const authenticateJWT = (req, res, next) => {
+  console.log("trrying to authenticate the token")
+    const authHeader = req.headers.authorization;
+
+    if (authHeader) {
+        const token = authHeader.split(' ')[1];
+
+        jwt.verify(token, accessTokenSecret, (err, user) => {
+            if (err) {
+                return res.sendStatus(403);
+            }
+
+            req.user = user;
+            next();
+        });
+    } else {
+        res.sendStatus(401);
+    }
+};
+
 /**
  * @api {post} /water-test-details Create water test details
  * @apiName CreateWaterTestDetails
@@ -19,7 +42,7 @@ const { userId, generalInformation,waterLevelAndWeather,surroundings,waterTestin
  * @apiError {Object} 400 Some parameters may contain invalid values.
  * @apiError 404 Water test details not found.
  */
-router.post('/',
+router.post('/',authenticateJWT,
   body({
     userId,
     generalInformation,
@@ -38,7 +61,7 @@ router.post('/',
  * @apiSuccess {Object[]} rows List of water test details.
  * @apiError {Object} 400 Some parameters may contain invalid values.
  */
-router.get('/',
+router.get('/',authenticateJWT,
   query(),
   index)
 
@@ -50,7 +73,7 @@ router.get('/',
  * @apiError {Object} 400 Some parameters may contain invalid values.
  * @apiError 404 Water test details not found.
  */
-router.get('/:id',
+router.get('/:id',authenticateJWT,
   show)
 
 /**
@@ -64,7 +87,7 @@ router.get('/:id',
  * @apiError {Object} 400 Some parameters may contain invalid values.
  * @apiError 404 Water test details not found.
  */
-router.put('/:id',
+router.put('/:id',authenticateJWT,
   body({ userId, generalInformation }),
   update)
 
@@ -75,7 +98,7 @@ router.put('/:id',
  * @apiSuccess (Success 204) 204 No Content.
  * @apiError 404 Water test details not found.
  */
-router.delete('/:id',
+router.delete('/:id',authenticateJWT,
   destroy)
 
 export default router

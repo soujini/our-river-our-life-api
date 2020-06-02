@@ -40,9 +40,9 @@ const authenticateJWT = (req, res, next) => {
  * @apiError {Object} 400 Some parameters may contain invalid values.
  * @apiError 404 User not found.
  */
-router.post('/login',
+router.post('/auth',
   body({ phoneNumber }),
-  login)
+  auth)
 
 
 /**
@@ -79,7 +79,7 @@ router.get('/', authenticateJWT,
  * @apiError {Object} 400 Some parameters may contain invalid values.
  * @apiError 404 User not found.
  */
-router.get('/:id',
+router.get('/:id',authenticateJWT,
   show)
 
 /**
@@ -91,7 +91,7 @@ router.get('/:id',
  * @apiError {Object} 400 Some parameters may contain invalid values.
  * @apiError 404 User not found.
  */
-router.put('/:id',
+router.put('/:id',authenticateJWT,
   body({ phoneNumber }),
   update)
 
@@ -102,7 +102,7 @@ router.put('/:id',
  * @apiSuccess (Success 204) 204 No Content.
  * @apiError 404 User not found.
  */
-router.delete('/:id',
+router.delete('/:id',authenticateJWT,
   destroy)
 
 export default router
