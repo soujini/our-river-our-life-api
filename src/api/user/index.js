@@ -8,6 +8,7 @@ export User, { schema } from './model'
 const router = new Router()
 const { phoneNumber, userId } = schema.tree
 const accessTokenSecret = 'youraccesstokensecret';
+const jwt = require('jsonwebtoken');
 
 
 const authenticateJWT = (req, res, next) => {
