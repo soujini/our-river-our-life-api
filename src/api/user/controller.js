@@ -8,10 +8,19 @@ const accessTokenSecret = 'youraccesstokensecret';
 
 export const login = ({ bodymen: { body } }, res, next) =>{
   console.log("souj")
-  console.log(ObjectId(body.userId))
+
   // Filter user from the users array by username and password
-  const user = User.find(u => { return u._id === ObjectId(body.userId) });
-console.log(user)
+  const user = User.find(u => {u.phoneNumber === ObjectId(body.phoneNumber) });
+  if (user) {
+    // Generate an access token
+    const accessToken = jwt.sign({ phoneNumber: user.phoneNumber }, accessTokenSecret);
+
+    res.json({
+        accessToken
+    });
+} else {
+    res.send('Phone Number is incorrect');
+}
 
 }
 

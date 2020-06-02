@@ -18,7 +18,7 @@ const { phoneNumber, userId } = schema.tree
  * @apiError 404 User not found.
  */
 router.post('/login',
-  body({ userId }),
+  body({ phoneNumber }),
   login)
 
 
