@@ -7,6 +7,28 @@ export User, { schema } from './model'
 
 const router = new Router()
 const { phoneNumber, userId } = schema.tree
+const accessTokenSecret = 'youraccesstokensecret';
+
+
+const authenticateJWT = (req, res, next) => {
+  console.log("trrying to authenticate the token")
+    const authHeader = req.headers.authorization;
+
+    if (authHeader) {
+        const token = authHeader.split(' ')[1];
+
+        jwt.verify(token, accessTokenSecret, (err, user) => {
+            if (err) {
+                return res.sendStatus(403);
+            }
+
+            req.user = user;
+            next();
+        });
+    } else {
+        res.sendStatus(401);
+    }
+};
 
 /**
  * @api {post} /user  user
@@ -44,7 +66,7 @@ router.post('/sign-in',
  * @apiSuccess {Object[]} rows List of users.
  * @apiError {Object} 400 Some parameters may contain invalid values.
  */
-router.get('/',
+router.get('/', authenticateJWT
   query(),
   index)
 
