@@ -1,7 +1,13 @@
 import { success, notFound } from '../../services/response/'
 import { User } from '.'
 
-export const create = ({ bodymen: { body } }, res, next) =>{
+export const login = ({ bodymen: { body } }, res, next) =>{
+  console.log("souj")
+console.log(body)
+
+}
+
+export const signIn = ({ bodymen: { body } }, res, next) =>{
 console.log(body)
 User.findOneAndUpdate({phoneNumber:body.phoneNumber},{phoneNumber:body.phoneNumber},{new: true, upsert: true })
 .then((user) => (user.view(true)))

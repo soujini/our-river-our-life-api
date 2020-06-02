@@ -1,12 +1,25 @@
 import { Router } from 'express'
 import { middleware as query } from 'querymen'
 import { middleware as body } from 'bodymen'
-import { create, index, show, update, destroy, login } from './controller'
+import { signIn, index, show, update, destroy, login } from './controller'
 import { schema } from './model'
 export User, { schema } from './model'
 
 const router = new Router()
-const { phoneNumber } = schema.tree
+const { phoneNumber, id } = schema.tree
+
+/**
+ * @api {post} /user  user
+ * @apiName CreateUser
+ * @apiGroup User
+ * @apiParam phoneNumber User's phoneNumber.
+ * @apiSuccess {Object} user User's data.
+ * @apiError {Object} 400 Some parameters may contain invalid values.
+ * @apiError 404 User not found.
+ */
+router.post('/login',
+  body({ id }),
+  login)
 
 
 /**
@@ -20,7 +33,7 @@ const { phoneNumber } = schema.tree
  */
 router.post('/sign-in',
   body({ phoneNumber }),
-  create)
+  signIn)
 
 /**
  * @api {get} /user Retrieve users
