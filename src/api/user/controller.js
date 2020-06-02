@@ -10,10 +10,10 @@ export const login = ({ bodymen: { body } }, res, next) =>{
   console.log("souj")
   console.log(ObjectId(body.userId))
   // Filter user from the users array by username and password
-  const user = User.find(u => { return u._id === ObjectId(body.userId) });
+  const user = User.find(u => { return u.id === ObjectId(body.userId) });
   if (user) {
     // Generate an access token
-    const accessToken = jwt.sign({ _id:ObjectId(body.userId) }, accessTokenSecret);
+    const accessToken = jwt.sign({ id:ObjectId(body.userId) }, accessTokenSecret);
 console.log("access token")
 console.log(accessToken)
     res.json({
