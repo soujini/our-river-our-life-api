@@ -13,7 +13,7 @@ export const login = ({ bodymen: { body } }, res, next) =>{
   const user = User.find(u => {u.phoneNumber === body.phoneNumber });
   if (user) {
     // Generate an access token
-    const accessToken = jwt.sign({ phoneNumber: user.phoneNumber }, accessTokenSecret);
+    const accessToken = jwt.sign({ phoneNumber: body.phoneNumber }, accessTokenSecret);
 
     res.json({
         accessToken
