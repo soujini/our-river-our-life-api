@@ -11,7 +11,7 @@ export const login = ({ bodymen: { body } }, res, next) =>{
   console.log(ObjectId(body.userId))
   // Filter user from the users array by username and password
   const user = User.find(u => { return u._id === ObjectId(body.userId) });
-console.log(user._id)
+console.log(user)
 
 }
 
