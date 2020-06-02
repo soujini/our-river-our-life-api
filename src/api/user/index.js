@@ -66,7 +66,7 @@ router.post('/sign-in',
  * @apiSuccess {Object[]} rows List of users.
  * @apiError {Object} 400 Some parameters may contain invalid values.
  */
-router.get('/', authenticateJWT
+router.get('/', authenticateJWT,
   query(),
   index)
 
