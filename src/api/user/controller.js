@@ -6,6 +6,25 @@ const jwt = require('jsonwebtoken');
 
 const accessTokenSecret = 'youraccesstokensecret';
 
+const authenticateJWT = (req, res, next) => {
+    const authHeader = req.headers.authorization;
+
+    if (authHeader) {
+        const token = authHeader.split(' ')[1];
+
+        jwt.verify(token, accessTokenSecret, (err, user) => {
+            if (err) {
+                return res.sendStatus(403);
+            }
+
+            req.user = user;
+            next();
+        });
+    } else {
+        res.sendStatus(401);
+    }
+};
+
 export const login = ({ bodymen: { body } }, res, next) =>{
   console.log("souj")
 
@@ -35,7 +54,8 @@ export const signIn = ({ bodymen: { body } }, res, next) =>{
   .catch(next)
 }
 
-export const index = ({ querymen: { query, select, cursor } }, res, next) =>
+export const index = (authenticateJWT, { querymen: { query, select, cursor } }, res, next) =>{
+  console.log("getting with token")
 User.count(query)
 .then(count => User.find(query, select, cursor)
 .then((users) => ({
@@ -45,6 +65,7 @@ User.count(query)
 )
 .then(success(res))
 .catch(next)
+}
 
 export const show = ({ params }, res, next) =>
 User.findById(params.id)
