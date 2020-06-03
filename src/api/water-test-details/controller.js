@@ -25,8 +25,8 @@ export const show = ({ params }, res, next) =>
     .then(success(res))
     .catch(next)
 
-export const update = ({ req, params }, res, next) =>{
-  console.log(req)
+export const update = ({ { bodymen: { body }, params }, res, next) =>{
+  console.log(body)
   console.log(params)
   WaterTestDetails.findById(params.id)
     .then(notFound(res))
