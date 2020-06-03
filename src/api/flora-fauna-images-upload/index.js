@@ -21,11 +21,17 @@ const { flora, fauna } = schema.tree
  */
 
 
-router.post('/upload',
+router.post('/upload/flora',
   multer({ dest: 'temp/', limits: { fieldSize: 8 * 1024 * 1024 } }).single(
-    'flora', 'fauna'
+    'flora'
   ),
   upload)
+
+  router.post('/upload/fauna',
+    multer({ dest: 'temp/', limits: { fieldSize: 8 * 1024 * 1024 } }).single(
+      'fauna'
+    ),
+    upload)
 
 /**
  * @api {post} /flora-fauna-images-upload Create flora fauna images upload
