@@ -32,7 +32,7 @@ export const upload = (req, res, next) =>{
       console.log(locationUrl);
       var params ="";
       console.log("suji")
-      console.log(req.fieldName)
+      console.log(req.body)
 
       if(req.fieldName == 'flora'){
         params = {"id":"5ed5cd1e1177d200176877a6", "flora":locationUrl}
@@ -40,7 +40,9 @@ export const upload = (req, res, next) =>{
       else{
           params = {"id":"5ed5cd1e1177d200176877a6", "fauna":locationUrl}
       }
-      WaterTestDetailsController.updateImage({params})
+      if(params != ""){
+        WaterTestDetailsController.updateImage({params})
+      }
     }
   });
 }
