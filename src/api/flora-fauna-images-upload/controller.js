@@ -5,6 +5,7 @@ var WaterTestDetailsController = require('../water-test-details/controller')
 import aws from 'aws-sdk';
 import fs from 'fs';
 
+
 export const upload = (req, res, next) =>{
   console.log("upload")
   console.log(req)

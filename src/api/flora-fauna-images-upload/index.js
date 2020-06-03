@@ -8,6 +8,29 @@ export FloraFaunaImagesUpload, { schema } from './model'
 
 const router = new Router()
 const { flora, fauna } = schema.tree
+const jwt = require('jsonwebtoken');
+
+const accessTokenSecret = 'youraccesstokensecret';
+
+const authenticateJWT = (req, res, next) => {
+  console.log("trrying to authenticate the token")
+    const authHeader = req.headers.authorization;
+
+    if (authHeader) {
+        const token = authHeader.split(' ')[1];
+
+        jwt.verify(token, accessTokenSecret, (err, user) => {
+            if (err) {
+                return res.sendStatus(403);
+            }
+
+            req.user = user;
+            next();
+        });
+    } else {
+        res.sendStatus(401);
+    }
+};
 
 /**
  * @api {post} /flora-fauna-images-upload Upload flora fauna images upload
@@ -20,14 +43,13 @@ const { flora, fauna } = schema.tree
  * @apiError 404 Flora fauna images upload not found.
  */
 
-
-router.post('/upload/flora',
+router.post('/upload/flora',authenticateJWT,
   multer({ dest: 'temp/', limits: { fieldSize: 8 * 1024 * 1024 } }).single(
     'flora'
   ),
   upload)
 
-  router.post('/upload/fauna',
+  router.post('/upload/fauna',authenticateJWT,
     multer({ dest: 'temp/', limits: { fieldSize: 8 * 1024 * 1024 } }).single(
       'fauna'
     ),
