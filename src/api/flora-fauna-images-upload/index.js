@@ -13,108 +13,107 @@ const jwt = require('jsonwebtoken');
 const accessTokenSecret = 'youraccesstokensecret';
 
 const authenticateJWT = (req, res, next) => {
-  console.log("trrying to authenticate the token")
-    const authHeader = req.headers.authorization;
+  const authHeader = req.headers.authorization;
 
-    if (authHeader) {
-        const token = authHeader.split(' ')[1];
+  if (authHeader) {
+    const token = authHeader.split(' ')[1];
 
-        jwt.verify(token, accessTokenSecret, (err, user) => {
-            if (err) {
-                return res.sendStatus(403);
-            }
+    jwt.verify(token, accessTokenSecret, (err, user) => {
+      if (err) {
+        return res.sendStatus(403);
+      }
 
-            req.user = user;
-            next();
-        });
-    } else {
-        res.sendStatus(401);
-    }
+      req.user = user;
+      next();
+    });
+  } else {
+    res.sendStatus(401);
+  }
 };
 
 /**
- * @api {post} /flora-fauna-images-upload Upload flora fauna images upload
- * @apiName UploadFloraFaunaImagesUpload
- * @apiGroup FloraFaunaImagesUpload
- * @apiParam flora Flora fauna images upload's flora.
- * @apiParam fauna Flora fauna images upload's fauna.
- * @apiSuccess {Object} floraFaunaImagesUpload Flora fauna images upload's data.
- * @apiError {Object} 400 Some parameters may contain invalid values.
- * @apiError 404 Flora fauna images upload not found.
- */
+* @api {post} /flora-fauna-images-upload Upload flora fauna images upload
+* @apiName UploadFloraFaunaImagesUpload
+* @apiGroup FloraFaunaImagesUpload
+* @apiParam flora Flora fauna images upload's flora.
+* @apiParam fauna Flora fauna images upload's fauna.
+* @apiSuccess {Object} floraFaunaImagesUpload Flora fauna images upload's data.
+* @apiError {Object} 400 Some parameters may contain invalid values.
+* @apiError 404 Flora fauna images upload not found.
+*/
 
 router.post('/upload/flora',authenticateJWT,
-  multer({ dest: 'temp/', limits: { fieldSize: 8 * 1024 * 1024 } }).single(
-    'flora'
-  ),
-  upload)
+multer({ dest: 'temp/', limits: { fieldSize: 8 * 1024 * 1024 } }).single(
+  'flora'
+),
+upload)
 
-  router.post('/upload/fauna',authenticateJWT,
-    multer({ dest: 'temp/', limits: { fieldSize: 8 * 1024 * 1024 } }).single(
-      'fauna'
-    ),
-    upload)
+router.post('/upload/fauna',authenticateJWT,
+multer({ dest: 'temp/', limits: { fieldSize: 8 * 1024 * 1024 } }).single(
+  'fauna'
+),
+upload)
 
 /**
- * @api {post} /flora-fauna-images-upload Create flora fauna images upload
- * @apiName CreateFloraFaunaImagesUpload
- * @apiGroup FloraFaunaImagesUpload
- * @apiParam flora Flora fauna images upload's flora.
- * @apiParam fauna Flora fauna images upload's fauna.
- * @apiSuccess {Object} floraFaunaImagesUpload Flora fauna images upload's data.
- * @apiError {Object} 400 Some parameters may contain invalid values.
- * @apiError 404 Flora fauna images upload not found.
- */
+* @api {post} /flora-fauna-images-upload Create flora fauna images upload
+* @apiName CreateFloraFaunaImagesUpload
+* @apiGroup FloraFaunaImagesUpload
+* @apiParam flora Flora fauna images upload's flora.
+* @apiParam fauna Flora fauna images upload's fauna.
+* @apiSuccess {Object} floraFaunaImagesUpload Flora fauna images upload's data.
+* @apiError {Object} 400 Some parameters may contain invalid values.
+* @apiError 404 Flora fauna images upload not found.
+*/
 router.post('/',
-  body({ flora, fauna }),
-  create)
+body({ flora, fauna }),
+create)
 
 /**
- * @api {get} /flora-fauna-images-upload Retrieve flora fauna images uploads
- * @apiName RetrieveFloraFaunaImagesUploads
- * @apiGroup FloraFaunaImagesUpload
- * @apiUse listParams
- * @apiSuccess {Number} count Total amount of flora fauna images uploads.
- * @apiSuccess {Object[]} rows List of flora fauna images uploads.
- * @apiError {Object} 400 Some parameters may contain invalid values.
- */
+* @api {get} /flora-fauna-images-upload Retrieve flora fauna images uploads
+* @apiName RetrieveFloraFaunaImagesUploads
+* @apiGroup FloraFaunaImagesUpload
+* @apiUse listParams
+* @apiSuccess {Number} count Total amount of flora fauna images uploads.
+* @apiSuccess {Object[]} rows List of flora fauna images uploads.
+* @apiError {Object} 400 Some parameters may contain invalid values.
+*/
 router.get('/',
-  query(),
-  index)
+query(),
+index)
 
 /**
- * @api {get} /flora-fauna-images-upload/:id Retrieve flora fauna images upload
- * @apiName RetrieveFloraFaunaImagesUpload
- * @apiGroup FloraFaunaImagesUpload
- * @apiSuccess {Object} floraFaunaImagesUpload Flora fauna images upload's data.
- * @apiError {Object} 400 Some parameters may contain invalid values.
- * @apiError 404 Flora fauna images upload not found.
- */
+* @api {get} /flora-fauna-images-upload/:id Retrieve flora fauna images upload
+* @apiName RetrieveFloraFaunaImagesUpload
+* @apiGroup FloraFaunaImagesUpload
+* @apiSuccess {Object} floraFaunaImagesUpload Flora fauna images upload's data.
+* @apiError {Object} 400 Some parameters may contain invalid values.
+* @apiError 404 Flora fauna images upload not found.
+*/
 router.get('/:id',
-  show)
+show)
 
 /**
- * @api {put} /flora-fauna-images-upload/:id Update flora fauna images upload
- * @apiName UpdateFloraFaunaImagesUpload
- * @apiGroup FloraFaunaImagesUpload
- * @apiParam flora Flora fauna images upload's flora.
- * @apiParam fauna Flora fauna images upload's fauna.
- * @apiSuccess {Object} floraFaunaImagesUpload Flora fauna images upload's data.
- * @apiError {Object} 400 Some parameters may contain invalid values.
- * @apiError 404 Flora fauna images upload not found.
- */
+* @api {put} /flora-fauna-images-upload/:id Update flora fauna images upload
+* @apiName UpdateFloraFaunaImagesUpload
+* @apiGroup FloraFaunaImagesUpload
+* @apiParam flora Flora fauna images upload's flora.
+* @apiParam fauna Flora fauna images upload's fauna.
+* @apiSuccess {Object} floraFaunaImagesUpload Flora fauna images upload's data.
+* @apiError {Object} 400 Some parameters may contain invalid values.
+* @apiError 404 Flora fauna images upload not found.
+*/
 router.put('/:id',
-  body({ flora, fauna }),
-  update)
+body({ flora, fauna }),
+update)
 
 /**
- * @api {delete} /flora-fauna-images-upload/:id Delete flora fauna images upload
- * @apiName DeleteFloraFaunaImagesUpload
- * @apiGroup FloraFaunaImagesUpload
- * @apiSuccess (Success 204) 204 No Content.
- * @apiError 404 Flora fauna images upload not found.
- */
+* @api {delete} /flora-fauna-images-upload/:id Delete flora fauna images upload
+* @apiName DeleteFloraFaunaImagesUpload
+* @apiGroup FloraFaunaImagesUpload
+* @apiSuccess (Success 204) 204 No Content.
+* @apiError 404 Flora fauna images upload not found.
+*/
 router.delete('/:id',
-  destroy)
+destroy)
 
 export default router

@@ -31,17 +31,12 @@ export const upload = (req, res, next) =>{
       fs.unlinkSync(req.file.path); // Empty temp folder
       const locationUrl = data.Location;
 
-      req.file.originalname = "5ed5cd1e1177d200176877a6_filename.png"
-
       var id = req.file.originalname.split('_');
 
-
       if(req.file.fieldname == 'flora'){
-          console.log("kirti "+id[0])
         params = {"id":id[0], "flora":locationUrl}
       }
       else{
-          console.log("kirti "+id)
           params = {"id":id[0], "fauna":locationUrl}
       }
       if(params != ""){
