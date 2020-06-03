@@ -6,7 +6,7 @@ import aws from 'aws-sdk';
 import fs from 'fs';
 
 export const upload = (req, res, next) =>{
-  console.log(upload)
+  console.log("upload")
   console.log(req)
   aws.config.setPromisesDependency();
   aws.config.update({
@@ -31,7 +31,13 @@ export const upload = (req, res, next) =>{
       fs.unlinkSync(req.file.path); // Empty temp folder
       const locationUrl = data.Location;
       console.log(locationUrl);
-      var params ={"id":"5ed5cd1e1177d200176877a6", "flora":locationUrl}
+      var params ="";
+      if(req.fieldName == 'flora'){
+        params = {"id":"5ed5cd1e1177d200176877a6", "flora":locationUrl}
+      }
+      else{
+          params = {"id":"5ed5cd1e1177d200176877a6", "fauna":locationUrl}
+      }
       WaterTestDetailsController.updateImage({params})
     }
   });
