@@ -7,9 +7,9 @@ import fs from 'fs';
 
 
 export const upload = (req, res, next) =>{
-  const customOriginalName="";
-  const customPath="";
-  const customFieldName="";
+  var customOriginalName="";
+  var customPath="";
+  var customFieldName="";
 
   aws.config.setPromisesDependency();
   aws.config.update({
