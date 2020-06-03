@@ -33,7 +33,7 @@ export const upload = (req, res, next) =>{
 
       req.file.originalname = "5ed5cd1e1177d200176877a6_filename.png"
 
-      var id = req.file.originalname.split(_);
+      var id = req.file.originalname.split('_');
       console.log("kirti "+id)
 
       if(req.file.fieldname == 'flora'){
