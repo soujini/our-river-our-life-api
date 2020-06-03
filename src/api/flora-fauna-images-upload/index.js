@@ -20,13 +20,12 @@ const { flora, fauna } = schema.tree
  * @apiError 404 Flora fauna images upload not found.
  */
 
-.route('/upload')
-.post(
+
+router.post('/upload',
   multer({ dest: 'temp/', limits: { fieldSize: 8 * 1024 * 1024 } }).single(
-    'flora', 'fauna'
+    body({ flora, fauna })
   ),
-  upload
-);
+  upload)
 
 /**
  * @api {post} /flora-fauna-images-upload Create flora fauna images upload
