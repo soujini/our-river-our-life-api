@@ -27,18 +27,20 @@ export const upload = (req, res, next) =>{
     }
 
     if (data) {
+        var params ="";
       fs.unlinkSync(req.file.path); // Empty temp folder
       const locationUrl = data.Location;
-      console.log(locationUrl);
-      var params ="";
-      console.log("suji")
-      console.log(req.file)
 
-      if(req.file.fieldName == 'flora'){
-        params = {"id":"5ed5cd1e1177d200176877a6", "flora":locationUrl}
+      req.file.originalname = "5ed5cd1e1177d200176877a6_filename.png"
+
+      var id = req.file.originalname.split(_);
+      console.log("kirti "+id)
+
+      if(req.file.fieldname == 'flora'){
+        params = {"id":id[0], "flora":locationUrl}
       }
       else{
-          params = {"id":"5ed5cd1e1177d200176877a6", "fauna":locationUrl}
+          params = {"id":id[0], "fauna":locationUrl}
       }
       if(params != ""){
         WaterTestDetailsController.updateImage({params})
