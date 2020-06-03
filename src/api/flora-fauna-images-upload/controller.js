@@ -7,7 +7,7 @@ import fs from 'fs';
 
 
 export const upload = (req, res, next) =>{
-  console.log("upload")
+  console.log("suji")
   console.log(req)
   aws.config.setPromisesDependency();
   aws.config.update({
