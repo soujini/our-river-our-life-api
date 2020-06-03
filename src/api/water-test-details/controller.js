@@ -25,11 +25,12 @@ export const show = ({ params }, res, next) =>
     .then(success(res))
     .catch(next)
 
-export const update = ({ bodymen: { body }, params }, res, next) =>{
+export const update = ({ req, params }, res, next) =>{
+  console.log(req.flora)
   console.log(params.id)
   WaterTestDetails.findById(params.id)
     .then(notFound(res))
-    .then((waterTestDetails) => waterTestDetails ? Object.assign(waterTestDetails, body).save() : null)
+    .then((waterTestDetails) => waterTestDetails ? Object.assign(waterTestDetails, req).save() : null)
     .then((waterTestDetails) => waterTestDetails ? waterTestDetails.view(true) : null)
     .then(success(res))
     .catch(next)
