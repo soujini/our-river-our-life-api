@@ -7,8 +7,6 @@ import fs from 'fs';
 
 
 export const upload = (req, res, next) =>{
-  console.log("suji")
-  console.log(req)
   aws.config.setPromisesDependency();
   aws.config.update({
     "accessKeyId": 'AKIAJ24JCG5UUXOOHKDA',
@@ -33,6 +31,9 @@ export const upload = (req, res, next) =>{
       const locationUrl = data.Location;
       console.log(locationUrl);
       var params ="";
+      console.log("suji")
+      console.log(req.fieldName)
+
       if(req.fieldName == 'flora'){
         params = {"id":"5ed5cd1e1177d200176877a6", "flora":locationUrl}
       }
