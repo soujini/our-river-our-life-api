@@ -48,10 +48,10 @@ export const upload = (req, res, next) =>{
       customOriginalName = "5ed5cd1e1177d200176877a6_filename.png"
       var waterTestDetailsId = customOriginalName.split('_');
 
-      if(fieldname == 'flora'){
+      if(customFieldName == 'flora'){
         params = {"id":waterTestDetailsId[0], "flora":locationUrl}
       }
-      else if(fieldname == 'fauna'){
+      else if(customFieldName == 'fauna'){
         params = {"id":waterTestDetailsId[0], "fauna":locationUrl}
       }
       if(params != ""){
