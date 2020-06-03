@@ -42,13 +42,13 @@ const authenticateJWT = (req, res, next) => {
 * @apiError 404 Flora fauna images upload not found.
 */
 
-router.post('/upload/flora',authenticateJWT,
+router.post('/flora',authenticateJWT,
 multer({ dest: 'temp/', limits: { fieldSize: 8 * 1024 * 1024 } }).single(
   'flora'
 ),
 upload)
 
-router.post('/upload/fauna',authenticateJWT,
+router.post('/fauna',authenticateJWT,
 multer({ dest: 'temp/', limits: { fieldSize: 8 * 1024 * 1024 } }).single(
   'fauna'
 ),
