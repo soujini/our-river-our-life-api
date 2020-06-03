@@ -7,10 +7,12 @@ import fs from 'fs';
 export const upload = (req, res, next) =>{
   aws.config.setPromisesDependency();
   aws.config.update({
-    accessKeyId: 'AKIAJ24JCG5UUXOOHKDA',
-    secretAccessKey: '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',
-    region: 'Asia Pacific (Mumbai)'
+    "accessKeyId": 'AKIAJ24JCG5UUXOOHKDA',
+    "secretAccessKey": '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',
+    "s3BucketEndpoint": true,
+    "endpoint": "http://flora-fauna.s3.amazonaws.com"
   });
+
   const s3 = new aws.S3();
   var params = {
     ACL: 'public-read',
