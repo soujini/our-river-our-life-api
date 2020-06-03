@@ -32,10 +32,7 @@ export const updateImage = ({ params }, res, next) =>{
     if(waterTestDetails){
       console.log("in water test details")
       waterTestDetails.flora.push(params.flora);
-      waterTestDetails.save(function(err){
-        // something here
-
-      });
+      waterTestDetails.save()
     }
     else{
        console.log('Water test details id is incorrect');
