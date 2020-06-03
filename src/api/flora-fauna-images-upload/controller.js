@@ -13,7 +13,7 @@ export const upload = (req, res, next) =>{
     "secretAccessKey": 'UKG2g/WWfOcLlz4rXPLDEe4jcwcTJ+tfEP9DneJo',
   });
   console.log("kirti")
-  console.log(req.file)
+  console.log(req)
 
   const s3 = new aws.S3();
   var params = {
