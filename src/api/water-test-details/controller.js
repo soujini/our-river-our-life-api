@@ -34,9 +34,7 @@ export const updateImage = ({ params }, res, next) =>{
       waterTestDetails.flora.push(params.flora);
       waterTestDetails.save(function(err){
         // something here
-        res.json({
-          "done":"asdadasda"
-        });
+
       });
     }
     else{
