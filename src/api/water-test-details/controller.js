@@ -38,23 +38,11 @@ export const updateImage = ({ params }, res, next) =>{
           "done":"asdadasda"
         });
       });
-
-
-
-
-});
-      // Generate an access token
-      // const accessToken = jwt.sign({ phoneNumber: user.phoneNumber }, accessTokenSecret);
-      //
-      // res.json({
-      //   accessToken
-      // });
-
     }
     else{
        console.log('Water test details id is incorrect');
     }
-  });
+});
 }
 
 export const update = ( { bodymen: { body }, params }, res, next) =>{
