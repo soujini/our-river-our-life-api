@@ -13,14 +13,14 @@ export const upload = (req, res, next) =>{
     "secretAccessKey": 'UKG2g/WWfOcLlz4rXPLDEe4jcwcTJ+tfEP9DneJo',
   });
   console.log("kirti")
-  console.log(req)
+  console.log(req.files)
 
   const s3 = new aws.S3();
   var params = {
     ACL: 'public-read',
     Bucket: 'flora-fauna',
-    Body: fs.createReadStream(req.file.path),
-    Key: `flora-fauna/${req.file.originalname}`
+    Body: fs.createReadStream(req.files.path),
+    Key: `flora-fauna/${req.files.originalname}`
   };
 
   s3.upload(params, (err, data) => {
@@ -30,12 +30,12 @@ export const upload = (req, res, next) =>{
 
     if (data) {
         var params ="";
-      fs.unlinkSync(req.file.path); // Empty temp folder
+      fs.unlinkSync(req.files.path); // Empty temp folder
       const locationUrl = data.Location;
-      req.file.originalname = "5ed5cd1e1177d200176877a6_filename.png"
-      var id = req.file.originalname.split('_');
+      req.files.originalname = "5ed5cd1e1177d200176877a6_filename.png"
+      var id = req.files.originalname.split('_');
 
-      if(req.file.fieldname == 'flora'){
+      if(req.files.fieldname == 'flora'){
         params = {"id":id[0], "flora":locationUrl}
       }
       else{
