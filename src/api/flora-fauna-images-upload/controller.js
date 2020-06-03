@@ -31,7 +31,7 @@ export const upload = (req, res, next) =>{
       console.log(locationUrl);
       var params ={"id":"5ed5cd1e1177d200176877a6"}
       var req = {"flora":locationUrl}
-      WaterTestDetailsController.update({rew, params})
+      WaterTestDetailsController.update({req, params})
     }
   });
 }
