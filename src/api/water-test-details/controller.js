@@ -31,8 +31,8 @@ export const updateImage = ({ params }, res, next) =>{
   WaterTestDetails.findById(params.id, function(err, waterTestDetails){
     if(waterTestDetails){
       console.log(waterTestDetails)
-      WaterTestDetails.flora.push(params.flora);
-      WaterTestDetails.save(function(err){
+      waterTestDetails.flora.push(params.flora);
+      waterTestDetails.save(function(err){
         // something here
         res.json({
           "done":"asdadasda"
