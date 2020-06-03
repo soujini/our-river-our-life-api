@@ -27,7 +27,7 @@ export const show = ({ params }, res, next) =>
 
 export const update = ({ req, params }, res, next) =>{
   console.log(req)
-  console.log(params.id)
+  console.log(params)
   WaterTestDetails.findById(params.id)
     .then(notFound(res))
     .then((waterTestDetails) => waterTestDetails ? Object.assign(waterTestDetails, req).save() : null)
