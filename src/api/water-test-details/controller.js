@@ -28,7 +28,7 @@ export const show = ({ params }, res, next) =>
 export const updateImage = ({ params }, res, next) =>{
   console.log(params.id)
   console.log(params.flora)
-  WaterTestDetails.findOne({id: params.id}, function(err, waterTestDetails){
+  WaterTestDetails.findById(params.id, function(err, waterTestDetails){
     if(waterTestDetails){
       console.log(waterTestDetails)
       // Generate an access token
@@ -40,7 +40,7 @@ export const updateImage = ({ params }, res, next) =>{
 
     }
     else{
-       res.send('Water test details id is incorrect');
+       console.log('Water test details id is incorrect');
     }
   });
 }
