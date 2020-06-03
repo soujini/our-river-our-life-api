@@ -30,7 +30,7 @@ export const updateImage = ({ params }, res, next) =>{
   console.log(params.flora)
   WaterTestDetails.findOne({id: params.id}, function(err, waterTestDetails){
     if(waterTestDetails){
-      console.log(detail)
+      console.log(waterTestDetails)
       // Generate an access token
       // const accessToken = jwt.sign({ phoneNumber: user.phoneNumber }, accessTokenSecret);
       //
@@ -43,7 +43,6 @@ export const updateImage = ({ params }, res, next) =>{
        res.send('Water test details id is incorrect');
     }
   });
-
 }
 
 export const update = ( { bodymen: { body }, params }, res, next) =>{
