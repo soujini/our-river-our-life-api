@@ -26,7 +26,7 @@ export const show = ({ params }, res, next) =>
     .catch(next)
 
 export const update = ({ req, params }, res, next) =>{
-  console.log(req)
+  console.log(req.body)
   console.log(params.id)
   WaterTestDetails.findById(params.id)
     .then(notFound(res))
