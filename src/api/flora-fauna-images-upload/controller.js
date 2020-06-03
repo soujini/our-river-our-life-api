@@ -29,9 +29,8 @@ export const upload = (req, res, next) =>{
       fs.unlinkSync(req.file.path); // Empty temp folder
       const locationUrl = data.Location;
       console.log(locationUrl);
-      var params ={"id":"5ed5cd1e1177d200176877a6"}
-      var blah = {"flora":locationUrl}
-      WaterTestDetailsController.update({blah, params})
+      var params ={"id":"5ed5cd1e1177d200176877a6", "flora":locationUrl}
+      WaterTestDetailsController.updateImage({params})
     }
   });
 }

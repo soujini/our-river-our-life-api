@@ -25,9 +25,13 @@ export const show = ({ params }, res, next) =>
     .then(success(res))
     .catch(next)
 
+export const updateImage = ({ params }, res, next) =>{
+  console.log(params.id)
+  console.log(params.flora)
+
+}
+
 export const update = ( { bodymen: { body }, params }, res, next) =>{
-  console.log(body)
-  console.log(params)
   WaterTestDetails.findById(params.id)
     .then(notFound(res))
     .then((waterTestDetails) => waterTestDetails ? Object.assign(waterTestDetails, req).save() : null)
