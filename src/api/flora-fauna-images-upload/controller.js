@@ -30,7 +30,7 @@ export const upload = (req, res, next) =>{
       const locationUrl = data.Location;
       console.log(locationUrl);
       var params ={"id":"5ed5cd1e1177d200176877a6"}
-      WaterTestDetailsController.update({flora:location.url}, params);
+      WaterTestDetailsController.update({flora:locationUrl}, params);
     }
   });
 }
