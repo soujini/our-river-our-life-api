@@ -1,6 +1,6 @@
 import { success, notFound } from '../../services/response/'
 import { FloraFaunaImagesUpload } from '.'
-var WaterTestDetailsController = require('../../water-test-details/controller')
+var WaterTestDetailsController = require('../water-test-details/controller')
 
 import aws from 'aws-sdk';
 import fs from 'fs';
