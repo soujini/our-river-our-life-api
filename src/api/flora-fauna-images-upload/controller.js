@@ -10,7 +10,7 @@ export const upload = (req, res, next) =>{
     "accessKeyId": 'AKIAJ24JCG5UUXOOHKDA',
     "secretAccessKey": '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',
     "s3BucketEndpoint": true,
-    "endpoint": "http://flora-fauna.s3.amazonaws.com"
+    "endpoint": "https://s3.console.aws.amazon.com/s3/buckets/flora-fauna"
   });
 
   const s3 = new aws.S3();
