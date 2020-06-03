@@ -4,7 +4,7 @@ import { FloraFaunaImagesUpload } from '.'
 import aws from 'aws-sdk';
 import fs from 'fs';
 
-export const upload = ({ bodymen: { body } }, res, next) =>{
+export const upload = (req, res, next) =>{
   aws.config.setPromisesDependency();
   aws.config.update({
     accessKeyId: 'AKIAJ24JCG5UUXOOHKDA',
