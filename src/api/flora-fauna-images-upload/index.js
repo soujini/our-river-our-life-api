@@ -23,7 +23,7 @@ const { flora, fauna } = schema.tree
 
 router.post('/upload',
   multer({ dest: 'temp/', limits: { fieldSize: 8 * 1024 * 1024 } }).single(
-    'flora'
+    'flora', 'fauna'
   ),
   upload)
 
