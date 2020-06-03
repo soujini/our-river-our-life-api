@@ -44,7 +44,11 @@ const authenticateJWT = (req, res, next) => {
 
 router.post('/flora',authenticateJWT,
 multer({ dest: 'temp/', limits: { fieldSize: 8 * 1024 * 1024 } }).single(
-  'flora', 'fauna'
+  upload.fields([{
+  name: 'flora', maxCount: 1
+}, {
+  name: 'fauna', maxCount: 1
+}]),
 ),
 upload)
 
