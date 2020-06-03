@@ -30,7 +30,7 @@ export const updateImage = ({ params }, res, next) =>{
   console.log(params.flora)
   WaterTestDetails.findById(params.id, function(err, waterTestDetails){
     if(waterTestDetails){
-      console.log(waterTestDetails)
+      console.log("in water test details")
       waterTestDetails.flora.push(params.flora);
       waterTestDetails.save(function(err){
         // something here
