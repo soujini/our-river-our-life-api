@@ -12,6 +12,8 @@ export const upload = (req, res, next) =>{
     "accessKeyId": 'AKIAJ24JCG5UUXOOHKDA',
     "secretAccessKey": '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',
   });
+  console.log("kirti")
+  console.log(req.file)
 
   const s3 = new aws.S3();
   var params = {
