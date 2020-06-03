@@ -32,9 +32,9 @@ export const upload = (req, res, next) =>{
       console.log(locationUrl);
       var params ="";
       console.log("suji")
-      console.log(req.body)
+      console.log(req.file)
 
-      if(req.fieldName == 'flora'){
+      if(req.file.fieldName == 'flora'){
         params = {"id":"5ed5cd1e1177d200176877a6", "flora":locationUrl}
       }
       else{
