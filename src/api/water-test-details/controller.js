@@ -28,6 +28,21 @@ export const show = ({ params }, res, next) =>
 export const updateImage = ({ params }, res, next) =>{
   console.log(params.id)
   console.log(params.flora)
+  WaterTestDetails.findOne({id: params.id}, function(err, waterTestDetails){
+    if(waterTestDetails){
+      console.log(detail)
+      // Generate an access token
+      // const accessToken = jwt.sign({ phoneNumber: user.phoneNumber }, accessTokenSecret);
+      //
+      // res.json({
+      //   accessToken
+      // });
+
+    }
+    else{
+       res.send('Water test details id is incorrect');
+    }
+  });
 
 }
 
