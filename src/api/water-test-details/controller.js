@@ -31,6 +31,18 @@ export const updateImage = ({ params }, res, next) =>{
   WaterTestDetails.findById(params.id, function(err, waterTestDetails){
     if(waterTestDetails){
       console.log(waterTestDetails)
+      WaterTestDetails.flora.push(params.flora);
+      WaterTestDetails.save(function(err){
+        // something here
+        res.json({
+          "done":"asdadasda"
+        });
+      });
+
+
+
+
+});
       // Generate an access token
       // const accessToken = jwt.sign({ phoneNumber: user.phoneNumber }, accessTokenSecret);
       //

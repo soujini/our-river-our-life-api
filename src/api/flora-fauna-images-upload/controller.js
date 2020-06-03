@@ -6,6 +6,8 @@ import aws from 'aws-sdk';
 import fs from 'fs';
 
 export const upload = (req, res, next) =>{
+  console.log(upload)
+  console.log(req)
   aws.config.setPromisesDependency();
   aws.config.update({
     "accessKeyId": 'AKIAJ24JCG5UUXOOHKDA',
