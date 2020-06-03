@@ -7,9 +7,9 @@ import fs from 'fs';
 
 
 export const upload = (req, res, next) =>{
-  const originalname="";
-  const path="";
-  const fieldname="";
+  const customOriginalName="";
+  const customPath="";
+  const customFieldName="";
 
   aws.config.setPromisesDependency();
   aws.config.update({
@@ -18,22 +18,22 @@ export const upload = (req, res, next) =>{
   });
   console.log("kirti")
   if(req.files.flora){
-    fieldname = req.files.flora[0].fieldname;
-    path = req.files.flora[0].path;
-    originalname= req.files.flora[0].originalname;
+    customFieldName = req.files.flora[0].fieldname;
+    customPath = req.files.flora[0].path;
+    customOriginalName= req.files.flora[0].originalname;
   }
   else if(req.files.fauna){
-    fieldname = req.files.fauna[0].fieldname;
-    path = req.files.fauna[0].path;
-    originalname= req.files.fauna[0].originalname;
+    customFieldName = req.files.fauna[0].fieldname;
+    customPath = req.files.fauna[0].path;
+    customOriginalName= req.files.fauna[0].originalname;
   }
 
   const s3 = new aws.S3();
   var params = {
     ACL: 'public-read',
     Bucket: 'flora-fauna',
-    Body: fs.createReadStream(path),
-    Key: `flora-fauna/${originalname}`
+    Body: fs.createReadStream(customPath),
+    Key: `flora-fauna/${customOriginalName}`
   };
 
   s3.upload(params, (err, data) => {
@@ -43,10 +43,10 @@ export const upload = (req, res, next) =>{
 
     if (data) {
       var params ="";
-      fs.unlinkSync(path); // Empty temp folder
+      fs.unlinkSync(customPath); // Empty temp folder
       const locationUrl = data.Location;
-      originalname = "5ed5cd1e1177d200176877a6_filename.png"
-      var waterTestDetailsId = originalname.split('_');
+      customOriginalName = "5ed5cd1e1177d200176877a6_filename.png"
+      var waterTestDetailsId = customOriginalName.split('_');
 
       if(fieldname == 'flora'){
         params = {"id":waterTestDetailsId[0], "flora":locationUrl}
