@@ -67,7 +67,16 @@ const waterTestDetailsSchema = new Schema({
       type: String
     },
   },
-   surroundings:[]
+   surroundings:{
+     type:Array
+   },
+   flora:{
+     type:Array
+   },
+   fauna:{
+     type:Array
+   },
+
 },{
   timestamps: true,
   toJSON: {
@@ -108,6 +117,8 @@ waterTestDetailsSchema.methods = {
         bacteria:this.waterTesting.bacteria,
         turbidity:this.waterTesting.turbidity,
       },
+      flora:this.flora,
+      fauna:this.fauna,
       createdAt: this.createdAt,
       updatedAt: this.updatedAt
     }

@@ -1,6 +1,7 @@
 import { Router } from 'express'
 import waterTestDetails from './water-test-details'
 import user from './user'
+import floraFaunaImagesUpload from './flora-fauna-images-upload'
 
 const router = new Router()
 
@@ -30,5 +31,6 @@ const router = new Router()
 
 router.use('/water-test-details', waterTestDetails)
 router.use('/user', user)
+router.use('/flora-fauna-images-upload', floraFaunaImagesUpload)
 
 export default router
