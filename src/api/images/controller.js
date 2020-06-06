@@ -93,7 +93,7 @@ export const upload = (req, res, next) =>{
 
       }
         // data.send('Image added successfully.');
-         res.status(200).end();
+         res.status(200).send("Image uploaded successfully");
     }
   });
 }
