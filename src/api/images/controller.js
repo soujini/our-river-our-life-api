@@ -21,31 +21,32 @@ export const upload = (req, res, next) =>{
     customFieldName = req.files.flora[0].fieldname;
     customPath = req.files.flora[0].path;
     customOriginalName= req.files.flora[0].originalname;
-    bucketName="our-rive-our-life-images/flora";
+    bucketName="our-river-our-life-images/flora";
+
   }
   else if(req.files.fauna){
     customFieldName = req.files.fauna[0].fieldname;
     customPath = req.files.fauna[0].path;
     customOriginalName= req.files.fauna[0].originalname;
-    bucketName="our-rive-our-life-images/fauna";
+    bucketName="our-river-our-life-images/fauna";
   }
   else if(req.files.artwork){
     customFieldName = req.files.artwork[0].fieldname;
     customPath = req.files.artwork[0].path;
     customOriginalName= req.files.artwork[0].originalname;
-    bucketName="our-rive-our-life-images/artwork";
+    bucketName="our-river-our-life-images/artwork";
   }
   else if(req.files.groupPicture){
     customFieldName = req.files.groupPicture[0].fieldname;
     customPath = req.files.groupPicture[0].path;
     customOriginalName= req.files.groupPicture[0].originalname;
-    bucketName="our-rive-our-life-images/groupPicture";
+    bucketName="our-river-our-life-images/groupPicture";
   }
   else if(req.files.activity){
     customFieldName = req.files.activity[0].fieldname;
     customPath = req.files.activity[0].path;
     customOriginalName= req.files.activity[0].originalname;
-    bucketName="our-rive-our-life-images/activity";
+    bucketName="our-river-our-life-images/activity";
   }
 
   const s3 = new aws.S3();
