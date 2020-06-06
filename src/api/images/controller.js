@@ -66,7 +66,7 @@ export const upload = (req, res, next) =>{
     if (res) {
       var params ="";
       fs.unlinkSync(customPath); // Empty temp folder
-      const locationUrl = data.Location;
+      const locationUrl = res.Location;
       customOriginalName = "5ed5cd1e1177d200176877a6_filename.png"
       var waterTestDetailsId = customOriginalName.split('_');
       console.log("watertestdetailsid")
