@@ -70,8 +70,6 @@ export const upload = (req, res, next) =>{
       const locationUrl = data.Location;
       // customOriginalName = "5ed5cd1e1177d200176877a6_filename.png"
       var waterTestDetailsId = customOriginalName.split('_');
-      console.log("watertestdetailsid")
-      console.log(waterTestDetailsId[0])
 
       if(customFieldName == 'flora'){
         params = {"id":waterTestDetailsId[0], "flora":locationUrl, "fieldName":"flora"}
