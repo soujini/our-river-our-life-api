@@ -29,7 +29,21 @@ export const updateImage = ({ params }, res, next) =>{
   WaterTestDetails.findById(params.id, function(err, waterTestDetails){
     if(waterTestDetails){
       console.log("in water test details")
+      if(params.fieldName == 'flora'){
       waterTestDetails.flora.push(params.flora);
+    }
+    else if(params.fieldName == 'fauna'){
+        waterTestDetails.fauna.push(params.fauna);
+    }
+    else if(params.fieldName == 'artwork'){
+        waterTestDetails.artowork.push(params.artwork);
+    }
+    else if(params.fieldName == 'groupPicture'){
+        waterTestDetails.groupPicture.push(params.groupPicture);
+    }
+    else if(params.fieldName == 'activity'){
+        waterTestDetails.activity.push(params.activity);
+    }
       waterTestDetails.save()
     }
     else{

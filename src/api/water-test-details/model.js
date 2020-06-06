@@ -76,6 +76,15 @@ const waterTestDetailsSchema = new Schema({
    fauna:{
      type:Array
    },
+   artwork:{
+     type:Array
+   },
+   groupPicture:{
+     type:Array
+   },
+   activity:{
+     type:Array
+   }
 
 },{
   timestamps: true,
@@ -119,6 +128,9 @@ waterTestDetailsSchema.methods = {
       },
       flora:this.flora,
       fauna:this.fauna,
+      artwork:this.artwork,
+      groupPicture:this.groupPicture,
+      activity:this.activity,
       createdAt: this.createdAt,
       updatedAt: this.updatedAt
     }

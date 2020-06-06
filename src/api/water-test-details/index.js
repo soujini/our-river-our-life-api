@@ -6,7 +6,7 @@ import { schema } from './model'
 export WaterTestDetails, { schema } from './model'
 
 const router = new Router()
-const { userId, generalInformation,waterLevelAndWeather,surroundings,waterTesting } = schema.tree
+const { userId, generalInformation,waterLevelAndWeather,surroundings,waterTesting, flora, fauna, artwork, groupPicture, activity } = schema.tree
 
 const accessTokenSecret = 'youraccesstokensecret';
 const jwt = require('jsonwebtoken');
@@ -48,7 +48,12 @@ router.post('/',authenticateJWT,
     generalInformation,
     waterLevelAndWeather,
     surroundings,
-    waterTesting
+    waterTesting,
+    flora,
+    fauna,
+    artwork,
+    groupPicture,
+    activity
   }),
   create)
 
@@ -88,7 +93,7 @@ router.get('/:id',authenticateJWT,
  * @apiError 404 Water test details not found.
  */
 router.put('/:id',authenticateJWT,
-  body({ userId, generalInformation }),
+  body({ userId, flora, fauna, artwork, groupPicture, activity }),
   update)
 
 /**
