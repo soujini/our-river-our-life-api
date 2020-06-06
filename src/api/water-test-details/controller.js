@@ -38,6 +38,8 @@ export const updateImage = ({ params }, res, next) =>{
         waterTestDetails.artwork.push(params.artwork);
     }
     else if(params.fieldName == 'groupPicture'){
+      console.log("kirti ");
+      console.log(params.groupPicture);
         waterTestDetails.groupPicture.push(params.groupPicture);
     }
     else if(params.fieldName == 'activity'){
