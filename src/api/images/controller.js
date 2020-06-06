@@ -89,7 +89,7 @@ export const upload = (req, res, next) =>{
       }
       if(params != ""){
         WaterTestDetailsController.updateImage({params})
-      res.send('Image added successfully.');
+      res.end('Image added successfully.');
       }
     }
   });
