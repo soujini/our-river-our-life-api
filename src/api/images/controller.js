@@ -51,7 +51,7 @@ export const upload = (req, res, next) =>{
     customOriginalName= req.files.activity[0].originalname;
     bucketName="our-river-our-life-images/activity";
   }
-}
+
 
   const s3 = new aws.S3();
   var params = {
@@ -97,6 +97,7 @@ export const upload = (req, res, next) =>{
          res.status(200).send("Image uploaded successfully");
     }
   });
+}
 }
 
 export const create = ({ bodymen: { body } }, res, next) =>
