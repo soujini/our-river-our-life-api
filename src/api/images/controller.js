@@ -58,7 +58,7 @@ export const upload = (req, res, next) =>{
     Key: `${customOriginalName}`
   };
 
-  s3.upload(params, (err, res) => {
+  s3.upload(params, (err, data) => {
     if (err) {
       console.log('Error occured while trying to upload to S3 bucket', err);
     }
@@ -66,7 +66,7 @@ export const upload = (req, res, next) =>{
     if (res) {
       var params ="";
       fs.unlinkSync(customPath); // Empty temp folder
-      const locationUrl = res.Location;
+      const locationUrl = data.Location;
       // customOriginalName = "5ed5cd1e1177d200176877a6_filename.png"
       var waterTestDetailsId = customOriginalName.split('_');
       console.log("watertestdetailsid")
@@ -89,8 +89,9 @@ export const upload = (req, res, next) =>{
       }
       if(params != ""){
         WaterTestDetailsController.updateImage({params})
-      res.end('Image added successfully.');
+
       }
+        data.send('Image added successfully.');
     }
   });
 }
