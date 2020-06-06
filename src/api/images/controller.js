@@ -86,10 +86,10 @@ export const upload = (req, res, next) =>{
         params = {"id":waterTestDetailsId[0], "artwork":locationUrl, "fieldName":"artwork"}
       }
       else if(customFieldName == 'groupPicture'){
-        params = {"id":waterTestDetailsId[0], "fauna":locationUrl, "fieldName":"groupPicture"}
+        params = {"id":waterTestDetailsId[0], "groupPicture":locationUrl, "fieldName":"groupPicture"}
       }
       else if(customFieldName == 'activity'){
-        params = {"id":waterTestDetailsId[0], "fauna":locationUrl, "fieldName":"activity"}
+        params = {"id":waterTestDetailsId[0], "activity":locationUrl, "fieldName":"activity"}
       }
       if(params != ""){
         WaterTestDetailsController.updateImage({params})
