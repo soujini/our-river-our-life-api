@@ -18,7 +18,6 @@ export const upload = (req, res, next) =>{
     "accessKeyId": 'AKIAJ24JCG5UUXOOHKDA',
     "secretAccessKey": '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',
   });
-  console.log("kirti")
   if(req.files.flora){
     customFieldName = req.files.flora[0].fieldname;
     customPath = req.files.flora[0].path;
@@ -59,12 +58,12 @@ export const upload = (req, res, next) =>{
     Key: `${customOriginalName}`
   };
 
-  s3.upload(params, (err, data) => {
+  s3.upload(params, (err, res) => {
     if (err) {
       console.log('Error occured while trying to upload to S3 bucket', err);
     }
 
-    if (data) {
+    if (res) {
       var params ="";
       fs.unlinkSync(customPath); // Empty temp folder
       const locationUrl = data.Location;
@@ -90,6 +89,7 @@ export const upload = (req, res, next) =>{
       }
       if(params != ""){
         WaterTestDetailsController.updateImage({params})
+      res.send('Image added successfully.');
       }
     }
   });
