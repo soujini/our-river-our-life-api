@@ -19,7 +19,7 @@ export const upload = (req, res, next) =>{
     "secretAccessKey": 'UKG2g/WWfOcLlz4rXPLDEe4jcwcTJ+tfEP9DneJo',
   });
 
-  if(req && req.files){
+  // if(req && req.files){
   if(req.files.flora){
     customFieldName = req.files.flora[0].fieldname;
     customPath = req.files.flora[0].path;
@@ -97,7 +97,7 @@ export const upload = (req, res, next) =>{
          res.status(200).send("Image uploaded successfully");
     }
   });
-}
+// }
 }
 
 export const create = ({ bodymen: { body } }, res, next) =>
