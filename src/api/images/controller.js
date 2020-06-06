@@ -56,7 +56,7 @@ export const upload = (req, res, next) =>{
     ACL: 'public-read',
     Bucket: bucketName,
     Body: fs.createReadStream(customPath),
-    Key: `our-rive-our-life-images/${customOriginalName}`
+    Key: `${customOriginalName}`
   };
 
   s3.upload(params, (err, data) => {
