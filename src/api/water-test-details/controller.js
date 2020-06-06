@@ -35,7 +35,7 @@ export const updateImage = ({ params }, res, next) =>{
         waterTestDetails.fauna.push(params.fauna);
     }
     else if(params.fieldName == 'artwork'){
-        waterTestDetails.artowork.push(params.artwork);
+        waterTestDetails.artwork.push(params.artwork);
     }
     else if(params.fieldName == 'groupPicture'){
         waterTestDetails.groupPicture.push(params.groupPicture);
