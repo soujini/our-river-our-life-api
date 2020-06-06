@@ -20,6 +20,9 @@ export const upload = (req, res, next) =>{
   });
 
   // if(req && req.files){
+  console.log("souj");
+  console.log(req.files.groupPicture);
+
   if(req.files.flora){
     customFieldName = req.files.flora[0].fieldname;
     customPath = req.files.flora[0].path;
@@ -51,7 +54,6 @@ export const upload = (req, res, next) =>{
     customOriginalName= req.files.activity[0].originalname;
     bucketName="our-river-our-life-images/activity";
   }
-
 
   const s3 = new aws.S3();
   var params = {
