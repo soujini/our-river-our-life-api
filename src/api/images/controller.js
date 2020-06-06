@@ -61,6 +61,7 @@ export const upload = (req, res, next) =>{
   s3.upload(params, (err, data) => {
     if (err) {
       console.log('Error occured while trying to upload to S3 bucket', err);
+       res.status(500).send(err);
     }
 
     if (res) {
@@ -91,7 +92,8 @@ export const upload = (req, res, next) =>{
         WaterTestDetailsController.updateImage({params})
 
       }
-        data.send('Image added successfully.');
+        // data.send('Image added successfully.');
+         res.status(200).end();
     }
   });
 }
