@@ -1,4 +1,5 @@
 import { Router } from 'express'
+import multer from 'multer'
 import { middleware as query } from 'querymen'
 import { middleware as body } from 'bodymen'
 import { create, index, show, update, destroy } from './controller'
