@@ -19,9 +19,10 @@ export const upload = (req, res, next) =>{
     "secretAccessKey": 'UKG2g/WWfOcLlz4rXPLDEe4jcwcTJ+tfEP9DneJo',
   });
 
+  console.log(souj)
+  console.log(request.files)
+
   // if(req && req.files){
-  console.log("souj");
-  console.log(req.files.groupPicture);
 
   if(req.files.flora){
     customFieldName = req.files.flora[0].fieldname;
@@ -93,13 +94,10 @@ export const upload = (req, res, next) =>{
       }
       if(params != ""){
         WaterTestDetailsController.updateImage({params})
-
       }
-        // data.send('Image added successfully.');
-         res.status(200).send("Image uploaded successfully");
+      res.status(200).send("Image uploaded successfully");
     }
   });
-// }
 }
 
 export const create = ({ bodymen: { body } }, res, next) =>
