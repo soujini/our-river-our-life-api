@@ -20,7 +20,7 @@ export const upload = (req, res, next) =>{
   });
 
   console.log("souj")
-  console.log(req.body)
+  console.log(req.body.waterTestDetailsId)
 
   // if(req && req.files){
 
