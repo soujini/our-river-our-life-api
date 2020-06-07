@@ -20,7 +20,7 @@ export const upload = (req, res, next) =>{
   });
 
   console.log("souj")
-  console.log(request.files)
+  console.log(req.files)
 
   // if(req && req.files){
 
