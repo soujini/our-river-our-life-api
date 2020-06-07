@@ -28,6 +28,9 @@ WaterTestDetails.findById(params.id)
 export const updateImage = ({ params }, res, next) =>{
   WaterTestDetails.findById(params.id, function(err, waterTestDetails){
     if(waterTestDetails){
+      console.log("in water test details");
+      console.log(params.id);
+      
       if(params.fieldName == 'flora'){
       waterTestDetails.flora.push(params.flora);
     }

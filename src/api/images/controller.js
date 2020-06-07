@@ -12,6 +12,7 @@ export const upload = (req, res, next) =>{
   var customPath="";
   var customFieldName="";
   var bucketName="";
+  var waterTestDetailsId = req.body.waterTestDetailsId;
 
   aws.config.setPromisesDependency();
   aws.config.update({
@@ -19,7 +20,7 @@ export const upload = (req, res, next) =>{
     "secretAccessKey": 'UKG2g/WWfOcLlz4rXPLDEe4jcwcTJ+tfEP9DneJo',
   });
 
-  console.log("souj")
+  // console.log("souj")
   console.log(req.body.waterTestDetailsId)
 
   // if(req && req.files){
@@ -75,22 +76,22 @@ export const upload = (req, res, next) =>{
       fs.unlinkSync(customPath); // Empty temp folder
       const locationUrl = data.Location;
       // customOriginalName = "5ed5cd1e1177d200176877a6_filename.png"
-      var waterTestDetailsId = customOriginalName.split('_');
+      // var waterTestDetailsId = customOriginalName.split('_');
 
       if(customFieldName == 'flora'){
-        params = {"id":waterTestDetailsId[0], "flora":locationUrl, "fieldName":"flora"}
+        params = {"id":waterTestDetailsId, "flora":locationUrl, "fieldName":"flora"}
       }
       else if(customFieldName == 'fauna'){
-        params = {"id":waterTestDetailsId[0], "fauna":locationUrl, "fieldName":"fauna"}
+        params = {"id":waterTestDetailsId, "fauna":locationUrl, "fieldName":"fauna"}
       }
       else if(customFieldName == 'artwork'){
-        params = {"id":waterTestDetailsId[0], "artwork":locationUrl, "fieldName":"artwork"}
+        params = {"id":waterTestDetailsId, "artwork":locationUrl, "fieldName":"artwork"}
       }
       else if(customFieldName == 'groupPicture'){
-        params = {"id":waterTestDetailsId[0], "groupPicture":locationUrl, "fieldName":"groupPicture"}
+        params = {"id":waterTestDetailsId, "groupPicture":locationUrl, "fieldName":"groupPicture"}
       }
       else if(customFieldName == 'activity'){
-        params = {"id":waterTestDetailsId[0], "activity":locationUrl, "fieldName":"activity"}
+        params = {"id":waterTestDetailsId, "activity":locationUrl, "fieldName":"activity"}
       }
       if(params != ""){
         WaterTestDetailsController.updateImage({params})
