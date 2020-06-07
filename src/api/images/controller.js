@@ -19,7 +19,7 @@ export const upload = (req, res, next) =>{
     "secretAccessKey": 'UKG2g/WWfOcLlz4rXPLDEe4jcwcTJ+tfEP9DneJo',
   });
 
-  console.log(souj)
+  console.log("souj")
   console.log(request.files)
 
   // if(req && req.files){
