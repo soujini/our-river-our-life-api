@@ -66,6 +66,15 @@ const waterTestDetailsSchema = new Schema({
     turbidity: {
       type: String
     },
+    phosphate: {
+      type: String
+    },
+    ammonia: {
+      type: String
+    },
+    lead: {
+      type: String
+    },
   },
    surroundings:{
      type:Array
@@ -125,6 +134,9 @@ waterTestDetailsSchema.methods = {
         iron:this.waterTesting.iron,
         bacteria:this.waterTesting.bacteria,
         turbidity:this.waterTesting.turbidity,
+        phosphate:this.waterTesting.phosphate,
+        ammonia:this.waterTesting.ammonia,
+        lead:this.waterTesting.lead
       },
       flora:this.flora,
       fauna:this.fauna,

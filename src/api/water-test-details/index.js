@@ -12,7 +12,6 @@ const accessTokenSecret = 'youraccesstokensecret';
 const jwt = require('jsonwebtoken');
 
 const authenticateJWT = (req, res, next) => {
-  console.log("trrying to authenticate the token")
     const authHeader = req.headers.authorization;
 
     if (authHeader) {
