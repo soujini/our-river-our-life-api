@@ -79,21 +79,46 @@ const waterTestDetailsSchema = new Schema({
    surroundings:{
      type:Array
    },
-   flora:{
-     type:Array
-   },
-   fauna:{
-     type:Array
-   },
-   artwork:{
-     type:Array
-   },
-   groupPicture:{
-     type:Array
-   },
-   activity:{
-     type:Array
-   }
+   flora:[{
+     imageURL:{
+       type:String
+     },
+     description:{
+       type:String
+     }
+   }],
+   fauna:[{
+     imageURL:{
+       type:String
+     },
+     description:{
+       type:String
+     }
+   }],
+   artwork:[{
+     imageURL:{
+       type:String
+     },
+     description:{
+       type:String
+     }
+   }],
+   groupPicture:[{
+     imageURL:{
+       type:String
+     },
+     description:{
+       type:String
+     }
+   }],
+   activity:[{
+     imageURL:{
+       type:String
+     },
+     description:{
+       type:String
+     }
+   }],
 
 },{
   timestamps: true,

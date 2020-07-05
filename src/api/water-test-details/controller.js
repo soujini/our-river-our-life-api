@@ -30,23 +30,21 @@ export const updateImage = ({ params }, res, next) =>{
     if(waterTestDetails){
       console.log("in water test details");
       console.log(params.id);
-      
+
       if(params.fieldName == 'flora'){
-      waterTestDetails.flora.push(params.flora);
+      waterTestDetails.flora.push({imageURL:params.flora, description:params.description});
     }
     else if(params.fieldName == 'fauna'){
-        waterTestDetails.fauna.push(params.fauna);
+        waterTestDetails.fauna.push({imageURL:params.fauna, description:params.description});
     }
     else if(params.fieldName == 'artwork'){
-        waterTestDetails.artwork.push(params.artwork);
+        waterTestDetails.artwork.push({imageURL:params.artwork, description:params.description});
     }
     else if(params.fieldName == 'groupPicture'){
-      console.log("kirti ");
-      console.log(params.groupPicture);
-        waterTestDetails.groupPicture.push(params.groupPicture);
+        waterTestDetails.groupPicture.push({imageURL:params.groupPicture, description:params.description});
     }
     else if(params.fieldName == 'activity'){
-        waterTestDetails.activity.push(params.activity);
+        waterTestDetails.activity.push({imageURL:params.activity, description:params.description});
     }
       waterTestDetails.save()
     }

@@ -13,15 +13,13 @@ export const upload = (req, res, next) =>{
   var customFieldName="";
   var bucketName="";
   var waterTestDetailsId = req.body.waterTestDetailsId;
+  var description = req.body.description;
 
   aws.config.setPromisesDependency();
   aws.config.update({
     "accessKeyId": 'AKIAJ24JCG5UUXOOHKDA',
     "secretAccessKey": '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',
   });
-
-  console.log(req.body.waterTestDetailsId);
-  console.log(req.body.description);
 
   // if(req && req.files){
 
@@ -79,19 +77,19 @@ export const upload = (req, res, next) =>{
       // var waterTestDetailsId = customOriginalName.split('_');
 
       if(customFieldName == 'flora'){
-        params = {"id":waterTestDetailsId, "flora":locationUrl, "fieldName":"flora"}
+        params = {"id":waterTestDetailsId, "flora":locationUrl, "fieldName":"flora", "description":description}
       }
       else if(customFieldName == 'fauna'){
-        params = {"id":waterTestDetailsId, "fauna":locationUrl, "fieldName":"fauna"}
+        params = {"id":waterTestDetailsId, "fauna":locationUrl, "fieldName":"fauna", "description":description}
       }
       else if(customFieldName == 'artwork'){
-        params = {"id":waterTestDetailsId, "artwork":locationUrl, "fieldName":"artwork"}
+        params = {"id":waterTestDetailsId, "artwork":locationUrl, "fieldName":"artwork", "description":description}
       }
       else if(customFieldName == 'groupPicture'){
-        params = {"id":waterTestDetailsId, "groupPicture":locationUrl, "fieldName":"groupPicture"}
+        params = {"id":waterTestDetailsId, "groupPicture":locationUrl, "fieldName":"groupPicture", "description":description}
       }
       else if(customFieldName == 'activity'){
-        params = {"id":waterTestDetailsId, "activity":locationUrl, "fieldName":"activity"}
+        params = {"id":waterTestDetailsId, "activity":locationUrl, "fieldName":"activity", "description":description}
       }
       if(params != ""){
         WaterTestDetailsController.updateImage({params})
