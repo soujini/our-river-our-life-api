@@ -20,8 +20,8 @@ export const upload = (req, res, next) =>{
     "secretAccessKey": 'UKG2g/WWfOcLlz4rXPLDEe4jcwcTJ+tfEP9DneJo',
   });
 
-  // console.log("souj")
-  console.log(req.body.waterTestDetailsId)
+  console.log(req.body.waterTestDetailsId);
+  console.log(req.body.description);
 
   // if(req && req.files){
 
