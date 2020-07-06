@@ -36,18 +36,19 @@ export const create = ({ body }, res, next) =>{
   };
 
   console.log("souji "+document);
-  pdf.create(document, options)
-      .then(res => {
-        console.log("sue");
-          console.log(res)
-      })
-      .catch(error => {
-          console.error(error)
+  // pdf.create(document, options)
+  //     .then(res => {
+  //       console.log("sue");
+  //         console.log(res)
+  //     })
+  //     .catch(error => {
+  //         console.error(error)
+  //     });
+
+      pdf.create(document, options).toFile('./businesscard.pdf', function(err, res) {
+        if (err) return console.log(err);
+        console.log("sueeee "+res); // { filename: '/app/businesscard.pdf' }
       });
-  // pdf.create(document, {file: __dirname +"/output.pdf", width: '210mm', height: '297mm', border: '10mm', timeout: 30000}, function(err, buffer) {
-  //   if (err) return console.log(err);
-  //   console.log("Converted successfully. Output in " + outputPath);
-  // });
 }
 
 
