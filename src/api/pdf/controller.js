@@ -37,20 +37,21 @@ export const create = ({ body }, res, next) =>{
   };
 
   console.log("souji "+document);
-  // pdf.create(document, options)
-  //     .then(res => {
-  //       console.log("sue");
-  //         console.log(res)
-  //     })
-  //     .catch(error => {
-  //         console.error(error)
-  //     });
-
-      pdf.create(html, options).toFile('./businesscard.pdf', function(err, res) {
-        if (err) return console.log(err);
-        console.log("sueeee "+res); // { filename: '/app/businesscard.pdf' }
+  pdf.create(document, options)
+      .then(res => {
+        console.log("sue");
+          console.log(res)
+      })
+      .catch(error => {
+          console.error(error)
       });
-      res.status(201).json(body);
+
+      // pdf.create(html, options).toFile('./businesscard.pdf', function(err, res) {
+      //   if (err) return console.log(err);
+      //   console.log("sueeee "+res); // { filename: '/app/businesscard.pdf' }
+      // });
+      res.status(201).json("PDF Created successfully");
+       // res.send('Phone Number is incorrect');
 }
 
 
