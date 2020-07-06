@@ -1,5 +1,5 @@
 // var pdf = require("pdf-creator-node");
-// var fs = require('fs');
+var fs = require('fs');
 // var pdf = require('html-pdf');
 // // Read HTML Template
 // let ejs = require("ejs");
@@ -55,7 +55,7 @@ export const generateReport = ({ body }, res, next) =>{
             isWatermark: true
         }
 
-        var templateHtml = fs.readFileSync(path.join(process.cwd(), 'pdf.html'), 'utf8');
+        var templateHtml = fs.readFileSync(__dirname +'/report-template.ejs', 'utf8');
         var template = handlebars.compile(templateHtml);
         var finalHtml = template(dataBinding);
         var options = {
