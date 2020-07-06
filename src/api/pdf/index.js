@@ -4,7 +4,7 @@ import { create, index, show, update, destroy } from './controller'
 var pdf = require("pdf-creator-node");
 var fs = require('fs');
 // Read HTML Template
-var html = fs.readFileSync(__dirname +'/src/api/pdf/pdf.html', 'utf8');
+var html = fs.readFileSync(__dirname +'pdf.html', 'utf8');
 
 const router = new Router()
 
