@@ -8,7 +8,8 @@ export const create = ({ body }, res, next) =>{
       format: "A3",
       orientation: "portrait",
       border: "10mm",
-      timeout: 90000
+      type: 'pdf',
+      timeout: '100000'
   };
 
   var users = [
