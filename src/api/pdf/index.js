@@ -1,7 +1,10 @@
 import { Router } from 'express'
 import { middleware as query } from 'querymen'
 import { create, index, show, update, destroy } from './controller'
-
+var pdf = require("pdf-creator-node");
+var fs = require('fs');
+// Read HTML Template
+var html = fs.readFileSync('pdf.html', 'utf8');
 
 const router = new Router()
 
