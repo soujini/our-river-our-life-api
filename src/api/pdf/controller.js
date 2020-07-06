@@ -1,5 +1,6 @@
-var pdf = require("pdf-creator-node");
+// var pdf = require("pdf-creator-node");
 var fs = require('fs');
+var pdf = require('html-pdf');
 // Read HTML Template
 var html = fs.readFileSync(__dirname +'/pdf.html', 'utf8');
 
