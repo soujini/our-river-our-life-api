@@ -55,7 +55,7 @@ export const generateReport = ({ body }, res, next) =>{
                 },
 
             };
-            pdf.create(data, options).toFile("kirti.pdf", function (err, data) {
+            pdf.create(data, options).toFile("./kirti.pdf", function (err, data) {
                 if (err) {
                   console.log("souj3");
                     res.send(err);
