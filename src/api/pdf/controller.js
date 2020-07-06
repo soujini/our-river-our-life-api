@@ -11,82 +11,76 @@ const puppeteer = require('puppeteer');
 const handlebars = require("handlebars");
 
 let students = [
-   {name: "Joy",
-    email: "joy@example.com",
-    city: "New York",
-    country: "USA"},
-   {name: "John",
-    email: "John@example.com",
-    city: "San Francisco",
-    country: "USA"},
-   {name: "Clark",
-    email: "Clark@example.com",
-    city: "Seattle",
-    country: "USA"},
-   {name: "Watson",
-    email: "Watson@example.com",
-    city: "Boston",
-    country: "USA"},
-   {name: "Tony",
-    email: "Tony@example.com",
-    city: "Los Angels",
-    country: "USA"
+  {name: "Joy",
+  email: "joy@example.com",
+  city: "New York",
+  country: "USA"},
+  {name: "John",
+  email: "John@example.com",
+  city: "San Francisco",
+  country: "USA"},
+  {name: "Clark",
+  email: "Clark@example.com",
+  city: "Seattle",
+  country: "USA"},
+  {name: "Watson",
+  email: "Watson@example.com",
+  city: "Boston",
+  country: "USA"},
+  {name: "Tony",
+  email: "Tony@example.com",
+  city: "Los Angels",
+  country: "USA"
 }];
+var dataBinding = {
+  items: [{
+    name: "item 1",
+    price: 100
+  },
+  {
+    name: "item 2",
+    price: 200
+  },
+  {
+    name: "item 3",
+    price: 300
+  }
+],
+total: 600,
+isWatermark: true
+};
 
 export const generateReport = ({ body }, res, next) =>{
   console.log("in report")
-  try {
-    (async () => {
-        var dataBinding = {
-            items: [{
-                name: "item 1",
-                price: 100
-            },
-            {
-                name: "item 2",
-                price: 200
-            },
-            {
-                name: "item 3",
-                price: 300
-            }
-            ],
-            total: 600,
-            isWatermark: true
-        }
+  var templateHtml = fs.readFileSync(__dirname +'/pdf.html', 'utf8');
+  var template = handlebars.compile(templateHtml);
+  var finalHtml = template(dataBinding);
+  var options = {
+    format: 'A4',
+    headerTemplate: "<p></p>",
+    footerTemplate: "<p></p>",
+    displayHeaderFooter: false,
+    margin: {
+      top: "40px",
+      bottom: "100px"
+    },
+    printBackground: true,
+    path: 'invoice.pdf'
+  }
 
-        var templateHtml = fs.readFileSync(__dirname +'/pdf.html', 'utf8');
-        var template = handlebars.compile(templateHtml);
-        var finalHtml = template(dataBinding);
-        var options = {
-            format: 'A4',
-            headerTemplate: "<p></p>",
-            footerTemplate: "<p></p>",
-            displayHeaderFooter: false,
-            margin: {
-                top: "40px",
-                bottom: "100px"
-            },
-            printBackground: true,
-            path: 'invoice.pdf'
-        }
+  const browser = await puppeteer.launch({
+    args: ['--no-sandbox'],
+    headless: true
+  });
+  const page = await browser.newPage();
+  await page.goto(`data:text/html,${finalHtml}`, {
+    waitUntil: 'networkidle0'
+  });
+  await page.pdf(options);
+  await browser.close();
 
-        const browser = await puppeteer.launch({
-            args: ['--no-sandbox'],
-            headless: true
-        });
-        const page = await browser.newPage();
-        await page.goto(`data:text/html,${finalHtml}`, {
-            waitUntil: 'networkidle0'
-        });
-        await page.pdf(options);
-        await browser.close();
+  console.log('Done: invoice.pdf is created!')
 
-        console.log('Done: invoice.pdf is created!')
-    })();
-} catch (err) {
-    console.log('ERROR:', err);
-}
 }
 export const create = ({ body }, res, next)=>
 res.status(201).json(body)
@@ -144,16 +138,16 @@ res.status(201).json(body)
 
 
 
-  //res.status(201).json(body)
+//res.status(201).json(body)
 
 export const index = ({ querymen: { query, select, cursor } }, res, next) =>
-  res.status(200).json([])
+res.status(200).json([])
 
 export const show = ({ params }, res, next) =>
-  res.status(200).json({})
+res.status(200).json({})
 
 export const update = ({ body, params }, res, next) =>
-  res.status(200).json(body)
+res.status(200).json(body)
 
 export const destroy = ({ params }, res, next) =>
-  res.status(204).end()
+res.status(204).end()
