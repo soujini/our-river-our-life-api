@@ -34,6 +34,7 @@ export const generateReport = ({ body }, res, next) =>{
 if (err) {
       res.send(err);
 } else {
+  console.log("else")
     let options = {
         "height": "11.25in",
         "width": "8.5in",
@@ -45,6 +46,7 @@ if (err) {
         },
     };
     pdf.create(data, options).toFile("report.pdf", function (err, data) {
+        console.log("in create pdf")
         if (err) {
           console.log("sue error")
             res.send(err);
