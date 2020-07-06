@@ -40,8 +40,10 @@ export const generateReport = ({ body }, res, next) =>{
         students: students
     }, (err, data) => {
         if (err) {
+          console.log("souj1");
             res.send(err);
         } else {
+          console.log("souj2");
             let options = {
                 "height": "11.25in",
                 "width": "8.5in",
@@ -55,14 +57,16 @@ export const generateReport = ({ body }, res, next) =>{
             };
             pdf.create(data, options).toFile("report.pdf", function (err, data) {
                 if (err) {
+                  console.log("souj3");
                     res.send(err);
                 } else {
+                  console.log("souj4");
                     res.send("File created successfully");
                 }
             });
         }
     });
-  res.status(201).json(body);
+  // res.status(201).json(body);
 
 }
 export const create = ({ body }, res, next)=>
