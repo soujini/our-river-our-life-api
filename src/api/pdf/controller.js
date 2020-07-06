@@ -36,7 +36,7 @@ let students = [
 
 export const generateReport = ({ body }, res, next) =>{
   console.log("in report");
-  ejs.renderFile( (__dirname +'/report-template.ejs'), {
+  ejs.renderFile(path.join(__dirname, "report-template.ejs"), {
         students: students
     }, (err, data) => {
         if (err) {
