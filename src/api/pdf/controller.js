@@ -60,7 +60,7 @@ export const generateReport = ({ body }, res, next) =>{
                   console.log("souj3");
                     res.send(err);
                 } else {
-                  console.log("souj4");
+                  console.log("souj4 "+data);
                     res.send("File created successfully");
                 }
             });
