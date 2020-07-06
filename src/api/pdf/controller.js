@@ -3,6 +3,7 @@ var fs = require('fs');
 var pdf = require('html-pdf');
 // Read HTML Template
 let ejs = require("ejs");
+let path = require("path");
 var html = fs.readFileSync(__dirname +'/report-template.ejs', 'utf8');
 
 let students = [
