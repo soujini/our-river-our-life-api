@@ -68,7 +68,7 @@ export const generateReport = ({ body }, res, next) =>{
     path: 'invoice.pdf'
   }
 
-  const browser = await puppeteer.launch({
+  const browser = puppeteer.launch({
     args: ['--no-sandbox'],
     headless: true
   });
@@ -79,7 +79,8 @@ export const generateReport = ({ body }, res, next) =>{
   await page.pdf(options);
   await browser.close();
 
-  console.log('Done: invoice.pdf is created!')
+  console.log('Done: invoice.pdf is created!');
+  res.status(201).json(body);
 
 }
 export const create = ({ body }, res, next)=>
