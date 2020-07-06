@@ -50,7 +50,7 @@ export const create = ({ body }, res, next) =>{
       //   if (err) return console.log(err);
       //   console.log("sueeee "+res); // { filename: '/app/businesscard.pdf' }
       // });
-      res.status(201).json("PDF Created successfully");
+      res.status(201).json({'message':'PDF Created successfully'});
        // res.send('Phone Number is incorrect');
 }
 
