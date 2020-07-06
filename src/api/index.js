@@ -2,6 +2,7 @@ import { Router } from 'express'
 import waterTestDetails from './water-test-details'
 import user from './user'
 import images from './images'
+import pdf from './pdf'
 
 const router = new Router()
 
@@ -32,5 +33,6 @@ const router = new Router()
 router.use('/water-test-details', waterTestDetails)
 router.use('/user', user)
 router.use('/images', images)
+router.use('/pdf', pdf)
 
 export default router
