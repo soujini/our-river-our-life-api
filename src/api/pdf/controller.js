@@ -35,6 +35,7 @@ let students = [
 
 export const generateReport = ({ body }, res, next) =>{
   console.log("in report")
+  res.status(201).json({'souj':'asdads'})
 //   try {
 //     (async () => {
 //         var dataBinding = {
