@@ -9,7 +9,7 @@ export const create = ({ body }, res, next) =>{
       format: "A3",
       orientation: "portrait",
       border: "10mm",
-      type: 'pdf',
+      // type: 'pdf',
       timeout: '100000'
   };
 
