@@ -1,9 +1,13 @@
 import { Router } from 'express'
 import { middleware as query } from 'querymen'
-import { create, index, show, update, destroy } from './controller'
+import { create, index, show, update, destroy, generateReport } from './controller'
 
 
 const router = new Router()
+
+router.get('/',
+  generateReport)
+
 
 /**
  * @api {post} /pdf Create pdf
