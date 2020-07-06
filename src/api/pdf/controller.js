@@ -1,6 +1,6 @@
-var pdf = require("pdf-creator-node");
+// var pdf = require("pdf-creator-node");
 var fs = require('fs');
-// var pdf = require('html-pdf');
+var pdf = require('html-pdf');
 // Read HTML Template
 var html = fs.readFileSync(__dirname +'/pdf.html', 'utf8');
 
@@ -37,19 +37,19 @@ export const create = ({ body }, res, next) =>{
   };
 
   console.log("souji "+document);
-  pdf.create(document, options)
-      .then(res => {
-        console.log("sue");
-          console.log(res)
-      })
-      .catch(error => {
-          console.error(error)
-      });
+  // pdf.create(document, options)
+  //     .then(res => {
+  //       console.log("sue");
+  //         console.log(res)
+  //     })
+  //     .catch(error => {
+  //         console.error(error)
+  //     });
 
-      // pdf.create(html, options).toFile('./businesscard.pdf', function(err, res) {
-      //   if (err) return console.log(err);
-      //   console.log("sueeee "+res); // { filename: '/app/businesscard.pdf' }
-      // });
+      pdf.create(html, options).toFile('./businesscard.pdf', function(err, res) {
+        if (err) return console.log(err);
+        console.log("sueeee "+res); // { filename: '/app/businesscard.pdf' }
+      });
       res.status(201).json({'message':'PDF Created successfully'});
        // res.send('Phone Number is incorrect');
 }
