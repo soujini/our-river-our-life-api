@@ -30,8 +30,10 @@ let students = [
 }];
 
 export const generateReport = ({ body }, res, next) =>{
+    console.log("in gen report")
   ejs.renderFile(path.join(__dirname +"/report-template.ejs"), {students: students}, (err, data) => {
 if (err) {
+  console.log("else error")
       res.send(err);
 } else {
   console.log("else")
