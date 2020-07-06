@@ -72,7 +72,7 @@ export const generateReport = ({ body }, res, next) =>{
     args: ['--no-sandbox'],
     headless: true
   });
-  const page = await browser.newPage();
+  const page = browser.newPage();
   await page.goto(`data:text/html,${finalHtml}`, {
     waitUntil: 'networkidle0'
   });
