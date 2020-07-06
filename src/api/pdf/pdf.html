@@ -1,30 +1,97 @@
-<!DOCTYPE html>
 <html>
-<head>
-<title>Node PDF Creator</title>
-<!-- Bootstrap CSS -->
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <head>
+    <meta charset="utf8">
+    <title>SuitArt Business Card</title>
+    <style>
+      html, body {
+        margin: 0;
+        padding: 0;
+        font-family: 'Sackers Gothic Std';
+        font-weight: 500;
+        font-size: 7px;
+        background: rgb(241,241,241);
+        -webkit-print-color-adjust: exact;
+        box-sizing: border-box;
+      }
 
-</head>
-<body>
+      .page {
+        position: relative;
+        height: 90mm;
+        width: 50mm;
+        display: block;
+        background: black;
+        page-break-after: auto;
+        margin: 50px;
+        overflow: hidden;
+      }
 
-<h1>User List</h1>
-<ul>
-    {{#each users}}
-      <li>Name: {{this.name}}</li>
-      <li>Age: {{this.age}}</li>
-      <br>
-    {{/each}}
-  </ul>
+      @media print {
+        body {
+          background: black;
+        }
 
-  <h1>Server Image</h1>
-  <img src="https://www.techjini.com/wp-content/uploads/2017/01/nodejs-logo.png" class="img-fluid" alt="Responsive image">
+        .page {
+          margin: 0;
+          height: 100%;
+          width: 100%;
+        }
+      }
 
-  <!-- Optional JavaScript -->
-  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+      .page.first {
+        border-left: 5px solid green;
+      }
 
-</body>
+      .bottom {
+        position: absolute;
+        left: 5mm;
+        right: 5mm;
+        bottom: 5mm;
+      }
+
+      .group {
+        margin-top: 3mm;
+      }
+
+      .line {
+        color: white;
+        position: relative;
+      }
+
+      .center {
+        text-align: center;
+      }
+
+      .logo {
+        position: relative;
+        width: 80%;
+        left: 10%;
+        top: 15%;
+      }
+
+    </style>
+  </head>
+  <body>
+    <div class="page">
+      <div class="bottom">
+        <div class="line">Marc Bachmann</div>
+        <div class="line">cto</div>
+
+        <div class="group">
+          <div class="line">p: +41 00 000 00 00</div>
+          <div class="line">github: marcbachmann</div>
+        </div>
+        <div class="group">
+          <div class="line">suitart ag</div>
+          <div class="line">räffelstrasse 25</div>
+          <div class="line">8045 zürich</div>
+        </div>
+      </div>
+    </div>
+    <div class="page">
+      <img class="logo" src="{{image}}">
+      <div class="bottom">
+          <div class="line center">8045 zürich</div>
+      </div>
+    </div>
+  </body>
 </html>
