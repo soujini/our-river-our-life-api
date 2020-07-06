@@ -46,8 +46,10 @@ if (err) {
     };
     pdf.create(data, options).toFile("report.pdf", function (err, data) {
         if (err) {
+          console.log("sue error")
             res.send(err);
         } else {
+            console.log("sue success")
             res.send("File created successfully");
         }
     });
