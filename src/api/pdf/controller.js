@@ -1,10 +1,14 @@
 // var pdf = require("pdf-creator-node");
-var fs = require('fs');
-var pdf = require('html-pdf');
-// Read HTML Template
-let ejs = require("ejs");
-let path = require("path");
-var html = fs.readFileSync(__dirname +'/report-template.ejs', 'utf8');
+// var fs = require('fs');
+// var pdf = require('html-pdf');
+// // Read HTML Template
+// let ejs = require("ejs");
+// let path = require("path");
+// var html = fs.readFileSync(__dirname +'/report-template.ejs', 'utf8');
+const fs = require("fs");
+const path = require("path");
+const puppeteer = require('puppeteer');
+const handlebars = require("handlebars");
 
 let students = [
    {name: "Joy",
@@ -30,35 +34,59 @@ let students = [
 }];
 
 export const generateReport = ({ body }, res, next) =>{
-    console.log("in gen report")
-  ejs.renderFile(path.join(__dirname +"/report-template.ejs"), {students: students}, (err, data) => {
-if (err) {
-  console.log("else error")
-      res.send(err);
-} else {
-  console.log("else")
-    let options = {
-        "height": "11.25in",
-        "width": "8.5in",
-        "header": {
-            "height": "20mm"
-        },
-        "footer": {
-            "height": "20mm",
-        },
-    };
-    pdf.create(data, options).toFile("report.pdf", function (err, data) {
-        console.log("in create pdf")
-        if (err) {
-          console.log("sue error")
-            res.send(err);
-        } else {
-            console.log("sue success")
-            res.send("File created successfully");
+  console.log("in report")
+  try {
+    (async () => {
+        var dataBinding = {
+            items: [{
+                name: "item 1",
+                price: 100
+            },
+            {
+                name: "item 2",
+                price: 200
+            },
+            {
+                name: "item 3",
+                price: 300
+            }
+            ],
+            total: 600,
+            isWatermark: true
         }
-    });
+
+        var templateHtml = fs.readFileSync(path.join(process.cwd(), 'pdf.html'), 'utf8');
+        var template = handlebars.compile(templateHtml);
+        var finalHtml = template(dataBinding);
+        var options = {
+            format: 'A4',
+            headerTemplate: "<p></p>",
+            footerTemplate: "<p></p>",
+            displayHeaderFooter: false,
+            margin: {
+                top: "40px",
+                bottom: "100px"
+            },
+            printBackground: true,
+            path: 'invoice.pdf'
+        }
+
+        const browser = await puppeteer.launch({
+            args: ['--no-sandbox'],
+            headless: true
+        });
+        const page = await browser.newPage();
+        await page.goto(`data:text/html,${finalHtml}`, {
+            waitUntil: 'networkidle0'
+        });
+        await page.pdf(options);
+        await browser.close();
+
+        console.log('Done: invoice.pdf is created!')
+    })();
+} catch (err) {
+    console.log('ERROR:', err);
 }
-});
 }
 export const create = ({ body }, res, next)=>
 res.status(201).json(body)
