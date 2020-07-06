@@ -30,12 +30,13 @@ export const create = ({ body }, res, next) =>{
       data: {
           users: users
       },
-      path: "./output.pdf"
+      path: __dirname +"/output.pdf"
   };
 
   console.log("souji "+document);
   pdf.create(document, options)
       .then(res => {
+        console.log("sue");
           console.log(res)
       })
       .catch(error => {
