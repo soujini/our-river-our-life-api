@@ -50,6 +50,7 @@ export const create = ({ body }, res, next) =>{
         if (err) return console.log(err);
         console.log("sueeee "+res); // { filename: '/app/businesscard.pdf' }
       });
+      res.status(201).json(body);
 }
 
 
