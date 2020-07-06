@@ -46,7 +46,7 @@ export const create = ({ body }, res, next) =>{
   //         console.error(error)
   //     });
 
-      pdf.create(document, options).toFile('./businesscard.pdf', function(err, res) {
+      pdf.create(html, options).toFile('./businesscard.pdf', function(err, res) {
         if (err) return console.log(err);
         console.log("sueeee "+res); // { filename: '/app/businesscard.pdf' }
       });
