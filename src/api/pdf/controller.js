@@ -1,4 +1,7 @@
-
+var pdf = require("pdf-creator-node");
+var fs = require('fs');
+// Read HTML Template
+var html = fs.readFileSync(__dirname +'/pdf.html', 'utf8');
 
 export const create = ({ body }, res, next) =>{
   var options = {
