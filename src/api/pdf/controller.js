@@ -43,7 +43,6 @@ export const generateReport = ({ body }, res, next) =>{
           console.log("souj1 ");
             res.send(err);
         } else {
-          console.log("souj2 "+data);
             let options = {
                 "height": "11.25in",
                 "width": "8.5in",
@@ -55,19 +54,15 @@ export const generateReport = ({ body }, res, next) =>{
                 },
 
             };
-            pdf.create(data, options).toFile("./kirti.pdf", function (err, data) {
+            pdf.create(data, options).toFile(path.join(__dirname, "kirti.pdf"), function (err, data) {
                 if (err) {
-                  console.log("souj3");
                     res.send(err);
                 } else {
-                  console.log("souj4 "+data);
-                    res.send("File created successfully");
+                    res.send("File created successfully ");
                 }
             });
         }
     });
-  // res.status(201).json(body);
-
 }
 export const create = ({ body }, res, next)=>
 res.status(201).json(body)
