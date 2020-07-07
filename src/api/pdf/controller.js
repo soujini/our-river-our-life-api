@@ -84,11 +84,12 @@ export const generateReport = ({ body }, res, next) => {
             }
 
           });
-res.send("File created successfully");
+
         }
       }); //pdf create
     }//else
   });
+  res.send("File created successfully");
 }
 
 
