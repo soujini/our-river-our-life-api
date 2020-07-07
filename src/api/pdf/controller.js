@@ -29,9 +29,41 @@ let students = [
   country: "USA"
 }];
 
+let waterTestDetails = {
+
+"userId":"5edb45983b3f8d191876a8f3",
+
+"generalInformation":{
+"activityDate":"",
+"testerName":"Aravind A",
+"location":"Bengaluru",
+"latitude":12.9716,
+"longitude":77.5946
+},
+"waterLevelAndWeather":{
+"airTemperature":28,
+"waterLevel":"High",
+"weather":"Heavy Rain"
+},
+"surroundings":["factory", "river"],
+"waterTesting":{
+"waterTemperature":"26",
+"pH":"6.5",
+"dissolvedOxygen":"1",
+"hardness":"2",
+"nitrate":"10",
+"nitrite":"8",
+"chlorine":"6",
+"alkalinity":"5",
+"iron":"6",
+"bacteria":"2",
+"turbidity":"2"
+}
+};
+
 export const generateReport = ({ body }, res, next) => {
   ejs.renderFile(path.join(__dirname, "/report-template.ejs"), {
-    students: students
+    waterTestDetails: waterTestDetails
   }, (err, data) => {
     if (err) {
       res.send(err);
