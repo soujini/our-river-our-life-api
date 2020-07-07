@@ -9,7 +9,7 @@ const app = express(apiRoot, api)
 const server = http.createServer(app)
 // app.use(express.static(path.join(__dirname, '/public')));
 // app.use('/static', express.static('public'))
-app.use(express.static('public'))
+app.use('/public', public)
 
 if (mongo.uri) {
   mongoose.connect(mongo.uri)

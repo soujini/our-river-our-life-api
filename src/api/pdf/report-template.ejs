@@ -30,16 +30,16 @@
     <div style="display: flex;">
       <div style="width: 50%;">
 
-        <p><%= waterTestDetails.testerName %></p>
-        <p><%= waterTestDetails.location %></p>
-        <p><%= waterTestDetails.activityDate %></p>
+        <p><%= waterTestDetails.generalInformation.testerName %></p>
+        <p><%= waterTestDetails.generalInformation.location %></p>
+        <p><%= waterTestDetails.generalInformation.activityDate %></p>
 
       </div>
-      <div><%= waterTestDetails.airTemperature %></div>
+      <div><%= waterTestDetails.waterLevelAndWeather.airTemperature %></div>
     </div>
     <div style="display: flex;">
       <p style="width: 50%;">Depth of the water</p>
-      <p><%= waterTestDetails.waterLevel %></p>
+      <p><%= waterTestDetails.waterLevelAndWeather.waterLevel %></p>
       <div>
         <div style="display: flex;">
           <p style="width: 50%;">Surroundings</p>
