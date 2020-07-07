@@ -32,36 +32,47 @@ let waterTestDetails = {
   userId:"5edb45983b3f8d191876a8f3",
 };
 let waterTestDetails1 = {
-
-"userId":"5edb45983b3f8d191876a8f3",
-
-"generalInformation":{
-"activityDate":"",
-"testerName":"Aravind A",
-"location":"Bengaluru",
-"latitude":12.9716,
-"longitude":77.5946
-},
-"waterLevelAndWeather":{
-"airTemperature":28,
-"waterLevel":"High",
-"weather":"Heavy Rain"
-},
-"surroundings":["factory", "river"],
-"waterTesting":{
-"waterTemperature":"26",
-"pH":"6.5",
-"dissolvedOxygen":"1",
-"hardness":"2",
-"nitrate":"10",
-"nitrite":"8",
-"chlorine":"6",
-"alkalinity":"5",
-"iron":"6",
-"bacteria":"2",
-"turbidity":"2"
-}
-};
+            "id": "5f0443074b7c8100170c2ef7",
+            "userId": "5eff4a893b3f8d1918c5a865",
+            "generalInformation": {
+                "activityDate": "07 Jul 2020 2:56 PM",
+                "testerName": "Neethi Mahesh",
+                "location": "Holamala, Karnataka",
+                "latitude": 12.2716657,
+                "longitude": 75.9330781
+            },
+            "waterLevelAndWeather": {
+                "airTemperature": 24,
+                "waterLevel": "High",
+                "weather": "Light Rain"
+            },
+            "surroundings": [
+                "Agricultural land,Plantation"
+            ],
+            "waterTesting": {
+                "waterTemperature": "26",
+                "pH": "6",
+                "dissolvedOxygen": "17",
+                "hardness": "30",
+                "nitrate": "0",
+                "nitrite": "0",
+                "chlorine": "1",
+                "alkalinity": "20",
+                "iron": "5",
+                "bacteria": "Absent",
+                "turbidity": "",
+                "phosphate": "0",
+                "ammonia": "0",
+                "lead": "0"
+            },
+            "flora": [],
+            "fauna": [],
+            "artwork": [],
+            "groupPicture": [],
+            "activity": [],
+            "createdAt": "2020-07-07T09:40:23.752Z",
+            "updatedAt": "2020-07-07T09:40:23.752Z"
+        },
 
 export const generateReport = ({ body }, res, next) => {
   ejs.renderFile(path.join(__dirname, "/report-template.ejs"), {
