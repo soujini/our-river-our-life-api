@@ -2,11 +2,42 @@ import { Router } from 'express'
 import { middleware as query } from 'querymen'
 import { create, index, show, update, destroy, generateReport } from './controller'
 
+let express = require("express");
+let app = express();
+let ejs = require("ejs");
+let pdf = require("html-pdf");
+let path = require("path");
 
 const router = new Router()
 
-router.get('/generateReport',
-  generateReport)
+app.get("/generateReport", (req, res) => {
+	ejs.renderFile(path.join(__dirname, "/report-template.ejs"), {
+        students: students
+    }, (err, data) => {
+        if (err) {
+            res.send(err);
+        } else {
+            let options = {
+                "height": "11.25in",
+                "width": "8.5in",
+                "header": {
+                    "height": "20mm",
+                },
+                "footer": {
+                    "height": "20mm",
+                },
+
+            };
+            pdf.create(data, options).toFile("report.pdf", function (err, data) {
+                if (err) {
+                    res.send(err);
+                } else {
+                    res.send("File created successfully");
+                }
+            });
+        }
+    });
+})
 
 
 /**
