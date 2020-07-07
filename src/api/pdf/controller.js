@@ -6,28 +6,28 @@ let path = require("path");
 // var html = fs.readFileSync(__dirname +'/report-template.ejs', 'utf8');
 import aws from 'aws-sdk';
 
-// let students = [
-//   {name: "Joy",
-//   email: "joy@example.com",
-//   city: "New York",
-//   country: "USA"},
-//   {name: "John",
-//   email: "John@example.com",
-//   city: "San Francisco",
-//   country: "USA"},
-//   {name: "Clark",
-//   email: "Clark@example.com",
-//   city: "Seattle",
-//   country: "USA"},
-//   {name: "Watson",
-//   email: "Watson@example.com",
-//   city: "Boston",
-//   country: "USA"},
-//   {name: "Tony",
-//   email: "Tony@example.com",
-//   city: "Los Angels",
-//   country: "USA"
-// }];
+let students = [
+  {name: "Joy",
+  email: "joy@example.com",
+  city: "New York",
+  country: "USA"},
+  {name: "John",
+  email: "John@example.com",
+  city: "San Francisco",
+  country: "USA"},
+  {name: "Clark",
+  email: "Clark@example.com",
+  city: "Seattle",
+  country: "USA"},
+  {name: "Watson",
+  email: "Watson@example.com",
+  city: "Boston",
+  country: "USA"},
+  {name: "Tony",
+  email: "Tony@example.com",
+  city: "Los Angels",
+  country: "USA"
+}];
 
 let waterTestDetails = {
 
