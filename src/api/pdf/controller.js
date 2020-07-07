@@ -29,7 +29,6 @@ let students = [
 }];
 
 export const generateReport = ({ body }, res, next) =>{
-  console.log("in report");
   ejs.renderFile(path.join(__dirname, "/report-template.ejs"), {
         students: students
     }, (err, data) => {
@@ -47,15 +46,136 @@ export const generateReport = ({ body }, res, next) =>{
                 },
 
             };
-            pdf.create(data, options).toFile("report.pdf", function (err, data) {
+            pdf.create(data, options).toBuffer(function (err, data) {
                 if (err) {
                     res.send(err);
                 } else {
-                    res.send("File created successfully");
+                  console.log('This is a buffer:', data);
+
+                  aws.config.setPromisesDependency();
+                  aws.config.update({
+                    "accessKeyId": 'AKIAJ24JCG5UUXOOHKDA',
+                    "secretAccessKey": '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',
+                  });
+
+                  const s3 = new aws.S3();
+                  var params = {
+                    ACL: 'public-read',
+                    Bucket: "our-river-our-life-images/certificate",
+                  };
+                  var options = {
+                    Key: `nda/Nda`,
+                    Body: 'buf',
+                    ContentEncoding: "buffer",
+                    //ContentDisposition: "inline",
+                    ContentType: "application/pdf"
+                  };
+
+                  s3Bucket.upload(options, function(err, data) {
+                  if (err) {
+                    console.log(err);
+                    console.log("Error uploading data: ", data);
+                  } else {
+                    console.log('Data: ',data)
+                    console.log("data: ", data.Location);
+                    console.log("succesfully uploaded pdf!");
+                  }
+                  res.send("File created successfully");
                 }
             });
         }
     });
+}
+export const upload = (req, res, next) =>{
+  var customOriginalName="";
+  var customPath="";
+  var customFieldName="";
+  var bucketName="";
+  var waterTestDetailsId = req.body.waterTestDetailsId;
+  var description = req.body.description;
+
+  aws.config.setPromisesDependency();
+  aws.config.update({
+    "accessKeyId": 'AKIAJ24JCG5UUXOOHKDA',
+    "secretAccessKey": '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',
+  });
+
+  // if(req && req.files){
+
+  if(req.files.flora){
+    customFieldName = req.files.flora[0].fieldname;
+    customPath = req.files.flora[0].path;
+    customOriginalName= req.files.flora[0].originalname;
+    bucketName="our-river-our-life-images/flora";
+
+  }
+  else if(req.files.fauna){
+    customFieldName = req.files.fauna[0].fieldname;
+    customPath = req.files.fauna[0].path;
+    customOriginalName= req.files.fauna[0].originalname;
+    bucketName="our-river-our-life-images/fauna";
+  }
+  else if(req.files.artwork){
+    customFieldName = req.files.artwork[0].fieldname;
+    customPath = req.files.artwork[0].path;
+    customOriginalName= req.files.artwork[0].originalname;
+    bucketName="our-river-our-life-images/artwork";
+  }
+  else if(req.files.groupPicture){
+    customFieldName = req.files.groupPicture[0].fieldname;
+    customPath = req.files.groupPicture[0].path;
+    customOriginalName= req.files.groupPicture[0].originalname;
+    bucketName="our-river-our-life-images/groupPicture";
+  }
+  else if(req.files.activity){
+    customFieldName = req.files.activity[0].fieldname;
+    customPath = req.files.activity[0].path;
+    customOriginalName= req.files.activity[0].originalname;
+    bucketName="our-river-our-life-images/activity";
+  }
+
+  const s3 = new aws.S3();
+  var params = {
+    ACL: 'public-read',
+    Bucket: bucketName,
+    Body: fs.createReadStream(customPath),
+    Key: `${customOriginalName}`
+  };
+
+  s3.upload(params, (err, data) => {
+    if (err) {
+      console.log('Error occured while trying to upload to S3 bucket', err);
+       res.status(500).send(err);
+    }
+
+    if (res) {
+      var params ="";
+      fs.unlinkSync(customPath); // Empty temp folder
+      const locationUrl = data.Location;
+      // customOriginalName = "5ed5cd1e1177d200176877a6_filename.png"
+      // var waterTestDetailsId = customOriginalName.split('_');
+
+      if(customFieldName == 'flora'){
+        params = {"id":waterTestDetailsId, "flora":locationUrl, "fieldName":"flora", "description":description}
+      }
+      else if(customFieldName == 'fauna'){
+        params = {"id":waterTestDetailsId, "fauna":locationUrl, "fieldName":"fauna", "description":description}
+      }
+      else if(customFieldName == 'artwork'){
+        params = {"id":waterTestDetailsId, "artwork":locationUrl, "fieldName":"artwork", "description":description}
+      }
+      else if(customFieldName == 'groupPicture'){
+        params = {"id":waterTestDetailsId, "groupPicture":locationUrl, "fieldName":"groupPicture", "description":description}
+      }
+      else if(customFieldName == 'activity'){
+        params = {"id":waterTestDetailsId, "activity":locationUrl, "fieldName":"activity", "description":description}
+      }
+      if(params != ""){
+        WaterTestDetailsController.updateImage({params})
+      }
+      res.status(200).send("Image uploaded successfully");
+    }
+  });
 }
 export const create = ({ body }, res, next)=>
 res.status(201).json(body)
@@ -109,8 +229,6 @@ res.status(201).json(body)
 //       res.status(201).json({'message':'PDF Created successfully'});
 //        // res.send('Phone Number is incorrect');
 // }
-
-
 
 
 //res.status(201).json(body)
