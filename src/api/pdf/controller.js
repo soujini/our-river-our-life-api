@@ -68,7 +68,7 @@ export const generateReport = ({ body }, res, next) => {
     waterTestDetails: waterTestDetails
   }, (err, data) => {
     if (err) {
-      res.send(err);
+      res.send("Error in report template "+err);
     } else {
       let options = {
         "height": "11.25in",
