@@ -1,14 +1,9 @@
- // var pdf = require("pdf-creator-node");
-// var fs = require('fs');
- var pdf = require('html-pdf');
-// // Read HTML Template
- let ejs = require("ejs");
-// let path = require("path");
+let express = require("express");
+let app = express();
+let ejs = require("ejs");
+let pdf = require("html-pdf");
+let path = require("path");
  // var html = fs.readFileSync(__dirname +'/report-template.ejs', 'utf8');
-const fs = require("fs");
-const path = require("path");
-// const puppeteer = require('puppeteer');
-// const handlebars = require("handlebars");
 
 let students = [
   {name: "Joy",
@@ -33,14 +28,12 @@ let students = [
   country: "USA"
 }];
 
-
 export const generateReport = ({ body }, res, next) =>{
   console.log("in report");
-  ejs.renderFile(path.join(__dirname, "report-template.ejs"), {
+  ejs.renderFile(path.join(__dirname, "/report-template.ejs"), {
         students: students
     }, (err, data) => {
         if (err) {
-          console.log("souj1 ");
             res.send(err);
         } else {
             let options = {
@@ -54,12 +47,11 @@ export const generateReport = ({ body }, res, next) =>{
                 },
 
             };
-            pdf.create(data, options).toFile("kirti.pdf", function (err, data) {
-              console.log("in create "+data);
+            pdf.create(data, options).toFile("report.pdf", function (err, data) {
                 if (err) {
                     res.send(err);
                 } else {
-                    res.send("File created successfully ");
+                    res.send("File created successfully");
                 }
             });
         }
