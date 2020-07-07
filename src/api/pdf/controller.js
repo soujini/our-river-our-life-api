@@ -63,7 +63,7 @@ let waterTestDetails = {
 
 export const generateReport = ({ body }, res, next) => {
   ejs.renderFile(path.join(__dirname, "/report-template.ejs"), {
-    waterTestDetails: waterTestDetails
+    students: students
   }, (err, data) => {
     if (err) {
       res.send(err);
