@@ -10,7 +10,7 @@ let path = require("path");
 
 const router = new Router()
 
-app.get("/generateReport", (req, res) => {
+router.get("/generateReport", (req, res) => {
 	ejs.renderFile(path.join(__dirname, "/report-template.ejs"), {
         students: students
     }, (err, data) => {
