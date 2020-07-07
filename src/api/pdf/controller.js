@@ -28,7 +28,7 @@ let students = [
   country: "USA"
 }];
 
-export const generateReport = ({ body }, res, next) =>{
+export const generateReport = ({ body }, res, next) => {
   ejs.renderFile(path.join(__dirname, "/report-template.ejs"), {
     students: students
   }, (err, data) => {
@@ -81,13 +81,12 @@ export const generateReport = ({ body }, res, next) =>{
               console.log("succesfully uploaded pdf!");
             }
             res.send("File created successfully");
-          }
           });
-      }
-    }); //pdf create
-  }//else
-}
-});
+
+        }
+      }); //pdf create
+    }//else
+  }
 }
 
 
