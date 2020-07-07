@@ -8,9 +8,8 @@ let path = require("path");
 const app = express(apiRoot, api)
 const server = http.createServer(app)
 
-const app1=express();
 
-app1.use(express.static(path.join(__dirname, '/public')))
+app.use(express(path.join(__dirname, '/public')))
 
 if (mongo.uri) {
   mongoose.connect(mongo.uri)
