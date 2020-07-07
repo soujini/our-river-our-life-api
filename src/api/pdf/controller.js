@@ -72,7 +72,7 @@ export const generateReport = ({ body }, res, next) => {
             ContentType: "application/pdf"
           };
 
-          s3Bucket.upload(options, function(err, data) {
+          s3.upload(options, function(err, data) {
             if (err) {
               console.log(err);
               console.log("Error uploading data: ", data);
