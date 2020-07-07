@@ -6,32 +6,64 @@ let path = require("path");
 // var html = fs.readFileSync(__dirname +'/report-template.ejs', 'utf8');
 import aws from 'aws-sdk';
 
-let students = [
-  {name: "Joy",
-  email: "joy@example.com",
-  city: "New York",
-  country: "USA"},
-  {name: "John",
-  email: "John@example.com",
-  city: "San Francisco",
-  country: "USA"},
-  {name: "Clark",
-  email: "Clark@example.com",
-  city: "Seattle",
-  country: "USA"},
-  {name: "Watson",
-  email: "Watson@example.com",
-  city: "Boston",
-  country: "USA"},
-  {name: "Tony",
-  email: "Tony@example.com",
-  city: "Los Angels",
-  country: "USA"
-}];
+// let students = [
+//   {name: "Joy",
+//   email: "joy@example.com",
+//   city: "New York",
+//   country: "USA"},
+//   {name: "John",
+//   email: "John@example.com",
+//   city: "San Francisco",
+//   country: "USA"},
+//   {name: "Clark",
+//   email: "Clark@example.com",
+//   city: "Seattle",
+//   country: "USA"},
+//   {name: "Watson",
+//   email: "Watson@example.com",
+//   city: "Boston",
+//   country: "USA"},
+//   {name: "Tony",
+//   email: "Tony@example.com",
+//   city: "Los Angels",
+//   country: "USA"
+// }];
+
+let waterTestDetails = {
+
+"userId":"5edb45983b3f8d191876a8f3",
+
+"generalInformation":{
+"activityDate":"",
+"testerName":"Aravind A",
+"location":"Bengaluru",
+"latitude":12.9716,
+"longitude":77.5946
+},
+"waterLevelAndWeather":{
+"airTemperature":28,
+"waterLevel":"High",
+"weather":"Heavy Rain"
+},
+"surroundings":["factory", "river"],
+"waterTesting":{
+"waterTemperature":"26",
+"pH":"6.5",
+"dissolvedOxygen":"1",
+"hardness":"2",
+"nitrate":"10",
+"nitrite":"8",
+"chlorine":"6",
+"alkalinity":"5",
+"iron":"6",
+"bacteria":"2",
+"turbidity":"2"
+}
+};
 
 export const generateReport = ({ body }, res, next) => {
   ejs.renderFile(path.join(__dirname, "/report-template.ejs"), {
-    students: students
+    waterTestDetails: waterTestDetails
   }, (err, data) => {
     if (err) {
       res.send(err);
@@ -91,98 +123,6 @@ export const generateReport = ({ body }, res, next) => {
   });
 }
 
-
-export const upload = (req, res, next) =>{
-  var customOriginalName="";
-  var customPath="";
-  var customFieldName="";
-  var bucketName="";
-  var waterTestDetailsId = req.body.waterTestDetailsId;
-  var description = req.body.description;
-
-  aws.config.setPromisesDependency();
-  aws.config.update({
-    "accessKeyId": 'AKIAJ24JCG5UUXOOHKDA',
-    "secretAccessKey": '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',
-  });
-
-  // if(req && req.files){
-
-  if(req.files.flora){
-    customFieldName = req.files.flora[0].fieldname;
-    customPath = req.files.flora[0].path;
-    customOriginalName= req.files.flora[0].originalname;
-    bucketName="our-river-our-life-images/flora";
-
-  }
-  else if(req.files.fauna){
-    customFieldName = req.files.fauna[0].fieldname;
-    customPath = req.files.fauna[0].path;
-    customOriginalName= req.files.fauna[0].originalname;
-    bucketName="our-river-our-life-images/fauna";
-  }
-  else if(req.files.artwork){
-    customFieldName = req.files.artwork[0].fieldname;
-    customPath = req.files.artwork[0].path;
-    customOriginalName= req.files.artwork[0].originalname;
-    bucketName="our-river-our-life-images/artwork";
-  }
-  else if(req.files.groupPicture){
-    customFieldName = req.files.groupPicture[0].fieldname;
-    customPath = req.files.groupPicture[0].path;
-    customOriginalName= req.files.groupPicture[0].originalname;
-    bucketName="our-river-our-life-images/groupPicture";
-  }
-  else if(req.files.activity){
-    customFieldName = req.files.activity[0].fieldname;
-    customPath = req.files.activity[0].path;
-    customOriginalName= req.files.activity[0].originalname;
-    bucketName="our-river-our-life-images/activity";
-  }
-
-  const s3 = new aws.S3();
-  var params = {
-    ACL: 'public-read',
-    Bucket: bucketName,
-    Body: fs.createReadStream(customPath),
-    Key: `${customOriginalName}`
-  };
-
-  s3.upload(params, (err, data) => {
-    if (err) {
-      console.log('Error occured while trying to upload to S3 bucket', err);
-      res.status(500).send(err);
-    }
-
-    if (res) {
-      var params ="";
-      fs.unlinkSync(customPath); // Empty temp folder
-      const locationUrl = data.Location;
-      // customOriginalName = "5ed5cd1e1177d200176877a6_filename.png"
-      // var waterTestDetailsId = customOriginalName.split('_');
-
-      if(customFieldName == 'flora'){
-        params = {"id":waterTestDetailsId, "flora":locationUrl, "fieldName":"flora", "description":description}
-      }
-      else if(customFieldName == 'fauna'){
-        params = {"id":waterTestDetailsId, "fauna":locationUrl, "fieldName":"fauna", "description":description}
-      }
-      else if(customFieldName == 'artwork'){
-        params = {"id":waterTestDetailsId, "artwork":locationUrl, "fieldName":"artwork", "description":description}
-      }
-      else if(customFieldName == 'groupPicture'){
-        params = {"id":waterTestDetailsId, "groupPicture":locationUrl, "fieldName":"groupPicture", "description":description}
-      }
-      else if(customFieldName == 'activity'){
-        params = {"id":waterTestDetailsId, "activity":locationUrl, "fieldName":"activity", "description":description}
-      }
-      if(params != ""){
-        WaterTestDetailsController.updateImage({params})
-      }
-      res.status(200).send("Image uploaded successfully");
-    }
-  });
-}
 export const create = ({ body }, res, next)=>
 res.status(201).json(body)
 
