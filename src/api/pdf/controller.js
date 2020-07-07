@@ -3,7 +3,7 @@ let app = express();
 let ejs = require("ejs");
 let pdf = require("html-pdf");
 let path = require("path");
- // var html = fs.readFileSync(__dirname +'/report-template.ejs', 'utf8');
+// var html = fs.readFileSync(__dirname +'/report-template.ejs', 'utf8');
 
 let students = [
   {name: "Joy",
@@ -30,62 +30,67 @@ let students = [
 
 export const generateReport = ({ body }, res, next) =>{
   ejs.renderFile(path.join(__dirname, "/report-template.ejs"), {
-        students: students
-    }, (err, data) => {
+    students: students
+  }, (err, data) => {
+    if (err) {
+      res.send(err);
+    } else {
+      let options = {
+        "height": "11.25in",
+        "width": "8.5in",
+        "header": {
+          "height": "20mm",
+        },
+        "footer": {
+          "height": "20mm",
+        },
+
+      };
+      pdf.create(data, options).toBuffer(function (err, data) {
         if (err) {
-            res.send(err);
+          res.send(err);
         } else {
-            let options = {
-                "height": "11.25in",
-                "width": "8.5in",
-                "header": {
-                    "height": "20mm",
-                },
-                "footer": {
-                    "height": "20mm",
-                },
+          console.log('This is a buffer:', data);
 
-            };
-            pdf.create(data, options).toBuffer(function (err, data) {
-                if (err) {
-                    res.send(err);
-                } else {
-                  console.log('This is a buffer:', data);
+          aws.config.setPromisesDependency();
+          aws.config.update({
+            "accessKeyId": 'AKIAJ24JCG5UUXOOHKDA',
+            "secretAccessKey": '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',
+          });
 
-                  aws.config.setPromisesDependency();
-                  aws.config.update({
-                    "accessKeyId": 'AKIAJ24JCG5UUXOOHKDA',
-                    "secretAccessKey": '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',
-                  });
+          const s3 = new aws.S3();
+          var params = {
+            ACL: 'public-read',
+            Bucket: "our-river-our-life-images/certificate",
+          };
+          var options = {
+            Key: `nda/Nda`,
+            Body: 'buf',
+            ContentEncoding: "buffer",
+            //ContentDisposition: "inline",
+            ContentType: "application/pdf"
+          };
 
-                  const s3 = new aws.S3();
-                  var params = {
-                    ACL: 'public-read',
-                    Bucket: "our-river-our-life-images/certificate",
-                  };
-                  var options = {
-                    Key: `nda/Nda`,
-                    Body: 'buf',
-                    ContentEncoding: "buffer",
-                    //ContentDisposition: "inline",
-                    ContentType: "application/pdf"
-                  };
-
-                  s3Bucket.upload(options, function(err, data) {
-                  if (err) {
-                    console.log(err);
-                    console.log("Error uploading data: ", data);
-                  } else {
-                    console.log('Data: ',data)
-                    console.log("data: ", data.Location);
-                    console.log("succesfully uploaded pdf!");
-                  }
-                  res.send("File created successfully");
-                }
-            });
-        }
-    });
+          s3Bucket.upload(options, function(err, data) {
+            if (err) {
+              console.log(err);
+              console.log("Error uploading data: ", data);
+            } else {
+              console.log('Data: ',data)
+              console.log("data: ", data.Location);
+              console.log("succesfully uploaded pdf!");
+            }
+            res.send("File created successfully");
+          }
+          });
+      }
+    }); //pdf create
+  }//else
 }
+});
+}
+
+
 export const upload = (req, res, next) =>{
   var customOriginalName="";
   var customPath="";
@@ -145,7 +150,7 @@ export const upload = (req, res, next) =>{
   s3.upload(params, (err, data) => {
     if (err) {
       console.log('Error occured while trying to upload to S3 bucket', err);
-       res.status(500).send(err);
+      res.status(500).send(err);
     }
 
     if (res) {
