@@ -68,7 +68,7 @@ export const generateReport = ({ body }, res, next) => {
             ACL: 'public-read',
             Bucket: "our-river-our-life-images/certificate",
             Key: `file1`,
-            Body: 'data,
+            Body: data,
             ContentEncoding: "buffer",
             ContentType: "application/pdf"
           };
