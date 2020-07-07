@@ -67,10 +67,9 @@ export const generateReport = ({ body }, res, next) => {
           var params = {
             ACL: 'public-read',
             Bucket: "our-river-our-life-images/certificate",
-            Key: `nda/Nda`,
+            Key: `file1`,
             Body: 'buf',
             ContentEncoding: "buffer",
-            //ContentDisposition: "inline",
             ContentType: "application/pdf"
           };
 
