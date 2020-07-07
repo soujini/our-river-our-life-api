@@ -86,7 +86,7 @@ export const generateReport = ({ body }, res, next) => {
         }
       }); //pdf create
     }//else
-  }
+  });
 }
 
 
