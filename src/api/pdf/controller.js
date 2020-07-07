@@ -4,6 +4,7 @@ let ejs = require("ejs");
 let pdf = require("html-pdf");
 let path = require("path");
 // var html = fs.readFileSync(__dirname +'/report-template.ejs', 'utf8');
+import aws from 'aws-sdk';
 
 let students = [
   {name: "Joy",
