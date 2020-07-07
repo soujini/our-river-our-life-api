@@ -32,7 +32,7 @@ export default (apiRoot, routes) => {
   app.use(apiRoot, routes)
   app.use(queryErrorHandler())
   app.use(bodyErrorHandler())
-  app.use(express.static(path.join(__dirname, '/public')))
+  app.use(express.static('public'))
 
   return app
 }
