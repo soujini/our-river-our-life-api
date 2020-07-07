@@ -60,11 +60,13 @@ export const generateReport = ({ body }, res, next) => {
           });
 
           const s3 = new aws.S3();
+          // var params = {
+          //   ACL: 'public-read',
+          //   Bucket: "our-river-our-life-images/certificate",
+          // };
           var params = {
             ACL: 'public-read',
             Bucket: "our-river-our-life-images/certificate",
-          };
-          var options = {
             Key: `nda/Nda`,
             Body: 'buf',
             ContentEncoding: "buffer",
@@ -72,7 +74,7 @@ export const generateReport = ({ body }, res, next) => {
             ContentType: "application/pdf"
           };
 
-          s3.upload(options, function(err, data) {
+          s3.upload(params, function(err, data) {
             if (err) {
               console.log(err);
               console.log("Error uploading data: ", data);
