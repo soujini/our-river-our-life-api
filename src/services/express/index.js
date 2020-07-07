@@ -7,6 +7,7 @@ import bodyParser from 'body-parser'
 import { errorHandler as queryErrorHandler } from 'querymen'
 import { errorHandler as bodyErrorHandler } from 'bodymen'
 import { env } from '../../config'
+let path = require("path");
 
 export default (apiRoot, routes) => {
   const app = express()
