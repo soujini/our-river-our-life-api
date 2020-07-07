@@ -88,8 +88,9 @@ export const generateReport = ({ body }, res, next) => {
         }
       }); //pdf create
     }//else
+    res.send("File created successfully");
   });
-  res.send("File created successfully");
+
 }
 
 
