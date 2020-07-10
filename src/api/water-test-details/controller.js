@@ -1,11 +1,20 @@
 import { success, notFound } from '../../services/response/'
 import { WaterTestDetails } from '.'
+var PDFController = require('../pdf/controller')
 
-export const create = ({ bodymen: { body } }, res, next) =>
-WaterTestDetails.create(body)
-.then((waterTestDetails) => waterTestDetails.view(true))
-.then(success(res, 201))
-.catch(next)
+
+export const create = ({ bodymen: { body } }, res, next) =>{
+  WaterTestDetails.create(body).then((waterTestDetails) =>{
+    console.log("Created")
+    PDFController.generateReport({waterTestDetails})
+  })
+}
+
+// export const create = ({ bodymen: { body } }, res, next) =>
+// WaterTestDetails.create(body)
+// .then((waterTestDetails) => waterTestDetails.view(true))
+// .then(success(res, 201))
+// .catch(next)
 
 export const index = ({ querymen: { query, select, cursor } }, res, next) =>
 WaterTestDetails.count(query)

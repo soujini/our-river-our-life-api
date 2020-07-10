@@ -225,7 +225,7 @@
               <table class="location-details text-left">
                 <tr>
                   <td>
-                    <span class="montserrat-12-l">Depth of the water:</span>
+                    <span class="montserrat-12-l">Water Level:</span>
                   </td>
                   <td>
                     <span class="montserrat-10-m"><%= waterTestDetails.waterLevelAndWeather.waterLevel %></span>
@@ -264,7 +264,7 @@
                       </td>
                       <td class="ml-10">
                         <span class="parameter">pH</span><br/>
-                        <span class="reason">Portable Water</span><br/>
+                        <span class="reason">Potable Water</span><br/>
                         <span class="range">6.5 - 8.5</span>
                       </td>
                       <td class="text-right">
@@ -432,13 +432,13 @@
                       <td class="ml-10">
                         <span class="parameter">Dissolved Oxygen</span><br/>
                         <span class="reason">Dissolved Oxygen gas</span><br/>
-                        <span class="range">4.0 - 7.0 mg/L</span>
+                        <span class="range">4.0 - 20.0 mg/L</span>
                       </td>
                       <td class="text-right">
-                        <% if (waterTestDetails.waterTesting.dissolvedOxygen * 1 >= 4.0 &&  waterTestDetails.waterTesting.dissolvedOxygen * 1 <= 7.0) { %>
+                        <% if (waterTestDetails.waterTesting.dissolvedOxygen * 1 >= 4.0 &&  waterTestDetails.waterTesting.dissolvedOxygen * 1 <= 20.0) { %>
                           <span class="row"><span class="value-green1"><%= waterTestDetails.waterTesting.dissolvedOxygen %></span> <span class="value-green2">mg/L</span> </span>
                           <% }%>
-                          <% if (waterTestDetails.waterTesting.dissolvedOxygen * 1 < 4.0 || waterTestDetails.waterTesting.dissolvedOxygen * 1 > 7.0) { %>
+                          <% if (waterTestDetails.waterTesting.dissolvedOxygen * 1 < 4.0 || waterTestDetails.waterTesting.dissolvedOxygen * 1 > 20.0) { %>
                             <span class="row"><span class="value-red1"><%= waterTestDetails.waterTesting.dissolvedOxygen %></span> <span class="value-red2">mg/L</span> </span>
                             <% }%>
                       </td>
@@ -488,7 +488,7 @@
                       </td>
                       <td class="ml-10">
                         <span class="parameter">E Coli / Coliform Bacteria</span><br/>
-                        <span class="reason">Presence in a water supply. Recent pollution by humans and animal waste</span><br/>
+                        <span class="reason">Presence indicates sources of human or animal fecal waste</span><br/>
                       </td>
                       <td class="text-right">
                         <% if (waterTestDetails.waterTesting.bacteria == 'Absent') { %>
@@ -599,7 +599,7 @@
                       </td>
                       <td class="ml-10">
                         <span class="parameter">Lead</span><br/>
-                        <span class="reason">Any amount is Uusafe</span><br/>
+                        <span class="reason">Lead contamination in any amount is unsafe</span><br/>
                       </td>
                       <td class="text-right">
                         <% if (waterTestDetails.waterTesting.lead * 1 == 0) { %>
