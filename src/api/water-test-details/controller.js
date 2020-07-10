@@ -8,8 +8,8 @@ export const create = ({ bodymen: { body } }, res, next) =>{
   .then((waterTestDetails) =>{
     console.log("Created")
     PDFController.generateReport({waterTestDetails})
+    waterTestDetails.view(true)
   })
-  .then((waterTestDetails) => waterTestDetails.view(true))
   .then(success(res, 201))
   .catch(next)
 }
@@ -58,6 +58,9 @@ export const updateImage = ({ params }, res, next) =>{
     }
     else if(params.fieldName == 'activity'){
         waterTestDetails.activity.push({imageURL:params.activity, description:params.description});
+    }
+    else if(params.fieldName == 'certificate'){
+        waterTestDetails.certificate = params.certificate;
     }
       waterTestDetails.save()
     }

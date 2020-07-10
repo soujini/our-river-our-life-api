@@ -4,6 +4,7 @@ let ejs = require("ejs");
 let pdf = require("html-pdf");
 let path = require("path");
 import aws from 'aws-sdk';
+var WaterTestDetailsController = require('../water-test-details/controller')
 
 export const generateReport = (req, res, next) => {
   console.log("in generate report ")
@@ -42,7 +43,7 @@ export const generateReport = (req, res, next) => {
           var params = {
             ACL: 'public-read',
             Bucket: "our-river-our-life-images/certificate",
-            Key: `file1`,
+            Key: `certificate`+_req.waterTestDetails._id,
             Body: data,
             ContentEncoding: "buffer",
             ContentType: "application/pdf"
@@ -56,6 +57,9 @@ export const generateReport = (req, res, next) => {
               console.log('Data: ',data)
               console.log("data: ", data.Location)
               console.log("succesfully uploaded pdf!")
+              params = {"id":waterTestDetailsId, "certificate":data.location, "fieldName":"certificate"}
+
+              WaterTestDetailsController.updateImage({params})
             }
 
           });

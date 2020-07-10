@@ -119,6 +119,9 @@ const waterTestDetailsSchema = new Schema({
        type:String
      }
    }],
+   certificateURL:{
+     type:String
+   },
 
 },{
   timestamps: true,
@@ -169,7 +172,8 @@ waterTestDetailsSchema.methods = {
       groupPicture:this.groupPicture,
       activity:this.activity,
       createdAt: this.createdAt,
-      updatedAt: this.updatedAt
+      updatedAt: this.updatedAt,
+      certificateURL:this.certificateURL
     }
 
     return full ? {
