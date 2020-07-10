@@ -6,7 +6,7 @@ var PDFController = require('../pdf/controller')
 export const create = ({ bodymen: { body } }, res, next) =>{
   WaterTestDetails.create(body)
   .then((waterTestDetails) =>{
-    params = {"id":waterTestDetails._id}
+    var params = {"id":waterTestDetails._id}
     PDFController.generateReport({waterTestDetails})
     show({params})
   })
