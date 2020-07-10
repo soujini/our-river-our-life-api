@@ -6,7 +6,7 @@ var PDFController = require('../pdf/controller')
 export const create = ({ bodymen: { body } }, res, next) =>{
   WaterTestDetails.create(body)
   .then((waterTestDetails) =>({
-    PDFController.generateReport({waterTestDetails})
+    PDFController.generateReport({waterTestDetails}),
     waterTestDetails.map((waterTestDetails) => waterTestDetails.view())
   }))
   .then(success(res, 201))
