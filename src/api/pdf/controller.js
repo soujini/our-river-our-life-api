@@ -43,7 +43,7 @@ export const generateReport = (req, res, next) => {
           var params = {
             ACL: 'public-read',
             Bucket: "our-river-our-life-images/certificate",
-            Key: `certificate`+req.waterTestDetails._id,
+            Key: `certificate_`+req.waterTestDetails._id,
             Body: data,
             ContentEncoding: "buffer",
             ContentType: "application/pdf"
@@ -57,7 +57,7 @@ export const generateReport = (req, res, next) => {
               console.log('Data: ',data)
               console.log("data: ", data.Location)
               console.log("succesfully uploaded pdf!")
-              params = {"id":waterTestDetailsId, "certificate":data.location, "fieldName":"certificate"}
+              params = {"id":req.waterTestDetails._id, "certificate":data.location, "fieldName":"certificate"}
 
               WaterTestDetailsController.updateImage({params})
             }
