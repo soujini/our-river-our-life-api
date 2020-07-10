@@ -49,7 +49,7 @@ let waterTestDetails = {
   ],
   "waterTesting": {
     "waterTemperature": "26",
-    "pH": "6",
+    "pH": "9",
     "dissolvedOxygen": "17",
     "hardness": "30",
     "nitrate": "0",

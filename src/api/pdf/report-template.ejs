@@ -140,8 +140,19 @@
     color: #26BB31;
     text-align: right;
   }
-  .value-red{
-
+  .value-red1{
+    font-family: 'Montserrat', sans-serif;
+    font-weight:500;
+    font-size:20px;
+    color: #E94D4D;
+    text-align: right;
+  }
+  .value-red2{
+    font-family: 'Montserrat', sans-serif;
+    font-weight:300;
+    font-size:12px;
+    color: #E94D4D;
+    text-align: right;
   }
   .flex{
     display: flex;
@@ -261,7 +272,12 @@
                         <span class="range">6.5 - 8.5</span>
                       </td>
                       <td class="text-right">
-                        <span class="row"><span class="value-green1"><%= waterTestDetails.waterTesting.pH %></span> <span class="value-green2">pH</span> </span>
+                        <% if (waterTestDetails.waterTesting.pH * 1 >= 6.5 &&  waterTestDetails.waterTesting.pH * 1 <= 8.5) { %>
+                          <span class="row"><span class="value-green1"><%= waterTestDetails.waterTesting.pH %></span> <span class="value-green2">pH</span> </span>
+                          <% }%>
+                          <% if (waterTestDetails.waterTesting.pH * 1 < 6.5 || waterTestDetails.waterTesting.pH * 1 > 8.5) { %>
+                            <span class="row"><span class="value-red1"><%= waterTestDetails.waterTesting.pH %></span> <span class="value-red2">pH</span> </span>
+                            <% }%>
                       </td>
                     </tr>
                     <tr>
