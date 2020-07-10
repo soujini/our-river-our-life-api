@@ -5,12 +5,11 @@ var PDFController = require('../pdf/controller')
 
 export const create = ({ bodymen: { body } }, res, next) =>{
   WaterTestDetails.create(body)
-  .then((waterTestDetails) =>{
+  .then((waterTestDetails) =>({
     console.log("Created")
     PDFController.generateReport({waterTestDetails})
-
-  })
-  .then((waterTestDetails) => waterTestDetails.view(true)
+  }))
+  .then((waterTestDetails) => waterTestDetails.view(true))
   .then(success(res, 201))
   .catch(next)
 }
