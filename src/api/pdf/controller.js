@@ -7,7 +7,7 @@ import aws from 'aws-sdk';
 
 export const generateReport = (req, res, next) => {
   console.log("in generate report ")
-  console.log(req)
+  console.log(req.waterTestDetails)
   ejs.renderFile(path.join(__dirname, "/report-template.ejs"), {
     waterTestDetails: req
   }, (err, data) => {
