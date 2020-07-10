@@ -7,8 +7,8 @@ export const create = ({ bodymen: { body } }, res, next) =>{
   WaterTestDetails.create(body)
   .then((waterTestDetails) =>{
     PDFController.generateReport({waterTestDetails})
+    waterTestDetails.view(true))
   })
-  .then((waterTestDetails) => waterTestDetails.view(true))
   .then(success(res, 201))
   .catch(next)
 }
