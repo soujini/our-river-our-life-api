@@ -223,7 +223,7 @@
             </td>
           </tr>
         </table>
-        <p class="montserrat-12-l text-left">Water Quality:</p>
+        <p class="montserrat-12-l text-center">Water Quality:</p>
         <table class="card">
           <tr>
             <td>
@@ -536,15 +536,35 @@
           </tr>
         </table>
 
-          <p class="montserrat-12-l text-left">Flora</p>
+          <p class="montserrat-12-l text-center">Flora</p>
           <% if (waterTestDetails.flora.length > 0) { %>
             <% waterTestDetails.flora.forEach(flora => {%>
-              <img src="<%= flora.imageURL %>">
+              <img src="<%= flora.imageURL %>" style="height:300px; width:auto">
               <%	});%>
               <% }%>
 
-          <p class="montserrat-12-l text-left">Fauna</p>
-          <p class="montserrat-12-l text-left">Artwork</p>
-          <p class="montserrat-12-l text-left">Group Picture</p>
-          <p class="montserrat-12-l text-left">Activity</p>
+          <p class="montserrat-12-l text-center">Fauna</p>
+          <% if (waterTestDetails.fauna.length > 0) { %>
+            <% waterTestDetails.fauna.forEach(fauna => {%>
+              <img src="<%= fauna.imageURL %>" style="height:300px; width:auto">
+              <%	});%>
+              <% }%>
+          <p class="montserrat-12-l text-center">Artwork</p>
+          <% if (waterTestDetails.artwork.length > 0) { %>
+            <% waterTestDetails.artwork.forEach(artwork => {%>
+              <img src="<%= artwork.imageURL %>" style="height:300px; width:auto">
+              <%	});%>
+              <% }%>
+          <p class="montserrat-12-l text-center">Group Picture</p>
+          <% if (waterTestDetails.groupPicture.length > 0) { %>
+            <% waterTestDetails.groupPicture.forEach(groupPicture => {%>
+              <img src="<%= groupPicture.imageURL %>" style="height:300px; width:auto">
+              <%	});%>
+              <% }%>
+          <p class="montserrat-12-l text-center">Activity</p>
+          <% if (waterTestDetails.activity.length > 0) { %>
+            <% waterTestDetails.activity.forEach(activity => {%>
+              <img src="<%= activity.imageURL %>" style="height:300px; width:auto">
+              <%	});%>
+              <% }%>
       </center>
