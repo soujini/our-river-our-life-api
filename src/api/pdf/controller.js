@@ -94,9 +94,9 @@ let waterTestDetails = {
 
 export const generateReport = (req, res, next) => {
   console.log("in generate report ")
-  console.log(req.body)
+  console.log(req)
   ejs.renderFile(path.join(__dirname, "/report-template.ejs"), {
-    waterTestDetails: body
+    waterTestDetails: req.body
   }, (err, data) => {
     if (err) {
       res.send("Error in report template "+err);
@@ -125,10 +125,7 @@ export const generateReport = (req, res, next) => {
           });
 
           const s3 = new aws.S3();
-          // var params = {
-          //   ACL: 'public-read',
-          //   Bucket: "our-river-our-life-images/certificate",
-          // };
+
           var params = {
             ACL: 'public-read',
             Bucket: "our-river-our-life-images/certificate",
@@ -149,7 +146,6 @@ export const generateReport = (req, res, next) => {
             }
 
           });
-
         }
       }); //pdf create
     }//else
