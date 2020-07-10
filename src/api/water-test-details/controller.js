@@ -7,7 +7,7 @@ export const create = ({ bodymen: { body } }, res, next) =>{
   WaterTestDetails.create(body)
   .then((waterTestDetails) =>{
     PDFController.generateReport({waterTestDetails})
-    show({id:waterTestDetails._id})
+    show({"id":waterTestDetails._id})
   })
   .then(success(res, 201))
   .catch(next)
