@@ -8,8 +8,8 @@ export const create = ({ bodymen: { body } }, res, next) =>{
   .then((waterTestDetails) =>{
     console.log("Created")
     PDFController.generateReport({waterTestDetails})
-    waterTestDetails.view(true)
   })
+  .then((waterTestDetails) => waterTestDetails.view(true))
   .then(success(res, 201))
   .catch(next)
 }
