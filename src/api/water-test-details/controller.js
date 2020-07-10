@@ -59,7 +59,7 @@ export const updateImage = ({ params }, res, next) =>{
         waterTestDetails.activity.push({imageURL:params.activity, description:params.description});
     }
     else if(params.fieldName == 'certificate'){
-        waterTestDetails.certificateURL.push(params.certificate);
+        waterTestDetails.certificateURL = params.certificate;
     }
       waterTestDetails.save()
     }
