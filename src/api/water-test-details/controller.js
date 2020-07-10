@@ -6,7 +6,9 @@ var PDFController = require('../pdf/controller')
 export const create = ({ bodymen: { body } }, res, next) =>{
   WaterTestDetails.create(body).then((waterTestDetails) =>{
     console.log("Created")
-    PDFController.generateReport({body})
+    PDFController.generateReport().then((x) =>{
+      console.log("pdf Created hopefully")
+    }
   })
 }
 

@@ -60,12 +60,11 @@ export const generateReport = (req, res, next) => {
             }
 
           });
+          res.send("File created successfully");
         }
       }); //pdf create
     }//else
-    res.send("File created successfully");
   });
-
 }
 
 
