@@ -43,7 +43,7 @@ export const generateReport = (req, res, next) => {
           var params = {
             ACL: 'public-read',
             Bucket: "our-river-our-life-images/certificate",
-            Key: `certificate`+_req.waterTestDetails._id,
+            Key: `certificate`+req.waterTestDetails._id,
             Body: data,
             ContentEncoding: "buffer",
             ContentType: "application/pdf"
