@@ -59,7 +59,7 @@ export const generateReport = (req, res, next) => {
             }
 
           });
-          res.send("File created successfully");
+          // res.send("File created successfully");
         }
       }); //pdf create
     }//else
