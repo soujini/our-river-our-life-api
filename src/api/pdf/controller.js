@@ -96,7 +96,7 @@ export const generateReport = (req, res, next) => {
   console.log("in generate report ")
   console.log(req)
   ejs.renderFile(path.join(__dirname, "/report-template.ejs"), {
-    waterTestDetails: req.body
+    waterTestDetails: req
   }, (err, data) => {
     if (err) {
       res.send("Error in report template "+err);
