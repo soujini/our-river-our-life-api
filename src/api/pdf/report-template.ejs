@@ -20,6 +20,13 @@
     text-align:center;
     color: #303030;
   }
+  .location-details1{
+    width:350px;
+    margin-top:28px;
+  }
+  .location-details{
+    width:350px;
+  }
   .card{
     padding:18px;
     width:350px;
@@ -34,7 +41,6 @@
     font-family: 'Montserrat', sans-serif;
     font-weight:300;
     font-size:10px;
-    text-align:center;
     color: #303030;
   }
 
@@ -42,7 +48,6 @@
     font-family: 'Montserrat', sans-serif;
     font-weight:500;
     font-size:10px;
-    text-align:center;
     color: #303030;
 
   }
@@ -50,7 +55,6 @@
     font-family: 'Montserrat', sans-serif;
     font-weight:700;
     font-size:10px;
-    text-align:center;
     color: #303030;
 
   }
@@ -58,7 +62,6 @@
     font-family: 'Montserrat', sans-serif;
     font-weight:300;
     font-size:12px;
-    text-align:center;
     color: #303030;
   }
 
@@ -66,7 +69,6 @@
     font-family: 'Montserrat', sans-serif;
     font-weight:500;
     font-size:12px;
-    text-align:center;
     color: #303030;
 
   }
@@ -74,7 +76,6 @@
     font-family: 'Montserrat', sans-serif;
     font-weight:700;
     font-size:12px;
-    text-align:center;
     color: #303030;
 
   }
@@ -95,35 +96,43 @@
     font-family: 'Montserrat', sans-serif;
     font-weight:500;
     font-size:12px;
-    text-align:center;
     color: #303030;
+  }
+  .air-temperature{
+    font-family: 'Montserrat', sans-serif;
+    font-weight:500;
+    font-size:20px;
+    color: #222222;
+  }
+  .air-temperature-degree{
+    font-family: 'Montserrat', sans-serif;
+    font-weight:500;
+    font-size:18px;
+    color: #B5B5B5;
   }
   .temperature{
     font-family: 'Montserrat', sans-serif;
     font-weight:500;
     font-size:18px;
-    text-align:center;
     color: #303030;
   }
+
   .degree{
     font-family: 'Montserrat', sans-serif;
     font-weight:500;
     font-size:18px;
-    text-align:center;
     color: #B5B5B5;
   }
   .reason{
     font-family: 'Montserrat', sans-serif;
     font-weight:300;
     font-size:10px;
-    text-align:center;
     color: #303030;
   }
   .range{
     font-family: 'Montserrat', sans-serif;
     font-weight:500;
     font-size:10px;
-    text-align:center;
     color: #303030;
   }
   .value-green1{
@@ -300,7 +309,13 @@
                         <span class="range">20 mg/L - 250 mg/L</span>
                       </td>
                       <td class="text-right">
-                        <span class="row"><span class="value-green1"><%= waterTestDetails.waterTesting.alkalinity %></span> <span class="value-green2">mg/L</span> </span>
+                        <% if (waterTestDetails.waterTesting.alkalinity * 1 >= 20 &&  waterTestDetails.waterTesting.alkalinity * 1 <= 250) { %>
+                          <span class="row"><span class="value-green1"><%= waterTestDetails.waterTesting.alkalinity %></span> <span class="value-green2">mg/L</span> </span>
+                          <% }%>
+                          <% if (waterTestDetails.waterTesting.alkalinity * 1 < 20 || waterTestDetails.waterTesting.alkalinity * 1 > 250) { %>
+                            <span class="row"><span class="value-red1"><%= waterTestDetails.waterTesting.alkalinity %></span> <span class="value-red2">mg/L</span> </span>
+                            <% }%>
+
                       </td>
                     </tr>
                     <tr>
@@ -323,7 +338,12 @@
                         <span class="range">1 mg/L</span>
                       </td>
                       <td class="text-right">
-                        <span class="row"><span class="value-green1"><%= waterTestDetails.waterTesting.nitrate %></span> <span class="value-green2">mg/L</span> </span>
+                        <% if (waterTestDetails.waterTesting.nitrate * 1 <= 1) { %>
+                          <span class="row"><span class="value-green1"><%= waterTestDetails.waterTesting.nitrate %></span> <span class="value-green2">mg/L</span> </span>
+                          <% }%>
+                          <% if (waterTestDetails.waterTesting.nitrate * 1 > 1 ) { %>
+                            <span class="row"><span class="value-red1"><%= waterTestDetails.waterTesting.nitrate %></span> <span class="value-red2">mg/L</span> </span>
+                            <% }%>
                       </td>
                     </tr>
                     <tr>
@@ -346,7 +366,12 @@
                         <span class="range">1 mg/L</span>
                       </td>
                       <td class="text-right">
-                        <span class="row"><span class="value-green1"><%= waterTestDetails.waterTesting.nitrite %></span> <span class="value-green2">mg/L</span> </span>
+                        <% if (waterTestDetails.waterTesting.nitrite * 1 <= 1) { %>
+                          <span class="row"><span class="value-green1"><%= waterTestDetails.waterTesting.nitrite %></span> <span class="value-green2">mg/L</span> </span>
+                          <% }%>
+                          <% if (waterTestDetails.waterTesting.nitrite * 1 > 1 ) { %>
+                            <span class="row"><span class="value-red1"><%= waterTestDetails.waterTesting.nitrite %></span> <span class="value-red2">mg/L</span> </span>
+                            <% }%>
                       </td>
                     </tr>
                     <tr>
@@ -395,7 +420,12 @@
                         <span class="range">0.2 - 1.0 mg/L</span>
                       </td>
                       <td class="text-right">
-                        <span class="row"><span class="value-green1"><%= waterTestDetails.waterTesting.chlorine %></span> <span class="value-green2">mg/L</span> </span>
+                        <% if (waterTestDetails.waterTesting.chlorine * 1 >= 0.2 &&  waterTestDetails.waterTesting.chlorine * 1 <= 1.0) { %>
+                          <span class="row"><span class="value-green1"><%= waterTestDetails.waterTesting.chlorine %></span> <span class="value-green2">mg/L</span> </span>
+                          <% }%>
+                          <% if (waterTestDetails.waterTesting.chlorine * 1 < 0.2 || waterTestDetails.waterTesting.chlorine * 1 > 1.0) { %>
+                            <span class="row"><span class="value-red1"><%= waterTestDetails.waterTesting.chlorine %></span> <span class="value-red2">mg/L</span> </span>
+                            <% }%>
                       </td>
                     </tr>
                     <tr>
@@ -418,7 +448,12 @@
                         <span class="range">4.0 - 7.0 mg/L</span>
                       </td>
                       <td class="text-right">
-                        <span class="row"><span class="value-green1"><%= waterTestDetails.waterTesting.dissolvedOxygen %></span> <span class="value-green2">mg/L</span> </span>
+                        <% if (waterTestDetails.waterTesting.dissolvedOxygen * 1 >= 4.0 &&  waterTestDetails.waterTesting.dissolvedOxygen * 1 <= 7.0) { %>
+                          <span class="row"><span class="value-green1"><%= waterTestDetails.waterTesting.dissolvedOxygen %></span> <span class="value-green2">mg/L</span> </span>
+                          <% }%>
+                          <% if (waterTestDetails.waterTesting.dissolvedOxygen * 1 < 4.0 || waterTestDetails.waterTesting.dissolvedOxygen * 1 > 7.0) { %>
+                            <span class="row"><span class="value-red1"><%= waterTestDetails.waterTesting.dissolvedOxygen %></span> <span class="value-red2">mg/L</span> </span>
+                            <% }%>
                       </td>
                     </tr>
                     <tr>
@@ -441,7 +476,13 @@
                         <span class="range">0.2 - 2.0 mg/L</span>
                       </td>
                       <td class="text-right">
-                        <span class="row"><span class="value-green1"><%= waterTestDetails.waterTesting.iron %></span> <span class="value-green2">mg/L</span> </span>
+                        <% if (waterTestDetails.waterTesting.iron * 1 >= 0.2 &&  waterTestDetails.waterTesting.iron * 1 <= 2.0) { %>
+                          <span class="row"><span class="value-green1"><%= waterTestDetails.waterTesting.iron %></span> <span class="value-green2">mg/L</span> </span>
+                          <% }%>
+                          <% if (waterTestDetails.waterTesting.iron * 1 < 0.2 || waterTestDetails.waterTesting.iron * 1 > 2.0) { %>
+                            <span class="row"><span class="value-red1"><%= waterTestDetails.waterTesting.iron %></span> <span class="value-red2">mg/L</span> </span>
+                            <% }%>
+                      </td>
                       </td>
                     </tr>
                     <tr>
@@ -463,7 +504,12 @@
                         <span class="reason">Presence in a water supply. Recent pollution by humans and animal waste</span><br/>
                       </td>
                       <td class="text-right">
-                        <span class="row"><span class="value-green1"><%= waterTestDetails.waterTesting.bacteria %></span></span>
+                        <% if (waterTestDetails.waterTesting.bacteria == 'Absent') { %>
+                          <span class="row"><span class="value-green1"><%= waterTestDetails.waterTesting.bacteria %></span> </span>
+                          <% }%>
+                          <% if (waterTestDetails.waterTesting.bacteria == 'Present') { %>
+                            <span class="row"><span class="value-red1"><%= waterTestDetails.waterTesting.iron %></span> </span>
+                            <% }%>
                       </td>
                     </tr>
                     <tr>
@@ -486,7 +532,12 @@
                         <span class="range">Upto 15,000 NTU</span>
                       </td>
                       <td class="text-right">
-                        <span class="row"><span class="value-green1"><%= waterTestDetails.waterTesting.turbidity %></span> <span class="value-green2">NTU</span> </span>
+                        <% if (waterTestDetails.waterTesting.turbidity * 1 <= 15000) { %>
+                          <span class="row"><span class="value-green1"><%= waterTestDetails.waterTesting.turbidity %></span> <span class="value-green2">NTU</span> </span>
+                          <% }%>
+                          <% if (waterTestDetails.waterTesting.turbidity > 15000) { %>
+                            <span class="row"><span class="value-red1"><%= waterTestDetails.waterTesting.turbidity %></span> <span class="value-red2">NTU</span> </span>
+                            <% }%>
                       </td>
                     </tr>
                     <tr>
@@ -509,7 +560,12 @@
                         <span class="range">0.2 - 1.2 mg/L</span>
                       </td>
                       <td class="text-right">
-                        <span class="row"><span class="value-green1"><%= waterTestDetails.waterTesting.ammonia %></span> <span class="value-green2">mg/L</span> </span>
+                        <% if (waterTestDetails.waterTesting.ammonia * 1 >= 0.2 &&  waterTestDetails.waterTesting.ammonia * 1 <= 1.2) { %>
+                          <span class="row"><span class="value-green1"><%= waterTestDetails.waterTesting.ammonia %></span> <span class="value-green2">mg/L</span> </span>
+                          <% }%>
+                          <% if (waterTestDetails.waterTesting.ammonia * 1 < 0.2 || waterTestDetails.waterTesting.ammonia * 1 > 1.2) { %>
+                            <span class="row"><span class="value-red1"><%= waterTestDetails.waterTesting.ammonia %></span> <span class="value-red2">mg/L</span> </span>
+                            <% }%>
                       </td>
                     </tr>
                     <tr>
@@ -532,7 +588,12 @@
                         <span class="range">Upto 0.1 mg/L</span>
                       </td>
                       <td class="text-right">
-                        <span class="row"><span class="value-green1"><%= waterTestDetails.waterTesting.phosphate %></span> <span class="value-green2">mg/L</span> </span>
+                        <% if (waterTestDetails.waterTesting.phosphate * 1 <= 0.1) { %>
+                          <span class="row"><span class="value-green1"><%= waterTestDetails.waterTesting.phosphate %></span> <span class="value-green2">mg/L</span> </span>
+                          <% }%>
+                          <% if (waterTestDetails.waterTesting.phosphate > 0.1) { %>
+                            <span class="row"><span class="value-red1"><%= waterTestDetails.waterTesting.phosphate %></span> <span class="value-red2">mg/L</span> </span>
+                            <% }%>
                       </td>
                     </tr>
                     <tr>
@@ -554,7 +615,12 @@
                         <span class="reason">Any amount is Uusafe</span><br/>
                       </td>
                       <td class="text-right">
-                        <span class="row"><span class="value-green1"><%= waterTestDetails.waterTesting.lead %></span> <span class="value-green2">mg/L</span> </span>
+                        <% if (waterTestDetails.waterTesting.lead * 1 == 0) { %>
+                          <span class="row"><span class="value-green1"><%= waterTestDetails.waterTesting.lead %></span> <span class="value-green2">mg/L</span> </span>
+                          <% }%>
+                          <% if (waterTestDetails.waterTesting.lead > 0) { %>
+                            <span class="row"><span class="value-red1"><%= waterTestDetails.waterTesting.lead %></span> <span class="value-red2">mg/L</span> </span>
+                            <% }%>
                       </td>
                     </tr>
                     <tr>
