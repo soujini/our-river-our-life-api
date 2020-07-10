@@ -63,11 +63,31 @@ let waterTestDetails = {
     "ammonia": "0",
     "lead": "0"
   },
-  "flora": [],
-  "fauna": [],
-  "artwork": [],
-  "groupPicture": [],
-  "activity": [],
+  "flora": [{ "imageURL": "https://our-river-our-life-images.s3.ap-south-1.amazonaws.com/fauna/IMG_20200613_110703.jpg"},
+  { "imageURL": "https://our-river-our-life-images.s3.ap-south-1.amazonaws.com/fauna/IMG_20200613_110703.jpg"}
+  { "imageURL": "https://our-river-our-life-images.s3.ap-south-1.amazonaws.com/fauna/IMG_20200613_110703.jpg"}
+],
+  "fauna": [
+    { "imageURL": "https://our-river-our-life-images.s3.ap-south-1.amazonaws.com/fauna/IMG_20200613_110703.jpg"}
+    { "imageURL": "https://our-river-our-life-images.s3.ap-south-1.amazonaws.com/fauna/IMG_20200613_110703.jpg"}
+    { "imageURL": "https://our-river-our-life-images.s3.ap-south-1.amazonaws.com/fauna/IMG_20200613_110703.jpg"}
+  ],
+  "artwork": [
+    { "imageURL": "https://our-river-our-life-images.s3.ap-south-1.amazonaws.com/fauna/IMG_20200613_110703.jpg"}
+    { "imageURL": "https://our-river-our-life-images.s3.ap-south-1.amazonaws.com/fauna/IMG_20200613_110703.jpg"}
+    { "imageURL": "https://our-river-our-life-images.s3.ap-south-1.amazonaws.com/fauna/IMG_20200613_110703.jpg"}
+  ],
+  "groupPicture": [
+    { "imageURL": "https://our-river-our-life-images.s3.ap-south-1.amazonaws.com/fauna/IMG_20200613_110703.jpg"}
+    { "imageURL": "https://our-river-our-life-images.s3.ap-south-1.amazonaws.com/fauna/IMG_20200613_110703.jpg"}
+    { "imageURL": "https://our-river-our-life-images.s3.ap-south-1.amazonaws.com/fauna/IMG_20200613_110703.jpg"}
+  ],
+  "activity": [
+    { "imageURL": "https://our-river-our-life-images.s3.ap-south-1.amazonaws.com/fauna/IMG_20200613_110703.jpg"}
+    { "imageURL": "https://our-river-our-life-images.s3.ap-south-1.amazonaws.com/fauna/IMG_20200613_110703.jpg"}
+    { "imageURL": "https://our-river-our-life-images.s3.ap-south-1.amazonaws.com/fauna/IMG_20200613_110703.jpg"}
+    { "imageURL": "https://our-river-our-life-images.s3.ap-south-1.amazonaws.com/fauna/IMG_20200613_110703.jpg"}
+  ],
   "createdAt": "2020-07-07T09:40:23.752Z",
   "updatedAt": "2020-07-07T09:40:23.752Z"
 };

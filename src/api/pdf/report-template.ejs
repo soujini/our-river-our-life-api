@@ -4,8 +4,8 @@
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;700&family=Open+Sans:wght@300&display=swap" rel="stylesheet">
   <style>
   .table{
-  border:none;
-}
+    border:none;
+  }
   .heading{
     font-family: 'Montserrat', sans-serif;
     font-weight:700;
@@ -168,343 +168,383 @@
   </div>
   <p class="heading">OUTSTANDING VOLUNTEER</p>
   <p class="heading-note">In appreciation of your important role as citizen <br /> scientist in raising awareness towards the river</p>
-  <div style="display: flex;">
-    <div style="width: 50%;">
 
-      <p><%= waterTestDetails.generalInformation.testerName %></p>
-      <p><%= waterTestDetails.generalInformation.location %></p>
-      <p><%= waterTestDetails.generalInformation.activityDate %></p>
-
-    </div>
-    <div><%= waterTestDetails.waterLevelAndWeather.airTemperature %></div>
-  </div>
-  <div style="display: flex;">
-    <p style="width: 50%;">Depth of the water</p>
-    <p><%= waterTestDetails.waterLevelAndWeather.waterLevel %></p>
-    <div>
-      <div class="row">
-        <p style="width: 50%;">Surroundings</p>
-        <div>
+  <center>
+    <table class="location-details1 text-left">
+      <tr>
+        <td>
+          <span class="montserrat-10-m"><%= waterTestDetails.generalInformation.testerName %></span></br>
+          <span class="montserrat-10-m"><%= waterTestDetails.generalInformation.location %></span>
+          <p class="montserrat-12-l"><%= waterTestDetails.generalInformation.activityDate %></p>
+          <p class="montserrat-12-l">Partly Cloudy</p>
+        </td>
+        <td class="text-right" style="border-left:1px solid #1C3764">
+          <p><span class="air-temperature"><%= waterTestDetails.waterLevelAndWeather.airTemperature %></span><span class="air-temperature-degree">&#x2103;</span>
+            <img src="https://our-river-our-life-images.s3.ap-south-1.amazonaws.com/static/sunny-icon.svg" alt="ICON" height="32px">
+          </p>
+        </td>
+      </tr>
+    </table>
+    <table class="location-details text-left">
+      <tr>
+        <td>
+          <span class="montserrat-12-l">Latitude:</span>
+        </td>
+        <td>
+          <span class="montserrat-10-m"><%= waterTestDetails.generalInformation.latitude %></span>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <span class="montserrat-12-l">Longitude:</span>
+        </td>
+        <td>
+          <span class="montserrat-10-m"><%= waterTestDetails.generalInformation.longitude %></span>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <span class="montserrat-12-l">Depth of the water:</span>
+        </td>
+        <td>
+          <span class="montserrat-10-m"><%= waterTestDetails.waterLevelAndWeather.waterLevel %></span>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <span class="montserrat-12-l">Surroundings: </span>
+        </td>
+        <td class="montserrat-10-m">
           <% if (waterTestDetails.surroundings.length > 0) { %>
             <% waterTestDetails.surroundings.forEach(surrounding => {%>
               <p><%= surrounding %></p>
               <%	});%>
               <% }%>
-            </div>
-          </div>
-        </div>
-
+            </td>
+          </tr>
+        </table>
         <p class="montserrat-12-l text-left">Water Quality:</p>
-<center>
-  <table class="card">
-  <tr>
-    <td>
-      <img src="https://our-river-our-life-images.s3.ap-south-1.amazonaws.com/static/temperature-icon.svg" alt="ICON">
-    </td>
-    <td class="ml-10">
-      <span class="parameter">Water Temperature</span><br/>
-      <span class="temperature">30</span> </span><span class="degree">&#x2103;</span>
-    </td>
-  </tr>
-</table>
+        <table class="card">
+          <tr>
+            <td>
+              <img src="https://our-river-our-life-images.s3.ap-south-1.amazonaws.com/static/temperature-icon.svg" alt="ICON">
+            </td>
+            <td class="ml-10">
+              <span class="parameter">Water Temperature</span><br/>
+              <span class="temperature"><%= waterTestDetails.waterTesting.waterTemperature %></span> </span><span class="degree">&#x2103;</span>
+            </td>
+          </tr>
+        </table>
 
-<table class="card">
-  <tr>
-    <td>
-      <img src="https://our-river-our-life-images.s3.ap-south-1.amazonaws.com/static/ph-icon.svg" alt="ICON">
-    </td>
-    <td class="ml-10">
-      <span class="parameter">pH</span><br/>
-      <span class="reason">Portable Water</span><br/>
-      <span class="range">6.5 - 8.5</span>
-    </td>
-    <td class="text-right">
-      <span class="row"><span class="value-green1">7</span> <span class="value-green2">pH</span> </span>
-    </td>
-  </tr>
-  <tr>
-    <td colspan="3" class="hr-border">
-      <p class="info">
-        pH is a measure of a solutions acidity.  At the extreme ends of pH scale (2 or 13) physical damage to gills, fins in fishes and exoskeleton in other aquatic animal will occur. Also decrease in pH (below 6) may increase in mercury level (if present) in water and increase in pH (above 8.5) results in conversion of nontoxic ammonia to toxic form. pH is measured on a logarithmic scale from 1 to 14. 1 being extremely acidic, 7 neutral and 14 extremely basic.
-      </p>
-    </td>
-  </tr>
-</table>
+        <table class="card">
+          <tr>
+            <td>
+              <img src="https://our-river-our-life-images.s3.ap-south-1.amazonaws.com/static/ph-icon.svg" alt="ICON">
+            </td>
+            <td class="ml-10">
+              <span class="parameter">pH</span><br/>
+              <span class="reason">Portable Water</span><br/>
+              <span class="range">6.5 - 8.5</span>
+            </td>
+            <td class="text-right">
+              <span class="row"><span class="value-green1"><%= waterTestDetails.waterTesting.pH %></span> <span class="value-green2">pH</span> </span>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="3" class="hr-border">
+              <p class="info">
+                pH is a measure of a solutions acidity.  At the extreme ends of pH scale (2 or 13) physical damage to gills, fins in fishes and exoskeleton in other aquatic animal will occur. Also decrease in pH (below 6) may increase in mercury level (if present) in water and increase in pH (above 8.5) results in conversion of nontoxic ammonia to toxic form. pH is measured on a logarithmic scale from 1 to 14. 1 being extremely acidic, 7 neutral and 14 extremely basic.
+              </p>
+            </td>
+          </tr>
+        </table>
 
-<table class="card">
-  <tr>
-    <td>
-      <img src="https://our-river-our-life-images.s3.ap-south-1.amazonaws.com/static/alkalinity-icon.svg" alt="ICON">
-    </td>
-    <td class="ml-10">
-      <span class="parameter">Alkalinity</span><br/>
-      <span class="reason">For protection of aquatic life</span><br/>
-      <span class="range">20 mg/L - 250 mg/L</span>
-    </td>
-    <td class="text-right">
-      <span class="row"><span class="value-green1">20</span> <span class="value-green2">mg/L</span> </span>
-    </td>
-  </tr>
-  <tr>
-    <td colspan="3" class="hr-border">
-      <p class="info">
-        Alkalinity is important for fish and aquatic life because it protects or buffers against rapid pH changes in the water. For protection of aquatic life alkalinity should be at least 20mg/L.
-      </p>
-    </td>
-  </tr>
-</table>
+        <table class="card">
+          <tr>
+            <td>
+              <img src="https://our-river-our-life-images.s3.ap-south-1.amazonaws.com/static/alkalinity-icon.svg" alt="ICON">
+            </td>
+            <td class="ml-10">
+              <span class="parameter">Alkalinity</span><br/>
+              <span class="reason">For protection of aquatic life</span><br/>
+              <span class="range">20 mg/L - 250 mg/L</span>
+            </td>
+            <td class="text-right">
+              <span class="row"><span class="value-green1"><%= waterTestDetails.waterTesting.alkalinity %></span> <span class="value-green2">mg/L</span> </span>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="3" class="hr-border">
+              <p class="info">
+                Alkalinity is important for fish and aquatic life because it protects or buffers against rapid pH changes in the water. For protection of aquatic life alkalinity should be at least 20mg/L.
+              </p>
+            </td>
+          </tr>
+        </table>
 
-<table class="card">
-  <tr>
-    <td>
-      <img src="https://our-river-our-life-images.s3.ap-south-1.amazonaws.com/static/nitrates-nitrites-icon.svg" alt="ICON">
-    </td>
-    <td class="ml-10">
-      <span class="parameter">Nitrates</span><br/>
-      <span class="reason">Natural Level</span><br/>
-      <span class="range">1 mg/L</span>
-    </td>
-    <td class="text-right">
-      <span class="row"><span class="value-green1">0.1</span> <span class="value-green2">mg/L</span> </span>
-    </td>
-  </tr>
-  <tr>
-    <td colspan="3" class="hr-border">
-      <p class="info">
-        Nitrogen is essential for all living things as it is a component of protein. However excessive concentration of nitrate – nitrogen or nitrite – nitrogen, in water can be hazardous to aquatic animals, people especially for infants and pregnant women. Activities near water source such as drainage from livestock facilities, fields which utilize fertilizers, and sewage disposal will change the nitrogen concentration in the river.
-      </p>
-    </td>
-  </tr>
-</table>
+        <table class="card">
+          <tr>
+            <td>
+              <img src="https://our-river-our-life-images.s3.ap-south-1.amazonaws.com/static/nitrates-nitrites-icon.svg" alt="ICON">
+            </td>
+            <td class="ml-10">
+              <span class="parameter">Nitrates</span><br/>
+              <span class="reason">Natural Level</span><br/>
+              <span class="range">1 mg/L</span>
+            </td>
+            <td class="text-right">
+              <span class="row"><span class="value-green1"><%= waterTestDetails.waterTesting.nitrate %></span> <span class="value-green2">mg/L</span> </span>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="3" class="hr-border">
+              <p class="info">
+                Nitrogen is essential for all living things as it is a component of protein. However excessive concentration of nitrate – nitrogen or nitrite – nitrogen, in water can be hazardous to aquatic animals, people especially for infants and pregnant women. Activities near water source such as drainage from livestock facilities, fields which utilize fertilizers, and sewage disposal will change the nitrogen concentration in the river.
+              </p>
+            </td>
+          </tr>
+        </table>
 
-<table class="card">
-  <tr>
-    <td>
-      <img src="https://our-river-our-life-images.s3.ap-south-1.amazonaws.com/static/nitrates-nitrites-icon.svg" alt="ICON">
-    </td>
-    <td class="ml-10">
-      <span class="parameter">Nitrites</span><br/>
-      <span class="reason">Natural Level</span><br/>
-      <span class="range">1 mg/L</span>
-    </td>
-    <td class="text-right">
-      <span class="row"><span class="value-green1">0.1</span> <span class="value-green2">mg/L</span> </span>
-    </td>
-  </tr>
-  <tr>
-    <td colspan="3" class="hr-border">
-      <p class="info">
-        Nitrogen is essential for all living things as it is a component of protein. However excessive concentration of nitrate – nitrogen or nitrite – nitrogen, in water can be hazardous to aquatic animals, people especially for infants and pregnant women. Activities near water source such as drainage from livestock facilities, fields which utilize fertilizers, and sewage disposal will change the nitrogen concentration in the river.
-      </p>
-    </td>
-  </tr>
-</table>
+        <table class="card">
+          <tr>
+            <td>
+              <img src="https://our-river-our-life-images.s3.ap-south-1.amazonaws.com/static/nitrates-nitrites-icon.svg" alt="ICON">
+            </td>
+            <td class="ml-10">
+              <span class="parameter">Nitrites</span><br/>
+              <span class="reason">Natural Level</span><br/>
+              <span class="range">1 mg/L</span>
+            </td>
+            <td class="text-right">
+              <span class="row"><span class="value-green1"><%= waterTestDetails.waterTesting.nitrite %></span> <span class="value-green2">mg/L</span> </span>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="3" class="hr-border">
+              <p class="info">
+                Nitrogen is essential for all living things as it is a component of protein. However excessive concentration of nitrate – nitrogen or nitrite – nitrogen, in water can be hazardous to aquatic animals, people especially for infants and pregnant women. Activities near water source such as drainage from livestock facilities, fields which utilize fertilizers, and sewage disposal will change the nitrogen concentration in the river.
+              </p>
+            </td>
+          </tr>
+        </table>
 
-<table class="card">
-  <tr>
-    <td>
-      <img src="https://our-river-our-life-images.s3.ap-south-1.amazonaws.com/static/hardness-icon.svg" alt="ICON">
-    </td>
-    <td class="ml-10">
-      <span class="parameter">Total Hardness</span><br/>
-      <span class="reason">Soft: </span><span class="range">0 - 17.1</span><br/>
-      <span class="reason">Slightly Hard: </span><span class="range">-17.1 - 60</span><br/>
-      <span class="reason">Moderately Hard: </span><span class="range">-60 - 120</span><br/>
-      <span class="reason">Hard: </span><span class="range">-120 - 180</span><br/>
-      <span class="reason">Very Hard: </span><span class="range">-180 and over</span>
-    </td>
-    <td class="text-right">
-      <span class="row"><span class="value-green1">0.1</span> <span class="value-green2">mg/L</span> </span>
-    </td>
-  </tr>
-  <tr>
-    <td colspan="3" class="hr-border">
-      <p class="info">
-        Water described as hard is high in minerals like calcium and magnesium. Hard water is not a health risk, but can cause various problems like mineral build up, poor soap and detergent performance, greying of fabrics, soap curds can deposit on dishes, utensils, machines, water using appliances and also causes clogging of water pipes.
-      </p>
-    </td>
-  </tr>
-</table>
+        <table class="card">
+          <tr>
+            <td>
+              <img src="https://our-river-our-life-images.s3.ap-south-1.amazonaws.com/static/hardness-icon.svg" alt="ICON">
+            </td>
+            <td class="ml-10">
+              <span class="parameter">Total Hardness</span><br/>
+              <span class="reason">Soft: </span><span class="range">0 - 17.1</span><br/>
+              <span class="reason">Slightly Hard: </span><span class="range">-17.1 - 60</span><br/>
+              <span class="reason">Moderately Hard: </span><span class="range">-60 - 120</span><br/>
+              <span class="reason">Hard: </span><span class="range">-120 - 180</span><br/>
+              <span class="reason">Very Hard: </span><span class="range">-180 and over</span>
+            </td>
+            <td class="text-right">
+              <span class="row"><span class="value-green1"><%= waterTestDetails.waterTesting.hardness %></span> <span class="value-green2">mg/L</span> </span>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="3" class="hr-border">
+              <p class="info">
+                Water described as hard is high in minerals like calcium and magnesium. Hard water is not a health risk, but can cause various problems like mineral build up, poor soap and detergent performance, greying of fabrics, soap curds can deposit on dishes, utensils, machines, water using appliances and also causes clogging of water pipes.
+              </p>
+            </td>
+          </tr>
+        </table>
 
-<table class="card">
-  <tr>
-    <td>
-      <img src="https://our-river-our-life-images.s3.ap-south-1.amazonaws.com/static/chlorine-icon.svg" alt="ICON">
-    </td>
-    <td class="ml-10">
-      <span class="parameter">Chlorine</span><br/>
-      <span class="reason">Acceptable Standards</span><br/>
-      <span class="range">0.2 - 1.0 mg/L</span>
-    </td>
-    <td class="text-right">
-      <span class="row"><span class="value-green1">0.3</span> <span class="value-green2">mg/L</span> </span>
-    </td>
-  </tr>
-  <tr>
-    <td colspan="3" class="hr-border">
-      <p class="info">
-        Chlorine is a bleaching agent used to purify water, but too much is dangerous for us. Chlorine presence affects aquatic life, and causes stress in fishes. In humans, presence of excessive chlorine is carcinogenic.
-      </p>
-    </td>
-  </tr>
-</table>
+        <table class="card">
+          <tr>
+            <td>
+              <img src="https://our-river-our-life-images.s3.ap-south-1.amazonaws.com/static/chlorine-icon.svg" alt="ICON">
+            </td>
+            <td class="ml-10">
+              <span class="parameter">Chlorine</span><br/>
+              <span class="reason">Acceptable Standards</span><br/>
+              <span class="range">0.2 - 1.0 mg/L</span>
+            </td>
+            <td class="text-right">
+              <span class="row"><span class="value-green1"><%= waterTestDetails.waterTesting.chlorine %></span> <span class="value-green2">mg/L</span> </span>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="3" class="hr-border">
+              <p class="info">
+                Chlorine is a bleaching agent used to purify water, but too much is dangerous for us. Chlorine presence affects aquatic life, and causes stress in fishes. In humans, presence of excessive chlorine is carcinogenic.
+              </p>
+            </td>
+          </tr>
+        </table>
 
-<table class="card">
-  <tr>
-    <td>
-      <img src="https://our-river-our-life-images.s3.ap-south-1.amazonaws.com/static/dissolved-O2-icon.svg" alt="ICON">
-    </td>
-    <td class="ml-10">
-      <span class="parameter">Dissolved Oxygen</span><br/>
-      <span class="reason">Dissolved Oxygen gas</span><br/>
-      <span class="range">4.0 - 7.0 mg/L</span>
-    </td>
-    <td class="text-right">
-      <span class="row"><span class="value-green1">5</span> <span class="value-green2">mg/L</span> </span>
-    </td>
-  </tr>
-  <tr>
-    <td colspan="3" class="hr-border">
-      <p class="info">
-        Dissolved oxygen analysis measures the amount of gaseous oxygen (O2) dissolved in an aqueous solution. High level of DO in a community water supply is god because it makes drinking water tastes better. If it’s high in natural water bodies fishes may suffer due to block of flow of blood through blood vessels. Lower the level of DO grater is the stress to aquatic animals (below 1/2mg/ 1, can result in large fish kills).</p>
-      </p>
-    </td>
-  </tr>
-</table>
+        <table class="card">
+          <tr>
+            <td>
+              <img src="https://our-river-our-life-images.s3.ap-south-1.amazonaws.com/static/dissolved-O2-icon.svg" alt="ICON">
+            </td>
+            <td class="ml-10">
+              <span class="parameter">Dissolved Oxygen</span><br/>
+              <span class="reason">Dissolved Oxygen gas</span><br/>
+              <span class="range">4.0 - 7.0 mg/L</span>
+            </td>
+            <td class="text-right">
+              <span class="row"><span class="value-green1"><%= waterTestDetails.waterTesting.dissolvedOxygen %></span> <span class="value-green2">mg/L</span> </span>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="3" class="hr-border">
+              <p class="info">
+                Dissolved oxygen analysis measures the amount of gaseous oxygen (O2) dissolved in an aqueous solution. High level of DO in a community water supply is god because it makes drinking water tastes better. If it’s high in natural water bodies fishes may suffer due to block of flow of blood through blood vessels. Lower the level of DO grater is the stress to aquatic animals (below 1/2mg/ 1, can result in large fish kills).</p>
+              </p>
+            </td>
+          </tr>
+        </table>
 
-<table class="card">
-  <tr>
-    <td>
-      <img src="https://our-river-our-life-images.s3.ap-south-1.amazonaws.com/static/iron-icon.svg" alt="ICON">
-    </td>
-    <td class="ml-10">
-      <span class="parameter">Iron</span><br/>
-      <span class="reason">Acceptable Standards</span><br/>
-      <span class="range">0.2 - 2.0 mg/L</span>
-    </td>
-    <td class="text-right">
-      <span class="row"><span class="value-green1">7.2</span> <span class="value-green2">mg/L</span> </span>
-    </td>
-  </tr>
-  <tr>
-    <td colspan="3" class="hr-border">
-      <p class="info">
-        Iron is present in significant amounts in soils and rocks, principally in insoluble forms. However, many complex reactions which occur naturally in ground formations can give rise to more soluble forms of iron which will therefore be present in water passing through such formations. The metal is quite harmful to aquatic life, as evidenced by laboratory studies.</p>
-      </p>
-    </td>
-  </tr>
-</table>
+        <table class="card">
+          <tr>
+            <td>
+              <img src="https://our-river-our-life-images.s3.ap-south-1.amazonaws.com/static/iron-icon.svg" alt="ICON">
+            </td>
+            <td class="ml-10">
+              <span class="parameter">Iron</span><br/>
+              <span class="reason">Acceptable Standards</span><br/>
+              <span class="range">0.2 - 2.0 mg/L</span>
+            </td>
+            <td class="text-right">
+              <span class="row"><span class="value-green1"><%= waterTestDetails.waterTesting.iron %></span> <span class="value-green2">mg/L</span> </span>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="3" class="hr-border">
+              <p class="info">
+                Iron is present in significant amounts in soils and rocks, principally in insoluble forms. However, many complex reactions which occur naturally in ground formations can give rise to more soluble forms of iron which will therefore be present in water passing through such formations. The metal is quite harmful to aquatic life, as evidenced by laboratory studies.</p>
+              </p>
+            </td>
+          </tr>
+        </table>
 
-<table class="card">
-  <tr>
-    <td>
-      <img src="https://our-river-our-life-images.s3.ap-south-1.amazonaws.com/static/e-coli-icon.svg" alt="ICON">
-    </td>
-    <td class="ml-10">
-      <span class="parameter">E Coli / Coliform Bacteria</span><br/>
-      <span class="reason">Presence in a water supply. Recent pollution by humans and animal waste</span><br/>
-    </td>
-    <td class="text-right">
-      <span class="row"><span class="value-green1">Present</span></span>
-    </td>
-  </tr>
-  <tr>
-    <td colspan="3" class="hr-border">
-      <p class="info">
-        Total coliforms include faecal and also other bacteria with similar properties which originate in soil. Where E. coli are present in large numbers, the inference is that heavy, recent pollution by human or animal wastes has occurred. Their presence in a water supply is proof that faecal contamination has occurred and it is therefore a definite indication of the risk that pathogens may be present.</p>
-      </p>
-    </td>
-  </tr>
-</table>
+        <table class="card">
+          <tr>
+            <td>
+              <img src="https://our-river-our-life-images.s3.ap-south-1.amazonaws.com/static/e-coli-icon.svg" alt="ICON">
+            </td>
+            <td class="ml-10">
+              <span class="parameter">E Coli / Coliform Bacteria</span><br/>
+              <span class="reason">Presence in a water supply. Recent pollution by humans and animal waste</span><br/>
+            </td>
+            <td class="text-right">
+              <span class="row"><span class="value-green1"><%= waterTestDetails.waterTesting.bacteria %></span></span>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="3" class="hr-border">
+              <p class="info">
+                Total coliforms include faecal and also other bacteria with similar properties which originate in soil. Where E. coli are present in large numbers, the inference is that heavy, recent pollution by human or animal wastes has occurred. Their presence in a water supply is proof that faecal contamination has occurred and it is therefore a definite indication of the risk that pathogens may be present.</p>
+              </p>
+            </td>
+          </tr>
+        </table>
 
-<table class="card">
-  <tr>
-    <td>
-      <img src="https://our-river-our-life-images.s3.ap-south-1.amazonaws.com/static/turbidity-icon.svg" alt="ICON">
-    </td>
-    <td class="ml-10">
-      <span class="parameter">Turbidity</span><br/>
-      <span class="reason">Acceptable Standards</span><br/>
-      <span class="range">Upto 15,000 NTU</span>
-    </td>
-    <td class="text-right">
-      <span class="row"><span class="value-green1">7.2</span> <span class="value-green2">NTU</span> </span>
-    </td>
-  </tr>
-  <tr>
-    <td colspan="3" class="hr-border">
-      <p class="info">
-        Turbidity is the result of the fine solids in water, like silt, clay, sand, industrial waste, sewage, organic matter, phytoplankton and the microscopic organisms. Turbidity makes water unfit for domestic and industrial purposes, it also restricts light penetration for photosynthesis. Extremely high levels affect aquatic animals such as fish and insects.
-      </p>
-    </td>
-  </tr>
-</table>
+        <table class="card">
+          <tr>
+            <td>
+              <img src="https://our-river-our-life-images.s3.ap-south-1.amazonaws.com/static/turbidity-icon.svg" alt="ICON">
+            </td>
+            <td class="ml-10">
+              <span class="parameter">Turbidity</span><br/>
+              <span class="reason">Acceptable Standards</span><br/>
+              <span class="range">Upto 15,000 NTU</span>
+            </td>
+            <td class="text-right">
+              <span class="row"><span class="value-green1"><%= waterTestDetails.waterTesting.turbidity %></span> <span class="value-green2">NTU</span> </span>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="3" class="hr-border">
+              <p class="info">
+                Turbidity is the result of the fine solids in water, like silt, clay, sand, industrial waste, sewage, organic matter, phytoplankton and the microscopic organisms. Turbidity makes water unfit for domestic and industrial purposes, it also restricts light penetration for photosynthesis. Extremely high levels affect aquatic animals such as fish and insects.
+              </p>
+            </td>
+          </tr>
+        </table>
 
-<table class="card">
-  <tr>
-    <td>
-      <img src="https://our-river-our-life-images.s3.ap-south-1.amazonaws.com/static/nitrates-nitrites-icon.svg" alt="ICON">
-    </td>
-    <td class="ml-10">
-      <span class="parameter">Ammonia</span><br/>
-      <span class="reason">Acceptable Standards</span><br/>
-      <span class="range">0.2 - 1.2 mg/L</span>
-    </td>
-    <td class="text-right">
-      <span class="row"><span class="value-green1">0.1</span> <span class="value-green2">mg/L</span> </span>
-    </td>
-  </tr>
-  <tr>
-    <td colspan="3" class="hr-border">
-      <p class="info">
-        Ammonia is one of several forms of nitrogen that exist in aquatic environments. It can enter the aquatic environment via direct means such as municipal effluent discharges and the excretion of nitrogenous wastes of animals, and indirect means such as nitrogen fixation and runoff from agricultural lands. Elevated concentrations of Ammonia make it difficult for aquatic organisms to sufficiently excrete the toxicant, leading to toxic buildup in internal tissues and blood, and potentially death. Factors such as pH and temperature, can affect Ammonia toxicity.
-      </p>
-    </td>
-  </tr>
-</table>
+        <table class="card">
+          <tr>
+            <td>
+              <img src="https://our-river-our-life-images.s3.ap-south-1.amazonaws.com/static/nitrates-nitrites-icon.svg" alt="ICON">
+            </td>
+            <td class="ml-10">
+              <span class="parameter">Ammonia</span><br/>
+              <span class="reason">Acceptable Standards</span><br/>
+              <span class="range">0.2 - 1.2 mg/L</span>
+            </td>
+            <td class="text-right">
+              <span class="row"><span class="value-green1"><%= waterTestDetails.waterTesting.ammonia %></span> <span class="value-green2">mg/L</span> </span>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="3" class="hr-border">
+              <p class="info">
+                Ammonia is one of several forms of nitrogen that exist in aquatic environments. It can enter the aquatic environment via direct means such as municipal effluent discharges and the excretion of nitrogenous wastes of animals, and indirect means such as nitrogen fixation and runoff from agricultural lands. Elevated concentrations of Ammonia make it difficult for aquatic organisms to sufficiently excrete the toxicant, leading to toxic buildup in internal tissues and blood, and potentially death. Factors such as pH and temperature, can affect Ammonia toxicity.
+              </p>
+            </td>
+          </tr>
+        </table>
 
-<table class="card">
-  <tr>
-    <td>
-      <img src="https://our-river-our-life-images.s3.ap-south-1.amazonaws.com/static/nitrates-nitrites-icon.svg" alt="ICON">
-    </td>
-    <td class="ml-10">
-      <span class="parameter">Phosphates</span><br/>
-      <span class="reason">Acceptable standards</span><br/>
-      <span class="range">Upto 0.1 mg/L</span>
-    </td>
-    <td class="text-right">
-      <span class="row"><span class="value-green1">0.1</span> <span class="value-green2">mg/L</span> </span>
-    </td>
-  </tr>
-  <tr>
-    <td colspan="3" class="hr-border">
-      <p class="info">
-        Phosphates are chemicals containing the element phosphorous. Phosphorous is a common constituent of agricultural fertilizers, manure and organic wastes in sewage and industrial effluent. A high concentration of phosphates can speed up Eutrophication (a reduction of dissolved oxygen in water), leading to algal blooms choking waterways. Soil erosion is a major contributor of phosphorous to streams and rivers. Bank erosion occurring during floods can transport a lot of phosphorous from river banks and adjacent land into a river. The decay process of the large bloom consumes oxygen and creates dead zones, where aquatic life can’t survive. If ingested, the algae can cause flu- like symptoms in people and death in livestock.
-      </p>
-    </td>
-  </tr>
-</table>
+        <table class="card">
+          <tr>
+            <td>
+              <img src="https://our-river-our-life-images.s3.ap-south-1.amazonaws.com/static/nitrates-nitrites-icon.svg" alt="ICON">
+            </td>
+            <td class="ml-10">
+              <span class="parameter">Phosphates</span><br/>
+              <span class="reason">Acceptable standards</span><br/>
+              <span class="range">Upto 0.1 mg/L</span>
+            </td>
+            <td class="text-right">
+              <span class="row"><span class="value-green1"><%= waterTestDetails.waterTesting.phosphate %></span> <span class="value-green2">mg/L</span> </span>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="3" class="hr-border">
+              <p class="info">
+                Phosphates are chemicals containing the element phosphorous. Phosphorous is a common constituent of agricultural fertilizers, manure and organic wastes in sewage and industrial effluent. A high concentration of phosphates can speed up Eutrophication (a reduction of dissolved oxygen in water), leading to algal blooms choking waterways. Soil erosion is a major contributor of phosphorous to streams and rivers. Bank erosion occurring during floods can transport a lot of phosphorous from river banks and adjacent land into a river. The decay process of the large bloom consumes oxygen and creates dead zones, where aquatic life can’t survive. If ingested, the algae can cause flu- like symptoms in people and death in livestock.
+              </p>
+            </td>
+          </tr>
+        </table>
 
-<table class="card">
-  <tr>
-    <td>
-      <img src="https://our-river-our-life-images.s3.ap-south-1.amazonaws.com/static/nitrates-nitrites-icon.svg" alt="ICON">
-    </td>
-    <td class="ml-10">
-      <span class="parameter">Lead</span><br/>
-      <span class="reason">Any amount is Uusafe</span><br/>
-    </td>
-    <td class="text-right">
-      <span class="row"><span class="value-green1">0.1</span> <span class="value-green2">mg/L</span> </span>
-    </td>
-  </tr>
-  <tr>
-    <td colspan="3" class="hr-border">
-      <p class="info">
-        Important sources of environmental contamination include mining, smelting, manufacturing and recycling activities, and, in some countries, the continued use of leaded paint, leaded gasoline, and leaded aviation fuel. More than three quarters of global lead consumption is for the manufacture of lead-acid batteries for motor vehicles. Lead is, however, also used in many other products, for example pigments, paints, solder, stained glass, lead crystal glassware, ammunition, ceramic glazes, jewellery, toys and in some cosmetics and traditional medicines.
-      </p>
-    </td>
-  </tr>
-</table>
-</center>
+        <table class="card">
+          <tr>
+            <td>
+              <img src="https://our-river-our-life-images.s3.ap-south-1.amazonaws.com/static/nitrates-nitrites-icon.svg" alt="ICON">
+            </td>
+            <td class="ml-10">
+              <span class="parameter">Lead</span><br/>
+              <span class="reason">Any amount is Uusafe</span><br/>
+            </td>
+            <td class="text-right">
+              <span class="row"><span class="value-green1"><%= waterTestDetails.waterTesting.lead %></span> <span class="value-green2">mg/L</span> </span>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="3" class="hr-border">
+              <p class="info">
+                Important sources of environmental contamination include mining, smelting, manufacturing and recycling activities, and, in some countries, the continued use of leaded paint, leaded gasoline, and leaded aviation fuel. More than three quarters of global lead consumption is for the manufacture of lead-acid batteries for motor vehicles. Lead is, however, also used in many other products, for example pigments, paints, solder, stained glass, lead crystal glassware, ammunition, ceramic glazes, jewellery, toys and in some cosmetics and traditional medicines.
+              </p>
+            </td>
+          </tr>
+        </table>
+
+          <p class="montserrat-12-l text-left">Flora</p>
+          <% if (waterTestDetails.flora.length > 0) { %>
+            <% waterTestDetails.flora.forEach(flora => {%>
+              <img src="<%= flora.imageURL %>">
+              <%	});%>
+              <% }%>
+
+          <p class="montserrat-12-l text-left">Fauna</p>
+          <p class="montserrat-12-l text-left">Artwork</p>
+          <p class="montserrat-12-l text-left">Group Picture</p>
+          <p class="montserrat-12-l text-left">Activity</p>
+      </center>
