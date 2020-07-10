@@ -196,12 +196,14 @@
       <tr>
         <td>
           <span class="montserrat-10-m"><%= waterTestDetails.generalInformation.testerName %></span></br>
-          <span class="montserrat-10-m"><%= waterTestDetails.generalInformation.location %></span>
+          <span class="montserrat-10-m"><%= waterTestDetails.generalInformation.location %></span></br/>
+          <span class="montserrat-10-m"><%= waterTestDetails.generalInformation.latitude %></span></br/>
+          <span class="montserrat-10-m"><%= waterTestDetails.generalInformation.longitude %></span>
           <p class="montserrat-12-l"><%= waterTestDetails.generalInformation.activityDate %></p>
           <p class="montserrat-12-l"><%= waterTestDetails.waterLevelAndWeather.weather %></p>
         </td>
         <td class="text-right" style="border-left:1px solid #1C3764">
-          <p><span class="air-temperature"><%= waterTestDetails.waterLevelAndWeather.airTemperature %></span><span class="air-temperature-degree">&#x2103;</span>
+          <span class="air-temperature"><%= waterTestDetails.waterLevelAndWeather.airTemperature %></span><span class="air-temperature-degree">&#x2103;</span>
             <% if (waterTestDetails.waterLevelAndWeather.weather == 'Sunny') { %>
               <img src="https://our-river-our-life-images.s3.ap-south-1.amazonaws.com/static/sunny-icon.svg" alt="ICON" height="32px">
               <% }%>
@@ -217,27 +219,10 @@
                     <% if (waterTestDetails.waterLevelAndWeather.weather == 'Heavy Rain') { %>
                       <img src="https://our-river-our-life-images.s3.ap-south-1.amazonaws.com/static/heavy-rain-icon.svg" alt="ICON" height="32px">
                       <% }%>
-                    </p>
                   </td>
                 </tr>
               </table>
               <table class="location-details text-left">
-                <tr>
-                  <td>
-                    <span class="montserrat-12-l">Latitude:</span>
-                  </td>
-                  <td>
-                    <span class="montserrat-10-m"><%= waterTestDetails.generalInformation.latitude %></span>
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    <span class="montserrat-12-l">Longitude:</span>
-                  </td>
-                  <td>
-                    <span class="montserrat-10-m"><%= waterTestDetails.generalInformation.longitude %></span>
-                  </td>
-                </tr>
                 <tr>
                   <td>
                     <span class="montserrat-12-l">Depth of the water:</span>
