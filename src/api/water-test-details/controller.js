@@ -8,7 +8,7 @@ export const create = ({ bodymen: { body } }, res, next) =>{
     console.log("Created")
     PDFController.generateReport().then((x) =>{
       console.log("pdf Created hopefully")
-    }
+    })
   })
 }
 

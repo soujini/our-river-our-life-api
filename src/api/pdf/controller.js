@@ -3,7 +3,6 @@ let app = express();
 let ejs = require("ejs");
 let pdf = require("html-pdf");
 let path = require("path");
-// var html = fs.readFileSync(__dirname +'/report-template.ejs', 'utf8');
 import aws from 'aws-sdk';
 
 export const generateReport = (req, res, next) => {
@@ -55,8 +54,8 @@ export const generateReport = (req, res, next) => {
               console.log("Error uploading data: ", data);
             } else {
               console.log('Data: ',data)
-              console.log("data: ", data.Location);
-              console.log("succesfully uploaded pdf!");
+              console.log("data: ", data.Location)
+              console.log("succesfully uploaded pdf!")
             }
 
           });
@@ -66,7 +65,6 @@ export const generateReport = (req, res, next) => {
     }//else
   });
 }
-
 
 export const upload = (req, res, next) =>{
   var customOriginalName="";
@@ -81,8 +79,6 @@ export const upload = (req, res, next) =>{
     "accessKeyId": 'AKIAJ24JCG5UUXOOHKDA',
     "secretAccessKey": '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',
   });
-
-  // if(req && req.files){
 
   if(req.files.flora){
     customFieldName = req.files.flora[0].fieldname;
@@ -134,8 +130,6 @@ export const upload = (req, res, next) =>{
       var params ="";
       fs.unlinkSync(customPath); // Empty temp folder
       const locationUrl = data.Location;
-      // customOriginalName = "5ed5cd1e1177d200176877a6_filename.png"
-      // var waterTestDetailsId = customOriginalName.split('_');
 
       if(customFieldName == 'flora'){
         params = {"id":waterTestDetailsId, "flora":locationUrl, "fieldName":"flora", "description":description}
@@ -161,59 +155,6 @@ export const upload = (req, res, next) =>{
 }
 export const create = ({ body }, res, next)=>
 res.status(201).json(body)
-
-// export const create = ({ body }, res, next) =>{
-//   var options = {
-//       format: "A3",
-//       orientation: "portrait",
-//       border: "10mm",
-//       // type: 'pdf',
-//       timeout: '100000'
-//   };
-//
-//   var users = [
-//       {
-//           name:"Shyam",
-//           age:"26"
-//       },
-//       {
-//           name:"Navjot",
-//           age:"26"
-//       },
-//       {
-//           name:"Vitthal",
-//           age:"26"
-//       }
-//
-//   ]
-//   var document = {
-//       html: html,
-//       data: {
-//           users: users
-//       },
-//       path: __dirname +"/output.pdf"
-//   };
-//
-//   console.log("souji "+document);
-//   // pdf.create(document, options)
-//   //     .then(res => {
-//   //       console.log("sue");
-//   //         console.log(res)
-//   //     })
-//   //     .catch(error => {
-//   //         console.error(error)
-//   //     });
-//
-//       pdf.create(html, options).toFile('./businesscard.pdf', function(err, res) {
-//         if (err) return console.log(err);
-//         console.log("sueeee "+res); // { filename: '/app/businesscard.pdf' }
-//       });
-//       res.status(201).json({'message':'PDF Created successfully'});
-//        // res.send('Phone Number is incorrect');
-// }
-
-
-//res.status(201).json(body)
 
 export const index = ({ querymen: { query, select, cursor } }, res, next) =>
 res.status(200).json([])
