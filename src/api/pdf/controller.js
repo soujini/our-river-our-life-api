@@ -92,9 +92,9 @@ let waterTestDetails = {
   "updatedAt": "2020-07-07T09:40:23.752Z"
 };
 
-export const generateReport = ({ body }, res, next) => {
+export const generateReport = (req, res, next) => {
   console.log("in generate report ")
-  console.log(body)
+  console.log(req.body)
   ejs.renderFile(path.join(__dirname, "/report-template.ejs"), {
     waterTestDetails: body
   }, (err, data) => {
