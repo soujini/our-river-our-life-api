@@ -68,11 +68,11 @@ export const generateReport = (req, res, next) => {
             }
 
           });
-          var x = {
-            "certificateURL:"+certificateURL
-          };
+          // var x = {
+          //   "certificateURL" : certificateURL
+          // };
           console.log("souji "+x);
-          res.status(200).json(x)
+          res.status(200).json({certificateURL: req.body.id})
            // res.send({);
         }
       }); //pdf create
