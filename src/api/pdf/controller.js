@@ -66,7 +66,7 @@ export const generateReport = (req, res, next) => {
             }
 
           });
-           res.send({"message:" :"File created successfully");
+           res.send({message :"File created successfully");
         }
       }); //pdf create
     }//else
