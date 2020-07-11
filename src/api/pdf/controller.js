@@ -57,12 +57,12 @@ export const generateReport = (req, res, next) => {
               console.log(err);
               console.log("Error uploading data: ", data);
             } else {
-              certificateURL=data.location;
+              certificateURL=data.Location;
               console.log("url "+certificateURL)
               console.log('Data: ',data)
               console.log("data: ", data.Location)
               console.log("succesfully uploaded pdf!")
-              params = {"id":req.body.id, "certificate":data.location, "fieldName":"certificate"}
+              params = {"id":req.body.id, "certificate":data.Location, "fieldName":"certificate"}
 
               WaterTestDetailsController.updateImage({params})
             }
