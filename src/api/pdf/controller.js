@@ -66,7 +66,7 @@ export const generateReport = (req, res, next) => {
             }
 
           });
-          res.status(200).json({message :"File created successfully"})
+          res.status(200).json({certificateURL :certificateURL})
            // res.send({);
         }
       }); //pdf create

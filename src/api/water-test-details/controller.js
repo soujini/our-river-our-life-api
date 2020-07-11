@@ -60,7 +60,7 @@ export const updateImage = ({ params }, res, next) =>{
         waterTestDetails.activity.push({imageURL:params.activity, description:params.description});
     }
     else if(params.fieldName == 'certificate'){
-      console.log("in certificate")
+      console.log("in certificate "+params.certificate)
         waterTestDetails.certificateURL = params.certificate;
         console.log(waterTestDetails.certificateURL)
     }
