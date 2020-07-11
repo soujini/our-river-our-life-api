@@ -69,9 +69,13 @@ export const generateReport = (req, res, next) => {
             }
 
           });
-          var  x= "https://our-river-our-life-images.s3.amazonaws.com/certificate/certificate_"+waterTestDetailsId
+          var  x= "https://our-river-our-life-images.s3.amazonaws.com/certificate/certificate_"+waterTestDetailsId;
           console.log("souj "+x);
-          res.status(200).json({certificateURL :x})
+          setTimeout(function() {
+            console.log("souj "+certificateURL);
+              res.status(200).json({certificateURL :x})
+          }, 3000);//force delay of 20 seconds.
+          // res.status(200).json({certificateURL :x})
            // res.send({);
         }
       }); //pdf create
