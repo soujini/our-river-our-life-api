@@ -68,7 +68,11 @@ export const generateReport = (req, res, next) => {
             }
 
           });
-          res.status(200).json({certificateURL :certificateURL})
+          var x = {
+            "certificateURL:"+certificateURL
+          };
+          console.log(x);
+          res.status(200).json(x)
            // res.send({);
         }
       }); //pdf create
