@@ -51,7 +51,7 @@ export const generateReport = (req, res, next) => {
             ContentType: "application/pdf"
           };
 
-          s3.upload(params, function(err, data) {
+          await s3.upload(params, function(err, data) async {
 
             if (err) {
               console.log(err);
@@ -68,10 +68,11 @@ export const generateReport = (req, res, next) => {
             }
 
           });
+          console.log("souj  "+certificateURL);
           // var x = {
           //   "certificateURL" : certificateURL
           // };
-          console.log("souji "+x);
+          // console.log("souji "+x);
           res.status(200).json({certificateURL: req.body.id})
            // res.send({);
         }
