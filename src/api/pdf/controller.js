@@ -7,6 +7,7 @@ import aws from 'aws-sdk';
 var WaterTestDetailsController = require('../water-test-details/controller')
 
 export const generateReport = (req, res, next) => {
+  var certificateURL="";
   console.log("in generate report ")
   console.log(req.body)
   ejs.renderFile(path.join(__dirname, "/report-template.ejs"), {
@@ -51,6 +52,7 @@ export const generateReport = (req, res, next) => {
           };
 
           s3.upload(params, function(err, data) {
+            certificateURL=data.location;
             if (err) {
               console.log(err);
               console.log("Error uploading data: ", data);
@@ -64,7 +66,7 @@ export const generateReport = (req, res, next) => {
             }
 
           });
-           res.send("File created successfully");
+           res.send({"message:" :"File created successfully");
         }
       }); //pdf create
     }//else
