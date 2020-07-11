@@ -27,7 +27,7 @@ export const generateReport = (req, res, next) => {
         },
 
       };
-      pdf.create(data, options).toBuffer(function (err, data) async {
+      pdf.create(data, options).toBuffer(function (err, data) {
         if (err) {
           res.send(err);
         } else {
@@ -51,13 +51,13 @@ export const generateReport = (req, res, next) => {
             ContentType: "application/pdf"
           };
 
-          await s3.upload(params, function(err, data) {
+           s3.upload(params, function(err, data) {
 
             if (err) {
               console.log(err);
               console.log("Error uploading data: ", data);
             } else {
-              certificateURL=data.Location;
+              certificateURL=data.Location
               console.log("url "+certificateURL)
               console.log('Data: ',data)
               console.log("data: ", data.Location)
@@ -68,12 +68,12 @@ export const generateReport = (req, res, next) => {
             }
 
           });
-          console.log("souj  "+certificateURL);
+          // console.log("souj  "+certificateURL);
           // var x = {
           //   "certificateURL" : certificateURL
           // };
           // console.log("souji "+x);
-          res.status(200).json({certificateURL: req.body.id})
+          res.status(200).json({"file created successfully"})
            // res.send({);
         }
       }); //pdf create
