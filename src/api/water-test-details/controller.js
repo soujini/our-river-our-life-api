@@ -3,22 +3,22 @@ import { WaterTestDetails } from '.'
 var PDFController = require('../pdf/controller')
 
 
-export const create = ({ bodymen: { body } }, res, next) =>{
-  WaterTestDetails.create(body)
-  .then((waterTestDetails) =>{
-    var params = {"id":waterTestDetails._id}
-    PDFController.generateReport({waterTestDetails})
-    show({params})
-  })
-  .then(success(res, 201))
-  .catch(next)
-}
+// export const create = ({ bodymen: { body } }, res, next) =>{
+//   WaterTestDetails.create(body)
+//   .then((waterTestDetails) =>{
+//     var params = {"id":waterTestDetails._id}
+//     PDFController.generateReport({waterTestDetails})
+//     show({params})
+//   })
+//   .then(success(res, 201))
+//   .catch(next)
+// }
 
-// export const create = ({ bodymen: { body } }, res, next) =>
-// WaterTestDetails.create(body)
-// .then((waterTestDetails) => waterTestDetails.view(true))
-// .then(success(res, 201))
-// .catch(next)
+export const create = ({ bodymen: { body } }, res, next) =>
+WaterTestDetails.create(body)
+.then((waterTestDetails) => waterTestDetails.view(true))
+.then(success(res, 201))
+.catch(next)
 
 export const index = ({ querymen: { query, select, cursor } }, res, next) =>
 WaterTestDetails.count(query)
