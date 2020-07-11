@@ -69,7 +69,7 @@ export const generateReport = (req, res, next) => {
 
           });
           var x = {
-            "certificateURL":certificateURL
+            "certificateURL":+certificateURL
           };
           console.log(x);
           res.status(200).json(x)
