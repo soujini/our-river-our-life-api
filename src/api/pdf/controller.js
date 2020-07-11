@@ -7,6 +7,7 @@ import aws from 'aws-sdk';
 var WaterTestDetailsController = require('../water-test-details/controller')
 
 export const generateReport = (req, res, next) => {
+  var waterTestDetailsId=req.body.id;
   var certificateURL="";
   console.log("in generate report ")
   console.log(req.body)
@@ -68,7 +69,8 @@ export const generateReport = (req, res, next) => {
             }
 
           });
-          res.status(200).json({certificateURL :certificateURL})
+          var  x= "https://our-river-our-life-images.s3.amazonaws.com/certificate/certificate_"+waterTestDetailsId;
+          res.status(200).json({certificateURL :x})
            // res.send({);
         }
       }); //pdf create
