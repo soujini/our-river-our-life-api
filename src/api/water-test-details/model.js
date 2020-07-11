@@ -121,7 +121,7 @@ const waterTestDetailsSchema = new Schema({
    }],
    certificateURL:{
      type:String
-   },
+   }
 
 },{
   timestamps: true,
