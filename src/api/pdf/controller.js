@@ -52,11 +52,13 @@ export const generateReport = (req, res, next) => {
           };
 
           s3.upload(params, function(err, data) {
-            certificateURL=data.location;
+
             if (err) {
               console.log(err);
               console.log("Error uploading data: ", data);
             } else {
+              certificateURL=data.location;
+              console.log("url "+certificateURL)
               console.log('Data: ',data)
               console.log("data: ", data.Location)
               console.log("succesfully uploaded pdf!")
