@@ -9,8 +9,6 @@ var WaterTestDetailsController = require('../water-test-details/controller')
 export const generateReport = (req, res, next) => {
   var waterTestDetailsId=req.body.id;
   var certificateURL="";
-  console.log("in generate report ")
-  console.log(req.body)
   ejs.renderFile(path.join(__dirname, "/report-template.ejs"), {
     waterTestDetails: req.body
   }, (err, data) => {
@@ -70,13 +68,7 @@ export const generateReport = (req, res, next) => {
 
           });
           var  x= "https://our-river-our-life-images.s3.amazonaws.com/certificate/certificate_"+waterTestDetailsId;
-          console.log("souj "+x);
-          setTimeout(function() {
-            console.log("souj "+certificateURL);
-              res.status(200).json({certificateURL :x})
-          }, 3000);//force delay of 20 seconds.
-          // res.status(200).json({certificateURL :x})
-           // res.send({);
+          res.status(200).json({certificateURL:x})
         }
       }); //pdf create
     }//else
@@ -84,69 +76,69 @@ export const generateReport = (req, res, next) => {
 }
 
 
-export const generateReport2 = (req, res, next) => {
-  console.log("in generate report ")
-  console.log(req.waterTestDetails)
-  ejs.renderFile(path.join(__dirname, "/report-template.ejs"), {
-    waterTestDetails: req.waterTestDetails
-  }, (err, data) => {
-    if (err) {
-      res.send("Error in report template "+err);
-    } else {
-      let options = {
-        "height": "11.25in",
-        "width": "8.5in",
-        "header": {
-          "height": "20mm",
-        },
-        "footer": {
-          "height": "20mm",
-        },
-
-      };
-      pdf.create(data, options).toBuffer(function (err, data) {
-        if (err) {
-          res.send(err);
-        } else {
-          console.log('This is a buffer:', data);
-
-          aws.config.setPromisesDependency();
-          aws.config.update({
-            "accessKeyId": 'AKIAJ24JCG5UUXOOHKDA',
-            "secretAccessKey": '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',
-          });
-
-          const s3 = new aws.S3();
-
-          var params = {
-            ACL: 'public-read',
-            Bucket: "our-river-our-life-images/certificate",
-            Key: `certificate_`+req.waterTestDetails._id,
-            Body: data,
-            ContentEncoding: "buffer",
-            ContentType: "application/pdf"
-          };
-
-          s3.upload(params, function(err, data) {
-            if (err) {
-              console.log(err);
-              console.log("Error uploading data: ", data);
-            } else {
-              console.log('Data: ',data)
-              console.log("data: ", data.Location)
-              console.log("succesfully uploaded pdf!")
-              params = {"id":req.waterTestDetails._id, "certificate":data.location, "fieldName":"certificate"}
-
-              WaterTestDetailsController.updateImage({params})
-            }
-
-          });
-          // res.send("File created successfully");
-        }
-      }); //pdf create
-    }//else
-  });
-}
+// export const generateReport2 = (req, res, next) => {
+//   console.log("in generate report ")
+//   console.log(req.waterTestDetails)
+//   ejs.renderFile(path.join(__dirname, "/report-template.ejs"), {
+//     waterTestDetails: req.waterTestDetails
+//   }, (err, data) => {
+//     if (err) {
+//       res.send("Error in report template "+err);
+//     } else {
+//       let options = {
+//         "height": "11.25in",
+//         "width": "8.5in",
+//         "header": {
+//           "height": "20mm",
+//         },
+//         "footer": {
+//           "height": "20mm",
+//         },
+//
+//       };
+//       pdf.create(data, options).toBuffer(function (err, data) {
+//         if (err) {
+//           res.send(err);
+//         } else {
+//           console.log('This is a buffer:', data);
+//
+//           aws.config.setPromisesDependency();
+//           aws.config.update({
+//             "accessKeyId": 'AKIAJ24JCG5UUXOOHKDA',
+//             "secretAccessKey": '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',
+//           });
+//
+//           const s3 = new aws.S3();
+//
+//           var params = {
+//             ACL: 'public-read',
+//             Bucket: "our-river-our-life-images/certificate",
+//             Key: `certificate_`+req.waterTestDetails._id,
+//             Body: data,
+//             ContentEncoding: "buffer",
+//             ContentType: "application/pdf"
+//           };
+//
+//           s3.upload(params, function(err, data) {
+//             if (err) {
+//               console.log(err);
+//               console.log("Error uploading data: ", data);
+//             } else {
+//               console.log('Data: ',data)
+//               console.log("data: ", data.Location)
+//               console.log("succesfully uploaded pdf!")
+//               params = {"id":req.waterTestDetails._id, "certificate":data.location, "fieldName":"certificate"}
+//
+//               WaterTestDetailsController.updateImage({params})
+//             }
+//
+//           });
+//           // res.send("File created successfully");
+//         }
+//       }); //pdf create
+//     }//else
+//   });
+// }
 
 export const upload = (req, res, next) =>{
   var customOriginalName="";

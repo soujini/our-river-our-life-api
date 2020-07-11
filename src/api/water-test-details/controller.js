@@ -41,8 +41,6 @@ WaterTestDetails.findById(params.id)
 export const updateImage = ({ params }, res, next) =>{
   WaterTestDetails.findById(params.id, function(err, waterTestDetails){
     if(waterTestDetails){
-      console.log("in update image");
-      console.log(params.id);
 
       if(params.fieldName == 'flora'){
       waterTestDetails.flora.push({imageURL:params.flora, description:params.description});
@@ -60,9 +58,7 @@ export const updateImage = ({ params }, res, next) =>{
         waterTestDetails.activity.push({imageURL:params.activity, description:params.description});
     }
     else if(params.fieldName == 'certificate'){
-      console.log("in certificate "+params.certificate)
         waterTestDetails.certificateURL = params.certificate;
-        console.log(waterTestDetails.certificateURL)
     }
       waterTestDetails.save()
     }
