@@ -5,7 +5,7 @@ import { create, index, show, update, destroy, generateReport } from './controll
 
 const router = new Router()
 
-router.get('/generateReport',
+router.post('/generateReport',
   generateReport)
 
 /**
