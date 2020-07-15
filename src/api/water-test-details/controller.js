@@ -31,13 +31,14 @@ WaterTestDetails.count(query)
 .then(success(res))
 .catch(next)
 
-export const show = ({ params }, res, next) =>
+export const show = ({ params }, res, next) =>{
 console.log(params.id)
 WaterTestDetails.findById(params.id)
 .then(notFound(res))
 .then((waterTestDetails) => waterTestDetails ? waterTestDetails.view() : null)
 .then(success(res))
 .catch(next)
+}
 
 export const updateImage = ({ params }, res, next) =>{
   WaterTestDetails.findById(params.id, function(err, waterTestDetails){
