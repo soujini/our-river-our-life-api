@@ -185,6 +185,12 @@ export const upload = (req, res, next) =>{
     customOriginalName= req.files.activity[0].originalname;
     bucketName="our-river-our-life-images/activity";
   }
+  else if(req.files.river){
+    customFieldName = req.files.river[0].fieldname;
+    customPath = req.files.river[0].path;
+    customOriginalName= req.files.river[0].originalname;
+    bucketName="our-river-our-life-images/river";
+  }
 
   const s3 = new aws.S3();
   var params = {
