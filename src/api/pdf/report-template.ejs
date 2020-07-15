@@ -650,4 +650,11 @@
                                       <img src="<%= activity.imageURL %>" style="width:350px; height:auto">
                                       <%	});%>
                                       <% }%>
+
+                                      <p class="montserrat-12-l text-center">River</p>
+                                      <% if (waterTestDetails.river.length > 0) { %>
+                                        <% waterTestDetails.river.forEach(flora => {%>
+                                          <img src="<%= river.imageURL %>" style="width:350px; height:auto">
+                                          <%	});%>
+                                          <% }%>
                                     </center>

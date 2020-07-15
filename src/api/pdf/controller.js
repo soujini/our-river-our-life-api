@@ -220,6 +220,9 @@ export const upload = (req, res, next) =>{
       else if(customFieldName == 'activity'){
         params = {"id":waterTestDetailsId, "activity":locationUrl, "fieldName":"activity", "description":description}
       }
+      else if(customFieldName == 'river'){
+        params = {"id":waterTestDetailsId, "river":locationUrl, "fieldName":"river", "description":description}
+      }
       if(params != ""){
         WaterTestDetailsController.updateImage({params})
       }
