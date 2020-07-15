@@ -15,6 +15,9 @@ const imagesSchema = new Schema({
   },
   activity: {
     type: String
+  },
+  river: {
+    type: String
   }
 }, {
   timestamps: true,
@@ -34,6 +37,7 @@ imagesSchema.methods = {
       artwork: this.artwork,
       groupPicture: this.groupPicture,
       activity: this.activity,
+      river: this.river,
       createdAt: this.createdAt,
       updatedAt: this.updatedAt
     }

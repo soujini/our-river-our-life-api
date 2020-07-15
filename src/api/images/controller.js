@@ -54,6 +54,12 @@ export const upload = (req, res, next) =>{
     customOriginalName= req.files.activity[0].originalname;
     bucketName="our-river-our-life-images/activity";
   }
+  else if(req.files.river){
+    customFieldName = req.files.river[0].fieldname;
+    customPath = req.files.river[0].path;
+    customOriginalName= req.files.river[0].originalname;
+    bucketName="our-river-our-life-images/river";
+  }
 
   const s3 = new aws.S3();
   var params = {
@@ -90,6 +96,9 @@ export const upload = (req, res, next) =>{
       }
       else if(customFieldName == 'activity'){
         params = {"id":waterTestDetailsId, "activity":locationUrl, "fieldName":"activity", "description":description}
+      }
+      else if(customFieldName == 'river'){
+        params = {"id":waterTestDetailsId, "river":locationUrl, "fieldName":"river", "description":description}
       }
       if(params != ""){
         WaterTestDetailsController.updateImage({params})

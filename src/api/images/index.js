@@ -7,7 +7,7 @@ import { schema } from './model'
 export Images, { schema } from './model'
 
 const router = new Router()
-const { flora, fauna, artwork, groupPicture, activity } = schema.tree
+const { flora, fauna, artwork, groupPicture, activity, river } = schema.tree
 const jwt = require('jsonwebtoken');
 
 const accessTokenSecret = 'youraccesstokensecret';
@@ -53,6 +53,8 @@ multer({ dest: 'temp/', limits: { fieldSize: 8 * 1024 * 1024 } }).fields([{
   name: 'groupPicture', maxCount: 1
 }, {
   name: 'activity', maxCount: 1
+},, {
+  name: 'river', maxCount: 1
 }]),
 upload)
 
@@ -70,7 +72,7 @@ upload)
  * @apiError 404 Images not found.
  */
 router.post('/',
-  body({ flora, fauna, artwork, groupPicture, activity }),
+  body({ flora, fauna, artwork, groupPicture, activity, river }),
   create)
 
 /**
