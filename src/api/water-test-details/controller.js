@@ -61,6 +61,9 @@ export const updateImage = ({ params }, res, next) =>{
     else if(params.fieldName == 'activity'){
         waterTestDetails.activity.push({imageURL:params.activity, description:params.description});
     }
+    else if(params.fieldName == 'river'){
+        waterTestDetails.river.push({imageURL:params.river, description:params.description});
+    }
     else if(params.fieldName == 'certificate'){
         waterTestDetails.certificateURL = params.certificate;
     }

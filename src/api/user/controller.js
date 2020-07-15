@@ -37,7 +37,6 @@ export const signIn = ({ bodymen: { body } }, res, next) =>{
 }
 
 export const index = ({ querymen: { query, select, cursor } }, res, next) =>{
-  console.log("getting with token")
 User.count(query)
 .then(count => User.find(query, select, cursor)
 .then((users) => ({
