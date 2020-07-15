@@ -20,7 +20,8 @@ WaterTestDetails.create(body)
 .then(success(res, 201))
 .catch(next)
 
-export const index = ({ querymen: { query, select, cursor } }, res, next) =>
+export const index = ({ querymen: { query, select, cursor } }, res, next) =>{
+  console.log("here")
 WaterTestDetails.count(query)
 .then(count => WaterTestDetails.find(query, select, cursor)
 .then((waterTestDetails) => ({
@@ -30,6 +31,7 @@ WaterTestDetails.count(query)
 )
 .then(success(res))
 .catch(next)
+}
 
 export const show = ({ params }, res, next) =>{
 console.log("souj "+params.id)
