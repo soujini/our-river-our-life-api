@@ -32,6 +32,7 @@ WaterTestDetails.count(query)
 .catch(next)
 
 export const show = ({ params }, res, next) =>
+console.log(params.id)
 WaterTestDetails.findById(params.id)
 .then(notFound(res))
 .then((waterTestDetails) => waterTestDetails ? waterTestDetails.view() : null)
