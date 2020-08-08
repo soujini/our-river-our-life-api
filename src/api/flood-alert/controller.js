@@ -55,10 +55,18 @@ export const upload = (req, res, next) =>{
          var p = {
            "location":req.body.location,
            "latitude":req.body.latitude,
+           "longitude":req.body.longitude,
+           "date":'',
+           "time":'',
+           "experience":req.body.experience,
            "photos":x
          };
-         console.log(p);
-          create({p});
+           if(p != ""){
+             createAlert({p});
+             console.log(p);
+           }
+
+
           //create function
         }
       }
@@ -90,7 +98,12 @@ export const upload = (req, res, next) =>{
   // });
 }
 
-export const create = ({ params}, res, next) =>{
+export const create = ({ params }, res, next) =>{
+  console.log("souji")
+  console.log(params.location)
+}
+
+export const createAlert = ({ params }, res, next) =>{
   console.log("souji")
   console.log(params.location)
 }
