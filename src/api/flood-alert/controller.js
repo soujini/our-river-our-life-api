@@ -17,6 +17,7 @@ export const upload = (req, res, next) =>{
 
   const file = req.files;
   console.log(req.files);
+  console.log(req.body);
 
 
   // if(req && req.files){
@@ -44,7 +45,7 @@ export const upload = (req, res, next) =>{
         responseData.push(data);
         if(responseData.length == file.length){
           res.json({ "error": false, "message": "File Uploaded SuceesFully", data: responseData});
-          create();
+          //create();
           //create function
         }
       }
