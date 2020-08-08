@@ -82,9 +82,10 @@ export const upload = (req, res, next) =>{
 // .then(success(res, 201))
 // .catch(next)
 
-export const create = (req, res, next) => {
-  console.log(req);
-    console.log(req.body);
+export const create = ({params}, res, next) => {
+  console.log(params);
+  console.log("souj");
+    // console.log(req.body);
   // console.log(body.location);
   // console.log(body.photos);
   // upload(body.photos);
