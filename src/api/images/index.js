@@ -53,7 +53,7 @@ multer({ dest: 'temp/', limits: { fieldSize: 8 * 1024 * 1024 } }).fields([{
   name: 'groupPicture', maxCount: 1
 }, {
   name: 'activity', maxCount: 1
-},, {
+}, {
   name: 'river', maxCount: 1
 }]),
 upload)

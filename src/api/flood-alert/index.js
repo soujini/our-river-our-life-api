@@ -17,7 +17,7 @@ var upload = multer({ dest: 'temp/' })
 // upload)
 
 router.post('/upload',
-multer({ dest: 'temp/', limits: { fieldSize: 8 * 1024 * 1024 } }).array('photos', 10)),
+multer({ dest: 'temp/', limits: { fieldSize: 8 * 1024 * 1024 }}).array('photos', 10),
 upload)
 
 /**
