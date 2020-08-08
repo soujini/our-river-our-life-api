@@ -1,7 +1,7 @@
 import { Router } from 'express'
 import { middleware as query } from 'querymen'
 import { middleware as body } from 'bodymen'
-import { create, index, show, update, destroy } from './controller'
+import { update, create, index, show, update, destroy } from './controller'
 import { schema } from './model'
 export FloodAlert, { schema } from './model'
 import multer from 'multer'
@@ -9,7 +9,7 @@ import multer from 'multer'
 const router = new Router()
 const { location, latitude, longitude, date, time, images, experience } = schema.tree
 
-var upload = multer({ dest: 'temp/' })
+// var upload = multer({ dest: 'temp/' })
 
 // router.post('/upload',
 // multer({ dest: 'temp/', limits: { fieldSize: 8 * 1024 * 1024 } }).fields([{
@@ -19,7 +19,8 @@ var upload = multer({ dest: 'temp/' })
 
 router.post('/upload',
 multer({ dest: 'temp/', limits: { fieldSize: 8 * 1024 * 1024 }}).array('photos', 10),
-upload)
+  upload
+)
 
 /**
  * @api {post} /flood-alert Create flood alert
