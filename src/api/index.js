@@ -3,6 +3,8 @@ import waterTestDetails from './water-test-details'
 import user from './user'
 import images from './images'
 import pdf from './pdf'
+import floodAlert from './flood-alert'
+import floodAlert from './flood-alert'
 
 const router = new Router()
 
@@ -34,5 +36,7 @@ router.use('/water-test-details', waterTestDetails)
 router.use('/user', user)
 router.use('/images', images)
 router.use('/pdf', pdf)
+router.use('/flood-alert', floodAlert)
+router.use('/flood-alert', floodAlert)
 
 export default router
