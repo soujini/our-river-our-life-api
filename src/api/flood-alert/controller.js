@@ -57,7 +57,6 @@ export const upload = (req, res, next) =>{
            latitude:req.body.latitude,
            photos:x
          };
-         console.log("souj");
          console.log(p);
           create(p);
           //create function
@@ -92,7 +91,8 @@ export const upload = (req, res, next) =>{
 }
 
 export const create = ({ params}, res, next) =>{
-  console.log(params)
+  console.log("souji")
+  console.log(params.location)
 }
 // FloodAlert.create(body)
 // .then((floodAlert) => floodAlert.view(true))
