@@ -34,7 +34,7 @@ console.log(req.files);
       var params = {
         Bucket: bucketName,
         Key: item.originalname,
-        Body: fs.createReadStream(item.files.photos[0].path),
+        Body: fs.createReadStream(item.path),
         ACL: 'public-read'
   };
   s3.upload(params, function (err, data) {
