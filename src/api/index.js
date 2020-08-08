@@ -37,6 +37,5 @@ router.use('/user', user)
 router.use('/images', images)
 router.use('/pdf', pdf)
 router.use('/flood-alert', floodAlert)
-router.use('/flood-alert', floodAlert)
 
 export default router
