@@ -105,7 +105,7 @@ export const create = ({ params }, res, next) =>{
 
 export const createAlert = ({ params }, res, next) =>{
   console.log("souji")
-  console.log(params.location)
+  console.log(params)
 }
 // FloodAlert.create(body)
 // .then((floodAlert) => floodAlert.view(true))
