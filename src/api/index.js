@@ -4,7 +4,6 @@ import user from './user'
 import images from './images'
 import pdf from './pdf'
 import floodAlert from './flood-alert'
-import floodAlert from './flood-alert'
 
 const router = new Router()
 
