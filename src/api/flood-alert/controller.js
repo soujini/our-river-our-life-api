@@ -58,7 +58,7 @@ export const upload = (req, res, next) =>{
            photos:x
          };
          console.log(p);
-          create(p);
+          create({p});
           //create function
         }
       }
