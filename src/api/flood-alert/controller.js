@@ -99,12 +99,12 @@ export const upload = (req, res, next) =>{
 }
 
 export const create = ({ params }, res, next) =>{
-  console.log("souji")
-  console.log(params.location)
+  // console.log("souji")
+  // console.log(params.location)
 }
 
 export const createAlert = ({ params }, res, next) =>{
-  console.log("souji")
+  console.log("soujini")
   console.log(params)
 }
 // FloodAlert.create(body)
