@@ -83,9 +83,10 @@ export const upload = (req, res, next) =>{
 // .catch(next)
 
 export const create = ({ bodymen: { body } }, res, next) => {
+  console.log(body);
   console.log(body.location);
   console.log(body.photos);
-  upload(body.photos);
+  // upload(body.photos);
 }
 
 export const index = ({ querymen: { query, select, cursor } }, res, next) =>
