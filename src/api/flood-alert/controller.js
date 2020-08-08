@@ -59,7 +59,7 @@ export const upload = (req, res, next) =>{
          };
          console.log("souj");
          console.log(p);
-          //create();
+          create(p);
           //create function
         }
       }
@@ -91,20 +91,22 @@ export const upload = (req, res, next) =>{
   // });
 }
 
-// export const create = ({ bodymen: { body } }, res, next) =>
+export const create = ({ bodymen: { body } }, res, next) =>{
+  console.log(body)
+}
 // FloodAlert.create(body)
 // .then((floodAlert) => floodAlert.view(true))
 // .then(success(res, 201))
 // .catch(next)
 
-export const create = ({params}, res, next) => {
-  console.log(params);
-  console.log("souj");
-    // console.log(req.body);
-  // console.log(body.location);
-  // console.log(body.photos);
-  // upload(body.photos);
-}
+// export const create = ({params}, res, next) => {
+//   console.log(params);
+//   console.log("souj");
+//     // console.log(req.body);
+//   // console.log(body.location);
+//   // console.log(body.photos);
+//   // upload(body.photos);
+// }
 
 export const index = ({ querymen: { query, select, cursor } }, res, next) =>
 FloodAlert.count(query)
