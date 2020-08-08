@@ -46,11 +46,19 @@ export const upload = (req, res, next) =>{
         if(responseData.length == file.length){
           res.json({ "error": false, "message": "File Uploaded SuceesFully", data: responseData});
 
+          var x=[];
           responseData.forEach(function(element){
            console.log(element.Location);
-           req.body.photos.push(element.Location)
-           console.log(req.body.photos);
+           x.push(element.Location)
          });
+
+         var p = {
+           location:req.body.location,
+           latitude:req.body.latitude,
+           photos:x
+         };
+         console.log("souj");
+         console.log(p);
           //create();
           //create function
         }
