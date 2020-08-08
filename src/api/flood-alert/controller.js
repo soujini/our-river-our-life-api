@@ -91,8 +91,8 @@ export const upload = (req, res, next) =>{
   // });
 }
 
-export const create = ({ bodymen: { body } }, res, next) =>{
-  console.log(body)
+export const create = ({ params}, res, next) =>{
+  console.log(params)
 }
 // FloodAlert.create(body)
 // .then((floodAlert) => floodAlert.view(true))
