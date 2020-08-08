@@ -46,7 +46,7 @@ console.log(req.files);
           }
        });
      });
-   });
+   // });
   // var params = {
   //   ACL: 'public-read',
   //   Bucket: bucketName,
@@ -69,7 +69,7 @@ console.log(req.files);
   //     res.status(200).send("Image uploaded successfully");
   //   }
   // });
-});
+// });
 }
 
 export const create = ({ bodymen: { body } }, res, next) =>
