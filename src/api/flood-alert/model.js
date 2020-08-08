@@ -16,7 +16,7 @@ const floodAlertSchema = new Schema({
   time: {
     type: String
   },
-  images: {
+  photos: {
     type: Array
   },
   experience: {
@@ -40,7 +40,7 @@ floodAlertSchema.methods = {
       longitude: this.longitude,
       date: this.date,
       time: this.time,
-      images: this.images,
+      photos: this.photos,
       experience: this.experience,
       createdAt: this.createdAt,
       updatedAt: this.updatedAt

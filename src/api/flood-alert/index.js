@@ -7,7 +7,7 @@ export FloodAlert, { schema } from './model'
 import multer from 'multer'
 
 const router = new Router()
-const { location, latitude, longitude, date, time, images, experience } = schema.tree
+const { location, latitude, longitude, date, time, photos, experience } = schema.tree
 
 // var upload = multer({ dest: 'temp/' })
 
@@ -31,14 +31,14 @@ multer({ dest: 'temp/', limits: { fieldSize: 8 * 1024 * 1024 }}).array('photos',
  * @apiParam longitude Flood alert's longitude.
  * @apiParam date Flood alert's date.
  * @apiParam time Flood alert's time.
- * @apiParam images Flood alert's images.
+ * @apiParam photos Flood alert's photos.
  * @apiParam experience Flood alert's experience.
  * @apiSuccess {Object} floodAlert Flood alert's data.
  * @apiError {Object} 400 Some parameters may contain invalid values.
  * @apiError 404 Flood alert not found.
  */
 router.post('/',
-  body({ location, latitude, longitude, date, time, images, experience }),
+  body({ location, latitude, longitude, date, time, photos, experience }),
   create)
 
 /**
@@ -74,14 +74,14 @@ router.get('/:id',
  * @apiParam longitude Flood alert's longitude.
  * @apiParam date Flood alert's date.
  * @apiParam time Flood alert's time.
- * @apiParam images Flood alert's images.
+ * @apiParam photos Flood alert's photos.
  * @apiParam experience Flood alert's experience.
  * @apiSuccess {Object} floodAlert Flood alert's data.
  * @apiError {Object} 400 Some parameters may contain invalid values.
  * @apiError 404 Flood alert not found.
  */
 router.put('/:id',
-  body({ location, latitude, longitude, date, time, images, experience }),
+  body({ location, latitude, longitude, date, time, photos, experience }),
   update)
 
 /**

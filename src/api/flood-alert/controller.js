@@ -16,7 +16,7 @@ export const upload = (req, res, next) =>{
   });
 
   const file = req.files;
-console.log(req.files);
+  console.log(req.files);
 
 
   // if(req && req.files){
@@ -29,26 +29,28 @@ console.log(req.files);
   // }
 
   const s3 = new aws.S3();
-  var ResponseData = [];
+  var responseData = [];
   file.map((item) => {
-      var params = {
-        Bucket: bucketName,
-        Key: item.originalname,
-        Body: fs.createReadStream(item.path),
-        ACL: 'public-read'
-  };
-  s3.upload(params, function (err, data) {
-        if (err) {
-         res.json({ "error": true, "Message": err});
-        }else{
-            ResponseData.push(data);
-            if(ResponseData.length == file.length){
-              res.json({ "error": false, "Message": "File Uploaded SuceesFully", Data: ResponseData});
-            }
-          }
-       });
-     });
-   // });
+    var params = {
+      Bucket: bucketName,
+      Key: item.originalname,
+      Body: fs.createReadStream(item.path),
+      ACL: 'public-read'
+    };
+    s3.upload(params, function (err, data) {
+      if (err) {
+        res.json({ "error": true, "Message": err});
+      }else{
+        responseData.push(data);
+        if(responseData.length == file.length){
+          res.json({ "error": false, "message": "File Uploaded SuceesFully", data: responseData});
+          create();
+          //create function
+        }
+      }
+    });
+  });
+  // });
   // var params = {
   //   ACL: 'public-read',
   //   Bucket: bucketName,
@@ -71,44 +73,50 @@ console.log(req.files);
   //     res.status(200).send("Image uploaded successfully");
   //   }
   // });
-// });
+  // });
 }
 
-export const create = ({ bodymen: { body } }, res, next) =>
-  FloodAlert.create(body)
-    .then((floodAlert) => floodAlert.view(true))
-    .then(success(res, 201))
-    .catch(next)
+// export const create = ({ bodymen: { body } }, res, next) =>
+// FloodAlert.create(body)
+// .then((floodAlert) => floodAlert.view(true))
+// .then(success(res, 201))
+// .catch(next)
+
+export const create = ({ bodymen: { body } }, res, next) => {
+  console.log(body.location);
+  console.log(body.photos);
+  upload(body.photos);
+}
 
 export const index = ({ querymen: { query, select, cursor } }, res, next) =>
-  FloodAlert.count(query)
-    .then(count => FloodAlert.find(query, select, cursor)
-      .then((floodAlerts) => ({
-        count,
-        rows: floodAlerts.map((floodAlert) => floodAlert.view())
-      }))
-    )
-    .then(success(res))
-    .catch(next)
+FloodAlert.count(query)
+.then(count => FloodAlert.find(query, select, cursor)
+.then((floodAlerts) => ({
+  count,
+  rows: floodAlerts.map((floodAlert) => floodAlert.view())
+}))
+)
+.then(success(res))
+.catch(next)
 
 export const show = ({ params }, res, next) =>
-  FloodAlert.findById(params.id)
-    .then(notFound(res))
-    .then((floodAlert) => floodAlert ? floodAlert.view() : null)
-    .then(success(res))
-    .catch(next)
+FloodAlert.findById(params.id)
+.then(notFound(res))
+.then((floodAlert) => floodAlert ? floodAlert.view() : null)
+.then(success(res))
+.catch(next)
 
 export const update = ({ bodymen: { body }, params }, res, next) =>
-  FloodAlert.findById(params.id)
-    .then(notFound(res))
-    .then((floodAlert) => floodAlert ? Object.assign(floodAlert, body).save() : null)
-    .then((floodAlert) => floodAlert ? floodAlert.view(true) : null)
-    .then(success(res))
-    .catch(next)
+FloodAlert.findById(params.id)
+.then(notFound(res))
+.then((floodAlert) => floodAlert ? Object.assign(floodAlert, body).save() : null)
+.then((floodAlert) => floodAlert ? floodAlert.view(true) : null)
+.then(success(res))
+.catch(next)
 
 export const destroy = ({ params }, res, next) =>
-  FloodAlert.findById(params.id)
-    .then(notFound(res))
-    .then((floodAlert) => floodAlert ? floodAlert.remove() : null)
-    .then(success(res, 204))
-    .catch(next)
+FloodAlert.findById(params.id)
+.then(notFound(res))
+.then((floodAlert) => floodAlert ? floodAlert.remove() : null)
+.then(success(res, 204))
+.catch(next)

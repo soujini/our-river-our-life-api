@@ -21,7 +21,6 @@ WaterTestDetails.create(body)
 .catch(next)
 
 export const index = ({ querymen: { query, select, cursor } }, res, next) =>{
-  console.log("here")
 WaterTestDetails.count(query)
 .then(count => WaterTestDetails.find(query, select, cursor)
 .then((waterTestDetails) => ({
@@ -34,7 +33,6 @@ WaterTestDetails.count(query)
 }
 
 export const show = ({ params }, res, next) =>{
-console.log("souj "+params.id)
 WaterTestDetails.findById(params.id)
 .then(notFound(res))
 .then((waterTestDetails) => waterTestDetails ? waterTestDetails.view() : null)
