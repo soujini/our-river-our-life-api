@@ -53,9 +53,9 @@ export const upload = (req, res, next) =>{
          });
 
          var p = {
-           location:req.body.location,
-           latitude:req.body.latitude,
-           photos:x
+           "location":req.body.location,
+           "latitude":req.body.latitude,
+           "photos":x
          };
          console.log(p);
           create({p});
