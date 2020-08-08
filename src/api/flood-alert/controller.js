@@ -45,6 +45,12 @@ export const upload = (req, res, next) =>{
         responseData.push(data);
         if(responseData.length == file.length){
           res.json({ "error": false, "message": "File Uploaded SuceesFully", data: responseData});
+
+          responseData.forEach(function(element){
+           console.log(element.Location);
+           req.body.photos.push(element.Location)
+           console.log(req.body.photos);
+         });
           //create();
           //create function
         }
