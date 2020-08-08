@@ -1,7 +1,7 @@
 import { Router } from 'express'
 import { middleware as query } from 'querymen'
 import { middleware as body } from 'bodymen'
-import { update, create, index, show, update, destroy } from './controller'
+import { upload, create, index, show, update, destroy } from './controller'
 import { schema } from './model'
 export FloodAlert, { schema } from './model'
 import multer from 'multer'
