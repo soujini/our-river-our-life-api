@@ -82,10 +82,11 @@ export const upload = (req, res, next) =>{
 // .then(success(res, 201))
 // .catch(next)
 
-export const create = ({ bodymen: { body } }, res, next) => {
-  console.log(body);
-  console.log(body.location);
-  console.log(body.photos);
+export const create = (req, res, next) => {
+  console.log(req);
+    console.log(req.body);
+  // console.log(body.location);
+  // console.log(body.photos);
   // upload(body.photos);
 }
 
