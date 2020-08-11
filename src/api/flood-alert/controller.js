@@ -19,9 +19,7 @@ export const upload = (req, res, next) =>{
   console.log(req.files);
   console.log(req.body);
 
-
   // if(req && req.files){
-
   // if(req.files.photos){
   //   customFieldName = req.files.photos[0].fieldname;
   //   customPath = req.files.photos[0].path;
@@ -62,11 +60,10 @@ export const upload = (req, res, next) =>{
            "photos":x
          };
            if(p != ""){
+             console.log("in");
              createAlert({p});
-             console.log(p);
+             //console.log(p);
            }
-
-
           //create function
         }
       }
@@ -103,7 +100,7 @@ export const create = ({ params }, res, next) =>{
   // console.log(params.location)
 }
 
-export const createAlert = ({ params }, res, next) =>{
+export const createAlert = ({ bodymen: { body }, params }, res, next) =>{
   console.log("soujini")
   console.log("bla "+params)
 }
