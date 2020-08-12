@@ -114,9 +114,9 @@ export const create = (req, res, next) => {
   console.log(req.p);
   console.log("souj");
   FloodAlert.create(req.p)
-  .then((floodAlert) => floodAlert.view(true))
-  .then(success(res, 201))
-  .catch(next)
+  // .then((floodAlert) => floodAlert.view(true))
+  // .then(success(res, 201))
+  // .catch(next)
 }
 
 export const index = ({ querymen: { query, select, cursor } }, res, next) =>
