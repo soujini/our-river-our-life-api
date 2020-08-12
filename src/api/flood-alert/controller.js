@@ -43,14 +43,14 @@ export const upload = (req, res, next) =>{
         responseData.push(data);
         if(responseData.length == file.length){
         //  res.json({ "error": false, "message": "File Uploaded SuceesFully", data: responseData});
-res.end();
+
           var x=[];
           responseData.forEach(function(element){
            console.log(element.Location);
            x.push(element.Location)
          });
 
-         var params = {
+         var p = {
            "location":req.body.location,
            "latitude":req.body.latitude,
            "longitude":req.body.longitude,
@@ -60,7 +60,8 @@ res.end();
            "photos":x
          };
            if(p != ""){
-             create({params});
+             console.log("in");
+             create({p});
              //console.log(p);
            }
           //create function
@@ -109,12 +110,11 @@ res.end();
 // .catch(next)
 
 export const create = (req, res, next) =>
-console.log("souj")
-console.log(req.params)
-  FloodAlert.create(req.params)
+console.log(req.p)
+  FloodAlert.create(req.p)
    .then((floodAlert) => floodAlert.view(true))
-   .then(success(res, 201))
-   .catch(next)
+  // .then(success(res, 201))
+  // .catch(next)
 
 
 export const index = ({ querymen: { query, select, cursor } }, res, next) =>
