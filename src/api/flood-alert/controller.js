@@ -109,15 +109,12 @@ export const upload = (req, res, next) =>{
 // .then(success(res, 201))
 // .catch(next)
 
-export const create = (req, res, next) => {
-  console.log("in create");
-  console.log(req.p);
-  console.log("souj");
+export const create = (req, res, next) =>
   FloodAlert.create(req.p)
    .then((floodAlert) => floodAlert.view(true))
-  // .then(success(res, 201))
-  // .catch(next)
-}
+   .then(success(res, 201))
+   .catch(next)
+
 
 export const index = ({ querymen: { query, select, cursor } }, res, next) =>
 FloodAlert.count(query)
