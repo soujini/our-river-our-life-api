@@ -17,7 +17,7 @@ export const createAlert = (req, res, next) =>{
 
   const file = req.files;
   console.log("file")
-  console.log(file)
+  console.log(file.length)
 
   const s3 = new aws.S3();
   var responseData = [];
