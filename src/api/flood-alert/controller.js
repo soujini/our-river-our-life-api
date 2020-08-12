@@ -46,7 +46,6 @@ export const upload = (req, res, next) =>{
 
           var x=[];
           responseData.forEach(function(element){
-           console.log(element.Location);
            x.push(element.Location)
          });
 
@@ -111,8 +110,8 @@ export const upload = (req, res, next) =>{
 
 export const create = (req, res, next) =>
 console.log(req.p)
-  FloodAlert.create(req.p)
-   .then((floodAlert) => floodAlert.view(true))
+//  FloodAlert.create(req.p)
+  // .then((floodAlert) => floodAlert.view(true))
   // .then(success(res, 201))
   // .catch(next)
 
