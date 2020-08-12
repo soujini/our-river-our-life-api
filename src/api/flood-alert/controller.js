@@ -42,7 +42,7 @@ export const upload = (req, res, next) =>{
       }else{
         responseData.push(data);
         if(responseData.length == file.length){
-        //  res.json({ "error": false, "message": "File Uploaded SuceesFully", data: responseData});
+          res.json({ "error": false, "message": "File Uploaded SuceesFully", data: responseData});
 
           var x=[];
           responseData.forEach(function(element){
