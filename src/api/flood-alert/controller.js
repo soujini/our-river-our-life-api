@@ -19,47 +19,64 @@ export const createAlert = (req, res, next) =>{
   console.log("file")
   console.log(file.length)
 
-  const s3 = new aws.S3();
-  var responseData = [];
-  file.map((item) => {
-    var params = {
-      Bucket: bucketName,
-      Key: item.originalname,
-      Body: fs.createReadStream(item.path),
-      ACL: 'public-read'
-    };
-    s3.upload(params, function (err, data) {
-      if (err) {
-        res.json({ "error": true, "Message": err});
-      }else{
-        responseData.push(data);
-        if(responseData.length == file.length){
-          //res.json({ "error": false, "message": "File Uploaded SuceesFully", data: responseData});
+  if(file.length > 0){
+    const s3 = new aws.S3();
+    var responseData = [];
 
-          var photos=[];
-          responseData.forEach(function(element){
-            photos.push(element.Location)
-          });
+    file.map((item) => {
+      var params = {
+        Bucket: bucketName,
+        Key: item.originalname,
+        Body: fs.createReadStream(item.path),
+        ACL: 'public-read'
+      };
+      s3.upload(params, function (err, data) {
+        if (err) {
+          res.json({ "error": true, "Message": err});
+        }else{
+          responseData.push(data);
+          if(responseData.length == file.length){
+            //res.json({ "error": false, "message": "File Uploaded SuceesFully", data: responseData});
 
-          var params = {
-            "location":req.body.location,
-            "latitude":req.body.latitude,
-            "longitude":req.body.longitude,
-            "date":req.body.date,
-            "time":req.body.time,
-            "experience":req.body.experience,
-            "photos":photos
-          };
-          if(params != ""){
-            FloodAlert.create(params)
-            .then((floodAlert) => floodAlert.view(true))
-            .then(success(res, 201))
-            .catch(next)
+            var photos=[];
+            responseData.forEach(function(element){
+              photos.push(element.Location)
+            });
+
+            var params = {
+              "location":req.body.location,
+              "latitude":req.body.latitude,
+              "longitude":req.body.longitude,
+              "date":req.body.date,
+              "time":req.body.time,
+              "experience":req.body.experience,
+              "photos":photos
+            };
+            if(params != ""){
+              FloodAlert.create(params)
+              .then((floodAlert) => floodAlert.view(true))
+              .then(success(res, 201))
+              .catch(next)
+            }
           }
         }
-      }
+      });
     });
-  });
+  }
+  else{
+    var params = {
+      "location":req.body.location,
+      "latitude":req.body.latitude,
+      "longitude":req.body.longitude,
+      "date":req.body.date,
+      "time":req.body.time,
+      "experience":req.body.experience,
+    };
+    FloodAlert.create(params)
+    .then((floodAlert) => floodAlert.view(true))
+    .then(success(res, 201))
+    .catch(next)
+  }
 }
 
 export const create = ({ bodymen: { body } }, res, next) =>
