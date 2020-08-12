@@ -100,7 +100,7 @@ export const upload = (req, res, next) =>{
 //   // console.log(params.location)
 // }
 
-// export const createAlert = ({ bodymen: { body }, params }, res, next) =>{
+// export const createAlert = = (req, res, next) => {
 //   console.log("soujini")
 //   console.log("bla "+req.params)
 // }
@@ -113,10 +113,10 @@ export const create = (req, res, next) => {
   console.log("in create");
   console.log(req.p);
   console.log("souj");
-    // console.log(req.body);
-  // console.log(body.location);
-  // console.log(body.photos);
-  // upload(body.photos);
+  FloodAlert.create(req.p)
+  .then((floodAlert) => floodAlert.view(true))
+  .then(success(res, 201))
+  .catch(next)
 }
 
 export const index = ({ querymen: { query, select, cursor } }, res, next) =>
