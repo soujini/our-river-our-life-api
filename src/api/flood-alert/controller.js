@@ -16,16 +16,6 @@ export const upload = (req, res, next) =>{
   });
 
   const file = req.files;
-  console.log(req.files);
-  console.log(req.body);
-
-  // if(req && req.files){
-  // if(req.files.photos){
-  //   customFieldName = req.files.photos[0].fieldname;
-  //   customPath = req.files.photos[0].path;
-  //   customOriginalName= req.files.photos[0].originalname;
-  //   bucketName="our-river-our-life-images/floodAlert";
-  // }
 
   const s3 = new aws.S3();
   var responseData = [];
@@ -73,50 +63,11 @@ export const upload = (req, res, next) =>{
       }
     });
   });
-  // });
-  // var params = {
-  //   ACL: 'public-read',
-  //   Bucket: bucketName,
-  //   Body: fs.createReadStream(customPath),
-  //   Key: `${customOriginalName}`
-  // };
-
-  // s3.upload(params, (err, data) => {
-  //   if (err) {
-  //     console.log('Error occured while trying to upload to S3 bucket', err);
-  //      res.status(500).send(err);
-  //   }
-  //
-  //   if (res) {
-  //     var params ="";
-  //     fs.unlinkSync(customPath); // Empty temp folder
-  //     const locationUrl = data.Location;
-  //
-  //       //WaterTestDetailsController.updateImage({params})
-  //     res.status(200).send("Image uploaded successfully");
-  //   }
-  // });
-  // });
 }
-
-// export const create = ({ params }, res, next) =>{
-//   // console.log("souji")
-//   // console.log(params.location)
-// }
-
-// export const createAlert = = (req, res, next) => {
-//   console.log("soujini")
-//   console.log("bla "+req.params)
-// }
-// FloodAlert.create(body)
-// .then((floodAlert) => floodAlert.view(true))
-// .then(success(res, 201))
-// .catch(next)
 
 export const create = (req, res, next) =>
  console.log("in create")
     FloodAlert.create(req.p)
-//    res.send("Asdadasd")
    .then((floodAlert) => floodAlert.view(true))
    .then(success(res, 201))
    .catch(next)
