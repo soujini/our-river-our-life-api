@@ -62,11 +62,12 @@ export const upload = (req, res, next) =>{
              console.log("in");
              // create({p});
               FloodAlert.create(req.p)
-              .then((floodAlert) => floodAlert.view(true))
-              .then(success(res, 201))
-              .catch(next)
+              // .then((floodAlert) => floodAlert.view(true))
+              // .then(success(res, 201))
+              // .catch(next)
              //console.log(p);
            }
+           res.json({ "error": false, "message": "Alert SuceesFully",
           //create function
         }
       }
