@@ -3,7 +3,7 @@ import { FloodAlert } from '.'
 import aws from 'aws-sdk';
 import fs from 'fs';
 
-export const upload = (req, res, next) =>{
+export const createAlert = (req, res, next) =>{
   var customOriginalName="";
   var customPath="";
   var customFieldName="";
@@ -32,32 +32,32 @@ export const upload = (req, res, next) =>{
       }else{
         responseData.push(data);
         if(responseData.length == file.length){
-        //res.json({ "error": false, "message": "File Uploaded SuceesFully", data: responseData});
+          //res.json({ "error": false, "message": "File Uploaded SuceesFully", data: responseData});
 
           var x=[];
           responseData.forEach(function(element){
-           x.push(element.Location)
-         });
+            x.push(element.Location)
+          });
 
-         var p = {
-           "location":req.body.location,
-           "latitude":req.body.latitude,
-           "longitude":req.body.longitude,
-           "date":'',
-           "time":'',
-           "experience":req.body.experience,
-           "photos":x
-         };
-           if(p != ""){
-             console.log("in");
-             // create({p});
-              FloodAlert.create(p)
-             .then((floodAlert) => floodAlert.view(true))
-             .then(success(res, 201))
-              // .catch(next)
-             //console.log(p);
-           }
-           // res.json({ "error": false, "message": "Alert sucessfully added"});
+          var p = {
+            "location":req.body.location,
+            "latitude":req.body.latitude,
+            "longitude":req.body.longitude,
+            "date":'',
+            "time":'',
+            "experience":req.body.experience,
+            "photos":x
+          };
+          if(p != ""){
+            console.log("in");
+            // create({p});
+            FloodAlert.create(p)
+            .then((floodAlert) => floodAlert.view(true))
+            .then(success(res, 201))
+            // .catch(next)
+            //console.log(p);
+          }
+          // res.json({ "error": false, "message": "Alert sucessfully added"});
           //create function
         }
       }
@@ -65,12 +65,11 @@ export const upload = (req, res, next) =>{
   });
 }
 
-//export const create = (req, res, next) =>
- export const create = ({ bodymen: { body } }, res, next) =>
-    FloodAlert.create(body)
-   .then((floodAlert) => floodAlert.view(true))
-   .then(success(res, 201))
-   .catch(next)
+export const create = ({ bodymen: { body } }, res, next) =>
+FloodAlert.create(body)
+.then((floodAlert) => floodAlert.view(true))
+.then(success(res, 201))
+.catch(next)
 
 
 export const index = ({ querymen: { query, select, cursor } }, res, next) =>
