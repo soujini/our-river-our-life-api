@@ -61,7 +61,7 @@ export const upload = (req, res, next) =>{
            if(p != ""){
              console.log("in");
              // create({p});
-              FloodAlert.create(p)
+            //  FloodAlert.create(p)
               // .then((floodAlert) => floodAlert.view(true))
               // .then(success(res, 201))
               // .catch(next)
