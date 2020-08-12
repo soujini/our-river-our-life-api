@@ -109,9 +109,9 @@ export const upload = (req, res, next) =>{
 // .then(success(res, 201))
 // .catch(next)
 
-export const create = ({params}, res, next) => {
+export const create = (req, res, next) => {
   console.log("in create");
-  console.log(params);
+  console.log(req);
   console.log("souj");
     // console.log(req.body);
   // console.log(body.location);
