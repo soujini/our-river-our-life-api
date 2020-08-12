@@ -65,9 +65,9 @@ export const upload = (req, res, next) =>{
   });
 }
 
-export const create = (req, res, next) =>
- console.log("in create")
-    FloodAlert.create(req.p)
+//export const create = (req, res, next) =>
+ export const create = ({ bodymen: { body } }, res, next) =>
+    FloodAlert.create(body)
    .then((floodAlert) => floodAlert.view(true))
    .then(success(res, 201))
    .catch(next)
