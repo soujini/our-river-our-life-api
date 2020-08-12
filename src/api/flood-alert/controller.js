@@ -111,7 +111,7 @@ export const upload = (req, res, next) =>{
 
 export const create = (req, res, next) => {
   console.log("in create");
-  console.log(req);
+  console.log(req.p);
   console.log("souj");
     // console.log(req.body);
   // console.log(body.location);
