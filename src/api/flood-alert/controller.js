@@ -61,7 +61,7 @@ export const upload = (req, res, next) =>{
          };
            if(p != ""){
              console.log("in");
-             createAlert({p});
+             create({p});
              //console.log(p);
            }
           //create function
@@ -95,28 +95,29 @@ export const upload = (req, res, next) =>{
   // });
 }
 
-export const create = ({ params }, res, next) =>{
-  // console.log("souji")
-  // console.log(params.location)
-}
+// export const create = ({ params }, res, next) =>{
+//   // console.log("souji")
+//   // console.log(params.location)
+// }
 
-export const createAlert = ({ bodymen: { body }, params }, res, next) =>{
-  console.log("soujini")
-  console.log("bla "+req.params)
-}
+// export const createAlert = ({ bodymen: { body }, params }, res, next) =>{
+//   console.log("soujini")
+//   console.log("bla "+req.params)
+// }
 // FloodAlert.create(body)
 // .then((floodAlert) => floodAlert.view(true))
 // .then(success(res, 201))
 // .catch(next)
 
-// export const create = ({params}, res, next) => {
-//   console.log(params);
-//   console.log("souj");
-//     // console.log(req.body);
-//   // console.log(body.location);
-//   // console.log(body.photos);
-//   // upload(body.photos);
-// }
+export const create = ({params}, res, next) => {
+  console.log("in create");
+  console.log(params);
+  console.log("souj");
+    // console.log(req.body);
+  // console.log(body.location);
+  // console.log(body.photos);
+  // upload(body.photos);
+}
 
 export const index = ({ querymen: { query, select, cursor } }, res, next) =>
 FloodAlert.count(query)
