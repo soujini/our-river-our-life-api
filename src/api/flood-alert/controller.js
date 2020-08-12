@@ -34,31 +34,26 @@ export const createAlert = (req, res, next) =>{
         if(responseData.length == file.length){
           //res.json({ "error": false, "message": "File Uploaded SuceesFully", data: responseData});
 
-          var x=[];
+          var photos=[];
           responseData.forEach(function(element){
-            x.push(element.Location)
+            photos.push(element.Location)
           });
 
-          var p = {
+          var params = {
             "location":req.body.location,
             "latitude":req.body.latitude,
             "longitude":req.body.longitude,
-            "date":'',
-            "time":'',
+            "date":req.body.date,
+            "time":req.body.time,
             "experience":req.body.experience,
-            "photos":x
+            "photos":photos
           };
-          if(p != ""){
-            console.log("in");
-            // create({p});
-            FloodAlert.create(p)
+          if(params != ""){
+            FloodAlert.create(params)
             .then((floodAlert) => floodAlert.view(true))
             .then(success(res, 201))
-            // .catch(next)
-            //console.log(p);
+            .catch(next)
           }
-          // res.json({ "error": false, "message": "Alert sucessfully added"});
-          //create function
         }
       }
     });
