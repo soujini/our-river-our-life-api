@@ -42,7 +42,7 @@ export const upload = (req, res, next) =>{
       }else{
         responseData.push(data);
         if(responseData.length == file.length){
-          res.json({ "error": false, "message": "File Uploaded SuceesFully", data: responseData});
+        //  res.json({ "error": false, "message": "File Uploaded SuceesFully", data: responseData});
 
           var x=[];
           responseData.forEach(function(element){
@@ -110,8 +110,8 @@ export const upload = (req, res, next) =>{
 
 export const create = (req, res, next) =>
 console.log(req.p)
-  // FloodAlert.create(req.p)
-  // res.send("Asdadasd")
+   FloodAlert.create(req.p)
+   res.send("Asdadasd")
   // .then((floodAlert) => floodAlert.view(true))
   // .then(success(res, 201))
   // .catch(next)
