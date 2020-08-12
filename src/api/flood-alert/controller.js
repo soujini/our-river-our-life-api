@@ -109,8 +109,8 @@ export const upload = (req, res, next) =>{
 // .then(success(res, 201))
 // .catch(next)
 
-export const create = (req, res, next) =>
-  FloodAlert.create(req.p)
+export const create = ({p}, res, next) =>
+  FloodAlert.create(p)
    .then((floodAlert) => floodAlert.view(true))
    .then(success(res, 201))
    .catch(next)
