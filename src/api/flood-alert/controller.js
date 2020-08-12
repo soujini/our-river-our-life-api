@@ -67,7 +67,7 @@ export const upload = (req, res, next) =>{
               // .catch(next)
              //console.log(p);
            }
-           res.json({ "error": false, "message": "Alert SuceesFully",
+           res.json({ "error": false, "message": "Alert SuceesFully"});
           //create function
         }
       }
