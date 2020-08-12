@@ -60,7 +60,11 @@ export const upload = (req, res, next) =>{
          };
            if(p != ""){
              console.log("in");
-             create({p});
+             // create({p});
+              FloodAlert.create(req.p)
+              .then((floodAlert) => floodAlert.view(true))
+              .then(success(res, 201))
+              .catch(next)
              //console.log(p);
            }
           //create function
