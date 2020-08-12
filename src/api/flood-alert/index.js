@@ -9,14 +9,6 @@ import multer from 'multer'
 const router = new Router()
 const { location, latitude, longitude, date, time, photos, experience } = schema.tree
 
-// var upload = multer({ dest: 'temp/' })
-
-// router.post('/upload',
-// multer({ dest: 'temp/', limits: { fieldSize: 8 * 1024 * 1024 } }).fields([{
-//   name: 'file', maxCount: 10
-// }]),
-// upload)
-
 router.post('/upload',
 multer({ dest: 'temp/', limits: { fieldSize: 8 * 1024 * 1024 }}).array('photos', 10),
   upload
