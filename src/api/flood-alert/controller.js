@@ -50,7 +50,7 @@ res.end();
            x.push(element.Location)
          });
 
-         var p = {
+         var params = {
            "location":req.body.location,
            "latitude":req.body.latitude,
            "longitude":req.body.longitude,
@@ -60,8 +60,7 @@ res.end();
            "photos":x
          };
            if(p != ""){
-             console.log("in");
-             create({p});
+             create({params});
              //console.log(p);
            }
           //create function
@@ -109,10 +108,10 @@ res.end();
 // .then(success(res, 201))
 // .catch(next)
 
-export const create = ({p}, res, next) =>
+export const create = (req, res, next) =>
 console.log("souj")
-console.log(p)
-  FloodAlert.create(p)
+console.log(req.params)
+  FloodAlert.create(req.params)
    .then((floodAlert) => floodAlert.view(true))
    .then(success(res, 201))
    .catch(next)
