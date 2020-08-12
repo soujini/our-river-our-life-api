@@ -114,12 +114,12 @@ export const upload = (req, res, next) =>{
 // .catch(next)
 
 export const create = (req, res, next) =>
-console.log(req.p)
-   FloodAlert.create(req.p)
-   res.send("Asdadasd")
-  // .then((floodAlert) => floodAlert.view(true))
-  // .then(success(res, 201))
-  // .catch(next)
+ console.log("in create")
+    FloodAlert.create(req.p)
+//    res.send("Asdadasd")
+   .then((floodAlert) => floodAlert.view(true))
+   .then(success(res, 201))
+   .catch(next)
 
 
 export const index = ({ querymen: { query, select, cursor } }, res, next) =>
