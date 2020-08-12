@@ -16,8 +16,6 @@ export const createAlert = (req, res, next) =>{
   });
 
   const file = req.files;
-  console.log("file")
-  console.log(file.length)
 
   if(file.length > 0){
     const s3 = new aws.S3();
@@ -47,8 +45,8 @@ export const createAlert = (req, res, next) =>{
               "location":req.body.location,
               "latitude":req.body.latitude,
               "longitude":req.body.longitude,
-              "date":req.body.date,
-              "time":req.body.time,
+              "date":req.body.activityDate,
+              "time":req.body.activityTime,
               "experience":req.body.experience,
               "photos":photos
             };
