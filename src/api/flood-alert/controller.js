@@ -45,6 +45,8 @@ export const createAlert = (req, res, next) =>{
             });
             console.log("here");
             console.log(req.body.data["location"]);
+            console.log(req.body.data['location']);
+              console.log(req.body.data.location);
 
             var params = {
               "location":req.body.data.location,
