@@ -18,7 +18,7 @@ export const createAlert = (req, res, next) =>{
   const file = req.files;
   console.log("souj");
   console.log(req.files);
-  console.log(req.body.data);
+  console.log(req.body);
 
   if(file){
     const s3 = new aws.S3();
@@ -47,12 +47,12 @@ export const createAlert = (req, res, next) =>{
               console.log(req.body.data.location);
 
             var params = {
-              "location":req.body.data.location,
-              "latitude":req.body.data.latitude,
-              "longitude":req.body.data.longitude,
-              "date":req.body.data.activityDate,
-              "time":req.body.data.activityTime,
-              "experience":req.body.data.experience,
+              "location":req.body.location,
+              "latitude":req.body.latitude,
+              "longitude":req.body.longitude,
+              "date":req.body.activityDate,
+              "time":req.body.activityTime,
+              "experience":req.body.experience,
               "photos":photos
             };
             if(params != ""){
