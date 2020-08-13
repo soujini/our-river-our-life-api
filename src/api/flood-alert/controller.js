@@ -44,7 +44,7 @@ export const createAlert = (req, res, next) =>{
               photos.push(element.Location)
             });
             console.log("here");
-              console.log(req.body.data.location);
+              console.log(req.body.location);
 
             var params = {
               "location":req.body.location,
