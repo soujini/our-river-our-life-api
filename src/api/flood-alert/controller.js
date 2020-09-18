@@ -16,10 +16,8 @@ export const createAlert = (req, res, next) =>{
   });
 
   const file = req.files;
-  console.log("souj");
-  console.log(req.files);
-  console.log(req.body.location);
-
+  console.log("souji "+file);
+  console.log("length "+req.files.length);
   if(file){
     const s3 = new aws.S3();
     var responseData = [];
