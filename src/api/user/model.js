@@ -5,6 +5,11 @@ const userSchema = new Schema({
     type: String,
     unique:true,
     sparse:true
+  },
+  email: {
+    type: String,
+    unique:true,
+    sparse:true
   }
 }, {
   timestamps: true,
@@ -20,6 +25,7 @@ userSchema.methods = {
       // simple view
       id: this.id,
       phoneNumber: this.phoneNumber,
+      email:this.email,
       createdAt: this.createdAt,
       updatedAt: this.updatedAt
     }
