@@ -34,7 +34,7 @@ export const signIn = ({ bodymen: { body } }, res, next) =>{
   .then(success(res, 201))
   .catch(next)
 }
-export const signInEmail = ({ bodymen: { body } }, res, next) =>{
+export const signInWeb = ({ bodymen: { body } }, res, next) =>{
   User.findOneAndUpdate({phoneNumber:body.phoneNumber},{phoneNumber:body.phoneNumber, email:body.email},{new: true, upsert: true })
   .then((user) => (user.view(true)))
   .then(success(res, 201))

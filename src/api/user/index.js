@@ -1,7 +1,7 @@
 import { Router } from 'express'
 import { middleware as query } from 'querymen'
 import { middleware as body } from 'bodymen'
-import { signIn, signInEmail, auth, index, show, update, destroy } from './controller'
+import { signIn, signInWeb, auth, index, show, update, destroy } from './controller'
 import { schema } from './model'
 export User, { schema } from './model'
 
@@ -67,9 +67,9 @@ router.post('/sign-in',
    * @apiError {Object} 400 Some parameters may contain invalid values.
    * @apiError 404 User not found.
    */
-  router.post('/sign-in-email',
+  router.post('/sign-in-web',
     body({ phoneNumber, email }),
-    signInEmail)
+    signInWeb)
 
 /**
  * @api {get} /user Retrieve users
