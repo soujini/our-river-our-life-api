@@ -29,8 +29,13 @@ export const auth = ({ bodymen: { body } }, res, next) =>{
 }
 
 export const signIn = ({ bodymen: { body } }, res, next) =>{
-  console.log(body)
   User.findOneAndUpdate({phoneNumber:body.phoneNumber},{phoneNumber:body.phoneNumber},{new: true, upsert: true })
+  .then((user) => (user.view(true)))
+  .then(success(res, 201))
+  .catch(next)
+}
+export const signInEmail = ({ bodymen: { body } }, res, next) =>{
+  User.findOneAndUpdate({phoneNumber:body.phoneNumber},{phoneNumber:body.phoneNumber, email:body.email},{new: true, upsert: true })
   .then((user) => (user.view(true)))
   .then(success(res, 201))
   .catch(next)
