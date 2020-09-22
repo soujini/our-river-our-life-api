@@ -4,6 +4,8 @@ import aws from 'aws-sdk';
 import fs from 'fs';
 
 export const createFlora = (req, res, next) =>{
+  console.log("souji");
+  console.log(req);
   var customOriginalName="";
   var customPath="";
   var customFieldName="";

@@ -51,12 +51,12 @@ const authenticateJWT = (req, res, next) => {
  */
 
  router.post('/create-flora',authenticateJWT,
- multer({ dest: 'temp/', limits: { fieldSize: 8 * 1024 * 1024 }}).array('photos', 10),
+ multer({ dest: 'temp/', limits: { fieldSize: 8 * 1024 * 1024 }}).array('flora', 10),
    createFlora
  )
 
  router.post('/create-fauna',authenticateJWT,
- multer({ dest: 'temp/', limits: { fieldSize: 8 * 1024 * 1024 }}).array('photos', 10),
+ multer({ dest: 'temp/', limits: { fieldSize: 8 * 1024 * 1024 }}).array('fauna', 10),
    createFauna
  )
 
