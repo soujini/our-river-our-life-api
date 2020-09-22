@@ -40,7 +40,7 @@ const { latitude, longitude, location, flora, fauna, commonName, localName, scie
  )
 
 router.post('/',
-  master(),
+  // master(),
   body({ latitude, longitude, location, flora, fauna, commonName, localName, scientificName }),
   create)
 
@@ -57,7 +57,7 @@ router.post('/',
  * @apiError 401 master access only.
  */
 router.get('/',
-  master(),
+  // master(),
   query(),
   index)
 
@@ -73,7 +73,7 @@ router.get('/',
  * @apiError 401 master access only.
  */
 router.get('/:id',
-  master(),
+  // master(),
   show)
 
 /**
@@ -96,7 +96,7 @@ router.get('/:id',
  * @apiError 401 master access only.
  */
 router.put('/:id',
-  master(),
+  // master(),
   body({ latitude, longitude, location, flora, fauna, commonName, localName, scientificName }),
   update)
 
@@ -111,7 +111,7 @@ router.put('/:id',
  * @apiError 401 master access only.
  */
 router.delete('/:id',
-  master(),
+  // master(),
   destroy)
 
 export default router
