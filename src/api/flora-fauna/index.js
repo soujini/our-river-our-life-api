@@ -7,7 +7,7 @@ import { schema } from './model'
 export FloraFauna, { schema } from './model'
 
 const router = new Router()
-const { latitude, longitude, location, flora, fauna, commonName, localName, scientificName } = schema.tree
+const { userId, latitude, longitude, location, flora, fauna, commonName, localName, scientificName } = schema.tree
 
 /**
  * @api {post} /flora-fauna Create flora fauna
@@ -41,7 +41,7 @@ const { latitude, longitude, location, flora, fauna, commonName, localName, scie
 
 router.post('/',
   // master(),
-  body({ latitude, longitude, location, flora, fauna, commonName, localName, scientificName }),
+  body({ userId, latitude, longitude, location, flora, fauna, commonName, localName, scientificName }),
   create)
 
 /**
@@ -97,7 +97,7 @@ router.get('/:id',
  */
 router.put('/:id',
   // master(),
-  body({ latitude, longitude, location, flora, fauna, commonName, localName, scientificName }),
+  body({ userId, latitude, longitude, location, flora, fauna, commonName, localName, scientificName }),
   update)
 
 /**
