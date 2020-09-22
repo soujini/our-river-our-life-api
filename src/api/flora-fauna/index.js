@@ -5,7 +5,7 @@ import { middleware as body } from 'bodymen'
 import { createFlora, createFauna, create, index, show, update, destroy } from './controller'
 import { schema } from './model'
 export FloraFauna, { schema } from './model'
-
+import multer from 'multer'
 const router = new Router()
 const { userId, latitude, longitude, location, flora, fauna, commonName, localName, scientificName } = schema.tree
 
