@@ -8,7 +8,28 @@ export FloraFauna, { schema } from './model'
 import multer from 'multer'
 const router = new Router()
 const { userId, latitude, longitude, location, flora, fauna, commonName, localName, scientificName } = schema.tree
+const jwt = require('jsonwebtoken');
 
+const accessTokenSecret = 'youraccesstokensecret';
+
+const authenticateJWT = (req, res, next) => {
+  const authHeader = req.headers.authorization;
+
+  if (authHeader) {
+    const token = authHeader.split(' ')[1];
+
+    jwt.verify(token, accessTokenSecret, (err, user) => {
+      if (err) {
+        return res.sendStatus(403);
+      }
+
+      req.user = user;
+      next();
+    });
+  } else {
+    res.sendStatus(401);
+  }
+};
 /**
  * @api {post} /flora-fauna Create flora fauna
  * @apiName CreateFloraFauna
@@ -29,12 +50,12 @@ const { userId, latitude, longitude, location, flora, fauna, commonName, localNa
  * @apiError 401 master access only.
  */
 
- router.post('/create-flora',
+ router.post('/create-flora',authenticateJWT,
  multer({ dest: 'temp/', limits: { fieldSize: 8 * 1024 * 1024 }}).array('photos', 10),
    createFlora
  )
 
- router.post('/create-fauna',
+ router.post('/create-fauna',authenticateJWT,
  multer({ dest: 'temp/', limits: { fieldSize: 8 * 1024 * 1024 }}).array('photos', 10),
    createFauna
  )
