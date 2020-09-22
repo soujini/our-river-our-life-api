@@ -1,7 +1,7 @@
 import { Router } from 'express'
 import { middleware as query } from 'querymen'
 import { middleware as body } from 'bodymen'
-import { master } from '../../services/passport'
+// import { master } from '../../services/passport'
 import { createFlora, createFauna, create, index, show, update, destroy } from './controller'
 import { schema } from './model'
 export FloraFauna, { schema } from './model'
