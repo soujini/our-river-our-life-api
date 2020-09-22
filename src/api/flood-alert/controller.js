@@ -16,8 +16,6 @@ export const createAlert = (req, res, next) =>{
   });
 
   const file = req.files;
-  console.log("souji "+file);
-  console.log("length "+req.files.length);
   if(req.files.length > 0){
     const s3 = new aws.S3();
     var responseData = [];
@@ -41,8 +39,6 @@ export const createAlert = (req, res, next) =>{
             responseData.forEach(function(element){
               photos.push(element.Location)
             });
-            console.log("here");
-              console.log(req.body.location);
 
             var params = {
               "location":req.body.location,
