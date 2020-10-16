@@ -6,6 +6,8 @@ const jwt = require('jsonwebtoken');
 
 const accessTokenSecret = 'youraccesstokensecret';
 
+
+
 export const auth = ({ bodymen: { body } }, res, next) =>{
 
   // Filter user from the users array by username and password
@@ -17,6 +19,7 @@ export const auth = ({ bodymen: { body } }, res, next) =>{
       res.json({
         accessToken
       });
+
     }
     else{
        res.send('Phone Number is incorrect');
@@ -32,7 +35,6 @@ export const signIn = ({ bodymen: { body } }, res, next) =>{
   .catch(next)
 }
 export const signInWeb = ({ bodymen: { body } }, res, next) =>{
-  //Check if phone exists and update phone and email
   User.findOneAndUpdate({phoneNumber:body.phoneNumber},{phoneNumber:body.phoneNumber, email:body.email},{new: true, upsert: true })
   .then((user) => (user.view(true)))
   .then(success(res, 201))
