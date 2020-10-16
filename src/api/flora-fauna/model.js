@@ -4,6 +4,9 @@ const floraFaunaSchema = new Schema({
   userId: {
     type: String
   },
+  // username: {
+  //   type: String
+  // },
   latitude: {
     type: String
   },
@@ -44,6 +47,7 @@ floraFaunaSchema.methods = {
       // simple view
       id: this.id,
       userId:this.userId,
+      // username:this.username,
       latitude: this.latitude,
       longitude: this.longitude,
       location: this.location,

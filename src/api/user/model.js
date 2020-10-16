@@ -10,6 +10,16 @@ const userSchema = new Schema({
     type: String,
     unique:true,
     sparse:true
+  },
+  firstName: {
+    type: String,
+    unique:true,
+    sparse:true
+  },
+  lastName: {
+    type: String,
+    unique:true,
+    sparse:true
   }
 }, {
   timestamps: true,
@@ -26,6 +36,8 @@ userSchema.methods = {
       id: this.id,
       phoneNumber: this.phoneNumber,
       email:this.email,
+      firstName:this.firstName,
+      lastName:this.lastName,
       createdAt: this.createdAt,
       updatedAt: this.updatedAt
     }
