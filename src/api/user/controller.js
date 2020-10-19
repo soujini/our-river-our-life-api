@@ -15,9 +15,20 @@ export const auth = ({ bodymen: { body } }, res, next) =>{
     User.findOne({phoneNumber: body.phoneNumber}, function(err,user){
       if(user){
         // Generate an access token
+        var firstName = user.firstName;
+        var lastName = user.lastName;
+        var phoneNumber = user.phoneNumber;
+        var email = user.email;
+        var id = user.id;
+
         const accessToken = jwt.sign({ phoneNumber: user.phoneNumber }, accessTokenSecret);
         res.json({
-          accessToken
+          accessToken,
+          firstName,
+          lastName,
+          phoneNumber,
+          email,
+          id,
         });
       }
       else{
@@ -28,10 +39,20 @@ export const auth = ({ bodymen: { body } }, res, next) =>{
   else{
     User.findOne({email: body.email}, function(err,user){
       if(user){
+        var firstName = user.firstName;
+        var lastName = user.lastName;
+        var phoneNumber = user.phoneNumber;
+        var email = user.email;
+        var id = user.id;
         // Generate an access token
         const accessToken = jwt.sign({ email: user.email }, accessTokenSecret);
         res.json({
-          accessToken
+          accessToken,
+          firstName,
+          lastName,
+          phoneNumber,
+          email,
+          id,
         });
       }
       else{
