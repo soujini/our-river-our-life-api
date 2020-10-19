@@ -23,13 +23,11 @@ export const auth = ({ bodymen: { body } }, res, next) =>{
 
         const accessToken = jwt.sign({ phoneNumber: user.phoneNumber }, accessTokenSecret);
         res.json({
-          accessToken,
-          firstName,
-          lastName,
-          phoneNumber,
-          email,
-          id,
+          user,
+          accessToken
         });
+        res.json({ answer: 42, hello: 'world' });
+
       }
       else{
         res.send('Phone Number is incorrect');
