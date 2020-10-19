@@ -26,8 +26,6 @@ export const auth = ({ bodymen: { body } }, res, next) =>{
           user,
           accessToken
         });
-        res.json({ answer: 42, hello: 'world' });
-
       }
       else{
         res.send('Phone Number is incorrect');
