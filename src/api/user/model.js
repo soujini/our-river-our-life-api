@@ -20,7 +20,7 @@ const userSchema = new Schema({
     type: String,
     unique:true,
     sparse:true
-  },
+  }
 }, {
   timestamps: true,
   toJSON: {

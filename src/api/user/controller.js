@@ -36,7 +36,7 @@ export const signIn = ({ bodymen: { body } }, res, next) =>{
 }
 export const signInWeb = ({ bodymen: { body } }, res, next) => {
   console.log("in here");
-  console.log(body.firstName +" "+body.lastName + " "+body.email + ' '+body.phoneNumber);
+  console.log(body);
   User.findOneAndUpdate({phoneNumber:body.phoneNumber},{phoneNumber:body.phoneNumber, email:body.email, firstName:body.firstName, lastName:body.lastName},{new: true, upsert: true })
   .then((user) => (user.view(true)))
   .then(success(res, 201))
