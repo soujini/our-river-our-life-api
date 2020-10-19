@@ -22,7 +22,7 @@ export const auth = ({ bodymen: { body } }, res, next) =>{
 
     }
     else{
-       res.send('Phone Number is incorrect');
+      res.send('Phone Number is incorrect');
     }
   });
 
@@ -34,20 +34,20 @@ export const signIn = ({ bodymen: { body } }, res, next) =>{
   .then(success(res, 201))
   .catch(next)
 }
-export const signInWeb = ({ bodymen: { body } }, res, next) =>{
-  User.findOneAndUpdate({phoneNumber:body.phoneNumber},{phoneNumber:body.phoneNumber, email:body.email},{new: true, upsert: true })
+export const signInWeb = ({ bodymen: { body } }, res, next) => {
+  User.findOneAndUpdate({phoneNumber:body.phoneNumber},{phoneNumber:body.phoneNumber, email:body.email, firstName:body.firstName, lastName:body.lastName},{new: true, upsert: true })
   .then((user) => (user.view(true)))
   .then(success(res, 201))
   .catch(next)
 }
 
 export const index = ({ querymen: { query, select, cursor } }, res, next) =>{
-User.count(query)
-.then(count => User.find(query, select, cursor)
-.then((users) => ({
-  count,
-  rows: users.map((user) => user.view())
-}))
+  User.count(query)
+  .then(count => User.find(query, select, cursor)
+  .then((users) => ({
+    count,
+    rows: users.map((user) => user.view())
+  }))
 )
 .then(success(res))
 .catch(next)
