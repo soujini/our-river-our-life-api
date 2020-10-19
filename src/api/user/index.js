@@ -105,7 +105,7 @@ router.get('/:id',authenticateJWT,
  * @apiError 404 User not found.
  */
 router.put('/:id',authenticateJWT,
-  body({ phoneNumber }),
+  body({ phoneNumber, email, firstName, lastName }),
   update)
 
 /**
