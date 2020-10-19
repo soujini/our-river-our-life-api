@@ -41,7 +41,7 @@ const authenticateJWT = (req, res, next) => {
  * @apiError 404 User not found.
  */
 router.post('/auth',
-  body({ phoneNumber }),
+  body({ phoneNumber, email }),
   auth)
 
 
