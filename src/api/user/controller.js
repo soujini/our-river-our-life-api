@@ -6,26 +6,39 @@ const jwt = require('jsonwebtoken');
 
 const accessTokenSecret = 'youraccesstokensecret';
 
-
-
 export const auth = ({ bodymen: { body } }, res, next) =>{
-
   // Filter user from the users array by username and password
-  User.findOne({phoneNumber: body.phoneNumber}, function(err,user){
-    if(user){
-      // Generate an access token
-      const accessToken = jwt.sign({ phoneNumber: user.phoneNumber }, accessTokenSecret);
-
-      res.json({
-        accessToken
-      });
-
-    }
-    else{
-      res.send('Phone Number is incorrect');
-    }
-  });
-
+  console.log("innnn");
+  console.log(body);
+  if(body.phoneNumber != null)
+  {
+    User.findOne({phoneNumber: body.phoneNumber}, function(err,user){
+      if(user){
+        // Generate an access token
+        const accessToken = jwt.sign({ phoneNumber: user.phoneNumber }, accessTokenSecret);
+        res.json({
+          accessToken
+        });
+      }
+      else{
+        res.send('Phone Number is incorrect');
+      }
+    });
+  }
+  else{
+    User.findOne({email: body.email}, function(err,user){
+      if(user){
+        // Generate an access token
+        const accessToken = jwt.sign({ email: user.email }, accessTokenSecret);
+        res.json({
+          accessToken
+        });
+      }
+      else{
+        res.send('Email is incorrect');
+      }
+    });
+  }
 }
 
 export const signIn = ({ bodymen: { body } }, res, next) =>{
