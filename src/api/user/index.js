@@ -68,7 +68,7 @@ router.post('/sign-in',
    * @apiError 404 User not found.
    */
   router.post('/sign-in-web',
-    body({ phoneNumber, email }),
+    body({ phoneNumber, email, firstName, lastName }),
     signInWeb)
 
 /**

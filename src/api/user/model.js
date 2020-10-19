@@ -35,9 +35,9 @@ userSchema.methods = {
       // simple view
       id: this.id,
       phoneNumber: this.phoneNumber,
-      email:this.email,
-      firstName:this.firstName,
-      lastName:this.lastName,
+      email: this.email,
+      firstName: this.firstName,
+      lastName: this.lastName,
       createdAt: this.createdAt,
       updatedAt: this.updatedAt
     }
