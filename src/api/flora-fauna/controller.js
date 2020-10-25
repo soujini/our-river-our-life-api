@@ -171,7 +171,7 @@ export const index = ({ querymen: { query, select, cursor } }, res, next) =>
       .then((floraFaunas) => ({
         count,
         rows: floraFaunas.map((floraFauna) =>
-          floraFauna.contributorName = "Souji",
+          this.contributorName = "Souji",
           floraFauna.view())
       }))
     )
