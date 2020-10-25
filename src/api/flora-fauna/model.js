@@ -32,7 +32,11 @@ const floraFaunaSchema = new Schema({
   },
   scientificName: {
     type: String
+  },
+  contributorName: {
+    type: String
   }
+
 }, {
   timestamps: true,
   toJSON: {
@@ -57,7 +61,8 @@ floraFaunaSchema.methods = {
       localName: this.localName,
       scientificName: this.scientificName,
       createdAt: this.createdAt,
-      updatedAt: this.updatedAt
+      updatedAt: this.updatedAt,
+      contributorName:this.contributorName
     }
 
     return full ? {

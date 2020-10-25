@@ -7,7 +7,7 @@ import { schema } from './model'
 export FloraFauna, { schema } from './model'
 import multer from 'multer'
 const router = new Router()
-const { userId, latitude, longitude, location, flora, fauna, commonName, localName, scientificName } = schema.tree
+const { userId, latitude, longitude, location, flora, fauna, commonName, localName, scientificName, contributorName } = schema.tree
 const jwt = require('jsonwebtoken');
 
 const accessTokenSecret = 'youraccesstokensecret';
@@ -62,7 +62,7 @@ const authenticateJWT = (req, res, next) => {
 
 router.post('/',
   // master(),
-  body({ userId, latitude, longitude, location, flora, fauna, commonName, localName, scientificName }),
+  body({ userId, latitude, longitude, location, flora, fauna, commonName, localName, scientificName, contributorName }),
   create)
 
 /**
@@ -118,7 +118,7 @@ router.get('/:id',
  */
 router.put('/:id',
   // master(),
-  body({ userId, latitude, longitude, location, flora, fauna, commonName, localName, scientificName }),
+  body({ userId, latitude, longitude, location, flora, fauna, commonName, localName, scientificName, contributorName }),
   update)
 
 /**
