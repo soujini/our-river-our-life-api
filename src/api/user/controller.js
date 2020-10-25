@@ -69,17 +69,19 @@ export const index = ({ querymen: { query, select, cursor } }, res, next) =>{
 export const getUser = ({ params }, res, next) =>{
   console.log("get user "+params.userId);
   var selectedUser;
-  User.findById(params.userId, function(err, user){
-    if(user){
-      console.log(user);
-        selectedUser = user;
-          return user;
-    }
-    else{
-      console.log("Error in get user");
-    }
-
-  });
+  User.findById(params.userId)
+  .then((user) => {return user.view(true)}))
+  // User.findById(params.userId, function(err, user){
+  //   if(user){
+  //     console.log(user);
+  //       selectedUser = user;
+  //         return user;
+  //   }
+  //   else{
+  //     console.log("Error in get user");
+  //   }
+  //
+  // });
 
 }
 
