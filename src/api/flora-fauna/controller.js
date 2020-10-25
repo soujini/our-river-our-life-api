@@ -2,6 +2,7 @@ import { success, notFound } from '../../services/response/'
 import { FloraFauna } from '.'
 import aws from 'aws-sdk';
 import fs from 'fs';
+var UserController = require('../user/controller')
 
 export const createFlora = (req, res, next) =>{
   var customOriginalName="";
@@ -171,8 +172,8 @@ export const index = ({ querymen: { query, select, cursor } }, res, next) =>
       .then((floraFaunas) => ({
         count,
         rows: floraFaunas.map((floraFauna) => {
+          UserController.index(floraFauna.userId);
           floraFauna.contributorName="Souji";
-          // this.contributorName="Souji";
           return floraFauna.view()
         })
       }))
