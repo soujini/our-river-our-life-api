@@ -173,9 +173,9 @@ export const index = ({ querymen: { query, select, cursor } }, res, next) =>
         count,
         rows: floraFaunas.map((floraFauna) => {
           console.log("ffff");
-          console.log(floraFauna);
-          var userId  = floraFauna.userId;
-          var user = UserController.getUser(floraFauna.userId);
+          console.log(floraFauna.userId);
+          var userId  = JSON.stringify(floraFauna.userId);
+          var user = UserController.getUser(userId);
           console.log(user);
           floraFauna.contributorName = user.firstName + ' ' +user.lastName;
           return floraFauna.view()
