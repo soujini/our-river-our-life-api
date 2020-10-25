@@ -70,9 +70,17 @@ export const getUser = ({ params }, res, next) =>{
   console.log("get user "+params.userId);
   var selectedUser;
   User.findById(params.userId, function(err, user){
-    selectedUser = user;
+    if(user){
+      console.log(user);
+        selectedUser = user;
+          return user;
+    }
+    else{
+      console.log("Error in get user");
+    }
+
   });
-  return selectedUser;
+
 }
 
 export const show = ({ params }, res, next) =>

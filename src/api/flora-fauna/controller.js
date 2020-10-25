@@ -175,8 +175,8 @@ export const index = ({ querymen: { query, select, cursor } }, res, next) =>
           var params = {"userId":floraFauna['userId']}
           var userId  = floraFauna['userId'];
           var user = UserController.getUser({params});
-          console.log(user);
-          floraFauna.contributorName = user['firstName'] + ' ' +user['lastName'];
+          console.log(user.firstName);
+          // floraFauna.contributorName = user['firstName'] + ' ' +user['lastName'];
           return floraFauna.view()
         })
       }))
