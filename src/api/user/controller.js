@@ -69,8 +69,8 @@ export const index = ({ querymen: { query, select, cursor } }, res, next) =>{
 export const getUser = ({ userId }, res, next) =>{
   User.findById(userId, function(err, user){
     return user;
-  }
-})
+  });
+}
 
 export const show = ({ params }, res, next) =>
 User.findById(params.id)
