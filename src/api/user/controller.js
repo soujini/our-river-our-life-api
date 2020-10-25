@@ -66,8 +66,8 @@ export const index = ({ querymen: { query, select, cursor } }, res, next) =>{
 .catch(next)
 }
 
-export const getUser = ({ userId }, res, next) =>{
-  console.log("get user "+userId);
+export const getUser = ({ params }, res, next) =>{
+  console.log("get user "+params.userId);
   User.findById(userId, function(err, user){
     return user;
   });

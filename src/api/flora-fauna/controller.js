@@ -172,10 +172,12 @@ export const index = ({ querymen: { query, select, cursor } }, res, next) =>
       .then((floraFaunas) => ({
         count,
         rows: floraFaunas.map((floraFauna) => {
+          params = {"userId":floraFauna['userId']}
           console.log("ffff");
-          console.log(floraFauna.userId);
-          var userId  = JSON.stringify(floraFauna.userId);
-          var user = UserController.getUser(userId);
+          console.log(floraFauna['userId']);
+          var userId  = floraFauna['userId'];
+
+          var user = UserController.getUser(params);
           console.log(user);
           floraFauna.contributorName = user.firstName + ' ' +user.lastName;
           return floraFauna.view()
