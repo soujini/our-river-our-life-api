@@ -172,7 +172,7 @@ export const index = ({ querymen: { query, select, cursor } }, res, next) =>
       .then((floraFaunas) => ({
         count,
         rows: floraFaunas.map((floraFauna) => {
-          params = {"userId":floraFauna['userId']}
+          var params = {"userId":floraFauna['userId']}
           console.log("ffff");
           console.log(floraFauna['userId']);
           var userId  = floraFauna['userId'];
