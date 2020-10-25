@@ -173,6 +173,7 @@ export const index = ({ querymen: { query, select, cursor } }, res, next) =>
         count,
         rows: floraFaunas.map((floraFauna) => {
           var user = UserController.getUser(floraFauna.userId);
+          console.log(user);
           floraFauna.contributorName = user.firstName + ' ' +user.lastName;
           return floraFauna.view()
         })
