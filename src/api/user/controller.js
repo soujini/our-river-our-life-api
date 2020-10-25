@@ -68,7 +68,7 @@ export const index = ({ querymen: { query, select, cursor } }, res, next) =>{
 
 export const getUser = ({ params }, res, next) =>{
   console.log("get user "+params.userId);
-  User.findById(userId, function(err, user){
+  User.findById(params.userId, function(err, user){
     return user;
   });
 }
