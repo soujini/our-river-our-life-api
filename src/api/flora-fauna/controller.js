@@ -174,7 +174,7 @@ export const index = ({ querymen: { query, select, cursor } }, res, next) =>
           print("souj");
           print(floraFauna.userId);
           floraFauna.view()
-        })
+        }))
       }))
     )
     .then(success(res))
