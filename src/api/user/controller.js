@@ -68,11 +68,11 @@ export const index = ({ querymen: { query, select, cursor } }, res, next) =>{
 
 export const getUser = ({ params }, res, next) =>{
   console.log("get user "+params.userId);
-  // User.findById(params.userId, function(err, user){
-  //   return user;
-  // });
-
-  return User.findById(params.userId);
+  var selectedUser;
+  User.findById(params.userId, function(err, user){
+    selectedUser = user;
+  });
+  return selectedUser;
 }
 
 export const show = ({ params }, res, next) =>
