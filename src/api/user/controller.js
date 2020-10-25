@@ -74,7 +74,6 @@ User.findById(params.id)
 .catch(next)
 
 export const update = ({ bodymen: { body }, params }, res, next) =>{
-  console.log("souj");
   console.log(body);
 User.findById(params.id)
 .then(notFound(res))

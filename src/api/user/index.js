@@ -104,7 +104,7 @@ router.get('/:id',authenticateJWT,
  * @apiError {Object} 400 Some parameters may contain invalid values.
  * @apiError 404 User not found.
  */
-router.post('/:id',authenticateJWT,
+router.put('/:id',authenticateJWT,
   body({ phoneNumber, email, firstName, lastName }),
   update)
 
