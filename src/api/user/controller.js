@@ -73,13 +73,16 @@ User.findById(params.id)
 .then(success(res))
 .catch(next)
 
-export const update = ({ bodymen: { body }, params }, res, next) =>
+export const update = ({ bodymen: { body }, params }, res, next) =>{
+  console.log("souj");
+  console.log(body);
 User.findById(params.id)
 .then(notFound(res))
 .then((user) => user ? Object.assign(user, body).save() : null)
 .then((user) => user ? user.view(true) : null)
 .then(success(res))
 .catch(next)
+}
 
 export const destroy = ({ params }, res, next) =>
 User.findById(params.id)
