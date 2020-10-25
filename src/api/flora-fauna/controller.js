@@ -170,7 +170,7 @@ export const index = ({ querymen: { query, select, cursor } }, res, next) =>
     .then(count => FloraFauna.find(query, select, cursor)
       .then((floraFaunas) => ({
         count,
-        rows: floraFaunas.map((floraFauna) => {
+        rows: floraFaunas.map((floraFauna) => ({
           print("souj");
           print(floraFauna.userId);
           floraFauna.view()
