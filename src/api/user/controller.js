@@ -70,7 +70,7 @@ export const getUser = ({ params }, res, next) =>{
   console.log("get user "+params.userId);
   var selectedUser;
   User.findById(params.userId)
-  .then((user) => {return user.view(true)}))
+  .then((user) => {return user.view()}))
   // User.findById(params.userId, function(err, user){
   //   if(user){
   //     console.log(user);
