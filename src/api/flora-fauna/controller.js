@@ -166,10 +166,10 @@ export const create = ({ bodymen: { body } }, res, next) =>
     .then(success(res, 201))
     .catch(next)
 
-export const index = ({ querymen: { query, select, cursor } }, res, next) =>{
+export const index = async ({ querymen: { query, select, cursor } }, res, next) =>{
   FloraFauna.count(query)
     .then(count => FloraFauna.find(query, select, cursor)
-      .then((floraFaunas) => ({
+      .then(async(floraFaunas) => ({
         count,
         // rows: getUser(floraFaunas)
          rows:  await Promise.all(floraFaunas.map(async(floraFauna) => {
