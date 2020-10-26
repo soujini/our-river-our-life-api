@@ -187,7 +187,7 @@ export const index =  async ({ querymen: { query, select, cursor } }, res, next)
     .catch(next)
   }
 
-  export const getUser = async() =>{
+  export const getUser = async(floraFaunas) =>{
     floraFaunas.map((floraFauna) => {
       var params = {"userId":floraFauna['userId']}
       var user = await UserController.getUser({params});
