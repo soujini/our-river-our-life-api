@@ -71,19 +71,6 @@ export const getUser = async ({ params }, res, next) =>{
   var selectedUser;
   var user = await User.findById(params.userId);
   return user;
-  // .then((user) =>  {console.log(user);return user;})
-  // User.findById(params.userId, function(err, user){
-  //   if(user){
-  //     console.log(user);
-  //       selectedUser = user;
-  //         return user;
-  //   }
-  //   else{
-  //     console.log("Error in get user");
-  //   }
-  //
-  // });
-
 }
 
 export const show = ({ params }, res, next) =>

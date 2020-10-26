@@ -26,10 +26,10 @@ export const index = async ({ querymen: { query, select, cursor } }, res, next) 
     .then(count => WaterTestDetails.find(query, select, cursor)
       .then(async(waterTestDetails) => ({
         count,
-         rows:  await Promise.all(waterTestDetails.map(async(waterTestDetails) => {
-          var params = {"userId":waterTestDetails['userId']}
+         rows:  await Promise.all(waterTestDetails.map(async(waterTestDetail) => {
+          var params = {"userId":waterTestDetail['userId']}
           var user = await UserController.getUser({params});
-          waterTestDetails.contributorName = user.firstName ? user.firstName : waterTestDetails['generalInformation']['testerName'] + ' ' +user.lastName ? user.lastName :'';
+          waterTestDetail.contributorName = user.firstName ? user.firstName : waterTestDetail['generalInformation']['testerName'] + ' ' +user.lastName ? user.lastName :'';
           return waterTestDetails.view();
         }))
       }))
