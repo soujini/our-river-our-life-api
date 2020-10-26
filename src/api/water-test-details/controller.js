@@ -1,10 +1,10 @@
 import { success, notFound } from '../../services/response/'
 import { WaterTestDetails } from '.'
 var PDFController = require('../pdf/controller')
-import { UserController } from '../user/controller'
-// var UserController = require('../user/controller')
+// import { UserController } from '../user/controller'
+var UserController = require('../user/controller')
 
-public userController: UserController = new UserController();
+
 
 export const create = ({ bodymen: { body } }, res, next) =>
 WaterTestDetails.create(body)
@@ -24,6 +24,7 @@ WaterTestDetails.create(body)
 // .catch(next)
 // }
 export const index = ({ querymen: { query, select, cursor } }, res, next) =>{
+  // public userController: UserController = new UserController();
   WaterTestDetails.count(query)
     .then(count => WaterTestDetails.find(query, select, cursor)
       .then(async(waterTestDetails) => ({
