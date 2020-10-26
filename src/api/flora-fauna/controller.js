@@ -174,31 +174,14 @@ export const index = async ({ querymen: { query, select, cursor } }, res, next) 
         // rows: getUser(floraFaunas)
          rows:  await Promise.all(floraFaunas.map(async(floraFauna) => {
           var params = {"userId":floraFauna['userId']}
-          var userId  = floraFauna['userId'];
           var user = await UserController.getUser({params});
-          console.log("index");
-          floraFauna.contributorName = user.firstName + ' ' +user.lastName;
+          floraFauna.contributorName = user.firstName ? user.firstName : '' + ' ' +user.lastName ? user.lastName : '';
           return floraFauna.view();
-          //console.log(user.firstName);
-          //
-
         }))
-
       }))
     )
     .then(success(res))
     .catch(next)
-  }
-
-  export const getUser = async(floraFaunas) =>{
-    floraFaunas.map(async(floraFauna) => {
-      var params = {"userId":floraFauna['userId']}
-      var user = await UserController.getUser({params});
-      console.log("in here");
-      console.log(user);
-      floraFauna.contributorName = user.phoneNumber + ' ' +user.phoneNumber;
-      floraFauna.view()
-    });
   }
 
 export const show = ({ params }, res, next) =>
