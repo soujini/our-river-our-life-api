@@ -69,8 +69,9 @@ export const index = ({ querymen: { query, select, cursor } }, res, next) =>{
 export const getUser = async ({ params }, res, next) =>{
   console.log("get user "+params.userId);
   var selectedUser;
-  User.findById(params.userId)
-  .then((user) =>  {console.log(user);return user;})
+  var user = await User.findById(params.userId);
+  return user;
+  // .then((user) =>  {console.log(user);return user;})
   // User.findById(params.userId, function(err, user){
   //   if(user){
   //     console.log(user);
