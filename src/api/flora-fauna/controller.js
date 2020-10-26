@@ -188,7 +188,7 @@ export const index =  async ({ querymen: { query, select, cursor } }, res, next)
   }
 
   export const getUser = async(floraFaunas) =>{
-    floraFaunas.map((floraFauna) => {
+    floraFaunas.map(async(floraFauna) => {
       var params = {"userId":floraFauna['userId']}
       var user = await UserController.getUser({params});
       console.log("in here");
