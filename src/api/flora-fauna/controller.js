@@ -172,10 +172,10 @@ export const index =  async ({ querymen: { query, select, cursor } }, res, next)
       .then(async(floraFaunas) => ({
         count,
         // rows: getUser(floraFaunas)
-        rows:  floraFaunas.map((floraFauna) => {
+         rows:  floraFaunas.map((floraFauna) => {
           var params = {"userId":floraFauna['userId']}
           var userId  = floraFauna['userId'];
-          //var user = await UserController.getUser({params});
+          var user = await UserController.getUser({params});
           console.log("index");
           return floraFauna.view();
           //console.log(user.firstName);
