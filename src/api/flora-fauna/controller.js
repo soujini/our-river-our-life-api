@@ -175,12 +175,14 @@ export const index =  async ({ querymen: { query, select, cursor } }, res, next)
         rows: floraFaunas.map(async(floraFauna) => {
           var params = {"userId":floraFauna['userId']}
           var userId  = floraFauna['userId'];
-          var user = await UserController.getUser({params});
+          //var user = await UserController.getUser({params});
           console.log("index");
-          console.log(user.firstName);
-          floraFauna.contributorName = user.firstName + ' ' +user.lastName;
-          floraFauna.view();
+          return floraFauna.view();
+          //console.log(user.firstName);
+          //floraFauna.contributorName = user.firstName + ' ' +user.lastName;
+
         })
+
       }))
     )
     .then(success(res))
