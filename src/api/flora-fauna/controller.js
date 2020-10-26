@@ -172,7 +172,7 @@ export const index = ({ querymen: { query, select, cursor } }, res, next) =>{
       .then((floraFaunas) => ({
         count,
         // rows: getUser(floraFaunas)
-         rows:  floraFaunas.map(async(floraFauna) => {
+         rows:  await Promise.all(floraFaunas.map(async(floraFauna) => {
           var params = {"userId":floraFauna['userId']}
           var userId  = floraFauna['userId'];
           var user = await UserController.getUser({params});
@@ -181,7 +181,7 @@ export const index = ({ querymen: { query, select, cursor } }, res, next) =>{
           //console.log(user.firstName);
           //floraFauna.contributorName = user.firstName + ' ' +user.lastName;
 
-        })
+        }))
 
       }))
     )
