@@ -1,7 +1,7 @@
-import { success, notFound } from '../../services/response/';
-import { WaterTestDetails } from '.';
-var PDFController = require('../pdf/controller');
-var UserController = require('../user/controller');
+import { success, notFound } from '../../services/response/'
+import { WaterTestDetails } from '.'
+var PDFController = require('../pdf/controller')
+var UserController = require('../user/controller')
 
 export const create = ({ bodymen: { body } }, res, next) =>
 WaterTestDetails.create(body)
@@ -9,34 +9,34 @@ WaterTestDetails.create(body)
 .then(success(res, 201))
 .catch(next)
 
-export const index = ({ querymen: { query, select, cursor } }, res, next) =>{
-  WaterTestDetails.count(query)
-  .then(count => WaterTestDetails.find(query, select, cursor)
-  .then((waterTestDetails) => ({
-    count,
-    rows: waterTestDetails.map((waterTestDetail) => waterTestDetail.view())
-  }))
-)
-.then(success(res))
-.catch(next)
-}
 // export const index = ({ querymen: { query, select, cursor } }, res, next) =>{
 //   WaterTestDetails.count(query)
-//     .then(count => WaterTestDetails.find(query, select, cursor)
-//       .then(async(waterTestDetails) => ({
-//         count,
-//          rows:  await Promise.all(waterTestDetails.map(async(waterTestDetail) => {
-//           var params = {"userId":waterTestDetail['userId']}
-//           var userId  = waterTestDetail['userId'];
-//           var user = await UserController.getUser({params});
-//           waterTestDetail.contributorName = user.firstName + ' ' +user.lastName;
-//           return waterTestDetail.view();
-//         }))
-//       }))
-//     )
-//     .then(success(res))
-//     .catch(next)
-//   }
+//   .then(count => WaterTestDetails.find(query, select, cursor)
+//   .then((waterTestDetails) => ({
+//     count,
+//     rows: waterTestDetails.map((waterTestDetail) => waterTestDetail.view())
+//   }))
+// )
+// .then(success(res))
+// .catch(next)
+// }
+export const index = ({ querymen: { query, select, cursor } }, res, next) =>{
+  WaterTestDetails.count(query)
+    .then(count => WaterTestDetails.find(query, select, cursor)
+      .then(async(waterTestDetails) => ({
+        count,
+         rows:  await Promise.all(waterTestDetails.map(async(waterTestDetail) => {
+          var params = {"userId":waterTestDetail['userId']}
+          var userId  = waterTestDetail['userId'];
+          var user = await UserController.getUser({params});
+          waterTestDetail.contributorName = user.firstName + ' ' +user.lastName;
+          return waterTestDetail.view();
+        }))
+      }))
+    )
+    .then(success(res))
+    .catch(next)
+  }
 
 
 export const show = ({ params }, res, next) =>{
