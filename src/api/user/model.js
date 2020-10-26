@@ -13,12 +13,12 @@ const userSchema = new Schema({
   },
   firstName: {
     type: String,
-    unique:true,
+    // unique:true,
     sparse:true
   },
   lastName: {
     type: String,
-    unique:true,
+    // unique:true,
     sparse:true
   }
 }, {
