@@ -167,24 +167,17 @@ export const create = ({ bodymen: { body } }, res, next) =>
     .catch(next)
 
 export const index = ({ querymen: { query, select, cursor } }, res, next) =>{
-  console.log("in flora fauna get");
   FloraFauna.count(query)
     .then(count => FloraFauna.find(query, select, cursor)
       .then(async(floraFaunas) => ({
         count,
-        // rows: getUser(floraFaunas)
          rows:  await Promise.all(floraFaunas.map(async(floraFauna) => {
           var params = {"userId":floraFauna['userId']}
           var userId  = floraFauna['userId'];
           var user = await UserController.getUser({params});
-          console.log("index");
           floraFauna.contributorName = user.firstName + ' ' +user.lastName;
           return floraFauna.view();
-          //console.log(user.firstName);
-          //
-
         }))
-
       }))
     )
     .then(success(res))
