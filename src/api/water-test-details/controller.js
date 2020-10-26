@@ -9,17 +9,17 @@ WaterTestDetails.create(body)
 .then(success(res, 201))
 .catch(next)
 
-export const index = ({ querymen: { query, select, cursor } }, res, next) =>{
-WaterTestDetails.count(query)
-.then(count => WaterTestDetails.find(query, select, cursor)
-.then((waterTestDetails) => ({
-  count,
-  rows: waterTestDetails.map((waterTestDetails) => waterTestDetails.view())
-}))
-)
-.then(success(res))
-.catch(next)
-}
+// export const index = ({ querymen: { query, select, cursor } }, res, next) =>{
+// WaterTestDetails.count(query)
+// .then(count => WaterTestDetails.find(query, select, cursor)
+// .then((waterTestDetails) => ({
+//   count,
+//   rows: waterTestDetails.map((waterTestDetails) => waterTestDetails.view())
+// }))
+// )
+// .then(success(res))
+// .catch(next)
+// }
 
 export const index = async ({ querymen: { query, select, cursor } }, res, next) =>{
   WaterTestDetails.count(query)
