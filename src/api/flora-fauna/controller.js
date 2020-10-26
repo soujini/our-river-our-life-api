@@ -191,16 +191,16 @@ export const index = ({ querymen: { query, select, cursor } }, res, next) =>{
     .catch(next)
   }
 
-  export const getUser = async(floraFaunas) =>{
-    floraFaunas.map(async(floraFauna) => {
-      var params = {"userId":floraFauna['userId']}
-      var user = await UserController.getUser({params});
-      console.log("in here");
-      console.log(user);
-      floraFauna.contributorName = user.phoneNumber + ' ' +user.phoneNumber;
-      floraFauna.view()
-    });
-  }
+  // export const getUser = async(floraFaunas) =>{
+  //   floraFaunas.map(async(floraFauna) => {
+  //     var params = {"userId":floraFauna['userId']}
+  //     var user = await UserController.getUser({params});
+  //     console.log("in here");
+  //     console.log(user);
+  //     floraFauna.contributorName = user.phoneNumber + ' ' +user.phoneNumber;
+  //     floraFauna.view()
+  //   });
+  // }
 
 export const show = ({ params }, res, next) =>
   FloraFauna.findById(params.id)
