@@ -169,21 +169,31 @@ export const create = ({ bodymen: { body } }, res, next) =>
 export const index =  async ({ querymen: { query, select, cursor } }, res, next) =>{
   FloraFauna.count(query)
     .then(count => FloraFauna.find(query, select, cursor)
-      .then(async(floraFaunas) => ({
+      .then((floraFaunas) => ({
         count,
-        rows: floraFaunas.map((floraFauna) => {
-          var params = {"userId":floraFauna['userId']}
-          var userId  = floraFauna['userId'];
-          var user = await UserController.getUser({params});
-          console.log("index");
-          console.log(user);
-          floraFauna.contributorName = user.phoneNumber + ' ' +user.phoneNumber;
-          return floraFauna.view()
-        })
+        rows: return getUser(floraFaunas)
+        // rows: floraFaunas.map((floraFauna) => {
+        //   var params = {"userId":floraFauna['userId']}
+        //   var userId  = floraFauna['userId'];
+        //   var user = await UserController.getUser({params});
+        //   console.log("index");
+        //   console.log(user);
+        //   floraFauna.contributorName = user.phoneNumber + ' ' +user.phoneNumber;
+        //   return floraFauna.view()
+        // })
       }))
     )
     .then(success(res))
     .catch(next)
+  }
+
+  export const getUser = async() =>{
+    floraFaunas.map((floraFauna) => {
+      var params = {"userId":floraFauna['userId']}
+      var user = await UserController.getUser({params});
+      console.log("in here");
+      console.log(user);
+    });
   }
 
 export const show = ({ params }, res, next) =>
