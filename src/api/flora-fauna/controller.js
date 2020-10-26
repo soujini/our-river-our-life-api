@@ -169,10 +169,10 @@ export const create = ({ bodymen: { body } }, res, next) =>
 export const index =  async ({ querymen: { query, select, cursor } }, res, next) =>{
   FloraFauna.count(query)
     .then(count => FloraFauna.find(query, select, cursor)
-      .then((floraFaunas) => ({
+      .then(async(floraFaunas) => ({
         count,
         // rows: getUser(floraFaunas)
-        rows: async floraFaunas.map((floraFauna) => {
+        rows:  floraFaunas.map((floraFauna) => {
           var params = {"userId":floraFauna['userId']}
           var userId  = floraFauna['userId'];
           //var user = await UserController.getUser({params});
