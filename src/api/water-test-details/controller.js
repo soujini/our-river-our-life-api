@@ -1,8 +1,8 @@
 import { success, notFound } from '../../services/response/'
 import { WaterTestDetails } from '.'
 var PDFController = require('../pdf/controller')
-// import { UserController } from '../user/controller'
-var UserController = require('../user/controller')
+import { UserController } from '../user/controller'
+// var UserController = require('../user/controller')
 
 public userController: UserController = new UserController();
 
