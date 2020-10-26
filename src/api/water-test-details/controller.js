@@ -10,12 +10,12 @@ WaterTestDetails.create(body)
 .catch(next)
 
 export const index = ({ querymen: { query, select, cursor } }, res, next) =>{
-WaterTestDetails.count(query)
-.then(count => WaterTestDetails.find(query, select, cursor)
-.then((waterTestDetails) => ({
-  count,
-  rows: waterTestDetails.map((waterTestDetail) => waterTestDetail.view())
-}))
+  WaterTestDetails.count(query)
+  .then(count => WaterTestDetails.find(query, select, cursor)
+  .then((waterTestDetails) => ({
+    count,
+    rows: waterTestDetails.map((waterTestDetail) => waterTestDetail.view())
+  }))
 )
 .then(success(res))
 .catch(next)
@@ -56,11 +56,11 @@ WaterTestDetails.count(query)
 //   }
 
 export const show = ({ params }, res, next) =>{
-WaterTestDetails.findById(params.id)
-.then(notFound(res))
-.then((waterTestDetails) => waterTestDetails ? waterTestDetails.view() : null)
-.then(success(res))
-.catch(next)
+  WaterTestDetails.findById(params.id)
+  .then(notFound(res))
+  .then((waterTestDetails) => waterTestDetails ? waterTestDetails.view() : null)
+  .then(success(res))
+  .catch(next)
 }
 
 export const updateImage = ({ params }, res, next) =>{
@@ -68,26 +68,26 @@ export const updateImage = ({ params }, res, next) =>{
     if(waterTestDetails){
 
       if(params.fieldName == 'flora'){
-      waterTestDetails.flora.push({imageURL:params.flora, description:params.description});
-    }
-    else if(params.fieldName == 'fauna'){
+        waterTestDetails.flora.push({imageURL:params.flora, description:params.description});
+      }
+      else if(params.fieldName == 'fauna'){
         waterTestDetails.fauna.push({imageURL:params.fauna, description:params.description});
-    }
-    else if(params.fieldName == 'artwork'){
+      }
+      else if(params.fieldName == 'artwork'){
         waterTestDetails.artwork.push({imageURL:params.artwork, description:params.description});
-    }
-    else if(params.fieldName == 'groupPicture'){
+      }
+      else if(params.fieldName == 'groupPicture'){
         waterTestDetails.groupPicture.push({imageURL:params.groupPicture, description:params.description});
-    }
-    else if(params.fieldName == 'activity'){
+      }
+      else if(params.fieldName == 'activity'){
         waterTestDetails.activity.push({imageURL:params.activity, description:params.description});
-    }
-    else if(params.fieldName == 'river'){
+      }
+      else if(params.fieldName == 'river'){
         waterTestDetails.river.push({imageURL:params.river, description:params.description});
-    }
-    else if(params.fieldName == 'certificate'){
+      }
+      else if(params.fieldName == 'certificate'){
         waterTestDetails.certificateURL = params.certificate;
-    }
+      }
       waterTestDetails.save()
     }
     else{
