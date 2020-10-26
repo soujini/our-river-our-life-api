@@ -4,6 +4,9 @@ const waterTestDetailsSchema = new Schema({
   userId: {
     type: String
   },
+  contributorName: {
+    type: String
+  },
   generalInformation:{
     activityDate: {
       type: String
@@ -145,6 +148,7 @@ waterTestDetailsSchema.methods = {
       // simple view
       id: this.id,
       userId: this.userId,
+      contributorName: this.contributorName,
       generalInformation:{
         activityDate:this.generalInformation.activityDate,
         testerName:this.generalInformation.testerName,

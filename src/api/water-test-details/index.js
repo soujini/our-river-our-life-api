@@ -6,7 +6,7 @@ import { schema } from './model'
 export WaterTestDetails, { schema } from './model'
 
 const router = new Router()
-const { userId, generalInformation,waterLevelAndWeather,surroundings,waterTesting, flora, fauna, artwork, groupPicture, activity, river, certificateURL } = schema.tree
+const { userId, contributorName, generalInformation,waterLevelAndWeather,surroundings,waterTesting, flora, fauna, artwork, groupPicture, activity, river, certificateURL } = schema.tree
 
 const accessTokenSecret = 'youraccesstokensecret';
 const jwt = require('jsonwebtoken');
