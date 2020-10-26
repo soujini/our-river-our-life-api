@@ -9,34 +9,34 @@ WaterTestDetails.create(body)
 .then(success(res, 201))
 .catch(next)
 
-// export const index = ({ querymen: { query, select, cursor } }, res, next) =>{
-// WaterTestDetails.count(query)
-// .then(count => WaterTestDetails.find(query, select, cursor)
-// .then((waterTestDetails) => ({
-//   count,
-//   rows: waterTestDetails.map((waterTestDetails) => waterTestDetails.view())
-// }))
-// )
-// .then(success(res))
-// .catch(next)
-// }
+export const index = ({ querymen: { query, select, cursor } }, res, next) =>{
+WaterTestDetails.count(query)
+.then(count => WaterTestDetails.find(query, select, cursor)
+.then((waterTestDetails) => ({
+  count,
+  rows: waterTestDetails.map((waterTestDetails) => waterTestDetails.view())
+}))
+)
+.then(success(res))
+.catch(next)
+}
 
-export const index = async ({ querymen: { query, select, cursor } }, res, next) =>{
-  WaterTestDetails.count(query)
-    .then(count => WaterTestDetails.find(query, select, cursor)
-      .then(async(waterTestDetails) => ({
-        count,
-         rows:  await Promise.all(waterTestDetails.map(async(waterTestDetail) => {
-          var params = {"userId":waterTestDetail['userId']}
-          var user = await UserController.getUser({params});
-          waterTestDetail.contributorName = user.firstName ? user.firstName : waterTestDetail['generalInformation']['testerName'] + ' ' +user.lastName ? user.lastName :'';
-          return waterTestDetails.view();
-        }))
-      }))
-    )
-    .then(success(res))
-    .catch(next)
-  }
+// export const index = async ({ querymen: { query, select, cursor } }, res, next) =>{
+//   WaterTestDetails.count(query)
+//     .then(count => WaterTestDetails.find(query, select, cursor)
+//       .then(async(waterTestDetails) => ({
+//         count,
+//          rows:  await Promise.all(waterTestDetails.map(async(waterTestDetail) => {
+//           var params = {"userId":waterTestDetail['userId']}
+//           var user = await UserController.getUser({params});
+//           waterTestDetail.contributorName = user.firstName ? user.firstName : waterTestDetail['generalInformation']['testerName'] + ' ' +user.lastName ? user.lastName :'';
+//           return waterTestDetails.view();
+//         }))
+//       }))
+//     )
+//     .then(success(res))
+//     .catch(next)
+//   }
 
 export const show = ({ params }, res, next) =>{
 WaterTestDetails.findById(params.id)
