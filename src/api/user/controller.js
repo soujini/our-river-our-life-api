@@ -80,7 +80,6 @@ User.findById(params.id)
 .catch(next)
 
 export const update = ({ bodymen: { body }, params }, res, next) =>{
-  console.log(body);
 User.findById(params.id)
 .then(notFound(res))
 .then((user) => user ? Object.assign(user, body).save() : null)
