@@ -174,7 +174,7 @@ export const index =  async ({ querymen: { query, select, cursor } }, res, next)
         rows: floraFaunas.map((floraFauna) => {
           var params = {"userId":floraFauna['userId']}
           var userId  = floraFauna['userId'];
-          var user = await UserController.getUser({params});
+          var user = UserController.getUser({params});
           console.log("index");
           console.log(user);
           floraFauna.contributorName = user.phoneNumber + ' ' +user.phoneNumber;
