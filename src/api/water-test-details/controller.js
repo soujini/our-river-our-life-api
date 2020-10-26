@@ -14,7 +14,7 @@ WaterTestDetails.count(query)
 .then(count => WaterTestDetails.find(query, select, cursor)
 .then((waterTestDetails) => ({
   count,
-  rows: waterTestDetails.map((waterTestDetails) => waterTestDetails.view())
+  rows: waterTestDetails.map((waterTestDetail) => waterTestDetail.view())
 }))
 )
 .then(success(res))
