@@ -171,12 +171,14 @@ export const index = async ({ querymen: { query, select, cursor } }, res, next) 
     .then(count => FloraFauna.find(query, select, cursor)
       .then(async(floraFaunas) => ({
         count,
+        // rows: getUser(floraFaunas)
          rows:  await Promise.all(floraFaunas.map(async(floraFauna) => {
           var params = {"userId":floraFauna['userId']}
           var user = await UserController.getUser({params});
-          floraFauna.contributorName = user.firstName ? user.firstName : '' + ' ' +user.lastName ? user.lastName : '';
+          floraFauna.contributorName = user.firstName + ' ' +user.lastName ;
           return floraFauna.view();
         }))
+
       }))
     )
     .then(success(res))
