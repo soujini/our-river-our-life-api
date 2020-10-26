@@ -66,7 +66,7 @@ export const index = ({ querymen: { query, select, cursor } }, res, next) =>{
 .catch(next)
 }
 
-export const getUser = ({ params }, res, next) =>{
+export const async getUser = ({ params }, res, next) =>{
   console.log("get user "+params.userId);
   var selectedUser;
   User.findById(params.userId)
