@@ -6,6 +6,12 @@ const jwt = require('jsonwebtoken');
 
 const accessTokenSecret = 'youraccesstokensecret';
 
+export const create = ({ bodymen: { body } }, res, next) =>
+  User.create(body)
+    .then((user) => user.view(true))
+    .then(success(res, 201))
+    .catch(next)
+
 export const auth = ({ bodymen: { body } }, res, next) =>{
   // Filter user from the users array by username and password
   if(body.phoneNumber != null)

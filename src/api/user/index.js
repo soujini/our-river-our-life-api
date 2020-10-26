@@ -31,6 +31,11 @@ const authenticateJWT = (req, res, next) => {
     }
 };
 
+router.post('/',
+  // master(),
+  body({ phoneNumber, email, firstName, lastName }),
+  create)
+
 /**
  * @api {post} /user  user
  * @apiName CreateUser
