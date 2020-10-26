@@ -26,8 +26,7 @@ export const index = async ({ querymen: { query, select, cursor } }, res, next) 
     .then(count => WaterTestDetails.find(query, select, cursor)
       .then(async(waterTestDetails) => ({
         count,
-        // rows: getUser(floraFaunas)
-         rows:  await Promise.all(waterTestDetails.map(async(floraFauna) => {
+         rows:  await Promise.all(waterTestDetails.map(async(waterTestDetails) => {
           var params = {"userId":waterTestDetails['userId']}
           var user = await UserController.getUser({params});
           waterTestDetails.contributorName = user.firstName ? user.firstName : waterTestDetails['generalInformation']['testerName'] + ' ' +user.lastName ? user.lastName :'';
