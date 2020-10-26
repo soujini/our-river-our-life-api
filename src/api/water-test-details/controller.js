@@ -1,7 +1,7 @@
 import { success, notFound } from '../../services/response/';
 import { WaterTestDetails } from '.';
 var PDFController = require('../pdf/controller');
-var UserController = require('../user/controller');
+// var UserController = require('../user/controller');
 
 export const create = ({ bodymen: { body } }, res, next) =>
 WaterTestDetails.create(body)
