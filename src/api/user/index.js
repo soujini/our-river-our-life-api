@@ -1,7 +1,7 @@
 import { Router } from 'express'
 import { middleware as query } from 'querymen'
 import { middleware as body } from 'bodymen'
-import { signIn, signInWeb, auth, index, show, update, destroy } from './controller'
+import { signIn, signInWeb, auth, index, show, update, destroy,create } from './controller'
 import { schema } from './model'
 export User, { schema } from './model'
 
