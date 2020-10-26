@@ -2,7 +2,7 @@ import { success, notFound } from '../../services/response/'
 import { FloraFauna } from '.'
 import aws from 'aws-sdk';
 import fs from 'fs';
-var UserController = require('../user/controller')
+var UserController = require('../user/controller');
 
 export const createFlora = (req, res, next) =>{
   var customOriginalName="";

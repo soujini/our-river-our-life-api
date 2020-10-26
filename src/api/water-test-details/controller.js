@@ -1,7 +1,7 @@
 import { success, notFound } from '../../services/response/'
 import { WaterTestDetails } from '.'
 var PDFController = require('../pdf/controller')
-var UserController = require('../user/controller')
+// var UserController = require('../user/controller')
 
 export const create = ({ bodymen: { body } }, res, next) =>
 WaterTestDetails.create(body)
@@ -26,10 +26,10 @@ WaterTestDetails.count(query)
 //     .then(count => WaterTestDetails.find(query, select, cursor)
 //       .then(async(waterTestDetails) => ({
 //         count,
-//          rows:  await Promise.all(waterTestDetails.map(async(waterTestDetail) => {
-//           var params = {"userId":waterTestDetail['userId']}
+//          rows:  await Promise.all(waterTestDetails.map(async(waterTestDetails) => {
+//           var params = {"userId":waterTestDetails['userId']}
 //           var user = await UserController.getUser({params});
-//           waterTestDetail.contributorName = user.firstName ? user.firstName : waterTestDetail['generalInformation']['testerName'] + ' ' +user.lastName ? user.lastName :'';
+//           waterTestDetails.contributorName = user.firstName ? user.firstName : waterTestDetails['generalInformation']['testerName'] + ' ' +user.lastName ? user.lastName :'';
 //           return waterTestDetails.view();
 //         }))
 //       }))
