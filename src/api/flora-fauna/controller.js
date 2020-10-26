@@ -179,7 +179,7 @@ export const index =  async ({ querymen: { query, select, cursor } }, res, next)
           console.log("index");
           console.log(user);
           floraFauna.contributorName = user.firstName + ' ' +user.lastName;
-          return floraFauna.view()
+          floraFauna.view();
         })
       }))
     )
