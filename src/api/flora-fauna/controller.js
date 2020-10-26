@@ -177,7 +177,7 @@ export const index =  async ({ querymen: { query, select, cursor } }, res, next)
           var userId  = floraFauna['userId'];
           var user = UserController.getUser({params});
           console.log("index");
-          console.log(user.firstName);
+          console.log(user);
           floraFauna.contributorName = user.firstName + ' ' +user.lastName;
           return floraFauna.view()
         })
