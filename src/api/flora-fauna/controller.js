@@ -166,7 +166,7 @@ export const create = ({ bodymen: { body } }, res, next) =>
     .then(success(res, 201))
     .catch(next)
 
-export const index =  async ({ querymen: { query, select, cursor } }, res, next) =>
+export const index =  async ({ querymen: { query, select, cursor } }, res, next) =>{
   FloraFauna.count(query)
     .then(count => FloraFauna.find(query, select, cursor)
       .then((floraFaunas) => ({
@@ -184,6 +184,7 @@ export const index =  async ({ querymen: { query, select, cursor } }, res, next)
     )
     .then(success(res))
     .catch(next)
+  }
 
 export const show = ({ params }, res, next) =>
   FloraFauna.findById(params.id)
