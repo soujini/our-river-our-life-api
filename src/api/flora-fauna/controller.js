@@ -174,9 +174,10 @@ export const index = ({ querymen: { query, select, cursor } }, res, next) =>
         rows: floraFaunas.map((floraFauna) => {
           var params = {"userId":floraFauna['userId']}
           var userId  = floraFauna['userId'];
-          var user = UserController.getUser({params});
+          var user = await UserController.getUser({params});
+          console.log("index");
           console.log(user);
-           floraFauna.contributorName = user.phoneNumber + ' ' +user.phoneNumber;
+          floraFauna.contributorName = user.phoneNumber + ' ' +user.phoneNumber;
           return floraFauna.view()
         })
       }))
