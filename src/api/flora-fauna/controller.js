@@ -171,16 +171,16 @@ export const index =  async ({ querymen: { query, select, cursor } }, res, next)
     .then(count => FloraFauna.find(query, select, cursor)
       .then((floraFaunas) => ({
         count,
-        rows: getUser(floraFaunas)
-        // rows: floraFaunas.map((floraFauna) => {
-        //   var params = {"userId":floraFauna['userId']}
-        //   var userId  = floraFauna['userId'];
-        //   var user = await UserController.getUser({params});
-        //   console.log("index");
-        //   console.log(user);
-        //   floraFauna.contributorName = user.phoneNumber + ' ' +user.phoneNumber;
-        //   return floraFauna.view()
-        // })
+        // rows: getUser(floraFaunas)
+        rows: floraFaunas.map(async(floraFauna) => {
+          var params = {"userId":floraFauna['userId']}
+          var userId  = floraFauna['userId'];
+          var user = await UserController.getUser({params});
+          console.log("index");
+          console.log(user);
+          floraFauna.contributorName = user.phoneNumber + ' ' +user.phoneNumber;
+          return floraFauna.view()
+        })
       }))
     )
     .then(success(res))
@@ -194,7 +194,7 @@ export const index =  async ({ querymen: { query, select, cursor } }, res, next)
       console.log("in here");
       console.log(user);
       floraFauna.contributorName = user.phoneNumber + ' ' +user.phoneNumber;
-      return floraFauna.view()
+      floraFauna.view()
     });
   }
 
