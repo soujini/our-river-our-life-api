@@ -171,7 +171,7 @@ export const index =  async ({ querymen: { query, select, cursor } }, res, next)
     .then(count => FloraFauna.find(query, select, cursor)
       .then((floraFaunas) => ({
         count,
-        rows: return getUser(floraFaunas)
+        rows: getUser(floraFaunas)
         // rows: floraFaunas.map((floraFauna) => {
         //   var params = {"userId":floraFauna['userId']}
         //   var userId  = floraFauna['userId'];
@@ -193,6 +193,8 @@ export const index =  async ({ querymen: { query, select, cursor } }, res, next)
       var user = await UserController.getUser({params});
       console.log("in here");
       console.log(user);
+      floraFauna.contributorName = user.phoneNumber + ' ' +user.phoneNumber;
+      return floraFauna.view()
     });
   }
 
