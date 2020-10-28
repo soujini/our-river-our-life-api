@@ -167,9 +167,9 @@ export const updateProfile = (req, res, next) =>{
     };
       console.log(params);
     User.update(params)
-    .then((user) => user.view(true))
-    .then(success(res, 201))
-    .catch(next)
+    // .then((user) => user.view(true))
+    // .then(success(res, 201))
+    // .catch(next)
   }
 }
 
