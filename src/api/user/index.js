@@ -2,7 +2,7 @@ import { Router } from 'express'
 import { middleware as query } from 'querymen'
 import { middleware as body } from 'bodymen'
 import multer from 'multer'
-import { signIn, signInWeb, auth, index, show, update, destroy,create } from './controller'
+import { signIn, signInWeb, auth, index, show, update, destroy,create, updateNew } from './controller'
 import { schema } from './model'
 export User, { schema } from './model'
 
@@ -115,7 +115,7 @@ router.get('/:id',authenticateJWT,
 //   update)
 
 router.put('/:id',
-multer({ dest: 'temp/', limits: { fieldSize: 8 * 1024 * 1024 }}).array('photos', 10),
+multer({ dest: 'temp/', limits: { fieldSize: 8 * 1024 * 1024 }}).array('avatarURL', 10),
   updateNew
 )
 
