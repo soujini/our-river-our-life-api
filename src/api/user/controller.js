@@ -168,11 +168,12 @@ export const updateProfile = (req, res, next) =>{
       "phoneNumber":req.body.phoneNumber,
     };
       console.log(params);
+      console.log(id);
     //User.update(params)
     // .then((user) => user.view(true))
     // .then(success(res, 201))
     // .catch(next)
-    User.findOneAndUpdate({_id:id},params,{new: true, upsert: true })
+    User.findOneAndUpdate({id:id},params,{new: true, upsert: true })
     .then((user) => (user.view(true)))
     .then(success(res, 201))
     .catch(next)
