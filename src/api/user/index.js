@@ -2,7 +2,7 @@ import { Router } from 'express'
 import { middleware as query } from 'querymen'
 import { middleware as body } from 'bodymen'
 import multer from 'multer'
-import { signIn, signInWeb, auth, index, show, update, destroy,create, updateNew } from './controller'
+import { signIn, signInWeb, auth, index, show, update, destroy,create, updateProfile } from './controller'
 import { schema } from './model'
 export User, { schema } from './model'
 
