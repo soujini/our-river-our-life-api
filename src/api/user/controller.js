@@ -146,9 +146,9 @@ export const updateProfile = (req, res, next) =>{
             };
             if(params != ""){
               User.update(params)
-              // .then((floodAlert) => floodAlert.view(true))
-              // .then(success(res, 201))
-              // .catch(next)
+              .then((floodAlert) => floodAlert.view(true))
+              .then(success(res, 201))
+              .catch(next)
             }
           }
         }
