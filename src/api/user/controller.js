@@ -173,7 +173,7 @@ export const updateProfile = (req, res, next) =>{
     // .then((user) => user.view(true))
     // .then(success(res, 201))
     // .catch(next)
-    User.findOneAndUpdate({id:id},{params},{new: false, upsert: true })
+    User.findOneAndUpdate({_id:id},{params},{new: false, upsert: true })
     .then((user) => (user.view(true)))
     .then(success(res, 201))
     .catch(next)
