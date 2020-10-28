@@ -138,6 +138,7 @@ export const updateProfile = (req, res, next) =>{
             });
 
             var params = {
+              "id":req.body.id,
               "email":req.body.email,
               "firstName":req.body.firstName,
               "lastName":req.body.lastName,
@@ -158,6 +159,7 @@ export const updateProfile = (req, res, next) =>{
   else{
     console.log("np file");
     var params = {
+        "id":req.body.id,
       "email":req.body.email,
       "firstName":req.body.firstName,
       "lastName":req.body.lastName,
