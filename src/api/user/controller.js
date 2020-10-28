@@ -162,10 +162,10 @@ export const updateProfile = (req, res, next) =>{
     console.log("np file");
     var id = req.body.id;
     var params = {
-      "email":req.body.email,
-      "firstName":req.body.firstName,
-      "lastName":req.body.lastName,
-      "phoneNumber":req.body.phoneNumber,
+      email:req.body.email,
+      firstName:req.body.firstName,
+      lastName:req.body.lastName,
+      phoneNumber:req.body.phoneNumber,
     };
       console.log(params);
       console.log(id);
@@ -173,7 +173,7 @@ export const updateProfile = (req, res, next) =>{
     // .then((user) => user.view(true))
     // .then(success(res, 201))
     // .catch(next)
-    User.findOneAndUpdate({_id:id},{params},{new: true, upsert: true })
+    User.findOneAndUpdate({id:id},{params},{new: false, upsert: true })
     .then((user) => (user.view(true)))
     .then(success(res, 201))
     .catch(next)
