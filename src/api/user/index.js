@@ -110,9 +110,9 @@ router.get('/:id',authenticateJWT,
  * @apiError {Object} 400 Some parameters may contain invalid values.
  * @apiError 404 User not found.
  */
-// router.put('/:id',authenticateJWT,
-//   body({ phoneNumber, email, firstName, lastName, avatarURL }),
-//   update)
+router.put('/:id',authenticateJWT,
+  body({ phoneNumber, email, firstName, lastName, avatarURL }),
+  update)
 
 router.post('/update-profile',
 multer({ dest: 'temp/', limits: { fieldSize: 8 * 1024 * 1024 }}).array('avatarURL', 10),
