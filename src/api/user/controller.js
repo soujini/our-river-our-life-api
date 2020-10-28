@@ -147,7 +147,7 @@ export const updateProfile = (req, res, next) =>{
             };
             if(params != ""){
               User.update(params)
-              .then((floodAlert) => floodAlert.view(true))
+              .then((user) => user.view(true))
               .then(success(res, 201))
               .catch(next)
             }
