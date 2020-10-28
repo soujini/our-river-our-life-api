@@ -20,6 +20,9 @@ const userSchema = new Schema({
     type: String,
     // unique:true,
     sparse:true
+  },
+  avatarURL:{
+    type: Array,
   }
 }, {
   timestamps: true,
@@ -38,6 +41,7 @@ userSchema.methods = {
       email: this.email,
       firstName: this.firstName,
       lastName: this.lastName,
+      avatarURL:this.avatarURL,
       createdAt: this.createdAt,
       updatedAt: this.updatedAt
     }

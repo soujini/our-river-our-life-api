@@ -6,7 +6,7 @@ import { schema } from './model'
 export User, { schema } from './model'
 
 const router = new Router()
-const { phoneNumber, email, userId, firstName, lastName } = schema.tree
+const { phoneNumber, email, userId, firstName, lastName, avatarURL } = schema.tree
 const accessTokenSecret = 'youraccesstokensecret';
 const jwt = require('jsonwebtoken');
 
@@ -109,9 +109,14 @@ router.get('/:id',authenticateJWT,
  * @apiError {Object} 400 Some parameters may contain invalid values.
  * @apiError 404 User not found.
  */
-router.put('/:id',authenticateJWT,
-  body({ phoneNumber, email, firstName, lastName }),
-  update)
+// router.put('/:id',authenticateJWT,
+//   body({ phoneNumber, email, firstName, lastName, avatarURL }),
+//   update)
+
+router.put('/:id',
+multer({ dest: 'temp/', limits: { fieldSize: 8 * 1024 * 1024 }}).array('photos', 10),
+  updateNew
+)
 
 /**
  * @api {delete} /user/:id Delete user

@@ -1,5 +1,7 @@
 import { success, notFound } from '../../services/response/'
 import { User } from '.'
+import aws from 'aws-sdk';
+import fs from 'fs';
 
 var ObjectId = require('mongodb').ObjectId
 const jwt = require('jsonwebtoken');
@@ -92,6 +94,75 @@ User.findById(params.id)
 .then((user) => user ? user.view(true) : null)
 .then(success(res))
 .catch(next)
+}
+
+export const updateNew = (req, res, next) =>{
+  var customOriginalName="";
+  var customPath="";
+  var customFieldName="";
+  var bucketName="our-river-our-life-images/users";
+
+  aws.config.setPromisesDependency();
+  aws.config.update({
+    "accessKeyId": 'AKIAJ24JCG5UUXOOHKDA',
+    "secretAccessKey": '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',
+  });
+
+  const file = req.files;
+  if(req.files.length > 0){
+    const s3 = new aws.S3();
+    var responseData = [];
+
+    file.map((item) => {
+      var params = {
+        Bucket: bucketName,
+        Key: item.originalname,
+        Body: fs.createReadStream(item.path),
+        ACL: 'public-read'
+      };
+      s3.upload(params, function (err, data) {
+        if (err) {
+          res.json({ "error": true, "Message": err});
+        }else{
+          responseData.push(data);
+          if(responseData.length == file.length){
+            //res.json({ "error": false, "message": "File Uploaded SuceesFully", data: responseData});
+
+            var avatarURL=[];
+            responseData.forEach(function(element){
+              avatarURL.push(element.Location)
+            });
+
+            var params = {
+              "email":req.body.email,
+              "firstName":req.body.firstName,
+              "lastName":req.body.lastName,
+              "phoneNumber":req.body.phoneNumber,
+              "avatarURL":avatarURL
+            };
+            if(params != ""){
+              User.update(params)
+              // .then((floodAlert) => floodAlert.view(true))
+              // .then(success(res, 201))
+              // .catch(next)
+            }
+          }
+        }
+      });
+    });
+  }
+  else{
+    var params = {
+      "email":req.body.email,
+      "firstName":req.body.firstName,
+      "lastName":req.body.lastName,
+      "phoneNumber":req.body.phoneNumber,
+    };
+    User.update(params)
+    // .then((floodAlert) => floodAlert.view(true))
+    // .then(success(res, 201))
+    // .catch(next)
+  }
 }
 
 export const destroy = ({ params }, res, next) =>
