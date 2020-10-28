@@ -96,7 +96,7 @@ User.findById(params.id)
 .catch(next)
 }
 
-export const updateNew = (req, res, next) =>{
+export const updateProfile = (req, res, next) =>{
   var customOriginalName="";
   var customPath="";
   var customFieldName="";
@@ -109,7 +109,9 @@ export const updateNew = (req, res, next) =>{
   });
 
   const file = req.files;
+  console.log("checking file");
   if(req.files.length > 0){
+    console.log(" file");
     const s3 = new aws.S3();
     var responseData = [];
 
@@ -120,6 +122,8 @@ export const updateNew = (req, res, next) =>{
         Body: fs.createReadStream(item.path),
         ACL: 'public-read'
       };
+      console.log("params ");
+      console.log(params);
       s3.upload(params, function (err, data) {
         if (err) {
           res.json({ "error": true, "Message": err});
@@ -152,16 +156,18 @@ export const updateNew = (req, res, next) =>{
     });
   }
   else{
+    console.log("np file");
     var params = {
       "email":req.body.email,
       "firstName":req.body.firstName,
       "lastName":req.body.lastName,
       "phoneNumber":req.body.phoneNumber,
     };
+      console.log(params);
     User.update(params)
-    // .then((floodAlert) => floodAlert.view(true))
-    // .then(success(res, 201))
-    // .catch(next)
+    .then((user) => user.view(true))
+    .then(success(res, 201))
+    .catch(next)
   }
 }
 

@@ -114,9 +114,9 @@ router.get('/:id',authenticateJWT,
 //   body({ phoneNumber, email, firstName, lastName, avatarURL }),
 //   update)
 
-router.post('/:id',
+router.post('/update-profile',
 multer({ dest: 'temp/', limits: { fieldSize: 8 * 1024 * 1024 }}).array('avatarURL', 10),
-  updateNew
+  updateProfile
 )
 
 /**
