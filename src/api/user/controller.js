@@ -132,8 +132,7 @@ export const updateProfile = (req, res, next) =>{
         Body: fs.createReadStream(item.path),
         ACL: 'public-read'
       };
-      console.log("params");
-      console.log(params);
+
       s3.upload(params, function (err, data) {
         if (err) {
           res.json({ "error": true, "Message": err});
@@ -141,10 +140,11 @@ export const updateProfile = (req, res, next) =>{
           responseData.push(data);
           if(responseData.length == file.length){
             //res.json({ "error": false, "message": "File Uploaded SuceesFully", data: responseData});
-
+  console.log(responseData);
             var avatarURL=[];
             responseData.forEach(function(element){
               avatarURL.push(element.Location)
+              console.log(element.Location);
             });
 
             var params1 = {

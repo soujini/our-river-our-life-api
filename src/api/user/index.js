@@ -115,7 +115,7 @@ router.put('/:id',authenticateJWT,
   update)
 
 router.post('/update-profile',
-multer({ dest: 'temp/', limits: { fieldSize: 8 * 1024 * 1024 }}).array('avatarURL', 10),
+multer({ dest: 'temp/', limits: { fieldSize: 8 * 1024 * 1024 }}).array('avatar', 10),
   updateProfile
 )
 
