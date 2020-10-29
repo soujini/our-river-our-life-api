@@ -148,13 +148,13 @@ export const updateProfile = (req, res, next) =>{
             });
 
             var params1 = {
-              id:req.body.id,
               email:req.body.email,
               firstName:req.body.firstName,
               lastName:req.body.lastName,
               phoneNumber:req.body.phoneNumber,
               avatarURL:avatarURL
             };
+              var id = req.body.id;
             if(params1 != ""){
               User.findById(id)
               .then(notFound(res))
