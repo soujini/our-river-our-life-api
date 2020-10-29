@@ -121,7 +121,7 @@ export const updateProfile = (req, res, next) =>{
       console.log("delete s3 object");
       s3.deleteObject({
         Bucket: bucketName,
-        Key: 'our-river-our-life-images/users/'+req.body.avatarURL,
+        Key: 'users/'+req.body.avatarURL,
       },function (err,data){})
     }
 
