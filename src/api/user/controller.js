@@ -109,21 +109,9 @@ export const updateProfile = (req, res, next) =>{
   });
 
   const file = req.files;
-  console.log("checking file");
   if(req.files.length > 0){
-    console.log(" file");
     const s3 = new aws.S3();
     var responseData = [];
-
-    console.log(req.body.avatarURL);
-
-    if(req.body.avatarURL != undefined &&  req.body.avatarURL != null){
-      console.log("delete s3 object");
-      s3.deleteObject({
-        Bucket: bucketName,
-        Key: 'users/'+req.body.avatarURL,
-      },function (err,data){})
-    }
 
     file.map((item) => {
       var params = {
@@ -140,11 +128,9 @@ export const updateProfile = (req, res, next) =>{
           responseData.push(data);
           if(responseData.length == file.length){
             //res.json({ "error": false, "message": "File Uploaded SuceesFully", data: responseData});
-  console.log(responseData);
             var avatarURL=[];
             responseData.forEach(function(element){
               avatarURL.push(element.Location)
-              console.log(element.Location);
             });
 
             var params1 = {
@@ -154,7 +140,7 @@ export const updateProfile = (req, res, next) =>{
               phoneNumber:req.body.phoneNumber,
               avatarURL:avatarURL
             };
-              var id = req.body.id;
+            var id = req.body.id;
             if(params1 != ""){
               User.findById(id)
               .then(notFound(res))
@@ -169,7 +155,6 @@ export const updateProfile = (req, res, next) =>{
     });
   }
   else{
-    console.log("np file");
     var id = req.body.id;
     var params1 = {
       email:req.body.email,
