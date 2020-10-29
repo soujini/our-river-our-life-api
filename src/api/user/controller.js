@@ -115,7 +115,9 @@ export const updateProfile = (req, res, next) =>{
     const s3 = new aws.S3();
     var responseData = [];
 
-    if(req.body.avatarURL != '' ||  req.body.avatarURL != null){
+    console.log(req.body.avatarURL);
+
+    if(req.body.avatarURL != '' &&  req.body.avatarURL != null){
       console.log("delete s3 object");
       s3.deleteObject({
         Bucket: bucketName,
