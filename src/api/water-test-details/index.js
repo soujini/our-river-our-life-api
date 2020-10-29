@@ -31,21 +31,21 @@ const authenticateJWT = (req, res, next) => {
     }
 };
 
-router.post('/create-water-test-details',authenticateJWT,
-multer({ dest: 'temp/', limits: { fieldSize: 8 * 1024 * 1024 } }).fields([{
-  name: 'flora', maxCount: 5
-}, {
-  name: 'fauna', maxCount: 5
-}, {
-  name: 'artwork', maxCount: 5
-}, {
-  name: 'groupPicture', maxCount: 5
-}, {
-  name: 'activity', maxCount: 5
-}, {
-  name: 'river', maxCount: 5
-}]),
-createWaterTestDetails)
+// router.post('/create-water-test-details',authenticateJWT,
+// multer({ dest: 'temp/', limits: { fieldSize: 8 * 1024 * 1024 } }).fields([{
+//   name: 'flora', maxCount: 5
+// }, {
+//   name: 'fauna', maxCount: 5
+// }, {
+//   name: 'artwork', maxCount: 5
+// }, {
+//   name: 'groupPicture', maxCount: 5
+// }, {
+//   name: 'activity', maxCount: 5
+// }, {
+//   name: 'river', maxCount: 5
+// }]),
+// createWaterTestDetails)
 
 /**
  * @api {post} /water-test-details Create water test details
