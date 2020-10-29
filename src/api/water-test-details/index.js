@@ -6,7 +6,7 @@ import { schema } from './model'
 export WaterTestDetails, { schema } from './model'
 
 const router = new Router()
-const { userId, contributorName, generalInformation,waterLevelAndWeather,surroundings,waterTesting, flora, fauna, artwork, groupPicture, activity, river, certificateURL } = schema.tree
+const { userId, contributorName, generalInformation,waterLevelAndWeather,surroundings,waterTesting, flora, fauna, artwork, groupPicture, activity, river, certificateURL, createWaterTestDetails } = schema.tree
 
 const accessTokenSecret = 'youraccesstokensecret';
 const jwt = require('jsonwebtoken');
@@ -29,6 +29,22 @@ const authenticateJWT = (req, res, next) => {
         res.sendStatus(401);
     }
 };
+
+router.post('/create-water-test-details',authenticateJWT,
+multer({ dest: 'temp/', limits: { fieldSize: 8 * 1024 * 1024 } }).fields([{
+  name: 'flora', maxCount: 5
+}, {
+  name: 'fauna', maxCount: 5
+}, {
+  name: 'artwork', maxCount: 5
+}, {
+  name: 'groupPicture', maxCount: 5
+}, {
+  name: 'activity', maxCount: 5
+}, {
+  name: 'river', maxCount: 5
+}]),
+createWaterTestDetails)
 
 /**
  * @api {post} /water-test-details Create water test details
