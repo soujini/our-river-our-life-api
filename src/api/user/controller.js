@@ -9,10 +9,10 @@ const jwt = require('jsonwebtoken');
 const accessTokenSecret = 'youraccesstokensecret';
 
 export const create = ({ bodymen: { body } }, res, next) =>
-  User.create(body)
-    .then((user) => user.view(true))
-    .then(success(res, 201))
-    .catch(next)
+User.create(body)
+.then((user) => user.view(true))
+.then(success(res, 201))
+.catch(next)
 
 export const auth = ({ bodymen: { body } }, res, next) =>{
   // Filter user from the users array by username and password
@@ -88,14 +88,12 @@ User.findById(params.id)
 .catch(next)
 
 export const update = ({ bodymen: { body }, params }, res, next) =>{
-  console.log("update");
-  console.log(params);
-User.findById(params.id)
-.then(notFound(res))
-.then((user) => user ? Object.assign(user, body).save() : null)
-.then((user) => user ? user.view(true) : null)
-.then(success(res))
-.catch(next)
+  User.findById(params.id)
+  .then(notFound(res))
+  .then((user) => user ? Object.assign(user, body).save() : null)
+  .then((user) => user ? user.view(true) : null)
+  .then(success(res))
+  .catch(next)
 }
 
 export const updateProfile = (req, res, next) =>{
@@ -116,6 +114,14 @@ export const updateProfile = (req, res, next) =>{
     console.log(" file");
     const s3 = new aws.S3();
     var responseData = [];
+
+    if(req.body.avatarURL != '' ||  req.body.avatarURL != null){
+      console.log("delete s3 object");
+      s3.deleteObject({
+        Bucket: MY_BUCKET,
+        Key: 'our-river-our-life-images/users/'+req.body.avatarURL,
+      },function (err,data){})
+    }
 
     file.map((item) => {
       var params = {
@@ -140,17 +146,19 @@ export const updateProfile = (req, res, next) =>{
             });
 
             var params = {
-              "id":req.body.id,
-              "email":req.body.email,
-              "firstName":req.body.firstName,
-              "lastName":req.body.lastName,
-              "phoneNumber":req.body.phoneNumber,
-              "avatarURL":avatarURL
+              id:req.body.id,
+              email:req.body.email,
+              firstName:req.body.firstName,
+              lastName:req.body.lastName,
+              phoneNumber:req.body.phoneNumber,
+              avatarURL:avatarURL
             };
             if(params != ""){
-              User.update(params)
-              .then((user) => user.view(true))
-              .then(success(res, 201))
+              User.findById(id)
+              .then(notFound(res))
+              .then((user) => user ? Object.assign(user, params).save() : null)
+              .then((user) => user ? user.view(true) : null)
+              .then(success(res))
               .catch(next)
             }
           }
@@ -167,8 +175,8 @@ export const updateProfile = (req, res, next) =>{
       lastName:req.body.lastName,
       phoneNumber:req.body.phoneNumber,
     };
-      console.log(params);
-      console.log(id);
+    console.log(params);
+    console.log(id);
     //User.update(params)
     // .then((user) => user.view(true))
     // .then(success(res, 201))
