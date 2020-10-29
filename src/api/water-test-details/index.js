@@ -4,6 +4,7 @@ import { middleware as body } from 'bodymen'
 import { create, index, show, update, destroy } from './controller'
 import { schema } from './model'
 export WaterTestDetails, { schema } from './model'
+import multer from 'multer'
 
 const router = new Router()
 const { userId, contributorName, generalInformation,waterLevelAndWeather,surroundings,waterTesting, flora, fauna, artwork, groupPicture, activity, river, certificateURL, createWaterTestDetails } = schema.tree
