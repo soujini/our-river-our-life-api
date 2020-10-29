@@ -117,7 +117,7 @@ export const updateProfile = (req, res, next) =>{
 
     console.log(req.body.avatarURL);
 
-    if(req.body.avatarURL != '' &&  req.body.avatarURL != null){
+    if(req.body.avatarURL != undefined &&  req.body.avatarURL != null){
       console.log("delete s3 object");
       s3.deleteObject({
         Bucket: bucketName,
