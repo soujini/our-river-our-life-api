@@ -97,7 +97,7 @@ export const update = ({ bodymen: { body }, params }, res, next) =>{
 }
 
 export const updateProfile = (req, res, next) =>{
-  var customOriginalName="";
+  var customOriginalName="avatar_"+req.body.id;
   var customPath="";
   var customFieldName="";
   var bucketName="our-river-our-life-images/users";
@@ -128,11 +128,11 @@ export const updateProfile = (req, res, next) =>{
     file.map((item) => {
       var params = {
         Bucket: bucketName,
-        Key: item.originalname,
+        Key: customOriginalName,
         Body: fs.createReadStream(item.path),
         ACL: 'public-read'
       };
-      console.log("params ");
+      console.log("params");
       console.log(params);
       s3.upload(params, function (err, data) {
         if (err) {
@@ -147,7 +147,7 @@ export const updateProfile = (req, res, next) =>{
               avatarURL.push(element.Location)
             });
 
-            var params = {
+            var params1 = {
               id:req.body.id,
               email:req.body.email,
               firstName:req.body.firstName,
@@ -158,7 +158,7 @@ export const updateProfile = (req, res, next) =>{
             if(params != ""){
               User.findById(id)
               .then(notFound(res))
-              .then((user) => user ? Object.assign(user, params).save() : null)
+              .then((user) => user ? Object.assign(user, params1).save() : null)
               .then((user) => user ? user.view(true) : null)
               .then(success(res))
               .catch(next)
@@ -171,7 +171,7 @@ export const updateProfile = (req, res, next) =>{
   else{
     console.log("np file");
     var id = req.body.id;
-    var params = {
+    var params1 = {
       email:req.body.email,
       firstName:req.body.firstName,
       lastName:req.body.lastName,
@@ -181,7 +181,7 @@ export const updateProfile = (req, res, next) =>{
     console.log(id);
     User.findById(id)
     .then(notFound(res))
-    .then((user) => user ? Object.assign(user, params).save() : null)
+    .then((user) => user ? Object.assign(user, params1).save() : null)
     .then((user) => user ? user.view(true) : null)
     .then(success(res))
     .catch(next)
