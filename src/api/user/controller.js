@@ -118,7 +118,7 @@ export const updateProfile = (req, res, next) =>{
     if(req.body.avatarURL != '' ||  req.body.avatarURL != null){
       console.log("delete s3 object");
       s3.deleteObject({
-        Bucket: MY_BUCKET,
+        Bucket: bucketName,
         Key: 'our-river-our-life-images/users/'+req.body.avatarURL,
       },function (err,data){})
     }
@@ -177,14 +177,6 @@ export const updateProfile = (req, res, next) =>{
     };
     console.log(params);
     console.log(id);
-    //User.update(params)
-    // .then((user) => user.view(true))
-    // .then(success(res, 201))
-    // .catch(next)
-    // User.findOneAndUpdate({_id:id},{phoneNumber:req.body.phoneNumber, email:req.body.email, firstName:req.body.firstName, lastName:req.body.lastName},{new: false, upsert: true })
-    // .then((user) => (user.view(true)))
-    // .then(success(res, 201))
-    // .catch(next)
     User.findById(id)
     .then(notFound(res))
     .then((user) => user ? Object.assign(user, params).save() : null)
