@@ -155,7 +155,7 @@ export const updateProfile = (req, res, next) =>{
               phoneNumber:req.body.phoneNumber,
               avatarURL:avatarURL
             };
-            if(params != ""){
+            if(params1 != ""){
               User.findById(id)
               .then(notFound(res))
               .then((user) => user ? Object.assign(user, params1).save() : null)
@@ -177,8 +177,6 @@ export const updateProfile = (req, res, next) =>{
       lastName:req.body.lastName,
       phoneNumber:req.body.phoneNumber,
     };
-    console.log(params);
-    console.log(id);
     User.findById(id)
     .then(notFound(res))
     .then((user) => user ? Object.assign(user, params1).save() : null)
