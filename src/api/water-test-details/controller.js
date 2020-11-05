@@ -274,7 +274,6 @@ WaterTestDetails.create(body)
 // .catch(next)
 // }
 export const index = ({ querymen: { query, select, cursor } }, res, next) =>{
-  // public userController: UserController = new UserController();
   WaterTestDetails.count(query)
     .then(count => WaterTestDetails.find(query, select, cursor)
       .then(async(waterTestDetails) => ({

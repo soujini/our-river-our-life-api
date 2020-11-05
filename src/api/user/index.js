@@ -41,10 +41,10 @@ const authenticateJWT = (req, res, next) => {
  * @apiError {Object} 400 Some parameters may contain invalid values.
  * @apiError 404 User not found.
  */
-// router.post('/',
-//   // master(),
-//   body({ phoneNumber, email, firstName, lastName }),
-//   create)
+router.post('/',
+  // master(),
+  body({ phoneNumber, email, firstName, lastName }),
+  create)
 
 /**
  * @api {post} /user  user
