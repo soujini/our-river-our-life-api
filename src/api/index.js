@@ -1,6 +1,6 @@
 import { Router } from 'express'
-import waterTestDetails from './water-test-details'
 import user from './user'
+import waterTestDetails from './water-test-details'
 import images from './images'
 import pdf from './pdf'
 import floodAlert from './flood-alert'
