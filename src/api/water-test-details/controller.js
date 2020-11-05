@@ -88,7 +88,8 @@ export const createWaterTestDetails = (req, res, next) =>{
     //   });
     // });
     req.files.artwork.map((item) => {
-      console.log("in artwork map "+item);
+      console.log("in artwork map ");
+      console.log(item);
       customFieldName = item.fieldname;
       // customPath = item.path;
       // customOriginalName= item.originalname;
