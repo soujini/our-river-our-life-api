@@ -281,8 +281,8 @@ export const index = ({ querymen: { query, select, cursor } }, res, next) =>{
          rows:  await Promise.all(waterTestDetails.map(async(waterTestDetail) => {
            var params = {"userId":waterTestDetail['userId']};
            var userId  = waterTestDetail['userId'];
-           var user = await UserController.getUser({params});
-           waterTestDetail.contributorName = user.firstName + ' ' +user.lastName;
+           // var user = await UserController.getUser({params});
+           // waterTestDetail.contributorName = user.firstName + ' ' +user.lastName;
           return waterTestDetail.view();
         }))
       }))
