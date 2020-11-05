@@ -19,6 +19,7 @@ export const createWaterTestDetails = (req, res, next) =>{
   });
 
   const file = req.files;
+  console.log("length "+req.files.length);
   if(req.files.length > 0){
     const s3 = new aws.S3();
     var responseData = [];
@@ -85,6 +86,7 @@ export const createWaterTestDetails = (req, res, next) =>{
     //   });
     // });
     req.files.artwork.map((item) => {
+      console.log("in artwork map "+item);
       customFieldName = item.fieldname;
       // customPath = item.path;
       // customOriginalName= item.originalname;
