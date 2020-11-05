@@ -282,8 +282,8 @@ export const index = ({ querymen: { query, select, cursor } }, res, next) =>{
            var params = {"userId":waterTestDetail['userId']};
            var userId  = waterTestDetail['userId'];
            console.log("looking for controller");
-           var user = await UserController.getUser({params});
-           console.log("found user");
+           // var user = await UserController.getUser({params});
+           // console.log("found user");
            waterTestDetail.contributorName = user.firstName + ' ' +user.lastName;
           return waterTestDetail.view();
         }))
