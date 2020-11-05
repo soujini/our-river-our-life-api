@@ -7,7 +7,7 @@ export WaterTestDetails, { schema } from './model'
 import multer from 'multer'
 
 const router = new Router()
-const { userId, contributorName, generalInformation,waterLevelAndWeather,surroundings,waterTesting, flora, fauna, artwork, groupPicture, activity, river, certificateURL, createWaterTestDetails } = schema.tree
+const { userId, contributorName, generalInformation,waterLevelAndWeather,surroundings,waterTesting, flora, fauna, artwork, groupPicture, activity, river, certificateURL } = schema.tree
 
 const accessTokenSecret = 'youraccesstokensecret';
 const jwt = require('jsonwebtoken');
