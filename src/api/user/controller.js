@@ -8,12 +8,12 @@ const jwt = require('jsonwebtoken');
 
 const accessTokenSecret = 'youraccesstokensecret';
 
-export const create = ({ bodymen: { body } }, res, next) =>
+export const create = ({ bodymen: { body } }, res, next) =>{
 User.create(body)
 .then((user) => user.view(true))
 .then(success(res, 201))
 .catch(next)
-
+}
 export const auth = ({ bodymen: { body } }, res, next) =>{
   // Filter user from the users array by username and password
   if(body.phoneNumber != null)
@@ -48,7 +48,6 @@ export const auth = ({ bodymen: { body } }, res, next) =>{
     });
   }
 }
-
 export const signIn = ({ bodymen: { body } }, res, next) =>{
   User.findOneAndUpdate({phoneNumber:body.phoneNumber},{phoneNumber:body.phoneNumber},{new: true, upsert: true })
   .then((user) => (user.view(true)))
@@ -61,7 +60,6 @@ export const signInWeb = ({ bodymen: { body } }, res, next) => {
   .then(success(res, 201))
   .catch(next)
 }
-
 export const index = ({ querymen: { query, select, cursor } }, res, next) =>{
   User.count(query)
   .then(count => User.find(query, select, cursor)
@@ -73,19 +71,17 @@ export const index = ({ querymen: { query, select, cursor } }, res, next) =>{
 .then(success(res))
 .catch(next)
 }
-
 export const getUser = async ({ params }, res, next) =>{
   var user = await User.findById(params.userId);
   return user;
 }
-
-export const show = ({ params }, res, next) =>
+export const show = ({ params }, res, next) => {
 User.findById(params.id)
 .then(notFound(res))
 .then((user) => user ? user.view() : null)
 .then(success(res))
 .catch(next)
-
+}
 export const update = ({ bodymen: { body }, params }, res, next) =>{
   User.findById(params.id)
   .then(notFound(res))
@@ -94,7 +90,6 @@ export const update = ({ bodymen: { body }, params }, res, next) =>{
   .then(success(res))
   .catch(next)
 }
-
 export const updateProfile = (req, res, next) =>{
   var customOriginalName="avatar_"+req.body.id;
   var customPath="";
@@ -169,7 +164,6 @@ export const updateProfile = (req, res, next) =>{
     .catch(next)
   }
 }
-
 export const destroy = ({ params }, res, next) =>
 User.findById(params.id)
 .then(notFound(res))

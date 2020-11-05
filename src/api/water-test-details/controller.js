@@ -1,6 +1,6 @@
 import { success, notFound } from '../../services/response/'
 import { WaterTestDetails } from '.'
-var PDFController = require('../pdf/controller')
+// var PDFController = require('../pdf/controller')
 var UserController = require('../user/controller')
 
 // export const createWaterTestDetails = (req, res, next) =>{
@@ -217,43 +217,43 @@ var UserController = require('../user/controller')
 
 
 
-  // s3.upload(params, (err, data) => {
-  //   if (err) {
-  //     console.log('Error occured while trying to upload to S3 bucket', err);
-  //      res.status(500).send(err);
-  //   }
+// s3.upload(params, (err, data) => {
+//   if (err) {
+//     console.log('Error occured while trying to upload to S3 bucket', err);
+//      res.status(500).send(err);
+//   }
 
-    // if (res) {
-    //   var params ="";
-    //   fs.unlinkSync(customPath); // Empty temp folder
-    //   const locationUrl = data.Location;
-    //   // customOriginalName = "5ed5cd1e1177d200176877a6_filename.png"
-    //   // var waterTestDetailsId = customOriginalName.split('_');
-    //
-    //   if(customFieldName == 'flora'){
-    //     params = {"id":waterTestDetailsId, "flora":locationUrl, "fieldName":"flora", "description":description}
-    //   }
-    //   else if(customFieldName == 'fauna'){
-    //     params = {"id":waterTestDetailsId, "fauna":locationUrl, "fieldName":"fauna", "description":description}
-    //   }
-    //   else if(customFieldName == 'artwork'){
-    //     params = {"id":waterTestDetailsId, "artwork":locationUrl, "fieldName":"artwork", "description":description}
-    //   }
-    //   else if(customFieldName == 'groupPicture'){
-    //     params = {"id":waterTestDetailsId, "groupPicture":locationUrl, "fieldName":"groupPicture", "description":description}
-    //   }
-    //   else if(customFieldName == 'activity'){
-    //     params = {"id":waterTestDetailsId, "activity":locationUrl, "fieldName":"activity", "description":description}
-    //   }
-    //   else if(customFieldName == 'river'){
-    //     params = {"id":waterTestDetailsId, "river":locationUrl, "fieldName":"river", "description":description}
-    //   }
-    //   if(params != ""){
-    //     WaterTestDetailsController.updateImage({params})
-    //   }
-    //   res.status(200).send("Image uploaded successfully");
-    // }
-  //});
+// if (res) {
+//   var params ="";
+//   fs.unlinkSync(customPath); // Empty temp folder
+//   const locationUrl = data.Location;
+//   // customOriginalName = "5ed5cd1e1177d200176877a6_filename.png"
+//   // var waterTestDetailsId = customOriginalName.split('_');
+//
+//   if(customFieldName == 'flora'){
+//     params = {"id":waterTestDetailsId, "flora":locationUrl, "fieldName":"flora", "description":description}
+//   }
+//   else if(customFieldName == 'fauna'){
+//     params = {"id":waterTestDetailsId, "fauna":locationUrl, "fieldName":"fauna", "description":description}
+//   }
+//   else if(customFieldName == 'artwork'){
+//     params = {"id":waterTestDetailsId, "artwork":locationUrl, "fieldName":"artwork", "description":description}
+//   }
+//   else if(customFieldName == 'groupPicture'){
+//     params = {"id":waterTestDetailsId, "groupPicture":locationUrl, "fieldName":"groupPicture", "description":description}
+//   }
+//   else if(customFieldName == 'activity'){
+//     params = {"id":waterTestDetailsId, "activity":locationUrl, "fieldName":"activity", "description":description}
+//   }
+//   else if(customFieldName == 'river'){
+//     params = {"id":waterTestDetailsId, "river":locationUrl, "fieldName":"river", "description":description}
+//   }
+//   if(params != ""){
+//     WaterTestDetailsController.updateImage({params})
+//   }
+//   res.status(200).send("Image uploaded successfully");
+// }
+//});
 
 
 export const create = ({ bodymen: { body } }, res, next) =>
@@ -275,23 +275,23 @@ WaterTestDetails.create(body)
 // }
 export const index = ({ querymen: { query, select, cursor } }, res, next) =>{
   WaterTestDetails.count(query)
-    .then(count => WaterTestDetails.find(query, select, cursor)
-      .then(async(waterTestDetails) => ({
-        count,
-         rows:  await Promise.all(waterTestDetails.map(async(waterTestDetail) => {
-           var params = {"userId":waterTestDetail['userId']};
-           var userId  = waterTestDetail['userId'];
-           console.log("looking for controller "+userId);
-           // var user = await UserController.getUser({params});
-           // console.log("found user");
-           // waterTestDetail.contributorName = user.firstName + ' ' +user.lastName;
-          return waterTestDetail.view();
-        }))
-      }))
-    )
-    .then(success(res))
-    .catch(next)
-  }
+  .then(count => WaterTestDetails.find(query, select, cursor)
+  .then(async(waterTestDetails) => ({
+    count,
+    rows:  await Promise.all(waterTestDetails.map(async(waterTestDetail) => {
+      var params = {"userId":waterTestDetail['userId']};
+      var userId  = waterTestDetail['userId'];
+      console.log("looking for controller "+userId);
+      // var user = await UserController.getUser({params});
+      // console.log("found user");
+      // waterTestDetail.contributorName = user.firstName + ' ' +user.lastName;
+      return waterTestDetail.view();
+    }))
+  }))
+)
+.then(success(res))
+.catch(next)
+}
 
 
 export const show = ({ params }, res, next) =>{
