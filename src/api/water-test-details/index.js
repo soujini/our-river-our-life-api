@@ -84,7 +84,7 @@ router.post('/',authenticateJWT,
  * @apiSuccess {Object[]} rows List of water test details.
  * @apiError {Object} 400 Some parameters may contain invalid values.
  */
-router.get('/',authenticateJWT,
+router.get('/',
   query(),
   index)
 
