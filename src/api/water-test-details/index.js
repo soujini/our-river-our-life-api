@@ -1,7 +1,7 @@
 import { Router } from 'express'
 import { middleware as query } from 'querymen'
 import { middleware as body } from 'bodymen'
-import { create, index, show, update, destroy, updateImage } from './controller'
+import { create, index, show, update, destroy, updateImage, createWaterTestDetails } from './controller'
 import { schema } from './model'
 export WaterTestDetails, { schema } from './model'
 import multer from 'multer'
@@ -31,21 +31,21 @@ const authenticateJWT = (req, res, next) => {
   }
 };
 
-// router.post('/create-water-test-details',authenticateJWT,
-// multer({ dest: 'temp/', limits: { fieldSize: 8 * 1024 * 1024 } }).fields([{
-//   name: 'flora', maxCount: 5
-// }, {
-//   name: 'fauna', maxCount: 5
-// }, {
-//   name: 'artwork', maxCount: 5
-// }, {
-//   name: 'groupPicture', maxCount: 5
-// }, {
-//   name: 'activity', maxCount: 5
-// }, {
-//   name: 'river', maxCount: 5
-// }]),
-// createWaterTestDetails)
+router.post('/create-web',authenticateJWT,
+multer({ dest: 'temp/', limits: { fieldSize: 8 * 1024 * 1024 } }).fields([{
+  name: 'flora', maxCount: 5
+}, {
+  name: 'fauna', maxCount: 5
+}, {
+  name: 'artwork', maxCount: 5
+}, {
+  name: 'groupPicture', maxCount: 5
+}, {
+  name: 'activity', maxCount: 5
+}, {
+  name: 'river', maxCount: 5
+}]),
+createWaterTestDetails)
 
 /**
 * @api {post} /water-test-details Create water test details
