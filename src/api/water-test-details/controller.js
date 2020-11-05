@@ -19,7 +19,8 @@ export const createWaterTestDetails = (req, res, next) =>{
   });
 
   const file = req.files;
-  console.log("length "+req.files.length);
+  console.log("length "+req);
+  console.log("files "+req.files);
   if(req.files.length > 0){
     const s3 = new aws.S3();
     var responseData = [];
