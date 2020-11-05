@@ -1,7 +1,12 @@
 import { success, notFound } from '../../services/response/'
 import { WaterTestDetails } from '.'
 // var PDFController = require('../pdf/controller')
+import aws from 'aws-sdk';
+import fs from 'fs';
 var UserController = require('../user/controller')
+
+console.log("souj");
+console.log(UserController);
 
 // export const createWaterTestDetails = (req, res, next) =>{
 //   var customOriginalName="";
