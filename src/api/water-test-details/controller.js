@@ -1,7 +1,7 @@
 import { success, notFound } from '../../services/response/'
 import { WaterTestDetails } from '.'
 var PDFController = require('../pdf/controller')
-// var UserController = require('../user/controller')
+var UserController = require('../user/controller')
 
 // export const createWaterTestDetails = (req, res, next) =>{
 //   var customOriginalName="";
@@ -284,7 +284,7 @@ export const index = ({ querymen: { query, select, cursor } }, res, next) =>{
            console.log("looking for controller "+userId);
            // var user = await UserController.getUser({params});
            // console.log("found user");
-           waterTestDetail.contributorName = user.firstName + ' ' +user.lastName;
+           // waterTestDetail.contributorName = user.firstName + ' ' +user.lastName;
           return waterTestDetail.view();
         }))
       }))
