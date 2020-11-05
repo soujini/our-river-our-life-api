@@ -5,9 +5,6 @@ import aws from 'aws-sdk';
 import fs from 'fs';
 var UserController = require('../user/controller')
 
-console.log("souj");
-console.log(UserController);
-
 // export const createWaterTestDetails = (req, res, next) =>{
 //   var customOriginalName="";
 //   var customPath="";
@@ -286,10 +283,9 @@ export const index = ({ querymen: { query, select, cursor } }, res, next) =>{
     rows:  await Promise.all(waterTestDetails.map(async(waterTestDetail) => {
       var params = {"userId":waterTestDetail['userId']};
       var userId  = waterTestDetail['userId'];
-      console.log("looking for controller "+userId);
-      // var user = await UserController.getUser({params});
-      // console.log("found user");
-      // waterTestDetail.contributorName = user.firstName + ' ' +user.lastName;
+      var user = await UserController.getUser({params});
+      console.log("found user");
+      waterTestDetail.contributorName = user.firstName + ' ' +user.lastName;
       return waterTestDetail.view();
     }))
   }))

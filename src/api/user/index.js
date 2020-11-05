@@ -2,8 +2,7 @@ import { Router } from 'express'
 import { middleware as query } from 'querymen'
 import { middleware as body } from 'bodymen'
 import multer from 'multer'
-// import { signIn, signInWeb, auth, index, show, update, destroy,create, updateProfile } from './controller'
-var  UserController  = require('./controller')
+import { signIn, signInWeb, auth, index, show, update, destroy,create, updateProfile } from './controller'
 import { schema } from './model'
 export User, { schema } from './model'
 
@@ -44,7 +43,7 @@ const authenticateJWT = (req, res, next) => {
  */
 router.post('/',
   body({ phoneNumber, email, firstName, lastName }),
-  UserController.create)
+  create)
 
 /**
  * @api {post} /user  user
@@ -57,7 +56,7 @@ router.post('/',
  */
 router.post('/auth',
   body({ phoneNumber, email }),
-  UserController.auth)
+  auth)
 
 
 /**
@@ -71,7 +70,7 @@ router.post('/auth',
  */
 router.post('/sign-in',
   body({ phoneNumber }),
-  UserController.signIn)
+  signIn)
 
   /**
    * @api {post} /user Create user
@@ -84,7 +83,7 @@ router.post('/sign-in',
    */
   router.post('/sign-in-web',
     body({ phoneNumber, email, firstName, lastName }),
-    UserController.signInWeb)
+    signInWeb)
 
 /**
  * @api {get} /user Retrieve users
@@ -97,7 +96,7 @@ router.post('/sign-in',
  */
 router.get('/', authenticateJWT,
   query(),
-  UserController.index)
+  index)
 
 /**
  * @api {get} /user/:id Retrieve user
@@ -108,7 +107,7 @@ router.get('/', authenticateJWT,
  * @apiError 404 User not found.
  */
 router.get('/:id',authenticateJWT,
-  UserController.show)
+  show)
 
 /**
  * @api {post} /user/:id Update user
@@ -121,11 +120,11 @@ router.get('/:id',authenticateJWT,
  */
 router.put('/:id',authenticateJWT,
   body({ phoneNumber, email, firstName, lastName, avatarURL }),
-  UserController.update)
+  update)
 
 router.post('/update-profile',
 multer({ dest: 'temp/', limits: { fieldSize: 8 * 1024 * 1024 }}).array('avatar', 10),
-  UserController.updateProfile
+  updateProfile
 )
 
 /**
@@ -136,6 +135,6 @@ multer({ dest: 'temp/', limits: { fieldSize: 8 * 1024 * 1024 }}).array('avatar',
  * @apiError 404 User not found.
  */
 router.delete('/:id',authenticateJWT,
-  UserController.destroy)
+  destroy)
 
 export default router
