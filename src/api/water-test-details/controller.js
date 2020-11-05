@@ -3,6 +3,7 @@ import { success, notFound } from '../../services/response/'
 import { WaterTestDetails } from '.'
 var PDFController = require('../pdf/controller')
 // import { UserController } from '../user/controller'
+var UserController = require('../user/controller');
 
 export const createWaterTestDetails = (req, res, next) =>{
   var customOriginalName="";
@@ -281,10 +282,10 @@ export const index = ({ querymen: { query, select, cursor } }, res, next) =>{
       .then(async(waterTestDetails) => ({
         count,
          rows:  await Promise.all(waterTestDetails.map(async(waterTestDetail) => {
-          // var params = {"userId":waterTestDetail['userId']}
-          // var userId  = waterTestDetail['userId'];
-          // var user = await UserController1.getUser({params});
-          // waterTestDetail.contributorName = user.firstName + ' ' +user.lastName;
+           var params = {"userId":waterTestDetail['userId']}
+           var userId  = waterTestDetail['userId'];
+           var user = await UserController.getUser({params});
+           waterTestDetail.contributorName = user.firstName + ' ' +user.lastName;
           return waterTestDetail.view();
         }))
       }))
