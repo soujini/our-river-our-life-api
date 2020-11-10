@@ -19,7 +19,7 @@ export const createWaterTestDetails = (req, res, next) =>{
   });
 
   const file = req.files;
-  console.log("length ");
+  // console.log("length ");
   console.log(req.body);
   // console.log(req);
   // console.log(req.files);
@@ -54,6 +54,7 @@ export const createWaterTestDetails = (req, res, next) =>{
             });
             var params ="";
             fs.unlinkSync(customPath); //
+            req.body.flora=flora;
           }
         }
       });
@@ -208,9 +209,11 @@ export const createWaterTestDetails = (req, res, next) =>{
             var params ="";
             fs.unlinkSync(customPath);
           }
+
         }
       });
     });
+      console.log(req.body);
     res.status(200).send("Images uploaded successfully");
 
     //Create Water Test Details
