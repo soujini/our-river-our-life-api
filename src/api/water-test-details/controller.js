@@ -54,7 +54,7 @@ export const createWaterTestDetails = (req, res, next) =>{
             });
             var params ="";
             fs.unlinkSync(customPath); //
-            req.body.flora=flora;
+            // req.body.flora=flora;
           }
         }
       });
