@@ -213,7 +213,7 @@ export const createWaterTestDetails = (req, res, next) =>{
         }
       });
     });
-      console.log(req.body);
+      // console.log(req.body);
     res.status(200).send("Images uploaded successfully");
 
     //Create Water Test Details
