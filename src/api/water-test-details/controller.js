@@ -30,6 +30,7 @@ export const createWaterTestDetails = (req, res, next) =>{
 
     if(req.files.flora){
       req.files.flora.map((item) => {
+        console.log("in flora");
         customFieldName = item.fieldname;
         customPath = item.path;
         // customOriginalName= item.originalname;
@@ -55,6 +56,8 @@ export const createWaterTestDetails = (req, res, next) =>{
                 flora.push(element.Location);
               });
               req.body.flora=flora;
+              console.log("souj");
+              console.log(req.body.flora);
               // fs.unlinkSync(customPath); //
             }
           }
