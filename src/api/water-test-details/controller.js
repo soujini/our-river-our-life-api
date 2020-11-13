@@ -216,7 +216,7 @@ export const uploadFiles = async (req) =>{
   console.log(req.body);
 }
 
-export const createWaterTestDetails = (req, res, next) =>{
+export const createWaterTestDetails = async(req, res, next) =>{
   var customOriginalName="";
   var customPath="";
   var customFieldName="";
