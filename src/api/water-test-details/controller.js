@@ -27,6 +27,7 @@ export const createWaterTestDetails = (req, res, next) =>{
     var responseDataGroupPicture = [];
     var responseDataActivity = [];
     var responseDataRiver = [];
+    console.log(req.files.flora);
 
     if(req.files.flora){
       req.files.flora.map((item) => {
