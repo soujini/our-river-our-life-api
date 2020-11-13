@@ -50,8 +50,9 @@ export const createWaterTestDetails = (req, res, next) =>{
 
             var flora=[];
             responseData.forEach(function(element){
-              flora.push(element.Location)
-              req.body.flora.push(element.Location)
+              flora.push(element.Location);
+                console.log("souji");
+              req.body.flora.push(element.Location);
               console.log(req.body);
 
             });
@@ -94,7 +95,6 @@ export const createWaterTestDetails = (req, res, next) =>{
       });
     });
     req.files.artwork.map((item) => {
-      console.log("in artwork map ");
       console.log(item);
       customFieldName = item.fieldname;
       // customPath = item.path;
