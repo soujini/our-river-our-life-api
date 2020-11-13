@@ -10,7 +10,7 @@ export const uploadFiles = async (req) =>{
   var customPath="";
   var customFieldName="";
   var bucketName="";
-  
+
   const s3 = new aws.S3();
   var responseData = [];
   var responseDataFlora = [];
@@ -217,7 +217,7 @@ export const uploadFiles = async (req) =>{
       });
     });
   }
-  console.log(sue);
+  console.log("sue");
   console.log(req.body);
 }
 
