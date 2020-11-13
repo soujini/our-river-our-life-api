@@ -61,7 +61,7 @@ export const createWaterTestDetails = (req, res, next) =>{
             var flora=[];
             responseDataFlora.forEach(function(element){
               flora.push(element.Location);
-               req.body.flora.push(element.Location);
+               // req.body.flora.push(element.Location);
 
 
             });
