@@ -6,6 +6,11 @@ import fs from 'fs';
 var UserController = require('../user/controller')
 
 export const uploadFiles = async (req) =>{
+  var customOriginalName="";
+  var customPath="";
+  var customFieldName="";
+  var bucketName="";
+  
   const s3 = new aws.S3();
   var responseData = [];
   var responseDataFlora = [];
@@ -217,10 +222,6 @@ export const uploadFiles = async (req) =>{
 }
 
 export const createWaterTestDetails = async(req, res, next) =>{
-  var customOriginalName="";
-  var customPath="";
-  var customFieldName="";
-  var bucketName="";
 
   aws.config.setPromisesDependency();
   aws.config.update({
