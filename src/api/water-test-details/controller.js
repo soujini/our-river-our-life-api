@@ -55,7 +55,7 @@ export const createWaterTestDetails = (req, res, next) =>{
           console.log("in resp data "+data);
           console.log(responseDataFlora);
 
-          if(responseDataFlora.length == file.length){
+          if(responseDataFlora.length > 0){
             //res.json({ "error": false, "message": "File Uploaded SuceesFully", data: responseData});
 
             var flora=[];
