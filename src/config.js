@@ -50,6 +50,7 @@ const config = {
     port: process.env.PORT || 8080,
     mongo: {
       uri: process.env.MONGODB_URI || 'mongodb://localhost/our-river-our-life-api'
+      // uri: process.env.MONGODB_URI || 'mongodb://localhost/our-river-our-life-api'
     }
   }
 }
