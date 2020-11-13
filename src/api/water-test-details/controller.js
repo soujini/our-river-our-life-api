@@ -6,7 +6,6 @@ import fs from 'fs';
 var UserController = require('../user/controller')
 
 export const createWaterTestDetails = (req, res, next) =>{
-  console.log("in create");
   var customOriginalName="";
   var customPath="";
   var customFieldName="";
@@ -57,7 +56,6 @@ export const createWaterTestDetails = (req, res, next) =>{
               });
               req.body.flora=flora;
               fs.unlinkSync(customPath); //
-              req.body.flora=flora;
             }
           }
         });
@@ -65,7 +63,6 @@ export const createWaterTestDetails = (req, res, next) =>{
     }
     if(req.files.fauna){
       req.files.fauna.map((item) => {
-        console.log("in fauna");
         customFieldName = item.fieldname;
         customPath = item.path;
         // customOriginalName= item.originalname;
@@ -90,7 +87,7 @@ export const createWaterTestDetails = (req, res, next) =>{
                 fauna.push(element.Location)
               });
               req.body.fauna=fauna;
-              fs.unlinkSync(customPath); //
+              //fs.unlinkSync(customPath); //
             }
           }
         });
@@ -122,7 +119,7 @@ export const createWaterTestDetails = (req, res, next) =>{
                 artwork.push(element.Location)
               });
               req.body.artwork=artwork;
-              fs.unlinkSync(customPath); //
+              //fs.unlinkSync(customPath); //
             }
           }
         });
@@ -154,7 +151,7 @@ export const createWaterTestDetails = (req, res, next) =>{
                 groupPicture.push(element.Location)
               });
               req.body.groupPicture=groupPicture;
-              fs.unlinkSync(customPath); //
+              //fs.unlinkSync(customPath); //
             }
           }
         });
@@ -186,7 +183,7 @@ export const createWaterTestDetails = (req, res, next) =>{
                 activity.push(element.Location)
               });
               req.body.activity=activity;
-              fs.unlinkSync(customPath); //
+              //fs.unlinkSync(customPath); //
             }
           }
         });
@@ -218,7 +215,7 @@ export const createWaterTestDetails = (req, res, next) =>{
                 river.push(element.Location)
               });
               req.body.activity=activity;
-              fs.unlinkSync(customPath);
+              //fs.unlinkSync(customPath);
             }
 
           }
