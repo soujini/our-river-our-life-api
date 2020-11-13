@@ -35,7 +35,7 @@ export const uploadFiles = async (req) =>{
         ACL: 'public-read'
       };
 
-      s3.upload(params, function (err, data) {
+      await s3.upload(params, function (err, data) {
         if (err) {
           res.json({ "error": true, "Message": err});
         }else{
@@ -69,7 +69,7 @@ export const uploadFiles = async (req) =>{
         Body: fs.createReadStream(item.path),
         ACL: 'public-read'
       };
-      s3.upload(params, function (err, data) {
+      await s3.upload(params, function (err, data) {
         if (err) {
           res.json({ "error": true, "Message": err});
         }else{
@@ -101,7 +101,7 @@ export const uploadFiles = async (req) =>{
         Body: fs.createReadStream(item.path),
         ACL: 'public-read'
       };
-      s3.upload(params, function (err, data) {
+      await s3.upload(params, function (err, data) {
         if (err) {
           res.json({ "error": true, "Message": err});
         }else{
@@ -133,7 +133,7 @@ export const uploadFiles = async (req) =>{
         Body: fs.createReadStream(item.path),
         ACL: 'public-read'
       };
-      s3.upload(params, function (err, data) {
+      await s3.upload(params, function (err, data) {
         if (err) {
           res.json({ "error": true, "Message": err});
         }else{
@@ -165,7 +165,7 @@ export const uploadFiles = async (req) =>{
         Body: fs.createReadStream(item.path),
         ACL: 'public-read'
       };
-      s3.upload(params, function (err, data) {
+      await s3.upload(params, function (err, data) {
         if (err) {
           res.json({ "error": true, "Message": err});
         }else{
@@ -185,7 +185,7 @@ export const uploadFiles = async (req) =>{
     });
   }
   if(req.files.river){
-    req.files.river.map((item) => {
+    await req.files.river.map((item) => {
       customFieldName = item.fieldname;
       customPath = item.path;
       // customOriginalName= item.originalname;
