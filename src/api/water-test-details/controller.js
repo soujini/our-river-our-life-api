@@ -25,7 +25,12 @@ export const createWaterTestDetails = (req, res, next) =>{
   // console.log(req.files);
   if(req.files){
     const s3 = new aws.S3();
-    var responseData = [];
+    var responseDataFlora = [];
+    var responseDataFauna = [];
+    var responseDataArtwork = [];
+    var responseDataGroupPicture = [];
+    var responseDataActivity = [];
+    var responseDataRiver = [];
 
     req.files.flora.map((item) => {
       console.log("in flora");
@@ -45,12 +50,15 @@ export const createWaterTestDetails = (req, res, next) =>{
         if (err) {
           res.json({ "error": true, "Message": err});
         }else{
-          responseData.push(data);
-          if(responseData.length == file.length){
+          responseDataFlora.push(data);
+          console.log("in resp data "+data);
+          console.log(responseDataFlora);
+
+          if(responseDataFlora.length == file.length){
             //res.json({ "error": false, "message": "File Uploaded SuceesFully", data: responseData});
-console.log("in resp data");
+
             var flora=[];
-            responseData.forEach(function(element){
+            responseDataFlora.forEach(function(element){
               flora.push(element.Location);
                req.body.flora.push(element.Location);
 
