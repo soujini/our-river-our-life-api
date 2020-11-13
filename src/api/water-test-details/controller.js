@@ -25,6 +25,7 @@ export const createWaterTestDetails = (req, res, next) =>{
   // console.log(req.files);
   if(req.files){
     const s3 = new aws.S3();
+    var responseData = [];
     var responseDataFlora = [];
     var responseDataFauna = [];
     var responseDataArtwork = [];
