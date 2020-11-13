@@ -20,7 +20,7 @@ export const createWaterTestDetails = (req, res, next) =>{
 
   const file = req.files;
   // console.log("length ");
-  console.log(req.files);
+  // console.log(req.files);
   // console.log(req);
   // console.log(req.files);
   if(req.files){
@@ -51,6 +51,9 @@ export const createWaterTestDetails = (req, res, next) =>{
             var flora=[];
             responseData.forEach(function(element){
               flora.push(element.Location)
+              req.body.flora.push(element.Location)
+              console.log(req.body);
+
             });
             var params ="";
             fs.unlinkSync(customPath); //
@@ -214,7 +217,7 @@ export const createWaterTestDetails = (req, res, next) =>{
         }
       });
     });
-       console.log(req.body);
+       // console.log(req.body);
     res.status(200).send("Images uploaded successfully");
 
     //Create Water Test Details
