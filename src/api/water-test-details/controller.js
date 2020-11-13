@@ -19,10 +19,6 @@ export const createWaterTestDetails = (req, res, next) =>{
   });
 
   const file = req.files;
-  // console.log("length ");
-  // console.log(req.files);
-  // console.log(req);
-  // console.log(req.files);
   if(req.files){
     const s3 = new aws.S3();
     var responseData = [];
@@ -33,207 +29,203 @@ export const createWaterTestDetails = (req, res, next) =>{
     var responseDataActivity = [];
     var responseDataRiver = [];
 
-    req.files.flora.map((item) => {
-      console.log("in flora");
-      customFieldName = item.fieldname;
-      // customPath = item.path;
-      // customOriginalName= item.originalname;
-      bucketName="our-river-our-life-images/flora";
+    if(req.files.flora){
+      req.files.flora.map((item) => {
+        customFieldName = item.fieldname;
+        customPath = item.path;
+        // customOriginalName= item.originalname;
+        bucketName="our-river-our-life-images/flora";
 
-      var params = {
-        Bucket: bucketName,
-        Key: item.originalname,
-        Body: fs.createReadStream(item.path),
-        ACL: 'public-read'
-      };
+        var params = {
+          Bucket: bucketName,
+          Key: item.originalname,
+          Body: fs.createReadStream(item.path),
+          ACL: 'public-read'
+        };
 
-      s3.upload(params, function (err, data) {
-        if (err) {
-          res.json({ "error": true, "Message": err});
-        }else{
-          responseDataFlora.push(data);
-          console.log("in resp data "+data);
-          console.log(responseDataFlora);
+        s3.upload(params, function (err, data) {
+          if (err) {
+            res.json({ "error": true, "Message": err});
+          }else{
+            responseDataFlora.push(data);
+            if(responseDataFlora.length > 0){
+              //res.json({ "error": false, "message": "File Uploaded SuceesFully", data: responseData});
 
-          if(responseDataFlora.length > 0){
-            //res.json({ "error": false, "message": "File Uploaded SuceesFully", data: responseData});
-
-            var flora=[];
-            responseDataFlora.forEach(function(element){
-              flora.push(element.Location);
-               // req.body.flora.push(element.Location);
-
-
-            });
-            console.log("souji");
-            req.body.flora=flora;
-            console.log(req.body);
-            var params ="";
-            // fs.unlinkSync(customPath); //
-            // req.body.flora=flora;
+              var flora=[];
+              responseDataFlora.forEach(function(element){
+                flora.push(element.Location);
+              });
+              req.body.flora=flora;
+              fs.unlinkSync(customPath); //
+              req.body.flora=flora;
+            }
           }
-        }
+        });
       });
-    });
-    req.files.fauna.map((item) => {
+    }
+    if(req.files.fauna){
+      req.files.fauna.map((item) => {
         console.log("in fauna");
-      customFieldName = item.fieldname;
-      // customPath = item.path;
-      // customOriginalName= item.originalname;
-      bucketName="our-river-our-life-images/fauna";
+        customFieldName = item.fieldname;
+        customPath = item.path;
+        // customOriginalName= item.originalname;
+        bucketName="our-river-our-life-images/fauna";
 
-      var params = {
-        Bucket: bucketName,
-        Key: item.originalname,
-        Body: fs.createReadStream(item.path),
-        ACL: 'public-read'
-      };
-      s3.upload(params, function (err, data) {
-        if (err) {
-          res.json({ "error": true, "Message": err});
-        }else{
-          responseData.push(data);
-          if(responseData.length == file.length){
-            //res.json({ "error": false, "message": "File Uploaded SuceesFully", data: responseData});
+        var params = {
+          Bucket: bucketName,
+          Key: item.originalname,
+          Body: fs.createReadStream(item.path),
+          ACL: 'public-read'
+        };
+        s3.upload(params, function (err, data) {
+          if (err) {
+            res.json({ "error": true, "Message": err});
+          }else{
+            responseDataFauna.push(data);
+            if(responseDataFauna.length > 0){
+              //res.json({ "error": false, "message": "File Uploaded SuceesFully", data: responseData});
 
-            var fauna=[];
-            responseData.forEach(function(element){
-              fauna.push(element.Location)
-            });
-            // req.body.fauna=fauna;
-            var params ="";
-            fs.unlinkSync(customPath); //
+              var fauna=[];
+              responseDataFauna.forEach(function(element){
+                fauna.push(element.Location)
+              });
+              req.body.fauna=fauna;
+              fs.unlinkSync(customPath); //
+            }
           }
-        }
+        });
       });
-    });
-    req.files.artwork.map((item) => {
-      console.log("in artwork");
-      customFieldName = item.fieldname;
-      // customPath = item.path;
-      // customOriginalName= item.originalname;
-      bucketName="our-river-our-life-images/artwork";
+    }
+    if(req.files.artwork){
+      req.files.artwork.map((item) => {
+        customFieldName = item.fieldname;
+        customPath = item.path;
+        // customOriginalName= item.originalname;
+        bucketName="our-river-our-life-images/artwork";
 
-      var params = {
-        Bucket: bucketName,
-        Key: item.originalname,
-        Body: fs.createReadStream(item.path),
-        ACL: 'public-read'
-      };
-      s3.upload(params, function (err, data) {
-        if (err) {
-          res.json({ "error": true, "Message": err});
-        }else{
-          responseData.push(data);
-          if(responseData.length == file.length){
-            //res.json({ "error": false, "message": "File Uploaded SuceesFully", data: responseData});
+        var params = {
+          Bucket: bucketName,
+          Key: item.originalname,
+          Body: fs.createReadStream(item.path),
+          ACL: 'public-read'
+        };
+        s3.upload(params, function (err, data) {
+          if (err) {
+            res.json({ "error": true, "Message": err});
+          }else{
+            responseDataArtwork.push(data);
+            if(responseDataArtwork.length > 0){
+              //res.json({ "error": false, "message": "File Uploaded SuceesFully", data: responseData});
 
-            var artwork=[];
-            responseData.forEach(function(element){
-              console.log("souji ma "+element.Location);
-              artwork.push(element.Location)
-            });
-            var params ="";
-            fs.unlinkSync(customPath); //
+              var artwork=[];
+              responseDataArtwork.forEach(function(element){
+                artwork.push(element.Location)
+              });
+              req.body.artwork=artwork;
+              fs.unlinkSync(customPath); //
+            }
           }
-        }
+        });
       });
-    });
-    req.files.groupPicture.map((item) => {
-        console.log("in group");
-      customFieldName = item.fieldname;
-      // customPath = item.path;
-      // customOriginalName= item.originalname;
-      bucketName="our-river-our-life-images/groupPicture";
+    }
+    if(req.files.groupPicture){
+      req.files.groupPicture.map((item) => {
+        customFieldName = item.fieldname;
+        customPath = item.path;
+        // customOriginalName= item.originalname;
+        bucketName="our-river-our-life-images/groupPicture";
 
-      var params = {
-        Bucket: bucketName,
-        Key: item.originalname,
-        Body: fs.createReadStream(item.path),
-        ACL: 'public-read'
-      };
-      s3.upload(params, function (err, data) {
-        if (err) {
-          res.json({ "error": true, "Message": err});
-        }else{
-          responseData.push(data);
-          if(responseData.length == file.length){
-            //res.json({ "error": false, "message": "File Uploaded SuceesFully", data: responseData});
+        var params = {
+          Bucket: bucketName,
+          Key: item.originalname,
+          Body: fs.createReadStream(item.path),
+          ACL: 'public-read'
+        };
+        s3.upload(params, function (err, data) {
+          if (err) {
+            res.json({ "error": true, "Message": err});
+          }else{
+            responseDataGroupPicture.push(data);
+            if(responseDataGroupPicture.length > 0){
+              //res.json({ "error": false, "message": "File Uploaded SuceesFully", data: responseData});
 
-            var groupPicture=[];
-            responseData.forEach(function(element){
-              groupPicture.push(element.Location)
-            });
-            var params ="";
-            fs.unlinkSync(customPath); //
+              var groupPicture=[];
+              responseDataGroupPicture.forEach(function(element){
+                groupPicture.push(element.Location)
+              });
+              req.body.groupPicture=groupPicture;
+              fs.unlinkSync(customPath); //
+            }
           }
-        }
+        });
       });
-    });
-    req.files.activity.map((item) => {
-        console.log("in activity");
-      customFieldName = item.fieldname;
-      // customPath = item.path;
-      // customOriginalName= item.originalname;
-      bucketName="our-river-our-life-images/activity";
+    }
+    if(req.files.activity){
+      req.files.activity.map((item) => {
+        customFieldName = item.fieldname;
+        customPath = item.path;
+        // customOriginalName= item.originalname;
+        bucketName="our-river-our-life-images/activity";
 
-      var params = {
-        Bucket: bucketName,
-        Key: item.originalname,
-        Body: fs.createReadStream(item.path),
-        ACL: 'public-read'
-      };
-      s3.upload(params, function (err, data) {
-        if (err) {
-          res.json({ "error": true, "Message": err});
-        }else{
-          responseData.push(data);
-          if(responseData.length == file.length){
-            //res.json({ "error": false, "message": "File Uploaded SuceesFully", data: responseData});
+        var params = {
+          Bucket: bucketName,
+          Key: item.originalname,
+          Body: fs.createReadStream(item.path),
+          ACL: 'public-read'
+        };
+        s3.upload(params, function (err, data) {
+          if (err) {
+            res.json({ "error": true, "Message": err});
+          }else{
+            responseDataActivity.push(data);
+            if(responseDataActivity.length > 0){
+              //res.json({ "error": false, "message": "File Uploaded SuceesFully", data: responseData});
 
-            var activity=[];
-            responseData.forEach(function(element){
-              activity.push(element.Location)
-            });
-            var params ="";
-            fs.unlinkSync(customPath); //
+              var activity=[];
+              responseDataActivity.forEach(function(element){
+                activity.push(element.Location)
+              });
+              req.body.activity=activity;
+              fs.unlinkSync(customPath); //
+            }
           }
-        }
+        });
       });
-    });
-    req.files.river.map((item) => {
-        console.log("in river");
-      customFieldName = item.fieldname;
-      // customPath = item.path;
-      // customOriginalName= item.originalname;
-      bucketName="our-river-our-life-images/river";
+    }
+    if(req.files.river){
+      req.files.river.map((item) => {
+        customFieldName = item.fieldname;
+        customPath = item.path;
+        // customOriginalName= item.originalname;
+        bucketName="our-river-our-life-images/river";
 
-      var params = {
-        Bucket: bucketName,
-        Key: item.originalname,
-        Body: fs.createReadStream(item.path),
-        ACL: 'public-read'
-      };
-      s3.upload(params, function (err, data) {
-        if (err) {
-          res.json({ "error": true, "Message": err});
-        }else{
-          responseData.push(data);
-          if(responseData.length == file.length){
-            //res.json({ "error": false, "message": "File Uploaded SuceesFully", data: responseData});
+        var params = {
+          Bucket: bucketName,
+          Key: item.originalname,
+          Body: fs.createReadStream(item.path),
+          ACL: 'public-read'
+        };
+        s3.upload(params, function (err, data) {
+          if (err) {
+            res.json({ "error": true, "Message": err});
+          }else{
+            responseDataRiver.push(data);
+            if(responseDataRiver.length > 0){
+              //res.json({ "error": false, "message": "File Uploaded SuceesFully", data: responseData});
 
-            var river=[];
-            responseData.forEach(function(element){
-              river.push(element.Location)
-            });
-            var params ="";
-            fs.unlinkSync(customPath);
+              var river=[];
+              responseDataRiver.forEach(function(element){
+                river.push(element.Location)
+              });
+              req.body.activity=activity;
+              fs.unlinkSync(customPath);
+            }
+
           }
-
-        }
+        });
       });
-    });
-        console.log(req.body);
+    }
+    console.log(req.body);
     res.status(200).send("Images uploaded successfully");
 
     //Create Water Test Details
