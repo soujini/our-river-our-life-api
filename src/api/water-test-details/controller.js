@@ -83,6 +83,7 @@ export const createWaterTestDetails = (req, res, next) =>{
             responseData.forEach(function(element){
               fauna.push(element.Location)
             });
+            req.body.fauna=fauna;
             var params ="";
             fs.unlinkSync(customPath); //
           }
@@ -213,7 +214,7 @@ export const createWaterTestDetails = (req, res, next) =>{
         }
       });
     });
-      // console.log(req.body);
+       console.log(req.body);
     res.status(200).send("Images uploaded successfully");
 
     //Create Water Test Details
