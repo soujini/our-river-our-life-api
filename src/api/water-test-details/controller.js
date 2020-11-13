@@ -55,7 +55,7 @@ export const createWaterTestDetails = (req, res, next) =>{
                 flora.push(element.Location);
               });
               req.body.flora=flora;
-              fs.unlinkSync(customPath); //
+              // fs.unlinkSync(customPath); //
             }
           }
         });
