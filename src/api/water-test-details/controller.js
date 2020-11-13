@@ -20,7 +20,7 @@ export const createWaterTestDetails = (req, res, next) =>{
 
   const file = req.files;
   // console.log("length ");
-  console.log(req.files.flora);
+  console.log(req.body.generalInformation);
   // console.log(req);
   // console.log(req.files);
   if(req.files){
