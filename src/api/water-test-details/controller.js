@@ -51,11 +51,12 @@ export const createWaterTestDetails = (req, res, next) =>{
             var flora=[];
             responseData.forEach(function(element){
               flora.push(element.Location);
-                console.log("souji");
-              req.body.flora.push(element.Location);
+              // req.body.flora.push(element.Location);
               console.log(req.body);
 
             });
+            console.log("souji");
+            console.log(flora);
             var params ="";
             fs.unlinkSync(customPath); //
             // req.body.flora=flora;
