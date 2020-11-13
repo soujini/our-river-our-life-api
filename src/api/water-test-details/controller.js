@@ -83,7 +83,7 @@ export const createWaterTestDetails = (req, res, next) =>{
             responseData.forEach(function(element){
               fauna.push(element.Location)
             });
-            req.body.fauna=fauna;
+            // req.body.fauna=fauna;
             var params ="";
             fs.unlinkSync(customPath); //
           }
