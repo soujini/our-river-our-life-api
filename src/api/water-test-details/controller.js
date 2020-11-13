@@ -28,6 +28,7 @@ export const createWaterTestDetails = (req, res, next) =>{
     var responseData = [];
 
     req.files.flora.map((item) => {
+      console.log("in flora");
       customFieldName = item.fieldname;
       // customPath = item.path;
       // customOriginalName= item.originalname;
@@ -47,12 +48,12 @@ export const createWaterTestDetails = (req, res, next) =>{
           responseData.push(data);
           if(responseData.length == file.length){
             //res.json({ "error": false, "message": "File Uploaded SuceesFully", data: responseData});
-
+console.log("in resp data");
             var flora=[];
             responseData.forEach(function(element){
               flora.push(element.Location);
-              // req.body.flora.push(element.Location);
-              console.log(req.body);
+               req.body.flora.push(element.Location);
+
 
             });
             console.log("souji");
@@ -65,6 +66,7 @@ export const createWaterTestDetails = (req, res, next) =>{
       });
     });
     req.files.fauna.map((item) => {
+        console.log("in fauna");
       customFieldName = item.fieldname;
       // customPath = item.path;
       // customOriginalName= item.originalname;
@@ -96,7 +98,7 @@ export const createWaterTestDetails = (req, res, next) =>{
       });
     });
     req.files.artwork.map((item) => {
-      console.log(item);
+      console.log("in artwork");
       customFieldName = item.fieldname;
       // customPath = item.path;
       // customOriginalName= item.originalname;
@@ -128,6 +130,7 @@ export const createWaterTestDetails = (req, res, next) =>{
       });
     });
     req.files.groupPicture.map((item) => {
+        console.log("in group");
       customFieldName = item.fieldname;
       // customPath = item.path;
       // customOriginalName= item.originalname;
@@ -158,6 +161,7 @@ export const createWaterTestDetails = (req, res, next) =>{
       });
     });
     req.files.activity.map((item) => {
+        console.log("in activity");
       customFieldName = item.fieldname;
       // customPath = item.path;
       // customOriginalName= item.originalname;
@@ -188,6 +192,7 @@ export const createWaterTestDetails = (req, res, next) =>{
       });
     });
     req.files.river.map((item) => {
+        console.log("in river");
       customFieldName = item.fieldname;
       // customPath = item.path;
       // customOriginalName= item.originalname;
@@ -218,7 +223,7 @@ export const createWaterTestDetails = (req, res, next) =>{
         }
       });
     });
-       // console.log(req.body);
+        console.log(req.body);
     res.status(200).send("Images uploaded successfully");
 
     //Create Water Test Details
