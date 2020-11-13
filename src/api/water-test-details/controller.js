@@ -66,9 +66,10 @@ export const createWaterTestDetails = (req, res, next) =>{
 
             });
             console.log("souji");
-            console.log(flora);
+            req.body.flora=flora;
+            console.log(req.body);
             var params ="";
-            fs.unlinkSync(customPath); //
+            // fs.unlinkSync(customPath); //
             // req.body.flora=flora;
           }
         }
