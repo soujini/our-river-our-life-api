@@ -103,7 +103,7 @@ export const uploadFiles = async (req, res) =>{
       };
       await s3.upload(params, function (err, data) {
         if (err) {
-          res.json({ "error": true, "Message": err});
+          // res.json({ "error": true, "Message": err});
         }else{
           responseDataArtwork.push(data);
           if(responseDataArtwork.length > 0){
@@ -135,7 +135,7 @@ export const uploadFiles = async (req, res) =>{
       };
       await s3.upload(params, function (err, data) {
         if (err) {
-          res.json({ "error": true, "Message": err});
+          // res.json({ "error": true, "Message": err});
         }else{
           responseDataGroupPicture.push(data);
           if(responseDataGroupPicture.length > 0){
@@ -167,7 +167,7 @@ export const uploadFiles = async (req, res) =>{
       };
       await s3.upload(params, function (err, data) {
         if (err) {
-          res.json({ "error": true, "Message": err});
+          // res.json({ "error": true, "Message": err});
         }else{
           responseDataActivity.push(data);
           if(responseDataActivity.length > 0){
@@ -199,7 +199,7 @@ export const uploadFiles = async (req, res) =>{
       };
       s3.upload(params, function (err, data) {
         if (err) {
-          res.json({ "error": true, "Message": err});
+          // res.json({ "error": true, "Message": err});
         }else{
           responseDataRiver.push(data);
           if(responseDataRiver.length > 0){
