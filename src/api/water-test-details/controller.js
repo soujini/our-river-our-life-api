@@ -21,7 +21,7 @@ export const uploadFiles = async (req) =>{
   var responseDataRiver = [];
 
   if(req.files.flora){
-    req.files.flora.map((item) => {
+    req.files.flora.map(async(item) => {
       console.log("in flora");
       customFieldName = item.fieldname;
       customPath = item.path;
@@ -57,7 +57,7 @@ export const uploadFiles = async (req) =>{
     });
   }
   if(req.files.fauna){
-    req.files.fauna.map((item) => {
+    req.files.fauna.map(async(item) => {
       customFieldName = item.fieldname;
       customPath = item.path;
       // customOriginalName= item.originalname;
@@ -89,7 +89,7 @@ export const uploadFiles = async (req) =>{
     });
   }
   if(req.files.artwork){
-    req.files.artwork.map((item) => {
+    req.files.artwork.map(async(item) => {
       customFieldName = item.fieldname;
       customPath = item.path;
       // customOriginalName= item.originalname;
@@ -121,7 +121,7 @@ export const uploadFiles = async (req) =>{
     });
   }
   if(req.files.groupPicture){
-    req.files.groupPicture.map((item) => {
+    req.files.groupPicture.map(async(item) => {
       customFieldName = item.fieldname;
       customPath = item.path;
       // customOriginalName= item.originalname;
@@ -153,7 +153,7 @@ export const uploadFiles = async (req) =>{
     });
   }
   if(req.files.activity){
-    req.files.activity.map((item) => {
+    req.files.activity.map(async(item) => {
       customFieldName = item.fieldname;
       customPath = item.path;
       // customOriginalName= item.originalname;
@@ -185,7 +185,7 @@ export const uploadFiles = async (req) =>{
     });
   }
   if(req.files.river){
-    await req.files.river.map((item) => {
+    await req.files.river.map(async(item) => {
       customFieldName = item.fieldname;
       customPath = item.path;
       // customOriginalName= item.originalname;
