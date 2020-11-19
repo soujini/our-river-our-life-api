@@ -5,7 +5,7 @@ import aws from 'aws-sdk';
 import fs from 'fs';
 var UserController = require('../user/controller')
 
-export const uploadFiles = async (req, res) =>{
+export const uploadFiles = async (req, res, next) =>{
   var customOriginalName="";
   var customPath="";
   var customFieldName="";
@@ -37,11 +37,11 @@ export const uploadFiles = async (req, res) =>{
 
       await s3.upload(params, function (err, data) {
         if (err) {
-          res.json({ "error": true, "Message": err});
+          // res.json({ "error": true, "Message": err});
         }else{
           responseDataFlora.push(data);
           if(responseDataFlora.length > 0){
-            //res.json({ "error": false, "message": "File Uploaded SuceesFully", data: responseData});
+            // res.json({ "error": false, "message": "File Uploaded SuceesFully", data: responseData});
 
             var flora=[];
             responseDataFlora.forEach(function(element){
@@ -71,11 +71,11 @@ export const uploadFiles = async (req, res) =>{
       };
       await s3.upload(params, function (err, data) {
         if (err) {
-          res.json({ "error": true, "Message": err});
+          // res.json({ "error": true, "Message": err});
         }else{
           responseDataFauna.push(data);
           if(responseDataFauna.length > 0){
-            //res.json({ "error": false, "message": "File Uploaded SuceesFully", data: responseData});
+            // res.json({ "error": false, "message": "File Uploaded SuceesFully", data: responseData});
 
             var fauna=[];
             responseDataFauna.forEach(function(element){
@@ -107,7 +107,7 @@ export const uploadFiles = async (req, res) =>{
         }else{
           responseDataArtwork.push(data);
           if(responseDataArtwork.length > 0){
-            //res.json({ "error": false, "message": "File Uploaded SuceesFully", data: responseData});
+            // res.json({ "error": false, "message": "File Uploaded SuceesFully", data: responseData});
 
             var artwork=[];
             responseDataArtwork.forEach(function(element){
