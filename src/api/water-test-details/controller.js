@@ -11,7 +11,7 @@ export const uploadFiles = async (req, res, next) =>{
   var customFieldName="";
   var bucketName="";
 
-  const s3 = new aws.S3();
+
   var responseData = [];
   var responseDataFlora = [];
   var responseDataFauna = [];
@@ -26,6 +26,7 @@ export const uploadFiles = async (req, res, next) =>{
     "secretAccessKey": 'UKG2g/WWfOcLlz4rXPLDEe4jcwcTJ+tfEP9DneJo',
   });
 
+
   if(req.files.flora){
     console.log("in flora");
     req.files.flora.map(async(item) => {
@@ -34,19 +35,19 @@ export const uploadFiles = async (req, res, next) =>{
       // customOriginalName= item.originalname;
       bucketName="our-river-our-life-images/flora";
 
+      const s3 = new aws.S3();
       var params = {
+        ACL: 'public-read',
         Bucket: bucketName,
-        Key: item.originalname,
         Body: fs.createReadStream(item.path),
-        ACL: 'public-read'
+        Key: item.originalname,
       };
 
       await s3.upload(params, function (err, data) {
         if (err) {
-            console.log("error flora");
-          console.log(err);
-          // res.json({ "error": true, "Message": err});
-        }else{
+          console.log('Error occured while trying to upload Flora to the S3 bucket', err);
+           res.status(500).send(err);
+        }if(res){
           responseDataFlora.push(data);
           console.log("1");
           console.log(data);
@@ -87,9 +88,8 @@ export const uploadFiles = async (req, res, next) =>{
       };
       await s3.upload(params, function (err, data) {
         if (err) {
-          console.log("error flora");
-        console.log(err);
-          // res.json({ "error": true, "Message": err});
+          console.log('Error occured while trying to upload Fauna to the S3 bucket', err);
+           res.status(500).send(err);
         }else{
           responseDataFauna.push(data);
           if(responseDataFauna.length > 0){
