@@ -21,7 +21,7 @@ export const uploadFiles = async (req, res, next) =>{
   var responseDataRiver = [];
 
   if(req.files.flora){
-    print("in flora");
+    console.log("in flora");
     req.files.flora.map(async(item) => {
       customFieldName = item.fieldname;
       customPath = item.path;
@@ -60,7 +60,7 @@ export const uploadFiles = async (req, res, next) =>{
     });
   }
   if(req.files.fauna){
-    print("in fauna");
+    console.log("in fauna");
     req.files.fauna.map(async(item) => {
       customFieldName = item.fieldname;
       customPath = item.path;
