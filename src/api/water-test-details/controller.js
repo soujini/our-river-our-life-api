@@ -37,8 +37,8 @@ export const uploadFiles = async (req, res, next) =>{
 
       await s3.upload(params, function (err, data) {
         if (err) {
-            print("error flora");
-          print(err);
+            console.log("error flora");
+          console.log(err);
           // res.json({ "error": true, "Message": err});
         }else{
           responseDataFlora.push(data);
@@ -81,8 +81,8 @@ export const uploadFiles = async (req, res, next) =>{
       };
       await s3.upload(params, function (err, data) {
         if (err) {
-          print("error flora");
-        print(err);
+          console.log("error flora");
+        console.log(err);
           // res.json({ "error": true, "Message": err});
         }else{
           responseDataFauna.push(data);
