@@ -20,6 +20,12 @@ export const uploadFiles = async (req, res, next) =>{
   var responseDataActivity = [];
   var responseDataRiver = [];
 
+  aws.config.setPromisesDependency();
+  aws.config.update({
+    "accessKeyId": 'AKIAJ24JCG5UUXOOHKDA',
+    "secretAccessKey": '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',
+  });
+
   if(req.files.flora){
     console.log("in flora");
     req.files.flora.map(async(item) => {
@@ -235,11 +241,7 @@ export const uploadFiles = async (req, res, next) =>{
 
 export const createWaterTestDetails = async(req, res, next) =>{
 
-  aws.config.setPromisesDependency();
-  aws.config.update({
-    "accessKeyId": 'AKIAJ24JCG5UUXOOHKDA',
-    "secretAccessKey": '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',
-  });
+
 
   const file = req.files;
   if(req.files){
