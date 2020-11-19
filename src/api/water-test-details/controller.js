@@ -40,6 +40,10 @@ export const uploadFiles = async (req, res, next) =>{
           // res.json({ "error": true, "Message": err});
         }else{
           responseDataFlora.push(data);
+          console.log("1");
+          console.log(data);
+          console.log(responseDataFlora);
+          console.log(responseDataFlora.length);
           if(responseDataFlora.length > 0){
             console.log("here");
             // res.json({ "error": false, "message": "File Uploaded SuceesFully", data: responseData});
