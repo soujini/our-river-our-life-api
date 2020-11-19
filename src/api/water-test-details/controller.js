@@ -5,7 +5,7 @@ import aws from 'aws-sdk';
 import fs from 'fs';
 var UserController = require('../user/controller')
 
-export const uploadFiles = async (req) =>{
+export const uploadFiles = async (req, res) =>{
   var customOriginalName="";
   var customPath="";
   var customFieldName="";
