@@ -41,13 +41,13 @@ export const uploadFiles = async (req, res, next) =>{
         }else{
           responseDataFlora.push(data);
           if(responseDataFlora.length > 0){
-            print("here");
+            console.log("here");
             // res.json({ "error": false, "message": "File Uploaded SuceesFully", data: responseData});
 
             var flora=[];
             responseDataFlora.forEach(function(element){
               flora.push(element.Location);
-              print("pushing");
+              console.log("pushing");
               req.body.flora=flora;
             });
 
