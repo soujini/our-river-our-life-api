@@ -46,7 +46,7 @@ export const uploadFiles = async (req, res, next) =>{
       await s3.upload(params, function (err, data) {
         if (err) {
           console.log('Error occured while trying to upload Flora to the S3 bucket', err);
-           res.status(500).send(err);
+           err.status(500).send(err);
         }if(res){
           responseDataFlora.push(data);
           console.log("1");
@@ -89,7 +89,7 @@ export const uploadFiles = async (req, res, next) =>{
       await s3.upload(params, function (err, data) {
         if (err) {
           console.log('Error occured while trying to upload Fauna to the S3 bucket', err);
-           res.status(500).send(err);
+           err.status(500).send(err);
         }else{
           responseDataFauna.push(data);
           if(responseDataFauna.length > 0){
