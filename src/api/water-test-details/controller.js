@@ -331,6 +331,8 @@ export const uploadRiver = function(req) {
         };
 
         s3.upload(params, function (err, res) {
+          var river=[];
+          _river=[];
           if (err) {
             console.log('Error occured while trying to upload River to the S3 bucket', err);
             res.send(err);
@@ -338,8 +340,7 @@ export const uploadRiver = function(req) {
             responseData.push(res);
 
             if(responseData.length > 0){
-              var river=[];
-              _river=[];
+
               console.log(responseData);
 
               // res.json({ "error": false, "message": "File Uploaded SuceesFully", data: responseData});
