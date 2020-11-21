@@ -37,6 +37,19 @@ export const uploadFiles = async (req, res, next) =>{
 
   }
   function a(req){
+    var customOriginalName="";
+    var customPath="";
+    var customFieldName="";
+    var bucketName="";
+
+
+    var responseData = [];
+    var responseDataFlora = [];
+    var responseDataFauna = [];
+    var responseDataArtwork = [];
+    var responseDataGroupPicture = [];
+    var responseDataActivity = [];
+    var responseDataRiver = [];
   if(req.files.flora){
     console.log("in flora");
     req.files.flora.map(async(item) => {
