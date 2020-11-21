@@ -338,6 +338,7 @@ export const uploadRiver = function(req) {
             responseData.push(res);
             if(responseData.length > 0){
               var river=[];
+              _river=[];
               // res.json({ "error": false, "message": "File Uploaded SuceesFully", data: responseData});
               responseData.forEach(function(element){
                 river.push(element.Location);
