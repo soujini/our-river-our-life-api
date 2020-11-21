@@ -315,6 +315,7 @@ export const uploadRiver = function(req) {
   return new Promise((resolve, reject) => {
 
     if(req.files.river){
+      var river=[];
       req.files.river.map(async(item) => {
         customFieldName = item.fieldname;
         customPath = item.path;
@@ -336,7 +337,7 @@ export const uploadRiver = function(req) {
           }if(res){
             responseData.push(res);
             if(responseData.length > 0){
-              var river=[];
+
               // res.json({ "error": false, "message": "File Uploaded SuceesFully", data: responseData});
               responseData.forEach(function(element){
                 river.push(element.Location);
@@ -344,11 +345,10 @@ export const uploadRiver = function(req) {
 
               // fs.unlinkSync(customPath); //
             }
-
           }
         });
-        resolve(river);
       });
+        resolve(river);
     }
     else{
       resolve([]);
