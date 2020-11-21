@@ -31,7 +31,8 @@ export const uploadFiles = async (req, res, next) =>{
   await Promise.all([
     a(req),
 ]).then(result => {
-    console.log("sue");  // result of functionA
+    console.log("soujini");  // result of functionA
+    console.log(result);
     console.log(req.body);  // result of functionB
 })
 
@@ -51,7 +52,6 @@ export const uploadFiles = async (req, res, next) =>{
     var responseDataActivity = [];
     var responseDataRiver = [];
   if(req.files.flora){
-    console.log("in flora");
     req.files.flora.map(async(item) => {
       customFieldName = item.fieldname;
       customPath = item.path;
@@ -67,31 +67,22 @@ export const uploadFiles = async (req, res, next) =>{
       };
 
        s3.upload(params, function (err, res) {
-         console.log("in upload");
         if (err) {
-             console.log("in err");
           console.log('Error occured while trying to upload Flora to the S3 bucket', err);
            res.send(err);
         }if(res){
-             console.log("in res");
           responseDataFlora.push(res);
-          console.log("1");
-          console.log(res);
-          console.log(responseDataFlora);
-          console.log(responseDataFlora.length);
           if(responseDataFlora.length > 0){
-            console.log("here");
             // res.json({ "error": false, "message": "File Uploaded SuceesFully", data: responseData});
 
             var flora=[];
             responseDataFlora.forEach(function(element){
               flora.push(element.Location);
-              console.log("pushing");
               req.body.flora=flora;
             });
 
              console.log("Asti");
-             console.log(req.body.flora);
+             console.log(req.body);
             // fs.unlinkSync(customPath); //
           }
         }
