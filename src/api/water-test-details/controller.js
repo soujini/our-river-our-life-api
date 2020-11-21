@@ -35,11 +35,10 @@ export const uploadFiles = async (req, res, next) =>{
         console.log(`Results: ${results}`);
         // console.log(`Total: ${total}`);
     });
-
-
   }
 
-  export const p1 = new Promise((req,resolve, reject) => {
+  export const p1 = function(req) {
+  return new Promise((resolve, reject) => {
     if(req.files.flora){
       req.files.flora.map(async(item) => {
         customFieldName = item.fieldname;
@@ -80,6 +79,7 @@ export const uploadFiles = async (req, res, next) =>{
     }
     resolve(req.body.flora);
   });
+}
 
 
   function a(req){
