@@ -45,6 +45,7 @@ export const uploadFlora = function(req) {
   return new Promise((resolve, reject) => {
     if(req.files.flora){
       req.files.flora.map(async(item) => {
+        var flora=[];
         customFieldName = item.fieldname;
         customPath = item.path;
         // customOriginalName= item.originalname;
@@ -65,13 +66,12 @@ export const uploadFlora = function(req) {
           }if(res){
             responseData.push(res);
             if(responseData.length > 0){
-              var flora=[];
               // res.json({ "error": false, "message": "File Uploaded SuceesFully", data: responseData});
               responseData.forEach(function(element){
                 flora.push(element.Location);
-                req.body.flora=flora;
+                // req.body.flora=flora;
               });
-              resolve(req.body.flora);
+              resolve(flora);
               // fs.unlinkSync(customPath); //
             }
           }
@@ -99,6 +99,7 @@ export const uploadFauna = function(req) {
   return new Promise((resolve, reject) => {
     if(req.files.fauna){
       req.files.fauna.map(async(item) => {
+        var fauna=[];
         customFieldName = item.fieldname;
         customPath = item.path;
         // customOriginalName= item.originalname;
@@ -119,13 +120,12 @@ export const uploadFauna = function(req) {
           }if(res){
             responseData.push(res);
             if(responseData.length > 0){
-              var fauna=[];
               // res.json({ "error": false, "message": "File Uploaded SuceesFully", data: responseData});
               responseData.forEach(function(element){
                 fauna.push(element.Location);
-                req.body.fauna=fauna;
+                // req.body.fauna=fauna;
               });
-              resolve(req.body.fauna);
+              resolve(fauna);
               // fs.unlinkSync(customPath); //
             }
           }
@@ -153,6 +153,7 @@ export const uploadArtwork = function(req) {
   return new Promise((resolve, reject) => {
     if(req.files.artwork){
       req.files.artwork.map(async(item) => {
+        var artwork=[];
         customFieldName = item.fieldname;
         customPath = item.path;
         // customOriginalName= item.originalname;
@@ -173,13 +174,12 @@ export const uploadArtwork = function(req) {
           }if(res){
             responseData.push(res);
             if(responseData.length > 0){
-              var artwork=[];
               // res.json({ "error": false, "message": "File Uploaded SuceesFully", data: responseData});
               responseData.forEach(function(element){
                 artwork.push(element.Location);
-                req.body.artwork=artwork;
+                // _artwork.push(element.Location);
               });
-              resolve(req.body.artwork);
+              resolve(artwork);
               // fs.unlinkSync(customPath); //
             }
           }
@@ -207,6 +207,8 @@ export const uploadGroupPicture = function(req) {
   return new Promise((resolve, reject) => {
     if(req.files.groupPicture){
       req.files.groupPicture.map(async(item) => {
+        var groupPicture=[];
+        // var _groupPicture=[];
         customFieldName = item.fieldname;
         customPath = item.path;
         // customOriginalName= item.originalname;
@@ -227,13 +229,12 @@ export const uploadGroupPicture = function(req) {
           }if(res){
             responseData.push(res);
             if(responseData.length > 0){
-              var groupPicture=[];
               // res.json({ "error": false, "message": "File Uploaded SuceesFully", data: responseData});
               responseData.forEach(function(element){
                 groupPicture.push(element.Location);
-                req.body.groupPicture=groupPicture;
+                // _groupPicture.push(element.Location);
               });
-              resolve(req.body.groupPicture);
+              resolve(groupPicture);
               // fs.unlinkSync(customPath); //
             }
           }
@@ -261,6 +262,8 @@ export const uploadActivity = function(req) {
   return new Promise((resolve, reject) => {
     if(req.files.activity){
       req.files.activity.map(async(item) => {
+        var activity=[];
+        // var _activity=[];
         customFieldName = item.fieldname;
         customPath = item.path;
         // customOriginalName= item.originalname;
@@ -281,13 +284,12 @@ export const uploadActivity = function(req) {
           }if(res){
             responseData.push(res);
             if(responseData.length > 0){
-              var activity=[];
               // res.json({ "error": false, "message": "File Uploaded SuceesFully", data: responseData});
               responseData.forEach(function(element){
                 activity.push(element.Location);
-                req.body.activity=activity;
+                // _activity.push(element.Location);
               });
-              resolve(req.body.activity);
+              resolve(activity);
               // fs.unlinkSync(customPath); //
             }
           }
@@ -313,11 +315,10 @@ export const uploadRiver = function(req) {
   });
 
   return new Promise((resolve, reject) => {
-
     if(req.files.river){
       req.files.river.map(async(item) => {
         var river=[];
-        var _river=[];
+        // var _river=[];
         customFieldName = item.fieldname;
         customPath = item.path;
         // customOriginalName= item.originalname;
@@ -340,24 +341,17 @@ export const uploadRiver = function(req) {
             responseData.push(res);
 
             if(responseData.length > 0){
-
-              console.log(responseData);
-
               // res.json({ "error": false, "message": "File Uploaded SuceesFully", data: responseData});
               responseData.forEach(function(element){
-                console.log("bla");
                 river.push(element.Location);
-                _river.push(element.Location);
+                // _river.push(element.Location);
               });
-              console.log(_river);
-              resolve(_river);
+              resolve(river);
               // fs.unlinkSync(customPath); //
             }
-
           }
         });
       });
-
     }
     else{
       resolve([]);
@@ -369,6 +363,7 @@ export const createWaterTestDetails = async(req, res, next) =>{
   .then(results => {
     // const total = results.reduce((p, c) => p + c);
     results.map(res=>{
+      console.log("RESULTS");
       console.log(res);
       //push image to req.body
       //create water test WaterTestDetails
@@ -406,7 +401,6 @@ export const index = ({ querymen: { query, select, cursor } }, res, next) =>{
       var params = {"userId":waterTestDetail['userId']};
       var userId  = waterTestDetail['userId'];
       var user = await UserController.getUser({params});
-      console.log("found user");
       waterTestDetail.contributorName = user.firstName + ' ' +user.lastName;
       return waterTestDetail.view();
     }))
