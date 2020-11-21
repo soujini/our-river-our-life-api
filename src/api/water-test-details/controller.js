@@ -341,9 +341,8 @@ export const uploadRiver = function(req) {
               // res.json({ "error": false, "message": "File Uploaded SuceesFully", data: responseData});
               responseData.forEach(function(element){
                 river.push(element.Location);
+                _river.push(element.Location);
               });
-              _river=river;
-
               // fs.unlinkSync(customPath); //
             }
           }
