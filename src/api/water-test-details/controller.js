@@ -29,6 +29,14 @@ export const uploadFiles = async (req, res, next) =>{
   console.log(req.files.count);
 
   await Promise.all([
+    a(req);
+]).then(result => {
+    console.log("sue");  // result of functionA
+    console.log(req.body);  // result of functionB
+})
+
+  }
+  function a(req){
   if(req.files.flora){
     console.log("in flora");
     await Promise.all(req.files.flora.map(async(item) => {
@@ -77,12 +85,7 @@ export const uploadFiles = async (req, res, next) =>{
       });
     });
   }
-]).then(result => {
-    console.log("sue");  // result of functionA
-    console.log(req.body);  // result of functionB
-})
-
-  }
+}
 
 
   // if(req.files.fauna){
