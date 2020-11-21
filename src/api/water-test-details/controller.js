@@ -346,10 +346,11 @@ export const uploadRiver = function(req) {
                 river.push(element.Location);
                 // _river.push(element.Location);
               });
-              console.log(river);
-              resolve(river);
+
               // fs.unlinkSync(customPath); //
             }
+            console.log(river);
+            resolve(river);
           }
         });
       });
