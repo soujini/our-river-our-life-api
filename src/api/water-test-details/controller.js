@@ -28,7 +28,18 @@ export const uploadFiles = async (req, res, next) =>{
   console.log("length");
   console.log(req.files.count);
 
-  await Promise.all([
+  Promise.all([p1])
+    .then(results => {
+        // const total = results.reduce((p, c) => p + c);
+
+        console.log(`Results: ${results}`);
+        // console.log(`Total: ${total}`);
+    });
+
+
+  }
+
+  const p1 = new Promise((resolve, reject) => {
     if(req.files.flora){
       req.files.flora.map(async(item) => {
         customFieldName = item.fieldname;
@@ -66,14 +77,11 @@ export const uploadFiles = async (req, res, next) =>{
           }
         });
       });
-    },
-]).then(result => {
-    console.log("soujini");  // result of functionA
-    console.log(result);
-    console.log(req.body);  // result of functionB
-})
+    }
+    resolve(req.body.flora);
+  });
 
-  }
+
   function a(req){
     var customOriginalName="";
     var customPath="";
