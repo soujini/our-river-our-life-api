@@ -314,7 +314,7 @@ export const uploadRiver = async function(req) {
     "secretAccessKey": 'UKG2g/WWfOcLlz4rXPLDEe4jcwcTJ+tfEP9DneJo',
   });
 
-  return new Promise(async function(resolve, reject) => {
+  return new Promise(async (resolve, reject) => {
     if(req.files.river){
       var river=[];
       await req.files.river.map(async(item) => {
