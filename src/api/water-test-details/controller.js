@@ -5,29 +5,29 @@ import aws from 'aws-sdk';
 import fs from 'fs';
 var UserController = require('../user/controller')
 
-export const uploadFiles = async (req, res, next) =>{
-  // var customOriginalName="";
-  // var customPath="";
-  // var customFieldName="";
-  // var bucketName="";
-  //
-  //
-  // var responseData = [];
-  //
-  // aws.config.setPromisesDependency();
-  // aws.config.update({
-  //   "accessKeyId": 'AKIAJ24JCG5UUXOOHKDA',
-  //   "secretAccessKey": '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',
-  // });
-
-  Promise.all([uploadFlora(req), uploadFauna(req),uploadArtwork(req),uploadGroupPicture(req), uploadActivity(req), uploadRiver(req)])
-  .then(results => {
-    // const total = results.reduce((p, c) => p + c);
-
-    console.log(`Results: ${results}`);
-    // console.log(`Total: ${total}`);
-  });
-}
+// export const uploadFiles = async (req, res, next) =>{
+//   // var customOriginalName="";
+//   // var customPath="";
+//   // var customFieldName="";
+//   // var bucketName="";
+//   //
+//   //
+//   // var responseData = [];
+//   //
+//   // aws.config.setPromisesDependency();
+//   // aws.config.update({
+//   //   "accessKeyId": 'AKIAJ24JCG5UUXOOHKDA',
+//   //   "secretAccessKey": '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',
+//   // });
+//
+//   Promise.all([uploadFlora(req), uploadFauna(req),uploadArtwork(req),uploadGroupPicture(req), uploadActivity(req), uploadRiver(req)])
+//   .then(results => {
+//     // const total = results.reduce((p, c) => p + c);
+//
+//     console.log(`Results: ${results}`);
+//     // console.log(`Total: ${total}`);
+//   });
+// }
 
 export const uploadFlora = function(req) {
   var customOriginalName="";
@@ -35,6 +35,12 @@ export const uploadFlora = function(req) {
   var customFieldName="";
   var bucketName="";
   var responseData = [];
+
+  aws.config.setPromisesDependency();
+  aws.config.update({
+    "accessKeyId": 'AKIAJ24JCG5UUXOOHKDA',
+    "secretAccessKey": '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',
+  });
 
   return new Promise((resolve, reject) => {
     if(req.files.flora){
@@ -84,6 +90,12 @@ export const uploadFauna = function(req) {
   var bucketName="";
   var responseData = [];
 
+  aws.config.setPromisesDependency();
+  aws.config.update({
+    "accessKeyId": 'AKIAJ24JCG5UUXOOHKDA',
+    "secretAccessKey": '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',
+  });
+
   return new Promise((resolve, reject) => {
     if(req.files.fauna){
       req.files.fauna.map(async(item) => {
@@ -131,6 +143,12 @@ export const uploadArtwork = function(req) {
   var customFieldName="";
   var bucketName="";
   var responseData = [];
+
+  aws.config.setPromisesDependency();
+  aws.config.update({
+    "accessKeyId": 'AKIAJ24JCG5UUXOOHKDA',
+    "secretAccessKey": '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',
+  });
 
   return new Promise((resolve, reject) => {
     if(req.files.artwork){
@@ -180,6 +198,12 @@ export const uploadGroupPicture = function(req) {
   var bucketName="";
   var responseData = [];
 
+  aws.config.setPromisesDependency();
+  aws.config.update({
+    "accessKeyId": 'AKIAJ24JCG5UUXOOHKDA',
+    "secretAccessKey": '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',
+  });
+
   return new Promise((resolve, reject) => {
     if(req.files.groupPicture){
       req.files.groupPicture.map(async(item) => {
@@ -227,6 +251,12 @@ export const uploadActivity = function(req) {
   var customFieldName="";
   var bucketName="";
   var responseData = [];
+
+  aws.config.setPromisesDependency();
+  aws.config.update({
+    "accessKeyId": 'AKIAJ24JCG5UUXOOHKDA',
+    "secretAccessKey": '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',
+  });
 
   return new Promise((resolve, reject) => {
     if(req.files.activity){
@@ -276,6 +306,12 @@ export const uploadRiver = function(req) {
   var bucketName="";
   var responseData = [];
 
+  aws.config.setPromisesDependency();
+  aws.config.update({
+    "accessKeyId": 'AKIAJ24JCG5UUXOOHKDA',
+    "secretAccessKey": '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',
+  });
+
   return new Promise((resolve, reject) => {
 
     if(req.files.river){
@@ -324,6 +360,9 @@ export const createWaterTestDetails = async(req, res, next) =>{
     // const total = results.reduce((p, c) => p + c);
     results.map(res=>{
       console.log(res);
+      //push image to req.body
+      //create water test WaterTestDetails
+      //upload certificate URL
     })
     // console.log(`Results: ${results}`);
     // console.log(`Total: ${total}`);
