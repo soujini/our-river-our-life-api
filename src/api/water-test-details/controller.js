@@ -28,7 +28,7 @@ export const uploadFiles = async (req, res, next) =>{
   console.log("length");
   console.log(req.files.count);
 
-  Promise.all([p1])
+  Promise.all([p1(req)])
     .then(results => {
         // const total = results.reduce((p, c) => p + c);
 
@@ -39,7 +39,7 @@ export const uploadFiles = async (req, res, next) =>{
 
   }
 
-  const p1 = new Promise((resolve, reject) => {
+  const p1 = new Promise((req,resolve, reject) => {
     if(req.files.flora){
       req.files.flora.map(async(item) => {
         customFieldName = item.fieldname;
