@@ -38,6 +38,19 @@ export const uploadFiles = async (req, res, next) =>{
   }
 
   export const p1 = function(req) {
+    var customOriginalName="";
+    var customPath="";
+    var customFieldName="";
+    var bucketName="";
+
+
+    var responseData = [];
+    var responseDataFlora = [];
+    var responseDataFauna = [];
+    var responseDataArtwork = [];
+    var responseDataGroupPicture = [];
+    var responseDataActivity = [];
+    var responseDataRiver = [];
   return new Promise((resolve, reject) => {
     if(req.files.flora){
       req.files.flora.map(async(item) => {
