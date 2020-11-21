@@ -83,14 +83,14 @@ export const uploadFiles = async (req, res, next) =>{
               });
 
                console.log("Asti");
-               console.log(req.body);
+               // console.log(req.body);
+                 resolve(req.body.flora);
               // fs.unlinkSync(customPath); //
             }
           }
         });
       });
     }
-    resolve(req.body.flora);
   });
 }
 
