@@ -26,8 +26,10 @@ export const uploadFiles = async (req, res, next) =>{
     "secretAccessKey": 'UKG2g/WWfOcLlz4rXPLDEe4jcwcTJ+tfEP9DneJo',
   });
   console.log("length");
-  console.log(req.files.length);
+  console.log(req.files.count);
 
+
+  await Promise.all(
   if(req.files.flora){
     console.log("in flora");
     await Promise.all(req.files.flora.map(async(item) => {
@@ -74,10 +76,13 @@ export const uploadFiles = async (req, res, next) =>{
           }
         }
       });
-    }));
-  }
-  console.log("sue");
-  console.log(req.body);
+    });
+  }).then(()=>{
+    console.log("sue");
+    console.log(req.body);
+  }));
+
+
   // if(req.files.fauna){
   //   console.log("in fauna");
   //   req.files.fauna.map(async(item) => {
