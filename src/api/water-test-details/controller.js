@@ -25,7 +25,8 @@ export const uploadFiles = async (req, res, next) =>{
     "accessKeyId": 'AKIAJ24JCG5UUXOOHKDA',
     "secretAccessKey": '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',
   });
-
+  console.log("length");
+  console.log(req.files.length);
 
   if(req.files.flora){
     console.log("in flora");
@@ -72,40 +73,40 @@ export const uploadFiles = async (req, res, next) =>{
       });
     });
   }
-  if(req.files.fauna){
-    console.log("in fauna");
-    req.files.fauna.map(async(item) => {
-      customFieldName = item.fieldname;
-      customPath = item.path;
-      // customOriginalName= item.originalname;
-      bucketName="our-river-our-life-images/fauna";
-
-      var params = {
-        Bucket: bucketName,
-        Key: item.originalname,
-        Body: fs.createReadStream(item.path),
-        ACL: 'public-read'
-      };
-       s3.upload(params, function (err, data) {
-        if (err) {
-          console.log('Error occured while trying to upload Fauna to the S3 bucket', err);
-           res.send(err);
-        }else{
-          responseDataFauna.push(data);
-          if(responseDataFauna.length > 0){
-            // res.json({ "error": false, "message": "File Uploaded SuceesFully", data: responseData});
-
-            var fauna=[];
-            responseDataFauna.forEach(function(element){
-              fauna.push(element.Location)
-            });
-            req.body.fauna=fauna;
-            //fs.unlinkSync(customPath); //
-          }
-        }
-      });
-    });
-  }
+  // if(req.files.fauna){
+  //   console.log("in fauna");
+  //   req.files.fauna.map(async(item) => {
+  //     customFieldName = item.fieldname;
+  //     customPath = item.path;
+  //     // customOriginalName= item.originalname;
+  //     bucketName="our-river-our-life-images/fauna";
+  //
+  //     var params = {
+  //       Bucket: bucketName,
+  //       Key: item.originalname,
+  //       Body: fs.createReadStream(item.path),
+  //       ACL: 'public-read'
+  //     };
+  //      s3.upload(params, function (err, data) {
+  //       if (err) {
+  //         console.log('Error occured while trying to upload Fauna to the S3 bucket', err);
+  //          res.send(err);
+  //       }else{
+  //         responseDataFauna.push(data);
+  //         if(responseDataFauna.length > 0){
+  //           // res.json({ "error": false, "message": "File Uploaded SuceesFully", data: responseData});
+  //
+  //           var fauna=[];
+  //           responseDataFauna.forEach(function(element){
+  //             fauna.push(element.Location)
+  //           });
+  //           req.body.fauna=fauna;
+  //           //fs.unlinkSync(customPath); //
+  //         }
+  //       }
+  //     });
+  //   });
+  // }
   // if(req.files.artwork){
   //   req.files.artwork.map(async(item) => {
   //     customFieldName = item.fieldname;
