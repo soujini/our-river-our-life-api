@@ -29,7 +29,7 @@ export const uploadFiles = async (req, res, next) =>{
   console.log(req.files.count);
 
   await Promise.all([
-    a(req);
+    a(req),
 ]).then(result => {
     console.log("sue");  // result of functionA
     console.log(req.body);  // result of functionB
