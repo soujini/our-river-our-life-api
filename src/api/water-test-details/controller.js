@@ -29,7 +29,44 @@ export const uploadFiles = async (req, res, next) =>{
   console.log(req.files.count);
 
   await Promise.all([
-    a(req),
+    if(req.files.flora){
+      req.files.flora.map(async(item) => {
+        customFieldName = item.fieldname;
+        customPath = item.path;
+        // customOriginalName= item.originalname;
+        bucketName="our-river-our-life-images/flora";
+
+        const s3 = new aws.S3();
+        var params = {
+          ACL: 'public-read',
+          Bucket: bucketName,
+          Body: fs.createReadStream(item.path),
+          Key: item.originalname,
+        };
+
+         s3.upload(params, function (err, res) {
+          if (err) {
+            console.log('Error occured while trying to upload Flora to the S3 bucket', err);
+             res.send(err);
+          }if(res){
+            responseDataFlora.push(res);
+            if(responseDataFlora.length > 0){
+              // res.json({ "error": false, "message": "File Uploaded SuceesFully", data: responseData});
+
+              var flora=[];
+              responseDataFlora.forEach(function(element){
+                flora.push(element.Location);
+                req.body.flora=flora;
+              });
+
+               console.log("Asti");
+               console.log(req.body);
+              // fs.unlinkSync(customPath); //
+            }
+          }
+        });
+      });
+    },
 ]).then(result => {
     console.log("soujini");  // result of functionA
     console.log(result);
