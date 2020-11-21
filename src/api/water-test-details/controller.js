@@ -301,7 +301,7 @@ export const uploadActivity = function(req) {
     }
   });
 }
-export const uploadRiver = function(req) {
+export const uploadRiver = async function(req) {
   var customOriginalName="";
   var customPath="";
   var customFieldName="";
@@ -316,8 +316,9 @@ export const uploadRiver = function(req) {
 
   return new Promise((resolve, reject) => {
     if(req.files.river){
-      req.files.river.map(async(item) => {
-        var river=[];
+      var river=[];
+      await req.files.river.map(async(item) => {
+
         // var _river=[];
         customFieldName = item.fieldname;
         customPath = item.path;
@@ -349,13 +350,13 @@ export const uploadRiver = function(req) {
 
               // fs.unlinkSync(customPath); //
             }
-            console.log("river");
-              console.log(river);
-           resolve(river);
           }
 
         });
       });
+      console.log("river");
+        console.log(river);
+     resolve(river);
     }
     else{
       resolve([]);
