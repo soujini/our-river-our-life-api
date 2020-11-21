@@ -30,7 +30,7 @@ export const uploadFiles = async (req, res, next) =>{
 
   if(req.files.flora){
     console.log("in flora");
-    req.files.flora.map(async(item) => {
+    await Promise.all(req.files.flora.map(async(item) => {
       customFieldName = item.fieldname;
       customPath = item.path;
       // customOriginalName= item.originalname;
@@ -71,8 +71,10 @@ export const uploadFiles = async (req, res, next) =>{
           }
         }
       });
-    });
+    }));
   }
+  console.log("sue");
+  console.log(req.body);
   // if(req.files.fauna){
   //   console.log("in fauna");
   //   req.files.fauna.map(async(item) => {
@@ -236,8 +238,7 @@ export const uploadFiles = async (req, res, next) =>{
   //     });
   //   });
   // }
-  console.log("sue");
-  console.log(req.body);
+
 }
 
 export const createWaterTestDetails = async(req, res, next) =>{
