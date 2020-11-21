@@ -315,8 +315,9 @@ export const uploadRiver = function(req) {
   return new Promise((resolve, reject) => {
 
     if(req.files.river){
-      var _river=[];
       req.files.river.map(async(item) => {
+        var river=[];
+        var _river=[];
         customFieldName = item.fieldname;
         customPath = item.path;
         // customOriginalName= item.originalname;
@@ -331,8 +332,7 @@ export const uploadRiver = function(req) {
         };
 
         s3.upload(params, function (err, res) {
-          var river=[];
-          _river=[];
+
           if (err) {
             console.log('Error occured while trying to upload River to the S3 bucket', err);
             res.send(err);
@@ -349,10 +349,11 @@ export const uploadRiver = function(req) {
                 river.push(element.Location);
                 _river.push(element.Location);
               });
-
+              console.log(_river);
+              resolve(_river);
               // fs.unlinkSync(customPath); //
             }
-            resolve(_river);
+
           }
         });
       });
