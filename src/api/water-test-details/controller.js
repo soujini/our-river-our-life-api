@@ -315,8 +315,8 @@ export const uploadRiver = function(req) {
   return new Promise((resolve, reject) => {
 
     if(req.files.river){
-      var river=[];
       req.files.river.map(async(item) => {
+        var river=[];
         customFieldName = item.fieldname;
         customPath = item.path;
         // customOriginalName= item.originalname;
