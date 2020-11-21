@@ -351,7 +351,7 @@ export const uploadRiver = function(req) {
             }
 
           }
-          console.log(river);
+           console.log("river");
           resolve(river);
         });
       });
