@@ -345,12 +345,13 @@ export const uploadRiver = function(req) {
                 river.push(element.Location);
                 _river.push(element.Location);
               });
+              resolve(river);
               // fs.unlinkSync(customPath); //
             }
           }
         });
       });
-        resolve(_river);
+
     }
     else{
       resolve([]);
