@@ -37,7 +37,6 @@ export const uploadFlora = function(req) {
   var responseData = [];
 
   return new Promise((resolve, reject) => {
-    var flora=[];
     if(req.files.flora){
       req.files.flora.map(async(item) => {
         customFieldName = item.fieldname;
@@ -60,6 +59,7 @@ export const uploadFlora = function(req) {
           }if(res){
             responseData.push(res);
             if(responseData.length > 0){
+              var flora=[];
               // res.json({ "error": false, "message": "File Uploaded SuceesFully", data: responseData});
               responseData.forEach(function(element){
                 flora.push(element.Location);
@@ -73,7 +73,7 @@ export const uploadFlora = function(req) {
       });
     }
     else{
-      resolve(flora);
+      resolve([]);
     }
   });
 }
@@ -85,7 +85,6 @@ export const uploadFauna = function(req) {
   var responseData = [];
 
   return new Promise((resolve, reject) => {
-    var fauna=[];
     if(req.files.fauna){
       req.files.fauna.map(async(item) => {
         customFieldName = item.fieldname;
@@ -108,6 +107,7 @@ export const uploadFauna = function(req) {
           }if(res){
             responseData.push(res);
             if(responseData.length > 0){
+              var fauna=[];
               // res.json({ "error": false, "message": "File Uploaded SuceesFully", data: responseData});
               responseData.forEach(function(element){
                 fauna.push(element.Location);
@@ -121,7 +121,7 @@ export const uploadFauna = function(req) {
       });
     }
     else{
-      resolve(fauna);
+      resolve([]);
     }
   });
 }
@@ -133,7 +133,6 @@ export const uploadArtwork = function(req) {
   var responseData = [];
 
   return new Promise((resolve, reject) => {
-    var artwork=[];
     if(req.files.artwork){
       req.files.artwork.map(async(item) => {
         customFieldName = item.fieldname;
@@ -156,6 +155,7 @@ export const uploadArtwork = function(req) {
           }if(res){
             responseData.push(res);
             if(responseData.length > 0){
+              var artwork=[];
               // res.json({ "error": false, "message": "File Uploaded SuceesFully", data: responseData});
               responseData.forEach(function(element){
                 artwork.push(element.Location);
@@ -169,7 +169,7 @@ export const uploadArtwork = function(req) {
       });
     }
     else{
-      resolve(artwork);
+      resolve([]);
     }
   });
 }
@@ -181,7 +181,6 @@ export const uploadGroupPicture = function(req) {
   var responseData = [];
 
   return new Promise((resolve, reject) => {
-    var groupPicture=[];
     if(req.files.groupPicture){
       req.files.groupPicture.map(async(item) => {
         customFieldName = item.fieldname;
@@ -204,6 +203,7 @@ export const uploadGroupPicture = function(req) {
           }if(res){
             responseData.push(res);
             if(responseData.length > 0){
+              var groupPicture=[];
               // res.json({ "error": false, "message": "File Uploaded SuceesFully", data: responseData});
               responseData.forEach(function(element){
                 groupPicture.push(element.Location);
@@ -217,7 +217,7 @@ export const uploadGroupPicture = function(req) {
       });
     }
     else{
-      resolve(groupPicture);
+      resolve([]);
     }
   });
 }
@@ -229,7 +229,6 @@ export const uploadActivity = function(req) {
   var responseData = [];
 
   return new Promise((resolve, reject) => {
-    var activity=[];
     if(req.files.activity){
       req.files.activity.map(async(item) => {
         customFieldName = item.fieldname;
@@ -252,6 +251,7 @@ export const uploadActivity = function(req) {
           }if(res){
             responseData.push(res);
             if(responseData.length > 0){
+              var activity=[];
               // res.json({ "error": false, "message": "File Uploaded SuceesFully", data: responseData});
               responseData.forEach(function(element){
                 activity.push(element.Location);
@@ -265,7 +265,7 @@ export const uploadActivity = function(req) {
       });
     }
     else{
-      resolve(activity);
+      resolve([]);
     }
   });
 }
@@ -300,14 +300,12 @@ export const uploadRiver = function(req) {
           }if(res){
             responseData.push(res);
             if(responseData.length > 0){
-                var river=[];
+              var river=[];
               // res.json({ "error": false, "message": "File Uploaded SuceesFully", data: responseData});
               responseData.forEach(function(element){
                 river.push(element.Location);
                 req.body.river=river;
-                  console.log("1 "+req.body.river);
               });
-              console.log("2 "+req.body.river);
               resolve(req.body.river);
               // fs.unlinkSync(customPath); //
             }
