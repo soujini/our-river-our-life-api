@@ -39,7 +39,7 @@ export const uploadFiles = async (req, res, next) =>{
   function a(req){
   if(req.files.flora){
     console.log("in flora");
-    await Promise.all(req.files.flora.map(async(item) => {
+    req.files.flora.map(async(item) => {
       customFieldName = item.fieldname;
       customPath = item.path;
       // customOriginalName= item.originalname;
@@ -83,7 +83,7 @@ export const uploadFiles = async (req, res, next) =>{
           }
         }
       });
-    });
+    }
   }
 }
 
