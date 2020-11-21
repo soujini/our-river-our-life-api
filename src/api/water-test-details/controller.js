@@ -335,14 +335,14 @@ export const uploadRiver = function(req) {
             res.send(err);
           }if(res){
             responseData.push(res);
+            var river=[];
             if(responseData.length > 0){
-              var river=[];
+
               // res.json({ "error": false, "message": "File Uploaded SuceesFully", data: responseData});
               responseData.forEach(function(element){
                 river.push(element.Location);
-                req.body.river=river;
               });
-              resolve(req.body.river);
+              resolve(river);
               // fs.unlinkSync(customPath); //
             }
           }
