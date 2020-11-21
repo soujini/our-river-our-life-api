@@ -349,9 +349,10 @@ export const uploadRiver = function(req) {
 
               // fs.unlinkSync(customPath); //
             }
-            console.log(river);
-            resolve(river);
+
           }
+          console.log(river);
+          resolve(river);
         });
       });
     }
