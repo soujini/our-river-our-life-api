@@ -342,9 +342,10 @@ export const uploadRiver = function(req) {
               responseData.forEach(function(element){
                 river.push(element.Location);
               });
-              resolve(river);
+
               // fs.unlinkSync(customPath); //
             }
+            resolve(river);
           }
         });
       });
