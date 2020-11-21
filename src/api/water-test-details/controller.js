@@ -28,8 +28,7 @@ export const uploadFiles = async (req, res, next) =>{
   console.log("length");
   console.log(req.files.count);
 
-
-  await Promise.all(
+  await Promise.all([
   if(req.files.flora){
     console.log("in flora");
     await Promise.all(req.files.flora.map(async(item) => {
@@ -77,10 +76,13 @@ export const uploadFiles = async (req, res, next) =>{
         }
       });
     });
-  }).then(()=>{
-    console.log("sue");
-    console.log(req.body);
-  }));
+  }
+]).then(result => {
+    console.log("sue");  // result of functionA
+    console.log(req.body);  // result of functionB
+})
+
+  }
 
 
   // if(req.files.fauna){
@@ -247,7 +249,7 @@ export const uploadFiles = async (req, res, next) =>{
   //   });
   // }
 
-}
+//}
 
 export const createWaterTestDetails = async(req, res, next) =>{
 
