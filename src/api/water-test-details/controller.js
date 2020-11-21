@@ -44,14 +44,17 @@ export const uploadFiles = async (req, res, next) =>{
         Key: item.originalname,
       };
 
-       s3.upload(params, function (err, data) {
+       s3.upload(params, function (err, res) {
+         console.log("in upload");
         if (err) {
+             console.log("in err");
           console.log('Error occured while trying to upload Flora to the S3 bucket', err);
            res.send(err);
         }if(res){
-          responseDataFlora.push(data);
+             console.log("in res");
+          responseDataFlora.push(res);
           console.log("1");
-          console.log(data);
+          console.log(res);
           console.log(responseDataFlora);
           console.log(responseDataFlora.length);
           if(responseDataFlora.length > 0){
