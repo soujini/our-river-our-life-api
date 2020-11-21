@@ -39,7 +39,7 @@ export const uploadFiles = async (req, res, next) =>{
 
   }
 
-  const p1 = new Promise((req,resolve, reject) => {
+  export const p1 = new Promise((req,resolve, reject) => {
     if(req.files.flora){
       req.files.flora.map(async(item) => {
         customFieldName = item.fieldname;
