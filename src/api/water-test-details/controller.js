@@ -310,7 +310,9 @@ export const uploadRiver = function(req) {
               responseData.forEach(function(element){
                 river.push(element.Location);
                 req.body.river=river;
+                  console.log("2 "+req.body.river);
               });
+              console.log("2 "+req.body.river);
               resolve(req.body.river);
               // fs.unlinkSync(customPath); //
             }
