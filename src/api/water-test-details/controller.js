@@ -6,19 +6,19 @@ import fs from 'fs';
 var UserController = require('../user/controller')
 
 export const uploadFiles = async (req, res, next) =>{
-  var customOriginalName="";
-  var customPath="";
-  var customFieldName="";
-  var bucketName="";
-
-
-  var responseData = [];
-
-  aws.config.setPromisesDependency();
-  aws.config.update({
-    "accessKeyId": 'AKIAJ24JCG5UUXOOHKDA',
-    "secretAccessKey": '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',
-  });
+  // var customOriginalName="";
+  // var customPath="";
+  // var customFieldName="";
+  // var bucketName="";
+  //
+  //
+  // var responseData = [];
+  //
+  // aws.config.setPromisesDependency();
+  // aws.config.update({
+  //   "accessKeyId": 'AKIAJ24JCG5UUXOOHKDA',
+  //   "secretAccessKey": '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',
+  // });
 
   Promise.all([uploadFlora(req), uploadFauna(req),uploadArtwork(req),uploadGroupPicture(req), uploadActivity(req), uploadRiver(req)])
   .then(results => {
@@ -319,67 +319,15 @@ export const uploadRiver = function(req) {
   });
 }
 export const createWaterTestDetails = async(req, res, next) =>{
-
-  const file = req.files;
-  if(req.files){
-    var a = await uploadFiles(req);
-    console.log("wah");
-    console.log(a);
-    // console.log(req.body);
-    res.status(200).send("Images uploaded successfully");
-
-    //Create Water Test Details
-    // console.log(flora);
-    // console.log(fauna);
-    // console.log(artwork);
-    // console.log(groupPicture);
-    // console.log(activity);
-    // console.log(river);
-    //create here
-  }
-
-  else{//No files
-    //params without files
-  }
-
-
-  // s3.upload(params, (err, data) => {
-  //   if (err) {
-  //     console.log('Error occured while trying to upload to S3 bucket', err);
-  //     res.status(500).send(err);
-  //   }
-  //
-  //   if (res) {
-  //     var params ="";
-  //     fs.unlinkSync(customPath); // Empty temp folder
-  //     const locationUrl = data.Location;
-  //     // customOriginalName = "5ed5cd1e1177d200176877a6_filename.png"
-  //     // var waterTestDetailsId = customOriginalName.split('_');
-  //
-  //     if(customFieldName == 'flora'){
-  //       params = {"id":waterTestDetailsId, "flora":locationUrl, "fieldName":"flora", "description":description}
-  //     }
-  //     else if(customFieldName == 'fauna'){
-  //       params = {"id":waterTestDetailsId, "fauna":locationUrl, "fieldName":"fauna", "description":description}
-  //     }
-  //     else if(customFieldName == 'artwork'){
-  //       params = {"id":waterTestDetailsId, "artwork":locationUrl, "fieldName":"artwork", "description":description}
-  //     }
-  //     else if(customFieldName == 'groupPicture'){
-  //       params = {"id":waterTestDetailsId, "groupPicture":locationUrl, "fieldName":"groupPicture", "description":description}
-  //     }
-  //     else if(customFieldName == 'activity'){
-  //       params = {"id":waterTestDetailsId, "activity":locationUrl, "fieldName":"activity", "description":description}
-  //     }
-  //     else if(customFieldName == 'river'){
-  //       params = {"id":waterTestDetailsId, "river":locationUrl, "fieldName":"river", "description":description}
-  //     }
-  //     if(params != ""){
-  //       WaterTestDetailsController.updateImage({params})
-  //     }
-  //     res.status(200).send("Image uploaded successfully");
-  //   }
-  // });
+  Promise.all([uploadFlora(req), uploadFauna(req),uploadArtwork(req),uploadGroupPicture(req), uploadActivity(req), uploadRiver(req)])
+  .then(results => {
+    // const total = results.reduce((p, c) => p + c);
+    results.map(res=>{
+      console.log(res);
+    })
+    // console.log(`Results: ${results}`);
+    // console.log(`Total: ${total}`);
+  });
 }
 
 
