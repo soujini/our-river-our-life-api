@@ -346,6 +346,7 @@ export const uploadRiver = function(req) {
                 river.push(element.Location);
                 // _river.push(element.Location);
               });
+              cosole.log(river);
               resolve(river);
               // fs.unlinkSync(customPath); //
             }
