@@ -77,6 +77,7 @@ export const uploadFlora = function(req) {
             }
               resolve(flora);
           }
+              resolve(flora);
         });
       });
     }
