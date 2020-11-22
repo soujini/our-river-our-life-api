@@ -317,11 +317,11 @@ export const uploadRiver = async function(req) {
 
   return new Promise(async (resolve, reject) => {
     console.log("souj");
-      console.log(req.files.river.length);
+      console.log(req.files.river);
     if(req.files.river){
       var river = [];
       await Promise.all(req.files.river.map(async(item) => {
-         // river=[];
+          river=[];
 
         // var _river=[];
         customFieldName = item.fieldname;
@@ -348,6 +348,7 @@ export const uploadRiver = async function(req) {
             if(responseData.length > 0){
               // res.json({ "error": false, "message": "File Uploaded SuceesFully", data: responseData});
               responseData.forEach(function(element){
+                console.log("push");
                 river.push(element.Location);
                 // _river.push(element.Location);
               });
