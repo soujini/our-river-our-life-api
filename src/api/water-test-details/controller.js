@@ -321,8 +321,7 @@ export const uploadRiver = async function(req) {
     if(req.files.river){
       var river = [];
       await Promise.all(req.files.river.map(async(item) => {
-river=[];
-
+        console.log("in promise "+river.length);
         // var _river=[];
         customFieldName = item.fieldname;
         customPath = item.path;
@@ -358,10 +357,11 @@ river=[];
             }
 
           }
-          console.log(river);
-       resolve(river);
+
 
         });
+        console.log(river);
+     resolve(river);
 
 
       }));
