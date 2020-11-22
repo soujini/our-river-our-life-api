@@ -321,7 +321,7 @@ export const uploadRiver = async function(req) {
     if(req.files.river){
       var river = [];
       await Promise.all(req.files.river.map(async(item) => {
-          // river=[];
+
 
         // var _river=[];
         customFieldName = item.fieldname;
@@ -346,6 +346,7 @@ export const uploadRiver = async function(req) {
             responseData.push(res);
 
             if(responseData.length > 0){
+                 river=[];
               // res.json({ "error": false, "message": "File Uploaded SuceesFully", data: responseData});
               responseData.forEach(function(element){
                 console.log("push");
