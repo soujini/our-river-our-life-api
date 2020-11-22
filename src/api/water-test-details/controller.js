@@ -71,11 +71,11 @@ export const uploadFlora = function(req) {
                 flora.push(element.Location);
                 // req.body.flora=flora;
               });
-              resolve(flora);
               // fs.unlinkSync(customPath); //
             }
           }
         });
+        resolve(flora);
       });
     }
     else{
@@ -125,11 +125,11 @@ export const uploadFauna = function(req) {
                 fauna.push(element.Location);
                 // req.body.fauna=fauna;
               });
-              resolve(fauna);
               // fs.unlinkSync(customPath); //
             }
           }
         });
+        resolve(fauna);
       });
     }
     else{
@@ -179,11 +179,11 @@ export const uploadArtwork = function(req) {
                 artwork.push(element.Location);
                 // _artwork.push(element.Location);
               });
-              resolve(artwork);
               // fs.unlinkSync(customPath); //
             }
           }
         });
+        resolve(artwork);
       });
     }
     else{
@@ -234,11 +234,11 @@ export const uploadGroupPicture = function(req) {
                 groupPicture.push(element.Location);
                 // _groupPicture.push(element.Location);
               });
-              resolve(groupPicture);
               // fs.unlinkSync(customPath); //
             }
           }
         });
+        resolve(groupPicture);
       });
     }
     else{
@@ -289,11 +289,11 @@ export const uploadActivity = function(req) {
                 activity.push(element.Location);
                 // _activity.push(element.Location);
               });
-              resolve(activity);
               // fs.unlinkSync(customPath); //
             }
           }
         });
+        resolve(activity);
       });
     }
     else{
@@ -335,7 +335,6 @@ export const uploadRiver = async function(req) {
         };
 
         s3.upload(params, function (err, res) {
-
           if (err) {
             console.log('Error occured while trying to upload River to the S3 bucket', err);
             res.send(err);
@@ -346,19 +345,14 @@ export const uploadRiver = async function(req) {
               // res.json({ "error": false, "message": "File Uploaded SuceesFully", data: responseData});
               responseData.forEach(function(element){
                 river.push(element.Location);
-                // _river.push(element.Location);
               });
-
               // fs.unlinkSync(customPath); //
             }
           }
 
         });
-        console.log("river");
-          console.log(river);
-       resolve(river);
+        resolve(river);
       }));
-
     }
     else{
       resolve([]);
