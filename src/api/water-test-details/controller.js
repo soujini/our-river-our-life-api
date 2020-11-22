@@ -346,6 +346,7 @@ export const uploadRiver = async function(req) {
               responseData.forEach(function(element){
                 river.push(element.Location);
               });
+              console.log(river);
               // fs.unlinkSync(customPath); //
             }
           }
