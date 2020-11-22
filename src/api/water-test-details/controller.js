@@ -321,7 +321,7 @@ export const uploadRiver = async function(req) {
     if(req.files.river){
       var river = [];
       await Promise.all(req.files.river.map(async(item) => {
-         river=[];
+         // river=[];
 
         // var _river=[];
         customFieldName = item.fieldname;
