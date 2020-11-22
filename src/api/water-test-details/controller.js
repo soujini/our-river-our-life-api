@@ -71,9 +71,10 @@ export const uploadFlora = function(req) {
                 flora.push(element.Location);
                 // req.body.flora=flora;
               });
-              resolve(flora);
+
               // fs.unlinkSync(customPath); //
             }
+              resolve(flora);
           }
         });
       });
