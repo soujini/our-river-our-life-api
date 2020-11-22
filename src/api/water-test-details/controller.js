@@ -343,6 +343,8 @@ export const uploadRiver = async function(req) {
             res.send(err);
           }if(res){
             responseData.push(res);
+            console.log("Response data "+responseData);
+              console.log("Response data "+responseData.length);
 
             if(responseData.length > 0){
 
