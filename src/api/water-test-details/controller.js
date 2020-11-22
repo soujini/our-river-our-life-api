@@ -51,7 +51,7 @@ export const uploadFlora = function(req) {
         customPath = item.path;
         // customOriginalName= item.originalname;
         bucketName="our-river-our-life-images/flora";
-
+flora=[];
         const s3 = new aws.S3();
         var params = {
           ACL: 'public-read',
