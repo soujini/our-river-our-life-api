@@ -336,7 +336,7 @@ export const uploadRiver = async function(req) {
           Body: fs.createReadStream(item.path),
           Key: item.originalname,
         };
-
+river=[];
         s3.upload(params, function (err, res) {
 
           if (err) {
@@ -346,7 +346,7 @@ export const uploadRiver = async function(req) {
             responseData.push(res);
 
             if(responseData.length > 0){
-                  river=[];
+
               // res.json({ "error": false, "message": "File Uploaded SuceesFully", data: responseData});
               responseData.forEach(function(element){
                 console.log("push");
@@ -356,10 +356,10 @@ export const uploadRiver = async function(req) {
 
               // fs.unlinkSync(customPath); //
             }
-            console.log(river);
-         resolve(river);
-          }
 
+          }
+          console.log(river);
+       resolve(river);
 
         });
 
