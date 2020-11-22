@@ -59,7 +59,7 @@ export const uploadFlora = function(req) {
           Body: fs.createReadStream(item.path),
           Key: item.originalname,
         };
-        flora=[];
+        // flora=[];
         s3.upload(params, function (err, res) {
           console.log("in uppload");
           if (err) {
