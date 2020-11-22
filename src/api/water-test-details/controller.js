@@ -357,10 +357,11 @@ export const uploadRiver = async function(req) {
           }
 
         });
+        console.log(river);
+     resolve(river);
 
       }));
-      console.log(river);
-   resolve(river);
+
     }
     else{
       resolve([]);
