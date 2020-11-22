@@ -319,9 +319,9 @@ export const uploadRiver = async function(req) {
     console.log("souj");
       console.log(req.files.river);
     if(req.files.river){
-        var river=[];
-      await Promise.all(req.files.river.map(async(item) => {
 
+      await Promise.all(req.files.river.map(async(item) => {
+  var river=[];
 
         // var _river=[];
         customFieldName = item.fieldname;
@@ -360,7 +360,6 @@ export const uploadRiver = async function(req) {
           console.log(river);
        resolve(river);
       }));
-
     }
     else{
       resolve([]);
