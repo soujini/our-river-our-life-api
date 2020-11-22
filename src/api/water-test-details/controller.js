@@ -75,7 +75,7 @@ export const uploadFlora = function(req) {
 
               // fs.unlinkSync(customPath); //
             }
-              resolve(flora);
+              // resolve(flora);
           }
               resolve(flora);
         });
