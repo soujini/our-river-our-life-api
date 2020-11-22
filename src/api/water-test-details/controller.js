@@ -346,7 +346,7 @@ export const uploadRiver = async function(req) {
             console.log("Response data "+responseData);
               console.log("Response data "+responseData.length);
 
-            if(responseData.length > 0){
+            if(responseData.length > 0 && responseData.length < responseData.length){
 
               // res.json({ "error": false, "message": "File Uploaded SuceesFully", data: responseData});
               responseData.forEach(function(element){
