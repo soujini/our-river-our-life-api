@@ -313,12 +313,12 @@ export const uploadRiver = async function(req) {
     "accessKeyId": 'AKIAJ24JCG5UUXOOHKDA',
     "secretAccessKey": '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',
   });
-    var river=[];
+
 
   return new Promise(async (resolve, reject) => {
     if(req.files.river){
-
       await Promise.all(req.files.river.map(async(item) => {
+        var river=[];
 
         // var _river=[];
         customFieldName = item.fieldname;
