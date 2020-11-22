@@ -321,7 +321,7 @@ export const uploadRiver = async function(req) {
     if(req.files.river){
       var river = [];
       await Promise.all(req.files.river.map(async(item) => {
-
+river=[];
 
         // var _river=[];
         customFieldName = item.fieldname;
@@ -336,7 +336,7 @@ export const uploadRiver = async function(req) {
           Body: fs.createReadStream(item.path),
           Key: item.originalname,
         };
-river=[];
+
         s3.upload(params, function (err, res) {
 
           if (err) {
