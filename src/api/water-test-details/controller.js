@@ -44,8 +44,9 @@ export const uploadFlora = function(req) {
 
   return new Promise((resolve, reject) => {
     if(req.files.flora){
-      req.files.flora.map(async(item) => {
         var flora=[];
+      req.files.flora.map(async(item) => {
+
         customFieldName = item.fieldname;
         customPath = item.path;
         // customOriginalName= item.originalname;
