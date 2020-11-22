@@ -313,11 +313,12 @@ export const uploadRiver = async function(req) {
     "accessKeyId": 'AKIAJ24JCG5UUXOOHKDA',
     "secretAccessKey": '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',
   });
+    var river=[];
 
   return new Promise(async (resolve, reject) => {
     if(req.files.river){
-      var river=[];
-      await req.files.river.map(async(item) => {
+
+      await Promise.all(req.files.river.map(async(item) => {
 
         // var _river=[];
         customFieldName = item.fieldname;
@@ -353,7 +354,7 @@ export const uploadRiver = async function(req) {
           }
 
         });
-      });
+      }));
       console.log("river");
         console.log(river);
      resolve(river);
