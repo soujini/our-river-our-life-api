@@ -83,9 +83,10 @@ export const uploadFlora = function(req) {
           // console.log("upload done");
           // console.log(flora);
         });
+        console.log("in resolve");
+        resolve(flora);
       });
-      console.log("in resolve");
-      resolve(flora);
+
     }
     else{
       resolve([]);
