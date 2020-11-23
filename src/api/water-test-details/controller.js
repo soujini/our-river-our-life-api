@@ -83,7 +83,7 @@ export const uploadFlora = function(req) {
           // console.log("upload done");
           // console.log(flora);
         });
-      });
+      }));
       resolve(flora);
     }
     else{
