@@ -61,7 +61,7 @@ export const uploadFlora = function(req) {
           Key: item.originalname,
         };
         // flora=[];
-         s3.upload(params, function (err, res) {
+         await s3.upload(params, async function (err, res) {
           console.log("in uppload");
           if (err) {
             console.log('Error occured while trying to upload Flora to the S3 bucket', err);
@@ -72,7 +72,9 @@ export const uploadFlora = function(req) {
               flora = [];
               // res.json({ "error": false, "message": "File Uploaded SuceesFully", data: responseData});
               responseData.forEach(function(element){
+                console.log("in push");
                 flora.push(element.Location);
+                console.log(flora);
                 // req.body.flora=flora;
               });
 
