@@ -59,32 +59,27 @@ export const uploadFlora = function(req) {
         };
         console.log("push");
 
-        flora.push(item.originalname);
-        // flora=[];
-        //  await s3.upload(params, async function (err, res) {
-        //   console.log("in uppload");
-        //   if (err) {
-        //     console.log('Error occured while trying to upload Flora to the S3 bucket', err);
-        //     res.send(err);
-        //   }if(res){
-        //     responseData=[];
-        //     responseData.push(res);
-        //     if(responseData.length > 0){
-        //       // res.json({ "error": false, "message": "File Uploaded SuceesFully", data: responseData});
-        //       responseData.forEach(function(element){
-        //         console.log("in push");
-        //         flora.push(element.Location);
-        //
-        //         // req.body.flora=flora;
-        //       });
-        //       // return(flora);
-        //       // fs.unlinkSync(customPath); //
-        //     }
-        //   }
-        //   // console.log("upload done");
-        //   // console.log(flora);
-        // });
-        // return flora;
+        // flora.push(item.originalname);
+         await s3.upload(params, async function (err, res) {
+          console.log("in uppload");
+          if (err) {
+            console.log('Error occured while trying to upload Flora to the S3 bucket', err);
+            res.send(err);
+          }if(res){
+            responseData=[];
+            responseData.push(res);
+            console.log(res);
+            if(responseData.length > 0){
+              // res.json({ "error": false, "message": "File Uploaded SuceesFully", data: responseData});
+              responseData.forEach(function(element){
+                console.log("in push");
+                flora.push(element.Location);
+              });
+              // fs.unlinkSync(customPath); //
+            }
+          }
+        });
+        console.log("done with s3 upload");
       });
       console.log("done with map");
       resolve(flora);
