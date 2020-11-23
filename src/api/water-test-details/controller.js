@@ -43,15 +43,15 @@ export const uploadFlora = function(req) {
   });
 
   return new Promise(async (resolve, reject) => {
+    console.log("new promise");
     if(req.files.flora){
         var flora=[];
       await Promise.all(req.files.flora.map(async(item) => {
-
+          console.log("in item");
         customFieldName = item.fieldname;
         customPath = item.path;
         // customOriginalName= item.originalname;
         bucketName="our-river-our-life-images/flora";
-        flora=[];
         const s3 = new aws.S3();
         var params = {
           ACL: 'public-read',
@@ -82,7 +82,8 @@ export const uploadFlora = function(req) {
           }
 
         });
-
+        console.log("upload done");
+        console.log(flora);
       }));
       console.log("in resolve");
       resolve(flora);
@@ -92,300 +93,302 @@ export const uploadFlora = function(req) {
     }
   });
 }
-export const uploadFauna = function(req) {
-  var customOriginalName="";
-  var customPath="";
-  var customFieldName="";
-  var bucketName="";
-  var responseData = [];
-
-  aws.config.setPromisesDependency();
-  aws.config.update({
-    "accessKeyId": 'AKIAJ24JCG5UUXOOHKDA',
-    "secretAccessKey": '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',
-  });
-
-  return new Promise((resolve, reject) => {
-    if(req.files.fauna){
-      req.files.fauna.map(async(item) => {
-        var fauna=[];
-        customFieldName = item.fieldname;
-        customPath = item.path;
-        // customOriginalName= item.originalname;
-        bucketName="our-river-our-life-images/fauna";
-
-        const s3 = new aws.S3();
-        var params = {
-          ACL: 'public-read',
-          Bucket: bucketName,
-          Body: fs.createReadStream(item.path),
-          Key: item.originalname,
-        };
-
-        s3.upload(params, function (err, res) {
-          if (err) {
-            console.log('Error occured while trying to upload Fauna to the S3 bucket', err);
-            res.send(err);
-          }if(res){
-            responseData.push(res);
-            if(responseData.length > 0){
-              // res.json({ "error": false, "message": "File Uploaded SuceesFully", data: responseData});
-              responseData.forEach(function(element){
-                fauna.push(element.Location);
-                // req.body.fauna=fauna;
-              });
-              resolve(fauna);
-              // fs.unlinkSync(customPath); //
-            }
-          }
-        });
-      });
-    }
-    else{
-      resolve([]);
-    }
-  });
-}
-export const uploadArtwork = function(req) {
-  var customOriginalName="";
-  var customPath="";
-  var customFieldName="";
-  var bucketName="";
-  var responseData = [];
-
-  aws.config.setPromisesDependency();
-  aws.config.update({
-    "accessKeyId": 'AKIAJ24JCG5UUXOOHKDA',
-    "secretAccessKey": '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',
-  });
-
-  return new Promise((resolve, reject) => {
-    if(req.files.artwork){
-      req.files.artwork.map(async(item) => {
-        var artwork=[];
-        customFieldName = item.fieldname;
-        customPath = item.path;
-        // customOriginalName= item.originalname;
-        bucketName="our-river-our-life-images/artwork";
-
-        const s3 = new aws.S3();
-        var params = {
-          ACL: 'public-read',
-          Bucket: bucketName,
-          Body: fs.createReadStream(item.path),
-          Key: item.originalname,
-        };
-
-        s3.upload(params, function (err, res) {
-          if (err) {
-            console.log('Error occured while trying to upload Artwork to the S3 bucket', err);
-            res.send(err);
-          }if(res){
-            responseData.push(res);
-            if(responseData.length > 0){
-              // res.json({ "error": false, "message": "File Uploaded SuceesFully", data: responseData});
-              responseData.forEach(function(element){
-                artwork.push(element.Location);
-                // _artwork.push(element.Location);
-              });
-              resolve(artwork);
-              // fs.unlinkSync(customPath); //
-            }
-          }
-        });
-      });
-    }
-    else{
-      resolve([]);
-    }
-  });
-}
-export const uploadGroupPicture = function(req) {
-  var customOriginalName="";
-  var customPath="";
-  var customFieldName="";
-  var bucketName="";
-  var responseData = [];
-
-  aws.config.setPromisesDependency();
-  aws.config.update({
-    "accessKeyId": 'AKIAJ24JCG5UUXOOHKDA',
-    "secretAccessKey": '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',
-  });
-
-  return new Promise((resolve, reject) => {
-    if(req.files.groupPicture){
-      req.files.groupPicture.map(async(item) => {
-        var groupPicture=[];
-        // var _groupPicture=[];
-        customFieldName = item.fieldname;
-        customPath = item.path;
-        // customOriginalName= item.originalname;
-        bucketName="our-river-our-life-images/groupPicture";
-
-        const s3 = new aws.S3();
-        var params = {
-          ACL: 'public-read',
-          Bucket: bucketName,
-          Body: fs.createReadStream(item.path),
-          Key: item.originalname,
-        };
-
-        s3.upload(params, function (err, res) {
-          if (err) {
-            console.log('Error occured while trying to upload Group Picture to the S3 bucket', err);
-            res.send(err);
-          }if(res){
-            responseData.push(res);
-            if(responseData.length > 0){
-              // res.json({ "error": false, "message": "File Uploaded SuceesFully", data: responseData});
-              responseData.forEach(function(element){
-                groupPicture.push(element.Location);
-                // _groupPicture.push(element.Location);
-              });
-              resolve(groupPicture);
-              // fs.unlinkSync(customPath); //
-            }
-          }
-        });
-      });
-    }
-    else{
-      resolve([]);
-    }
-  });
-}
-export const uploadActivity = function(req) {
-  var customOriginalName="";
-  var customPath="";
-  var customFieldName="";
-  var bucketName="";
-  var responseData = [];
-
-  aws.config.setPromisesDependency();
-  aws.config.update({
-    "accessKeyId": 'AKIAJ24JCG5UUXOOHKDA',
-    "secretAccessKey": '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',
-  });
-
-  return new Promise((resolve, reject) => {
-    if(req.files.activity){
-      req.files.activity.map(async(item) => {
-        var activity=[];
-        // var _activity=[];
-        customFieldName = item.fieldname;
-        customPath = item.path;
-        // customOriginalName= item.originalname;
-        bucketName="our-river-our-life-images/activity";
-
-        const s3 = new aws.S3();
-        var params = {
-          ACL: 'public-read',
-          Bucket: bucketName,
-          Body: fs.createReadStream(item.path),
-          Key: item.originalname,
-        };
-
-        s3.upload(params, function (err, res) {
-          if (err) {
-            console.log('Error occured while trying to upload Activity to the S3 bucket', err);
-            res.send(err);
-          }if(res){
-            responseData.push(res);
-            if(responseData.length > 0){
-              // res.json({ "error": false, "message": "File Uploaded SuceesFully", data: responseData});
-              responseData.forEach(function(element){
-                activity.push(element.Location);
-                // _activity.push(element.Location);
-              });
-              resolve(activity);
-              // fs.unlinkSync(customPath); //
-            }
-          }
-        });
-      });
-    }
-    else{
-      resolve([]);
-    }
-  });
-}
-export const uploadRiver = async function(req) {
-  var customOriginalName="";
-  var customPath="";
-  var customFieldName="";
-  var bucketName="";
-  var responseData = [];
-
-  aws.config.setPromisesDependency();
-  aws.config.update({
-    "accessKeyId": 'AKIAJ24JCG5UUXOOHKDA',
-    "secretAccessKey": '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',
-  });
-
-
-  return new Promise(async (resolve, reject) => {
-    // console.log("souj");
-      // console.log(req.files.river);
-    if(req.files.river){
-      var river = [];
-      await Promise.all(req.files.river.map(async(item) => {
-        console.log("in promise "+river.length);
-        // var _river=[];
-        customFieldName = item.fieldname;
-        customPath = item.path;
-        // customOriginalName= item.originalname;
-        bucketName="our-river-our-life-images/river";
-
-        const s3 = new aws.S3();
-        var params = {
-          ACL: 'public-read',
-          Bucket: bucketName,
-          Body: fs.createReadStream(item.path),
-          Key: item.originalname,
-        };
-
-        s3.upload(params, function (err, res) {
-
-          if (err) {
-            console.log('Error occured while trying to upload River to the S3 bucket', err);
-            res.send(err);
-          }if(res){
-            responseData.push(res);
-            console.log("Response data "+responseData);
-              console.log("Response data "+responseData.length);
-
-            if(responseData.length > 0 && responseData.length < responseData.length){
-
-              // res.json({ "error": false, "message": "File Uploaded SuceesFully", data: responseData});
-              responseData.forEach(function(element){
-                // console.log("push");
-                river.push(element.Location);
-                // _river.push(element.Location);
-              });
-
-              // fs.unlinkSync(customPath); //
-            }
-
-          }
-
-
-        });
-
-
-
-      }));
-      console.log(river);
-   resolve(river);
-
-    }
-    else{
-      resolve([]);
-    }
-  });
-}
+// export const uploadFauna = function(req) {
+//   var customOriginalName="";
+//   var customPath="";
+//   var customFieldName="";
+//   var bucketName="";
+//   var responseData = [];
+//
+//   aws.config.setPromisesDependency();
+//   aws.config.update({
+//     "accessKeyId": 'AKIAJ24JCG5UUXOOHKDA',
+//     "secretAccessKey": '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',
+//   });
+//
+//   return new Promise((resolve, reject) => {
+//     if(req.files.fauna){
+//       req.files.fauna.map(async(item) => {
+//         var fauna=[];
+//         customFieldName = item.fieldname;
+//         customPath = item.path;
+//         // customOriginalName= item.originalname;
+//         bucketName="our-river-our-life-images/fauna";
+//
+//         const s3 = new aws.S3();
+//         var params = {
+//           ACL: 'public-read',
+//           Bucket: bucketName,
+//           Body: fs.createReadStream(item.path),
+//           Key: item.originalname,
+//         };
+//
+//         s3.upload(params, function (err, res) {
+//           if (err) {
+//             console.log('Error occured while trying to upload Fauna to the S3 bucket', err);
+//             res.send(err);
+//           }if(res){
+//             responseData.push(res);
+//             if(responseData.length > 0){
+//               // res.json({ "error": false, "message": "File Uploaded SuceesFully", data: responseData});
+//               responseData.forEach(function(element){
+//                 fauna.push(element.Location);
+//                 // req.body.fauna=fauna;
+//               });
+//               resolve(fauna);
+//               // fs.unlinkSync(customPath); //
+//             }
+//           }
+//         });
+//       });
+//     }
+//     else{
+//       resolve([]);
+//     }
+//   });
+// }
+// export const uploadArtwork = function(req) {
+//   var customOriginalName="";
+//   var customPath="";
+//   var customFieldName="";
+//   var bucketName="";
+//   var responseData = [];
+//
+//   aws.config.setPromisesDependency();
+//   aws.config.update({
+//     "accessKeyId": 'AKIAJ24JCG5UUXOOHKDA',
+//     "secretAccessKey": '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',
+//   });
+//
+//   return new Promise((resolve, reject) => {
+//     if(req.files.artwork){
+//       req.files.artwork.map(async(item) => {
+//         var artwork=[];
+//         customFieldName = item.fieldname;
+//         customPath = item.path;
+//         // customOriginalName= item.originalname;
+//         bucketName="our-river-our-life-images/artwork";
+//
+//         const s3 = new aws.S3();
+//         var params = {
+//           ACL: 'public-read',
+//           Bucket: bucketName,
+//           Body: fs.createReadStream(item.path),
+//           Key: item.originalname,
+//         };
+//
+//         s3.upload(params, function (err, res) {
+//           if (err) {
+//             console.log('Error occured while trying to upload Artwork to the S3 bucket', err);
+//             res.send(err);
+//           }if(res){
+//             responseData.push(res);
+//             if(responseData.length > 0){
+//               // res.json({ "error": false, "message": "File Uploaded SuceesFully", data: responseData});
+//               responseData.forEach(function(element){
+//                 artwork.push(element.Location);
+//                 // _artwork.push(element.Location);
+//               });
+//               resolve(artwork);
+//               // fs.unlinkSync(customPath); //
+//             }
+//           }
+//         });
+//       });
+//     }
+//     else{
+//       resolve([]);
+//     }
+//   });
+// }
+// export const uploadGroupPicture = function(req) {
+//   var customOriginalName="";
+//   var customPath="";
+//   var customFieldName="";
+//   var bucketName="";
+//   var responseData = [];
+//
+//   aws.config.setPromisesDependency();
+//   aws.config.update({
+//     "accessKeyId": 'AKIAJ24JCG5UUXOOHKDA',
+//     "secretAccessKey": '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',
+//   });
+//
+//   return new Promise((resolve, reject) => {
+//     if(req.files.groupPicture){
+//       req.files.groupPicture.map(async(item) => {
+//         var groupPicture=[];
+//         // var _groupPicture=[];
+//         customFieldName = item.fieldname;
+//         customPath = item.path;
+//         // customOriginalName= item.originalname;
+//         bucketName="our-river-our-life-images/groupPicture";
+//
+//         const s3 = new aws.S3();
+//         var params = {
+//           ACL: 'public-read',
+//           Bucket: bucketName,
+//           Body: fs.createReadStream(item.path),
+//           Key: item.originalname,
+//         };
+//
+//         s3.upload(params, function (err, res) {
+//           if (err) {
+//             console.log('Error occured while trying to upload Group Picture to the S3 bucket', err);
+//             res.send(err);
+//           }if(res){
+//             responseData.push(res);
+//             if(responseData.length > 0){
+//               // res.json({ "error": false, "message": "File Uploaded SuceesFully", data: responseData});
+//               responseData.forEach(function(element){
+//                 groupPicture.push(element.Location);
+//                 // _groupPicture.push(element.Location);
+//               });
+//               resolve(groupPicture);
+//               // fs.unlinkSync(customPath); //
+//             }
+//           }
+//         });
+//       });
+//     }
+//     else{
+//       resolve([]);
+//     }
+//   });
+// }
+// export const uploadActivity = function(req) {
+//   var customOriginalName="";
+//   var customPath="";
+//   var customFieldName="";
+//   var bucketName="";
+//   var responseData = [];
+//
+//   aws.config.setPromisesDependency();
+//   aws.config.update({
+//     "accessKeyId": 'AKIAJ24JCG5UUXOOHKDA',
+//     "secretAccessKey": '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',
+//   });
+//
+//   return new Promise((resolve, reject) => {
+//     if(req.files.activity){
+//       req.files.activity.map(async(item) => {
+//         var activity=[];
+//         // var _activity=[];
+//         customFieldName = item.fieldname;
+//         customPath = item.path;
+//         // customOriginalName= item.originalname;
+//         bucketName="our-river-our-life-images/activity";
+//
+//         const s3 = new aws.S3();
+//         var params = {
+//           ACL: 'public-read',
+//           Bucket: bucketName,
+//           Body: fs.createReadStream(item.path),
+//           Key: item.originalname,
+//         };
+//
+//         s3.upload(params, function (err, res) {
+//           if (err) {
+//             console.log('Error occured while trying to upload Activity to the S3 bucket', err);
+//             res.send(err);
+//           }if(res){
+//             responseData.push(res);
+//             if(responseData.length > 0){
+//               // res.json({ "error": false, "message": "File Uploaded SuceesFully", data: responseData});
+//               responseData.forEach(function(element){
+//                 activity.push(element.Location);
+//                 // _activity.push(element.Location);
+//               });
+//               resolve(activity);
+//               // fs.unlinkSync(customPath); //
+//             }
+//           }
+//         });
+//       });
+//     }
+//     else{
+//       resolve([]);
+//     }
+//   });
+// }
+// export const uploadRiver = async function(req) {
+//   var customOriginalName="";
+//   var customPath="";
+//   var customFieldName="";
+//   var bucketName="";
+//   var responseData = [];
+//
+//   aws.config.setPromisesDependency();
+//   aws.config.update({
+//     "accessKeyId": 'AKIAJ24JCG5UUXOOHKDA',
+//     "secretAccessKey": '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',
+//   });
+//
+//
+//   return new Promise(async (resolve, reject) => {
+//     // console.log("souj");
+//       // console.log(req.files.river);
+//     if(req.files.river){
+//       var river = [];
+//       await Promise.all(req.files.river.map(async(item) => {
+//         console.log("in promise "+river.length);
+//         // var _river=[];
+//         customFieldName = item.fieldname;
+//         customPath = item.path;
+//         // customOriginalName= item.originalname;
+//         bucketName="our-river-our-life-images/river";
+//
+//         const s3 = new aws.S3();
+//         var params = {
+//           ACL: 'public-read',
+//           Bucket: bucketName,
+//           Body: fs.createReadStream(item.path),
+//           Key: item.originalname,
+//         };
+//
+//         s3.upload(params, function (err, res) {
+//
+//           if (err) {
+//             console.log('Error occured while trying to upload River to the S3 bucket', err);
+//             res.send(err);
+//           }if(res){
+//             responseData.push(res);
+//             console.log("Response data "+responseData);
+//               console.log("Response data "+responseData.length);
+//
+//             if(responseData.length > 0 && responseData.length < responseData.length){
+//
+//               // res.json({ "error": false, "message": "File Uploaded SuceesFully", data: responseData});
+//               responseData.forEach(function(element){
+//                 // console.log("push");
+//                 river.push(element.Location);
+//                 // _river.push(element.Location);
+//               });
+//
+//               // fs.unlinkSync(customPath); //
+//             }
+//
+//           }
+//
+//
+//         });
+//
+//
+//
+//       }));
+//       console.log(river);
+//    resolve(river);
+//
+//     }
+//     else{
+//       resolve([]);
+//     }
+//   });
+// }
 export const createWaterTestDetails = async(req, res, next) =>{
-  Promise.all([uploadFlora(req), uploadFauna(req),uploadArtwork(req),uploadGroupPicture(req), uploadActivity(req), uploadRiver(req)])
+  // Promise.all([uploadFlora(req), uploadFauna(req),uploadArtwork(req),uploadGroupPicture(req), uploadActivity(req), uploadRiver(req)])
+  Promise.all([uploadFlora(req)])
+
   .then(results => {
     // const total = results.reduce((p, c) => p + c);
     results.map(res=>{
