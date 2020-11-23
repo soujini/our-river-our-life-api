@@ -29,7 +29,8 @@ var UserController = require('../user/controller')
 //   });
 //
 
-export const uploadToS3 = async function(params) {
+export const uploadToS3 = function(params) {
+  return new Promise((resolve, reject) => {
   const s3 = new aws.S3();
   var responseData=[];
   await s3.upload(params, function (err, res) {
@@ -38,21 +39,23 @@ export const uploadToS3 = async function(params) {
       res.send(err);
     }if(res){
       console.log("loc "+res.Location);
-      return res.Location;
-      // responseData.push(res);
-      // console.log(res);
-      //   flora.push(res.Location);
-      // if(responseData.length > 0){
-      //   // res.json({ "error": false, "message": "File Uploaded SuceesFully", data: responseData});
-      //   responseData.forEach(function(element){
-      //     console.log("in push");
-      //     flora.push(element.Location);
-      //   });
-      //   // fs.unlinkSync(customPath); //
-      // }
+      resolve(res.Location);
     }
   });
+});
 }
+
+// function urlToBase64(url) {
+//   return new Promise((resolve, reject) => {
+//     request.get(url, function (error, response, body) {
+//       if (!error && response.statusCode == 200) {
+//         resolve("data:" + response.headers["content-type"] + ";base64," + new Buffer(body).toString('base64'));
+//       } else {
+//         reject(response);
+//       }
+//     });
+//   })
+// }
 
 export const uploadFlora =  function(req) {
   var customOriginalName="";
@@ -87,7 +90,8 @@ export const uploadFlora =  function(req) {
         // flora.push(item.originalname);
         return uploadToS3(params).then(element => {
       console.log(element)
-      return element;
+      flora.push(element);
+      return flora;
     })
 
 
