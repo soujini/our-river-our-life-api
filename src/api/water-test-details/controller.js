@@ -33,25 +33,25 @@ export const uploadToS3 = async function(params) {
   const s3 = new aws.S3();
   var responseData=[];
   await s3.upload(params, function (err, res) {
-  if (err) {
-    console.log('Error occured while trying to upload Flora to the S3 bucket', err);
-    res.send(err);
-  }if(res){
-    console.log("loc "+res.Location);
-    return res.Location;
-    // responseData.push(res);
-    // console.log(res);
-    //   flora.push(res.Location);
-    // if(responseData.length > 0){
-    //   // res.json({ "error": false, "message": "File Uploaded SuceesFully", data: responseData});
-    //   responseData.forEach(function(element){
-    //     console.log("in push");
-    //     flora.push(element.Location);
-    //   });
-    //   // fs.unlinkSync(customPath); //
-    // }
-  }
-});
+    if (err) {
+      console.log('Error occured while trying to upload Flora to the S3 bucket', err);
+      res.send(err);
+    }if(res){
+      console.log("loc "+res.Location);
+      return res.Location;
+      // responseData.push(res);
+      // console.log(res);
+      //   flora.push(res.Location);
+      // if(responseData.length > 0){
+      //   // res.json({ "error": false, "message": "File Uploaded SuceesFully", data: responseData});
+      //   responseData.forEach(function(element){
+      //     console.log("in push");
+      //     flora.push(element.Location);
+      //   });
+      //   // fs.unlinkSync(customPath); //
+      // }
+    }
+  });
 }
 
 export const uploadFlora =  function(req) {
@@ -86,10 +86,21 @@ export const uploadFlora =  function(req) {
 
         // flora.push(item.originalname);
         var a =  uploadToS3(params);
+        Promise.all(a)
+        .then(results => {
+          console.log("done with s3 "+results);
+           flora.push(results);
+          return results;
 
-        console.log(a);
-        flora.push(a);
-          console.log("pushed");
+          // Handle results
+        })
+        .catch(e => {
+          console.error(e);
+        })
+
+        // console.log(a);
+        // flora.push(a);
+        console.log("pushed");
         //   s3.upload(params, function (err, res) {
         //   console.log("in uppload");
         //   if (err) {
@@ -114,14 +125,14 @@ export const uploadFlora =  function(req) {
       });
 
       Promise.all(promises)
-  .then(results => {
-    console.log("done with map");
-    resolve(flora);
-    // Handle results
-  })
-  .catch(e => {
-    console.error(e);
-  })
+      .then(results => {
+        console.log("done with map");
+        resolve(flora);
+        // Handle results
+      })
+      .catch(e => {
+        console.error(e);
+      })
 
 
     }
@@ -162,7 +173,7 @@ export const uploadFlora1 = function(req) {
           Key: item.originalname,
         };
         // flora=[];
-         await s3.upload(params, async function (err, res) {
+        await s3.upload(params, async function (err, res) {
           console.log("in uppload");
           if (err) {
             console.log('Error occured while trying to upload Flora to the S3 bucket', err);
@@ -191,7 +202,7 @@ export const uploadFlora1 = function(req) {
       console.log(results);
       // console.log("flora 4" +flora);
       // console.log("in resolve");
-       resolve(results);
+      resolve(results);
     }
     else{
       resolve([]);
