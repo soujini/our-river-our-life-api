@@ -41,6 +41,73 @@ export const uploadFlora = function(req) {
     "accessKeyId": 'AKIAJ24JCG5UUXOOHKDA',
     "secretAccessKey": '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',
   });
+  return new Promise(async (resolve, reject) => {
+    if(req.files.flora){
+      var flora=[];
+      req.files.flora.map(async (item) => {
+        console.log("in item");
+        customFieldName = item.fieldname;
+        customPath = item.path;
+        // customOriginalName= item.originalname;
+        bucketName="our-river-our-life-images/flora";
+        const s3 = new aws.S3();
+        var params = {
+          ACL: 'public-read',
+          Bucket: bucketName,
+          Body: fs.createReadStream(item.path),
+          Key: item.originalname,
+        };
+        console.log("push");
+
+        flora.push(item.originalname);
+        // flora=[];
+        //  await s3.upload(params, async function (err, res) {
+        //   console.log("in uppload");
+        //   if (err) {
+        //     console.log('Error occured while trying to upload Flora to the S3 bucket', err);
+        //     res.send(err);
+        //   }if(res){
+        //     responseData=[];
+        //     responseData.push(res);
+        //     if(responseData.length > 0){
+        //       // res.json({ "error": false, "message": "File Uploaded SuceesFully", data: responseData});
+        //       responseData.forEach(function(element){
+        //         console.log("in push");
+        //         flora.push(element.Location);
+        //
+        //         // req.body.flora=flora;
+        //       });
+        //       // return(flora);
+        //       // fs.unlinkSync(customPath); //
+        //     }
+        //   }
+        //   // console.log("upload done");
+        //   // console.log(flora);
+        // });
+        // return flora;
+      });
+      console.log("done with map");
+      resolve(flora);
+
+    }
+    else{
+      resolve([]);
+    }
+  }
+}
+
+export const uploadFlora1 = function(req) {
+  var customOriginalName="";
+  var customPath="";
+  var customFieldName="";
+  var bucketName="";
+  var responseData = [];
+
+  aws.config.setPromisesDependency();
+  aws.config.update({
+    "accessKeyId": 'AKIAJ24JCG5UUXOOHKDA',
+    "secretAccessKey": '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',
+  });
 
   return new Promise(async (resolve, reject) => {
     if(req.files.flora){
