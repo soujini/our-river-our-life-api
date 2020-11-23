@@ -331,14 +331,22 @@ export const uploadRiver = function(req) {
 export const createWaterTestDetails = async(req, res, next) =>{
   Promise.all([uploadFlora(req), uploadFauna(req),uploadArtwork(req),uploadGroupPicture(req), uploadActivity(req), uploadRiver(req)])
   .then(results => {
+    req.body.flora = results[0];
+    req.body.fauna = results[1];
+    req.body.artwork = results[2];
+    req.body.groupPicture = results[3];
+    req.body.activity = results[4];
+    req.body.river = results[5];
+
+    console.log(req.body);
     // const total = results.reduce((p, c) => p + c);
-    results.map(res=>{
-      console.log("RESULTS");
-      console.log(res);
-      //push image to req.body
-      //create water test WaterTestDetails
-      //upload certificate URL
-    })
+    // results.map(res=>{
+    //   console.log("RESULTS");
+    //   console.log(res);
+    //   req.body.flora = res[0]
+    //   //create water test WaterTestDetails
+    //   //upload certificate URL
+    // })
     // console.log(`Results: ${results}`);
     // console.log(`Total: ${total}`);
   });
