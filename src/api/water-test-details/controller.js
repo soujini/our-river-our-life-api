@@ -33,7 +33,7 @@ export const uploadToS3 = function(params) {
   return new Promise((resolve, reject) => {
   const s3 = new aws.S3();
   var responseData=[];
-  await s3.upload(params, function (err, res) {
+   s3.upload(params, function (err, res) {
     if (err) {
       console.log('Error occured while trying to upload Flora to the S3 bucket', err);
       res.send(err);
@@ -92,7 +92,7 @@ export const uploadFlora =  function(req) {
       console.log(element)
       flora.push(element);
       return flora;
-    })
+    });
 
 
         // console.log(a);
