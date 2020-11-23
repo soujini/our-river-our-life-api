@@ -622,6 +622,58 @@
                       </td>
                     </tr>
                   </table>
+                  <table class="card">
+                    <tr>
+                      <td>
+                        <img class="img-height" src="https://our-river-our-life-images.s3.ap-south-1.amazonaws.com/static/nitrates-nitrites-icon.svg" alt="ICON">
+                      </td>
+                      <td class="ml-10">
+                        <span class="parameter">Total Dissolved Solids</span><br/>
+                        <span class="reason">Lead contamination in any amount is unsafe</span><br/>
+                      </td>
+                      <td class="text-right">
+                        <% if (waterTestDetails.waterTesting.totalDissolvedSolids * 1 == 0) { %>
+                          <span class="row"><span class="value-green1"><%= waterTestDetails.waterTesting.totalDissolvedSolids %></span> <span class="value-green2">ppm</span> </span>
+                          <% }%>
+                          <% if (waterTestDetails.waterTesting.totalDissolvedSolids > 0) { %>
+                            <span class="row"><span class="value-red1"><%= waterTestDetails.waterTesting.totalDissolvedSolids %></span> <span class="value-red2">ppm</span> </span>
+                            <% }%>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td colspan="3" class="hr-border">
+                        <p class="info">
+                          Important sources of environmental contamination include mining, smelting, manufacturing and recycling activities, and, in some countries, the continued use of leaded paint, leaded gasoline, and leaded aviation fuel. More than three quarters of global lead consumption is for the manufacture of lead-acid batteries for motor vehicles. Lead is, however, also used in many other products, for example pigments, paints, solder, stained glass, lead crystal glassware, ammunition, ceramic glazes, jewellery, toys and in some cosmetics and traditional medicines.
+                        </p>
+                      </td>
+                    </tr>
+                  </table>
+                  <table class="card">
+                    <tr>
+                      <td>
+                        <img class="img-height" src="https://our-river-our-life-images.s3.ap-south-1.amazonaws.com/static/nitrates-nitrites-icon.svg" alt="ICON">
+                      </td>
+                      <td class="ml-10">
+                        <span class="parameter">Conductivity</span><br/>
+                        <span class="reason">Lead contamination in any amount is unsafe</span><br/>
+                      </td>
+                      <td class="text-right">
+                        <% if (waterTestDetails.waterTesting.conductivity * 1 == 0) { %>
+                          <span class="row"><span class="value-green1"><%= waterTestDetails.waterTesting.conductivity %></span> <span class="value-green2">μS</span> </span>
+                          <% }%>
+                          <% if (waterTestDetails.waterTesting.conductivity > 0) { %>
+                            <span class="row"><span class="value-red1"><%= waterTestDetails.waterTesting.conductivity %></span> <span class="value-red2">μS</span> </span>
+                            <% }%>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td colspan="3" class="hr-border">
+                        <p class="info">
+                          Important sources of environmental contamination include mining, smelting, manufacturing and recycling activities, and, in some countries, the continued use of leaded paint, leaded gasoline, and leaded aviation fuel. More than three quarters of global lead consumption is for the manufacture of lead-acid batteries for motor vehicles. Lead is, however, also used in many other products, for example pigments, paints, solder, stained glass, lead crystal glassware, ammunition, ceramic glazes, jewellery, toys and in some cosmetics and traditional medicines.
+                        </p>
+                      </td>
+                    </tr>
+                  </table>
 
                   <p class="montserrat-12-l text-center">Flora</p>
                   <% if (waterTestDetails.flora.length > 0) { %>

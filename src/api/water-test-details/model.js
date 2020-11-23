@@ -78,6 +78,12 @@ const waterTestDetailsSchema = new Schema({
     lead: {
       type: String
     },
+    totalDissolvedSolids: {
+      type: String
+    },
+    conductivity: {
+      type: String
+    },
   },
    surroundings:{
      type:Array
