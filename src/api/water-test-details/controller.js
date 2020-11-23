@@ -29,11 +29,11 @@ var UserController = require('../user/controller')
 //   });
 //
 
-export const uploadToS3 = function({params}) {
+export const uploadToS3 = async function({params}) {
   console.log(params);
   const s3 = new aws.S3();
   var responseData=[];
-  s3.upload(params, function (err, res) {
+  await s3.upload(params, function (err, res) {
   if (err) {
     console.log('Error occured while trying to upload Flora to the S3 bucket', err);
     res.send(err);
