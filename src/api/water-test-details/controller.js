@@ -29,7 +29,7 @@ var UserController = require('../user/controller')
 //   });
 //
 
-export const uploadToS3 = async function(params) {
+export const uploadToS3 = function(params) {
   const s3 = new aws.S3();
   var responseData=[];
   s3.upload(params, function (err, res) {
@@ -68,7 +68,7 @@ export const uploadFlora =  function(req) {
   return new Promise((resolve, reject) => {
     if(req.files.flora){
       var flora=[];
-      req.files.flora.map(async(item) => {
+      req.files.flora.map((item) => {
         console.log("in item");
         customFieldName = item.fieldname;
         customPath = item.path;
@@ -84,7 +84,7 @@ export const uploadFlora =  function(req) {
 
 
         // flora.push(item.originalname);
-        var a = await uploadToS3(params);
+        var a = uploadToS3(params);
         flora.push(a);
           console.log("pushed");
         //   s3.upload(params, function (err, res) {
