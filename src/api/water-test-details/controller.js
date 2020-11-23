@@ -54,7 +54,7 @@ export const uploadToS3 = async function(params) {
 });
 }
 
-export const uploadFlora =   function(req) {
+export const uploadFlora =  function(req) {
   var customOriginalName="";
   var customPath="";
   var customFieldName="";
@@ -69,7 +69,7 @@ export const uploadFlora =   function(req) {
   return new Promise((resolve, reject) => {
     if(req.files.flora){
       var flora=[];
-      req.files.flora.map(async(item) => {
+      let promises = req.files.flora.map((item) => {
         console.log("in item");
         customFieldName = item.fieldname;
         customPath = item.path;
@@ -85,7 +85,8 @@ export const uploadFlora =   function(req) {
 
 
         // flora.push(item.originalname);
-        var a = await uploadToS3(params);
+        var a =  uploadToS3(params);
+
         console.log(a);
         flora.push(a);
           console.log("pushed");
@@ -111,8 +112,17 @@ export const uploadFlora =   function(req) {
         // });
         // console.log("done with s3 upload");
       });
-      console.log("done with map");
-      resolve(flora);
+
+      Promise.all(promises)
+  .then(results => {
+    console.log("done with map");
+    resolve(flora);
+    // Handle results
+  })
+  .catch(e => {
+    console.error(e);
+  })
+
 
     }
     else{
