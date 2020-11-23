@@ -45,7 +45,7 @@ export const uploadFlora = function(req) {
   return new Promise((resolve, reject) => {
     if(req.files.flora){
         var flora=[];
-      req.files.flora.map(async(item) => {
+      await Promise.all(req.files.flora.map(async(item) => {
 
         customFieldName = item.fieldname;
         customPath = item.path;
@@ -60,7 +60,7 @@ export const uploadFlora = function(req) {
           Key: item.originalname,
         };
         // flora=[];
-        await Promise.all(s3.upload(params, async function (err, res) {
+        s3.upload(params, function (err, res) {
           console.log("in uppload");
           if (err) {
             console.log('Error occured while trying to upload Flora to the S3 bucket', err);
@@ -81,10 +81,10 @@ export const uploadFlora = function(req) {
 
           }
 
-        }));
+        });
         console.log("in resolve");
         resolve(flora);
-      });
+      }));
     }
     else{
       resolve([]);
