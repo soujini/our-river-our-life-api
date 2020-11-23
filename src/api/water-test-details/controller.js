@@ -67,7 +67,6 @@ export const uploadFlora = function(req) {
             console.log('Error occured while trying to upload Flora to the S3 bucket', err);
             res.send(err);
           }if(res){
-            console.log("push");
             responseData.push(res);
             if(responseData.length > 0){
               flora = [];
@@ -81,12 +80,11 @@ export const uploadFlora = function(req) {
             }
 
           }
-          console.log("upload done");
-          console.log(flora);
+          // console.log("upload done");
+          // console.log(flora);
         });
 
       }));
-      console.log("in resolve");
       resolve(flora);
     }
     else{
