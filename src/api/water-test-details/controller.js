@@ -43,7 +43,6 @@ export const uploadFlora = function(req) {
   });
 
   return new Promise(async (resolve, reject) => {
-    console.log("new promise");
     if(req.files.flora){
       var flora=[];
       const promises = req.files.flora.map((item) => {
@@ -60,7 +59,7 @@ export const uploadFlora = function(req) {
           Key: item.originalname,
         };
         // flora=[];
-        await s3.upload(params, async function (err, res) {
+         s3.upload(params, function (err, res) {
           console.log("in uppload");
           if (err) {
             console.log('Error occured while trying to upload Flora to the S3 bucket', err);
@@ -73,18 +72,16 @@ export const uploadFlora = function(req) {
               responseData.forEach(function(element){
                 console.log("in push");
                 flora.push(element.Location);
-                console.log(flora);
+                return(flora);
                 // req.body.flora=flora;
               });
-              console.log("flora 2" +flora);
               // fs.unlinkSync(customPath); //
             }
-              console.log("flora 3" +flora);
           }
           // console.log("upload done");
           // console.log(flora);
         });
-        return flora;
+        // return flora;
       });
       const results = await Promise.all(promises);
       console.log(results);
