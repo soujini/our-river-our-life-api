@@ -78,9 +78,9 @@ flora=[];
 
               // fs.unlinkSync(customPath); //
             }
-              // resolve(flora);
+      resolve(flora);
           }
-              resolve(flora);
+
         });
       });
     }
