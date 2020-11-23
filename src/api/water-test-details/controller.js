@@ -329,9 +329,7 @@ export const uploadRiver = function(req) {
   });
 }
 export const createWaterTestDetails = async(req, res, next) =>{
-  // Promise.all([uploadFlora(req), uploadFauna(req),uploadArtwork(req),uploadGroupPicture(req), uploadActivity(req), uploadRiver(req)])
-  Promise.all([uploadFlora(req), uploadFauna(req)])
-
+  Promise.all([uploadFlora(req), uploadFauna(req),uploadArtwork(req),uploadGroupPicture(req), uploadActivity(req), uploadRiver(req)])
   .then(results => {
     // const total = results.reduce((p, c) => p + c);
     results.map(res=>{
