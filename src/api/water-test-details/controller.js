@@ -51,7 +51,7 @@ export const uploadFlora = function(req) {
         customPath = item.path;
         // customOriginalName= item.originalname;
         bucketName="our-river-our-life-images/flora";
-flora=[];
+        flora=[];
         const s3 = new aws.S3();
         var params = {
           ACL: 'public-read',
@@ -60,7 +60,7 @@ flora=[];
           Key: item.originalname,
         };
         // flora=[];
-        s3.upload(params, function (err, res) {
+        await Promise.all(s3.upload(params, async function (err, res) {
           console.log("in uppload");
           if (err) {
             console.log('Error occured while trying to upload Flora to the S3 bucket', err);
@@ -78,10 +78,12 @@ flora=[];
 
               // fs.unlinkSync(customPath); //
             }
-      resolve(flora);
+
           }
 
-        });
+        }));
+        console.log("in resolve");
+        resolve(flora);
       });
     }
     else{
