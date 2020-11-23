@@ -54,7 +54,7 @@ export const uploadToS3 = async function(params) {
 });
 }
 
-export const uploadFlora =  function(req) {
+export const uploadFlora =  async function(req) {
   var customOriginalName="";
   var customPath="";
   var customFieldName="";
@@ -66,7 +66,7 @@ export const uploadFlora =  function(req) {
     "accessKeyId": 'AKIAJ24JCG5UUXOOHKDA',
     "secretAccessKey": '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',
   });
-  return new Promise((resolve, reject) => {
+  return new Promise(async(resolve, reject) => {
     if(req.files.flora){
       var flora=[];
       req.files.flora.map((item) => {
@@ -85,7 +85,7 @@ export const uploadFlora =  function(req) {
 
 
         // flora.push(item.originalname);
-        var a = uploadToS3(params);
+        var a = await uploadToS3(params);
         console.log(a);
         flora.push(a);
           console.log("pushed");
