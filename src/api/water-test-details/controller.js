@@ -347,6 +347,7 @@ export const createWaterTestDetails = async(req, res, next) =>{
 
 export const create = (req, res, next) =>{
   console.log("in create");
+  console.log(req.flora);
 WaterTestDetails.create(req)
 .then((waterTestDetails) => waterTestDetails.view(true))
 .then(success(res, 201))
