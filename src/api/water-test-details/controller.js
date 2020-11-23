@@ -42,7 +42,7 @@ export const uploadFlora = function(req) {
     "secretAccessKey": 'UKG2g/WWfOcLlz4rXPLDEe4jcwcTJ+tfEP9DneJo',
   });
 
-  return new Promise((resolve, reject) => {
+  return new Promise(async (resolve, reject) => {
     if(req.files.flora){
         var flora=[];
       await Promise.all(req.files.flora.map(async(item) => {
