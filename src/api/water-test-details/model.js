@@ -182,7 +182,9 @@ waterTestDetailsSchema.methods = {
         turbidity:this.waterTesting.turbidity,
         phosphate:this.waterTesting.phosphate,
         ammonia:this.waterTesting.ammonia,
-        lead:this.waterTesting.lead
+        lead:this.waterTesting.lead,
+        dissolvedSolids:this.waterTesting.dissolvedSolids,
+        conductivity:this.waterTesting.conductivity
       },
       flora:this.flora,
       fauna:this.fauna,
