@@ -339,25 +339,19 @@ export const createWaterTestDetails = async(req, res, next) =>{
     req.body.river = results[5];
 
     console.log(req.body);
-    // const total = results.reduce((p, c) => p + c);
-    // results.map(res=>{
-    //   console.log("RESULTS");
-    //   console.log(res);
-    //   req.body.flora = res[0]
-    //   //create water test WaterTestDetails
-    //   //upload certificate URL
-    // })
-    // console.log(`Results: ${results}`);
-    // console.log(`Total: ${total}`);
+    create(req.body);
+
   });
 }
 
 
-export const create = ({ bodymen: { body } }, res, next) =>
+export const create = ({ bodymen: { body } }, res, next) =>{
+  console.log("in create");
 WaterTestDetails.create(body)
 .then((waterTestDetails) => waterTestDetails.view(true))
 .then(success(res, 201))
 .catch(next)
+}
 
 // export const index = ({ querymen: { query, select, cursor } }, res, next) =>{
 //   WaterTestDetails.count(query)
