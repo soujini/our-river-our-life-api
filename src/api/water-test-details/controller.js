@@ -27,7 +27,30 @@ var UserController = require('../user/controller')
 //     console.log(`Results: ${results}`);
 //     // console.log(`Total: ${total}`);
 //   });
-// }
+//
+
+export const uploadToS3 = async function(params) {
+  var responseData=[];
+  s3.upload(params, function (err, res) {
+  if (err) {
+    console.log('Error occured while trying to upload Flora to the S3 bucket', err);
+    res.send(err);
+  }if(res){
+    return res.Location;
+    // responseData.push(res);
+    // console.log(res);
+    //   flora.push(res.Location);
+    // if(responseData.length > 0){
+    //   // res.json({ "error": false, "message": "File Uploaded SuceesFully", data: responseData});
+    //   responseData.forEach(function(element){
+    //     console.log("in push");
+    //     flora.push(element.Location);
+    //   });
+    //   // fs.unlinkSync(customPath); //
+    // }
+  }
+});
+}
 
 export const uploadFlora = function(req) {
   var customOriginalName="";
@@ -57,30 +80,33 @@ export const uploadFlora = function(req) {
           Body: fs.createReadStream(item.path),
           Key: item.originalname,
         };
-        console.log("push");
+
 
         // flora.push(item.originalname);
-          s3.upload(params, function (err, res) {
-          console.log("in uppload");
-          if (err) {
-            console.log('Error occured while trying to upload Flora to the S3 bucket', err);
-            res.send(err);
-          }if(res){
-            responseData=[];
-            responseData.push(res);
-            console.log(res);
-              flora.push(res.Location);
-            // if(responseData.length > 0){
-            //   // res.json({ "error": false, "message": "File Uploaded SuceesFully", data: responseData});
-            //   responseData.forEach(function(element){
-            //     console.log("in push");
-            //     flora.push(element.Location);
-            //   });
-            //   // fs.unlinkSync(customPath); //
-            // }
-          }
-        });
-        console.log("done with s3 upload");
+        var a = await uploadToS3(params);
+        flora.push(a);
+          console.log("pushed");
+        //   s3.upload(params, function (err, res) {
+        //   console.log("in uppload");
+        //   if (err) {
+        //     console.log('Error occured while trying to upload Flora to the S3 bucket', err);
+        //     res.send(err);
+        //   }if(res){
+        //     responseData=[];
+        //     responseData.push(res);
+        //     console.log(res);
+        //       flora.push(res.Location);
+        //     // if(responseData.length > 0){
+        //     //   // res.json({ "error": false, "message": "File Uploaded SuceesFully", data: responseData});
+        //     //   responseData.forEach(function(element){
+        //     //     console.log("in push");
+        //     //     flora.push(element.Location);
+        //     //   });
+        //     //   // fs.unlinkSync(customPath); //
+        //     // }
+        //   }
+        // });
+        // console.log("done with s3 upload");
       });
       console.log("done with map");
       resolve(flora);
