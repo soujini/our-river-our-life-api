@@ -84,7 +84,7 @@ export const uploadFlora =  function(req) {
         };
 
         return uploadToS3(params).then(element => {
-          flora.push(element);
+          flora.push({imageURL:element});
           return flora;
         });
       });
@@ -129,7 +129,7 @@ export const uploadFauna = function(req) {
         };
 
         return uploadToS3(params).then(element => {
-          fauna.push(element);
+          fauna.push({imageURL:element});
           return fauna;
         });
       });
@@ -174,7 +174,7 @@ export const uploadArtwork = function(req) {
         };
 
         return uploadToS3(params).then(element => {
-          artwork.push(element);
+          artwork.push({imageURL:element});
           return artwork;
         });
       });
@@ -219,7 +219,7 @@ export const uploadGroupPicture = function(req) {
         };
 
         return uploadToS3(params).then(element => {
-          groupPicture.push(element);
+          groupPicture.push({imageURL:element});
           return groupPicture;
         });
       });
@@ -265,7 +265,7 @@ export const uploadActivity = function(req) {
         };
 
         return uploadToS3(params).then(element => {
-          activity.push(element);
+          activity.push({imageURL:element});
           return activity;
         });
       });
@@ -310,7 +310,7 @@ export const uploadRiver = function(req) {
         };
 
         return uploadToS3(params).then(element => {
-          river.push(element);
+          river.push({imageURL:element});
           return river;
         });
       });
