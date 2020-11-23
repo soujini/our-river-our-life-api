@@ -46,6 +46,7 @@ export const uploadFlora = function(req) {
     console.log("new promise");
     if(req.files.flora){
         var flora=[];
+        console.log("bla");
       await Promise.all(req.files.flora.map(async(item) => {
           console.log("in item");
         customFieldName = item.fieldname;
@@ -60,7 +61,7 @@ export const uploadFlora = function(req) {
           Key: item.originalname,
         };
         // flora=[];
-        s3.upload(params, function (err, res) {
+        await s3.upload(params, async function (err, res) {
           console.log("in uppload");
           if (err) {
             console.log('Error occured while trying to upload Flora to the S3 bucket', err);
