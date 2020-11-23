@@ -61,7 +61,7 @@ export const uploadFlora = function(req) {
           Key: item.originalname,
         };
         // flora=[];
-         await s3.upload(params, async function (err, res) {
+          s3.upload(params, function (err, res) {
           console.log("in uppload");
           if (err) {
             console.log('Error occured while trying to upload Flora to the S3 bucket', err);
@@ -77,15 +77,12 @@ export const uploadFlora = function(req) {
                 console.log(flora);
                 // req.body.flora=flora;
               });
-
               // fs.unlinkSync(customPath); //
             }
-
           }
           // console.log("upload done");
           // console.log(flora);
         });
-
       }));
       resolve(flora);
     }
