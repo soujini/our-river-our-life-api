@@ -93,8 +93,9 @@ export const uploadFlora = function(req) {
     else{
       resolve([]);
     }
-  }
+  });
 }
+
 
 export const uploadFlora1 = function(req) {
   var customOriginalName="";
