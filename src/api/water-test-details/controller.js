@@ -70,7 +70,7 @@ export const uploadFlora = function(req) {
             console.log("push");
             responseData.push(res);
             if(responseData.length > 0){
-
+              flora = [];
               // res.json({ "error": false, "message": "File Uploaded SuceesFully", data: responseData});
               responseData.forEach(function(element){
                 flora.push(element.Location);
