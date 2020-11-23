@@ -38,7 +38,7 @@ export const uploadToS3 = function(params) {
       console.log('Error occured while trying to upload Flora to the S3 bucket', err);
       res.send(err);
     }if(res){
-      console.log("loc "+res.Location);
+      // console.log("loc "+res.Location);
       resolve(res.Location);
     }
   });
@@ -73,7 +73,6 @@ export const uploadFlora =  function(req) {
     if(req.files.flora){
       var flora=[];
       let promises = req.files.flora.map((item) => {
-        console.log("in item");
         customFieldName = item.fieldname;
         customPath = item.path;
         // customOriginalName= item.originalname;
@@ -89,7 +88,7 @@ export const uploadFlora =  function(req) {
 
         // flora.push(item.originalname);
         return uploadToS3(params).then(element => {
-      console.log(element)
+      // console.log(element)
       flora.push(element);
       return flora;
     });
@@ -123,7 +122,7 @@ export const uploadFlora =  function(req) {
 
       Promise.all(promises)
       .then(results => {
-        console.log("done with map");
+        // console.log("done with map");
         resolve(flora);
         // Handle results
       })
