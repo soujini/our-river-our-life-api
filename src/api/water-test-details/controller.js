@@ -45,10 +45,10 @@ export const uploadFlora = function(req) {
   return new Promise(async (resolve, reject) => {
     console.log("new promise");
     if(req.files.flora){
-        var flora=[];
-        console.log("bla");
+      var flora=[];
+      console.log("bla");
       req.files.flora.map(async(item) => {
-          console.log("in item");
+        console.log("in item");
         customFieldName = item.fieldname;
         customPath = item.path;
         // customOriginalName= item.originalname;
@@ -61,15 +61,15 @@ export const uploadFlora = function(req) {
           Key: item.originalname,
         };
         // flora=[];
-          await s3.upload(params, async function (err, res) {
+        await s3.upload(params, async function (err, res) {
           console.log("in uppload");
           if (err) {
             console.log('Error occured while trying to upload Flora to the S3 bucket', err);
             res.send(err);
           }if(res){
+            responseData=[];
             responseData.push(res);
             if(responseData.length > 0){
-              flora = [];
               // res.json({ "error": false, "message": "File Uploaded SuceesFully", data: responseData});
               responseData.forEach(function(element){
                 console.log("in push");
