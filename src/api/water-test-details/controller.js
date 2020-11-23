@@ -30,6 +30,7 @@ var UserController = require('../user/controller')
 //
 
 export const uploadToS3 = async function(params) {
+  const s3 = new aws.S3();
   var responseData=[];
   s3.upload(params, function (err, res) {
   if (err) {
@@ -52,7 +53,7 @@ export const uploadToS3 = async function(params) {
 });
 }
 
-export const uploadFlora = async function(req) {
+export const uploadFlora =  function(req) {
   var customOriginalName="";
   var customPath="";
   var customFieldName="";
@@ -64,7 +65,7 @@ export const uploadFlora = async function(req) {
     "accessKeyId": 'AKIAJ24JCG5UUXOOHKDA',
     "secretAccessKey": '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',
   });
-  return new Promise(async (resolve, reject) => {
+  return new Promise((resolve, reject) => {
     if(req.files.flora){
       var flora=[];
       req.files.flora.map(async(item) => {
@@ -73,7 +74,7 @@ export const uploadFlora = async function(req) {
         customPath = item.path;
         // customOriginalName= item.originalname;
         bucketName="our-river-our-life-images/flora";
-        const s3 = new aws.S3();
+
         var params = {
           ACL: 'public-read',
           Bucket: bucketName,
