@@ -47,7 +47,7 @@ export const uploadFlora = function(req) {
     if(req.files.flora){
       var flora=[];
       console.log("bla");
-      req.files.flora.map(async(item) => {
+      await Promise.all(req.files.flora.map(async(item) => {
         console.log("in item");
         customFieldName = item.fieldname;
         customPath = item.path;
@@ -77,16 +77,19 @@ export const uploadFlora = function(req) {
                 console.log(flora);
                 // req.body.flora=flora;
               });
+              console.log("flora 2" +flora);
               // fs.unlinkSync(customPath); //
             }
+              console.log("flora 3" +flora);
           }
           // console.log("upload done");
           // console.log(flora);
         });
-        console.log("in resolve");
-        resolve(flora);
-      });
 
+      }));
+console.log("flora 4" +flora);
+console.log("in resolve");
+resolve(flora);
     }
     else{
       resolve([]);
