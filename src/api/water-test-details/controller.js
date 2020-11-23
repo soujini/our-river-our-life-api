@@ -72,16 +72,17 @@ export const uploadFlora = function(req) {
               responseData.forEach(function(element){
                 console.log("in push");
                 flora.push(element.Location);
-                return(flora);
+
                 // req.body.flora=flora;
               });
+              // return(flora);
               // fs.unlinkSync(customPath); //
             }
           }
           // console.log("upload done");
           // console.log(flora);
         });
-        // return flora;
+        return flora;
       });
       const results = await Promise.all(promises);
       console.log(results);
