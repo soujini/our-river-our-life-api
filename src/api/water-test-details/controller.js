@@ -44,7 +44,7 @@ export const uploadFlora = function(req) {
   return new Promise(async (resolve, reject) => {
     if(req.files.flora){
       var flora=[];
-      req.files.flora.map(async(item) => {
+      req.files.flora.map((item) => {
         console.log("in item");
         customFieldName = item.fieldname;
         customPath = item.path;
@@ -60,7 +60,7 @@ export const uploadFlora = function(req) {
         console.log("push");
 
         // flora.push(item.originalname);
-         await s3.upload(params, async function (err, res) {
+          s3.upload(params, function (err, res) {
           console.log("in uppload");
           if (err) {
             console.log('Error occured while trying to upload Flora to the S3 bucket', err);
@@ -69,14 +69,15 @@ export const uploadFlora = function(req) {
             responseData=[];
             responseData.push(res);
             console.log(res);
-            if(responseData.length > 0){
-              // res.json({ "error": false, "message": "File Uploaded SuceesFully", data: responseData});
-              responseData.forEach(function(element){
-                console.log("in push");
-                flora.push(element.Location);
-              });
-              // fs.unlinkSync(customPath); //
-            }
+              flora.push(res.Location);
+            // if(responseData.length > 0){
+            //   // res.json({ "error": false, "message": "File Uploaded SuceesFully", data: responseData});
+            //   responseData.forEach(function(element){
+            //     console.log("in push");
+            //     flora.push(element.Location);
+            //   });
+            //   // fs.unlinkSync(customPath); //
+            // }
           }
         });
         console.log("done with s3 upload");
