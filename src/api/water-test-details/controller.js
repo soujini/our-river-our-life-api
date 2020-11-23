@@ -52,7 +52,7 @@ export const uploadToS3 = async function(params) {
 });
 }
 
-export const uploadFlora = function(req) {
+export const uploadFlora = async function(req) {
   var customOriginalName="";
   var customPath="";
   var customFieldName="";
@@ -67,7 +67,7 @@ export const uploadFlora = function(req) {
   return new Promise(async (resolve, reject) => {
     if(req.files.flora){
       var flora=[];
-      req.files.flora.map((item) => {
+      req.files.flora.map(async(item) => {
         console.log("in item");
         customFieldName = item.fieldname;
         customPath = item.path;
