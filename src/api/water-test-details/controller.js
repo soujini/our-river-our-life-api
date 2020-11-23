@@ -31,18 +31,18 @@ var UserController = require('../user/controller')
 
 export const uploadToS3 = function(params) {
   return new Promise((resolve, reject) => {
-  const s3 = new aws.S3();
-  var responseData=[];
-   s3.upload(params, function (err, res) {
-    if (err) {
-      console.log('Error occured while trying to upload Flora to the S3 bucket', err);
-      res.send(err);
-    }if(res){
-      // console.log("loc "+res.Location);
-      resolve(res.Location);
-    }
+    const s3 = new aws.S3();
+    var responseData=[];
+    s3.upload(params, function (err, res) {
+      if (err) {
+        console.log('Error occured while trying to upload Flora to the S3 bucket', err);
+        res.send(err);
+      }if(res){
+        // console.log("loc "+res.Location);
+        resolve(res.Location);
+      }
+    });
   });
-});
 }
 
 // function urlToBase64(url) {
@@ -62,7 +62,6 @@ export const uploadFlora =  function(req) {
   var customPath="";
   var customFieldName="";
   var bucketName="";
-  var responseData = [];
 
   aws.config.setPromisesDependency();
   aws.config.update({
@@ -75,7 +74,6 @@ export const uploadFlora =  function(req) {
       let promises = req.files.flora.map((item) => {
         customFieldName = item.fieldname;
         customPath = item.path;
-        // customOriginalName= item.originalname;
         bucketName="our-river-our-life-images/flora";
 
         var params = {
@@ -85,52 +83,19 @@ export const uploadFlora =  function(req) {
           Key: item.originalname,
         };
 
-
-        // flora.push(item.originalname);
         return uploadToS3(params).then(element => {
-      // console.log(element)
-      flora.push(element);
-      return flora;
-    });
-
-
-        // console.log(a);
-        // flora.push(a);
-        // console.log("pushed");
-        //   s3.upload(params, function (err, res) {
-        //   console.log("in uppload");
-        //   if (err) {
-        //     console.log('Error occured while trying to upload Flora to the S3 bucket', err);
-        //     res.send(err);
-        //   }if(res){
-        //     responseData=[];
-        //     responseData.push(res);
-        //     console.log(res);
-        //       flora.push(res.Location);
-        //     // if(responseData.length > 0){
-        //     //   // res.json({ "error": false, "message": "File Uploaded SuceesFully", data: responseData});
-        //     //   responseData.forEach(function(element){
-        //     //     console.log("in push");
-        //     //     flora.push(element.Location);
-        //     //   });
-        //     //   // fs.unlinkSync(customPath); //
-        //     // }
-        //   }
-        // });
-        // console.log("done with s3 upload");
+          flora.push(element);
+          return flora;
+        });
       });
 
       Promise.all(promises)
       .then(results => {
-        // console.log("done with map");
         resolve(flora);
-        // Handle results
       })
       .catch(e => {
         console.error(e);
       })
-
-
     }
     else{
       resolve([]);
@@ -139,126 +104,51 @@ export const uploadFlora =  function(req) {
 }
 
 
-export const uploadFlora1 = function(req) {
-  var customOriginalName="";
-  var customPath="";
-  var customFieldName="";
-  var bucketName="";
-  var responseData = [];
+export const uploadFauna = function(req) {
+    var customOriginalName="";
+    var customPath="";
+    var customFieldName="";
+    var bucketName="";
 
-  aws.config.setPromisesDependency();
-  aws.config.update({
-    "accessKeyId": 'AKIAJ24JCG5UUXOOHKDA',
-    "secretAccessKey": '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',
-  });
+    aws.config.setPromisesDependency();
+    aws.config.update({
+      "accessKeyId": 'AKIAJ24JCG5UUXOOHKDA',
+      "secretAccessKey": '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',
+    });
+    return new Promise((resolve, reject) => {
+      if(req.files.fauna){
+        var fauna=[];
+        let promises = req.files.flora.map((item) => {
+          customFieldName = item.fieldname;
+          customPath = item.path;
+          bucketName="our-river-our-life-images/fauna";
 
-  return new Promise(async (resolve, reject) => {
-    if(req.files.flora){
-      var flora=[];
-      const promises = await req.files.flora.map(async (item) => {
-        console.log("in item");
-        customFieldName = item.fieldname;
-        customPath = item.path;
-        // customOriginalName= item.originalname;
-        bucketName="our-river-our-life-images/flora";
-        const s3 = new aws.S3();
-        var params = {
-          ACL: 'public-read',
-          Bucket: bucketName,
-          Body: fs.createReadStream(item.path),
-          Key: item.originalname,
-        };
-        // flora=[];
-        await s3.upload(params, async function (err, res) {
-          console.log("in uppload");
-          if (err) {
-            console.log('Error occured while trying to upload Flora to the S3 bucket', err);
-            res.send(err);
-          }if(res){
-            responseData=[];
-            responseData.push(res);
-            if(responseData.length > 0){
-              // res.json({ "error": false, "message": "File Uploaded SuceesFully", data: responseData});
-              responseData.forEach(function(element){
-                console.log("in push");
-                flora.push(element.Location);
+          var params = {
+            ACL: 'public-read',
+            Bucket: bucketName,
+            Body: fs.createReadStream(item.path),
+            Key: item.originalname,
+          };
 
-                // req.body.flora=flora;
-              });
-              // return(flora);
-              // fs.unlinkSync(customPath); //
-            }
-          }
-          // console.log("upload done");
-          // console.log(flora);
+          return uploadToS3(params).then(element => {
+            fauna.push(element);
+            return fauna;
+          });
         });
-        return flora;
-      });
-      const results = await Promise.all(promises);
-      console.log(results);
-      // console.log("flora 4" +flora);
-      // console.log("in resolve");
-      resolve(results);
-    }
-    else{
-      resolve([]);
-    }
-  });
-}
-// export const uploadFauna = function(req) {
-//   var customOriginalName="";
-//   var customPath="";
-//   var customFieldName="";
-//   var bucketName="";
-//   var responseData = [];
-//
-//   aws.config.setPromisesDependency();
-//   aws.config.update({
-//     "accessKeyId": 'AKIAJ24JCG5UUXOOHKDA',
-//     "secretAccessKey": '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',
-//   });
-//
-//   return new Promise((resolve, reject) => {
-//     if(req.files.fauna){
-//       req.files.fauna.map(async(item) => {
-//         var fauna=[];
-//         customFieldName = item.fieldname;
-//         customPath = item.path;
-//         // customOriginalName= item.originalname;
-//         bucketName="our-river-our-life-images/fauna";
-//
-//         const s3 = new aws.S3();
-//         var params = {
-//           ACL: 'public-read',
-//           Bucket: bucketName,
-//           Body: fs.createReadStream(item.path),
-//           Key: item.originalname,
-//         };
-//
-//         s3.upload(params, function (err, res) {
-//           if (err) {
-//             console.log('Error occured while trying to upload Fauna to the S3 bucket', err);
-//             res.send(err);
-//           }if(res){
-//             responseData.push(res);
-//             if(responseData.length > 0){
-//               // res.json({ "error": false, "message": "File Uploaded SuceesFully", data: responseData});
-//               responseData.forEach(function(element){
-//                 fauna.push(element.Location);
-//                 // req.body.fauna=fauna;
-//               });
-//               resolve(fauna);
-//               // fs.unlinkSync(customPath); //
-//             }
-//           }
-//         });
-//       });
-//     }
-//     else{
-//       resolve([]);
-//     }
-//   });
-// }
+
+        Promise.all(promises)
+        .then(results => {
+          resolve(fauna);
+        })
+        .catch(e => {
+          console.error(e);
+        })
+      }
+      else{
+        resolve([]);
+      }
+    });
+  }
 // export const uploadArtwork = function(req) {
 //   var customOriginalName="";
 //   var customPath="";
@@ -500,7 +390,7 @@ export const uploadFlora1 = function(req) {
 // }
 export const createWaterTestDetails = async(req, res, next) =>{
   // Promise.all([uploadFlora(req), uploadFauna(req),uploadArtwork(req),uploadGroupPicture(req), uploadActivity(req), uploadRiver(req)])
-  Promise.all([uploadFlora(req)])
+  Promise.all([uploadFlora(req), uploadFauna(req)])
 
   .then(results => {
     // const total = results.reduce((p, c) => p + c);
