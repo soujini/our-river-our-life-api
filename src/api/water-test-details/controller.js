@@ -30,6 +30,7 @@ var UserController = require('../user/controller')
 //
 
 export const uploadToS3 = function(params) {
+  console.log(params);
   const s3 = new aws.S3();
   var responseData=[];
   s3.upload(params, function (err, res) {
@@ -37,6 +38,7 @@ export const uploadToS3 = function(params) {
     console.log('Error occured while trying to upload Flora to the S3 bucket', err);
     res.send(err);
   }if(res){
+    console.log(res.Location);
     return res.Location;
     // responseData.push(res);
     // console.log(res);
@@ -85,6 +87,7 @@ export const uploadFlora =  function(req) {
 
         // flora.push(item.originalname);
         var a = uploadToS3(params);
+        console.log(a);
         flora.push(a);
           console.log("pushed");
         //   s3.upload(params, function (err, res) {
