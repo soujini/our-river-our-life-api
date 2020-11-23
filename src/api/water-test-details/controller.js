@@ -85,22 +85,15 @@ export const uploadFlora =  function(req) {
 
 
         // flora.push(item.originalname);
-        var a =  uploadToS3(params);
-        Promise.all(a)
-        .then(results => {
-          console.log("done with s3 "+results);
-           flora.push(results);
-          return results;
+        return uploadToS3(params).then(element => {
+      console.log(element)
+      return element;
+    })
 
-          // Handle results
-        })
-        .catch(e => {
-          console.error(e);
-        })
 
         // console.log(a);
         // flora.push(a);
-        console.log("pushed");
+        // console.log("pushed");
         //   s3.upload(params, function (err, res) {
         //   console.log("in uppload");
         //   if (err) {
