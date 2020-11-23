@@ -82,9 +82,10 @@ export const uploadFlora = function(req) {
           }
 
         });
-        console.log("in resolve");
-        resolve(flora);
+
       }));
+      console.log("in resolve");
+      resolve(flora);
     }
     else{
       resolve([]);
