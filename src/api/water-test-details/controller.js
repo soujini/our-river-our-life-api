@@ -339,7 +339,7 @@ export const createWaterTestDetails = async(req, res, next) =>{
     req.body.river = results[5];
 
     console.log(req.body);
-    WaterTestDetails.create(params)
+    WaterTestDetails.create(req.body)
     .then((waterTestDetails) => waterTestDetails.view(true))
     .then(success(res, 201))
     .catch(next)
