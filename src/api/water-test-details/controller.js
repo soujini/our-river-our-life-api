@@ -345,9 +345,9 @@ export const createWaterTestDetails = async(req, res, next) =>{
 }
 
 
-export const create = ({ bodymen: { body } }, res, next) =>{
+export const create = (req, res, next) =>{
   console.log("in create");
-WaterTestDetails.create(body)
+WaterTestDetails.create(req)
 .then((waterTestDetails) => waterTestDetails.view(true))
 .then(success(res, 201))
 .catch(next)
