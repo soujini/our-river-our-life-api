@@ -61,10 +61,6 @@ body({
 }),
 createWaterTestDetails)
 
-app.post('/photos/upload', upload.array('photos', 12), function (req, res, next) {
-  // req.files is array of `photos` files
-  // req.body will contain the text fields, if there were any
-})
 
 /**
 * @api {post} /water-test-details Create water test details
