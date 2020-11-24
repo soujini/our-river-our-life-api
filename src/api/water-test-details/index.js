@@ -45,7 +45,26 @@ multer({ dest: 'temp/', limits: { fieldSize: 8 * 1024 * 1024 } }).fields([{
 }, {
   name: 'river', maxCount: 5
 }]),
+body({
+  userId,
+  generalInformation,
+  waterLevelAndWeather,
+  surroundings,
+  waterTesting,
+  flora,
+  fauna,
+  artwork,
+  groupPicture,
+  activity,
+  river,
+  certificateURL
+}),
 createWaterTestDetails)
+
+app.post('/photos/upload', upload.array('photos', 12), function (req, res, next) {
+  // req.files is array of `photos` files
+  // req.body will contain the text fields, if there were any
+})
 
 /**
 * @api {post} /water-test-details Create water test details
