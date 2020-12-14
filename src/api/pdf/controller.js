@@ -96,7 +96,7 @@ export const generateReportWeb = async (req, res, next) => {
         },
 
       };
-      pdf.create(data, options).toBuffer(function (err, data) {
+      await pdf.create(data, options).toBuffer(function (err, data) {
         if (err) {
           data.send(err);
         } else {
@@ -120,7 +120,7 @@ export const generateReportWeb = async (req, res, next) => {
             ContentType: "application/pdf"
           };
 
-          s3.upload(params, async function(err, data) {
+          await s3.upload(params, async function(err, data) {
 
             if (err) {
               console.log(err);
