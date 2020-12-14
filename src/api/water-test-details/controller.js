@@ -340,7 +340,7 @@ export const createWaterTestDetails = async(req, res, next) =>{
     console.log(req.body.waterLevelAndWeather);
     console.log(typeof(req.body.waterLevelAndWeather));
     console.log(JSON.stringify(req.body.waterLevelAndWeather));
-    req.body.waterLevelAndWeather = JSON.stringify(req.body.waterLevelAndWeather);
+    req.body.waterLevelAndWeather = JSON.parse(JSON.stringify(req.body.waterLevelAndWeather));
     console.log((JSON.stringify(req.body)));
     console.log(typeof(JSON.stringify(req.body)));
     WaterTestDetails.create(JSON.parse(JSON.stringify(req.body)))
