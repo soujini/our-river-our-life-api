@@ -74,7 +74,7 @@ export const generateReport = (req, res, next) => {
     }//else
   });
 }
-export const generateReportWeb = (req, res, next) => {
+export const generateReportWeb = async (req, res, next) => {
   console.log(req);
   console.log("in gen report "+req.id);
   var waterTestDetailsId =req.id;
