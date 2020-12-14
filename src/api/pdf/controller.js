@@ -80,10 +80,10 @@ export const generateReportWeb = (req, res, next) => {
   var waterTestDetailsId =req.id;
   var certificateURL="";
   ejs.renderFile(path.join(__dirname, "/report-template.ejs"), {
-    waterTestDetails: req.body
+    waterTestDetails: req
   }, (err, data) => {
     if (err) {
-      res.send("Error in report template "+err);
+      err.send("Error in report template "+err);
     } else {
       let options = {
         "height": "11.25in",
@@ -109,12 +109,12 @@ export const generateReportWeb = (req, res, next) => {
           });
 
           const s3 = new aws.S3();
-          console.log("here "+req.body.id)
+          console.log("here "+req.id)
 
           var params = {
             ACL: 'public-read',
             Bucket: "our-river-our-life-images/certificate",
-            Key: `certificate_`+req.body.id,
+            Key: `certificate_`+req.id,
             Body: data,
             ContentEncoding: "buffer",
             ContentType: "application/pdf"
