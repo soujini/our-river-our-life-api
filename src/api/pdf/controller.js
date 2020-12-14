@@ -137,7 +137,7 @@ export const generateReportWeb = async (req, res, next) => {
                certificateURL= "https://our-river-our-life-images.s3.amazonaws.com/certificate/certificate_"+waterTestDetailsId;
                // res.send({"certificateURL:"+certificateURL});
                console.log("sue "+certificateURL);
-               return certificateURL;
+               // return certificateURL;
                 // data.send({certificateURL:certificateURL})
             }
  console.log("sue1 "+certificateURL);
@@ -148,6 +148,7 @@ export const generateReportWeb = async (req, res, next) => {
             //return certificateURL;
           // res.status(200).json({certificateURL:x})
         }
+          res.status(200).json({certificateURL:certificateURL})
          console.log("sue3 "+certificateURL);
       }); //pdf create
  console.log("sue 4"+certificateURL);
