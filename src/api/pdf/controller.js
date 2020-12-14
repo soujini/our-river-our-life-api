@@ -149,7 +149,7 @@ export const generateReportWeb = async (req, res, next) => {
         }
       }); //pdf create
 
-      data.send({"certificateURL:"+certificateURL});
+      // data.send({"certificateURL:"+certificateURL});
     }//else
   });
 }
