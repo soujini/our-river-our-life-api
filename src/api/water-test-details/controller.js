@@ -4,6 +4,7 @@ import { WaterTestDetails } from '.'
 import aws from 'aws-sdk';
 import fs from 'fs';
 var UserController = require('../user/controller')
+var PDFController = require('../pdf/controller')
 
 // export const uploadFiles = async (req, res, next) =>{
 //   // var customOriginalName="";
@@ -338,7 +339,12 @@ export const createWaterTestDetails = async(req, res, next) =>{
     req.body.activity = results[4];
     req.body.river = results[5];
     WaterTestDetails.create(JSON.parse(JSON.stringify(req.body)))
-    .then((waterTestDetails) => waterTestDetails.view(true))
+    .then((waterTestDetails) => {
+      console.log("hereh");
+      console.log(waterTestDetails);
+      var x = PDFController.generateReport(waterTestDetails);
+      console.log(x);
+      waterTestDetails.view(true)})
     .then(success(res, 201))
     .catch(next)
 
