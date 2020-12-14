@@ -342,7 +342,7 @@ export const createWaterTestDetails = async(req, res, next) =>{
     .then((waterTestDetails) => {
       console.log("hereh");
       console.log(waterTestDetails);
-      var x = PDFController.generateReport(waterTestDetails);
+      var x = PDFController.generateReportWeb(waterTestDetails);
       console.log(x);
       waterTestDetails.view(true)})
     .then(success(res, 201))

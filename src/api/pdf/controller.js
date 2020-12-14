@@ -6,7 +6,7 @@ let path = require("path");
 import aws from 'aws-sdk';
 var WaterTestDetailsController = require('../water-test-details/controller')
 
-export const generateReportWeb = (req, res, next) => {
+export const generateReport = (req, res, next) => {
   var waterTestDetailsId=req.body.id;
   var certificateURL="";
   ejs.renderFile(path.join(__dirname, "/report-template.ejs"), {
@@ -74,9 +74,10 @@ export const generateReportWeb = (req, res, next) => {
     }//else
   });
 }
-export const generateReport = (req, res, next) => {
-  console.log("in gen report "+req.body.id); 
-  var waterTestDetailsId=req.body._id;
+export const generateReportWeb = (req, res, next) => {
+  console.log(req);
+  console.log("in gen report "+req.id);
+  var waterTestDetailsId =req.id;
   var certificateURL="";
   ejs.renderFile(path.join(__dirname, "/report-template.ejs"), {
     waterTestDetails: req.body
