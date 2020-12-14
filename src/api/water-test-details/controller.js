@@ -340,18 +340,17 @@ export const createWaterTestDetails = async(req, res, next) =>{
     req.body.river = results[5];
     WaterTestDetails.create(JSON.parse(JSON.stringify(req.body)))
     .then(async(waterTestDetails) => {
-      var x = await PDFController.generateReportWeb(waterTestDetails);
-      console.log("x "+x);
-      waterTestDetails.view(true)})
+      await PDFController.generateReportWeb(waterTestDetails).then((res)=>{
+          console.log("x "+res);
+          waterTestDetails.view(true)})
+      });
     .then(success(res, 201))
     .catch(next)
-
   });
 }
 
 
 export const create = (req, res, next) =>{
-  console.log(req.body.waterTesting);
 WaterTestDetails.create(req)
 .then((waterTestDetails) => waterTestDetails.view(true))
 .then(success(res, 201))
