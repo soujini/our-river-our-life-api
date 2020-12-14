@@ -75,7 +75,8 @@ export const generateReportWeb = (req, res, next) => {
   });
 }
 export const generateReport = (req, res, next) => {
-  var waterTestDetailsId=req.body.id;
+  console.log("in gen report "+req.body.id); 
+  var waterTestDetailsId=req.body._id;
   var certificateURL="";
   ejs.renderFile(path.join(__dirname, "/report-template.ejs"), {
     waterTestDetails: req.body
