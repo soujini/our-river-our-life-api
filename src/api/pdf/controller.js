@@ -98,7 +98,7 @@ export const generateReportWeb = async (req, res, next) => {
       };
       pdf.create(data, options).toBuffer(function (err, data) {
         if (err) {
-          res.send(err);
+          data.send(err);
         } else {
           console.log('This is a buffer:', data);
 
@@ -133,7 +133,7 @@ export const generateReportWeb = async (req, res, next) => {
               console.log("succesfully uploaded pdf!")
               params = {"id":waterTestDetailsId, "certificate":data.Location, "fieldName":"certificate"}
               console.log(params);
-              await WaterTestDetailsController.updateImage({params})
+               WaterTestDetailsController.updateImage({params})
                certificateURL= "https://our-river-our-life-images.s3.amazonaws.com/certificate/certificate_"+waterTestDetailsId;
                // res.send({"certificateURL:"+certificateURL});
                console.log(data);
@@ -149,7 +149,7 @@ export const generateReportWeb = async (req, res, next) => {
         }
       }); //pdf create
 
-      //res.send({"certificateURL:"+certificateURL});
+      data.send({"certificateURL:"+certificateURL});
     }//else
   });
 }
