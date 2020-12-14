@@ -127,16 +127,16 @@ export const generateReportWeb = async (req, res, next) => {
               console.log("Error uploading data: ", data);
             } else {
               certificateURL=data.Location;
-              console.log("url "+certificateURL)
-              console.log('Data: ',data)
-              console.log("data: ", data.Location)
+              // console.log("url "+certificateURL)
+              // console.log('Data: ',data)
+              // console.log("data: ", data.Location)
               console.log("succesfully uploaded pdf!")
               params = {"id":waterTestDetailsId, "certificate":data.Location, "fieldName":"certificate"}
-              console.log(params);
-               WaterTestDetailsController.updateImage({params})
+              //console.log(params);
+               await WaterTestDetailsController.updateImage({params})
                certificateURL= "https://our-river-our-life-images.s3.amazonaws.com/certificate/certificate_"+waterTestDetailsId;
                // res.send({"certificateURL:"+certificateURL});
-               console.log(data);
+               console.log("sue "+certificateURL);
                return certificateURL;
                 // data.send({certificateURL:certificateURL})
             }
