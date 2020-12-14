@@ -134,6 +134,7 @@ export const generateReportWeb = async (req, res, next) => {
               params = {"id":waterTestDetailsId, "certificate":data.Location, "fieldName":"certificate"}
               console.log(params);
               WaterTestDetailsController.updateImage({params})
+               certificateURL= "https://our-river-our-life-images.s3.amazonaws.com/certificate/certificate_"+waterTestDetailsId;
             }
 
           });
