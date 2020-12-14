@@ -396,7 +396,7 @@ export const show = ({ params }, res, next) =>{
   .catch(next)
 }
 
-export const updateImage = ({ params }, res, next) =>{
+export const updateImage = async ({ params }, res, next) =>{
   WaterTestDetails.findById(params.id, function(err, waterTestDetails){
     if(waterTestDetails){
 

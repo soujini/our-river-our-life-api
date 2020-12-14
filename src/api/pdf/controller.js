@@ -133,11 +133,11 @@ export const generateReportWeb = async (req, res, next) => {
               console.log("succesfully uploaded pdf!")
               params = {"id":waterTestDetailsId, "certificate":data.Location, "fieldName":"certificate"}
               console.log(params);
-              WaterTestDetailsController.updateImage({params})
+              await WaterTestDetailsController.updateImage({params})
                certificateURL= "https://our-river-our-life-images.s3.amazonaws.com/certificate/certificate_"+waterTestDetailsId;
                // res.send({"certificateURL:"+certificateURL});
                console.log(data);
-                data.status(200).json({certificateURL:certificateURL})
+                data.send({certificateURL:certificateURL})
             }
 
           });
