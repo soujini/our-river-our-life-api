@@ -140,18 +140,20 @@ export const generateReportWeb = async (req, res, next) => {
                return certificateURL;
                 // data.send({certificateURL:certificateURL})
             }
-
+ console.log("sue1 "+certificateURL);
           });
 
-
+ console.log("sue2 "+certificateURL);
 
             //return certificateURL;
           // res.status(200).json({certificateURL:x})
         }
+         console.log("sue3 "+certificateURL);
       }); //pdf create
-
+ console.log("sue 4"+certificateURL);
       // data.send({"certificateURL:"+certificateURL});
     }//else
+     console.log("sue5 "+certificateURL);
   });
 }
 
