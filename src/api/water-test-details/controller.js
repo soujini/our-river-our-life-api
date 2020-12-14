@@ -338,9 +338,9 @@ export const createWaterTestDetails = async(req, res, next) =>{
     req.body.activity = results[4];
     req.body.river = results[5];
 
-    console.log(JSON.parse(JSON.stringify(req.body)));
-    console.log(typeof(JSON.parse(JSON.stringify(req.body))));
-    WaterTestDetails.create(JSON.parse(JSON.stringify(req.body)))
+    console.log(JSON.stringify(req.body));
+    console.log(typeof(JSON.stringify(req.body)));
+    WaterTestDetails.create(JSON.stringify(req.body))
     .then((waterTestDetails) => waterTestDetails.view(true))
     .then(success(res, 201))
     .catch(next)
