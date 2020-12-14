@@ -338,11 +338,10 @@ export const createWaterTestDetails = async(req, res, next) =>{
     req.body.activity = results[4];
     req.body.river = results[5];
     console.log(req.body.waterTesting);
-    console.log(typeof(req.body.waterLevelAndWeather));
-    console.log(JSON.stringify(req.body.waterLevelAndWeather));
     req.body.waterTesting = {
       "ph":"13"
     }
+      console.log(req.body.waterTesting);
     // console.log((JSON.stringify(req.body)));
     // console.log(typeof(JSON.stringify(req.body)));
     WaterTestDetails.create(JSON.parse(JSON.stringify(req.body)))
