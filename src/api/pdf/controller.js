@@ -79,7 +79,7 @@ export const generateReportWeb = async (req, res, next) => {
   console.log("in gen report "+req.id);
   var waterTestDetailsId =req.id;
   var certificateURL="";
-  await ejs.renderFile(path.join(__dirname, "/report-template.ejs"), {
+   ejs.renderFile(path.join(__dirname, "/report-template.ejs"), {
     waterTestDetails: req
   }, (err, data) => {
     if (err) {
@@ -96,7 +96,7 @@ export const generateReportWeb = async (req, res, next) => {
         },
 
       };
-      await pdf.create(data, options).toBuffer(function (err, data) {
+       pdf.create(data, options).toBuffer(function (err, data) {
         if (err) {
           data.send(err);
         } else {
