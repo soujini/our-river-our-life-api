@@ -79,7 +79,7 @@ export const generateReportWeb = async (req, res, next) => {
   console.log("in gen report "+req.id);
   var waterTestDetailsId =req.id;
   var certificateURL="";
-  ejs.renderFile(path.join(__dirname, "/report-template.ejs"), {
+  await ejs.renderFile(path.join(__dirname, "/report-template.ejs"), {
     waterTestDetails: req
   }, (err, data) => {
     if (err) {
