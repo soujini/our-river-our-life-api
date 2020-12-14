@@ -340,7 +340,7 @@ export const createWaterTestDetails = async(req, res, next) =>{
     req.body.river = results[5];
     WaterTestDetails.create(JSON.parse(JSON.stringify(req.body)))
     .then(async(waterTestDetails) => {
-      await PDFController.generateReportWeb(waterTestDetails).then((res)=>{
+      await PDFController.generateReport(waterTestDetails).then((res)=>{
           console.log("x "+res);
           waterTestDetails.view(true)})
       })
