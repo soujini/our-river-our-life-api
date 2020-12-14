@@ -341,7 +341,7 @@ export const createWaterTestDetails = async(req, res, next) =>{
     // req.body.waterTesting = {
     //   "ph":"13"
     // }
-    JSON.parse(JSON.stringify(req.body.waterTesting)).push({"ph": 13});
+    req.body.waterTesting = {"ph": 13};
       console.log(req.body.waterTesting);
     // console.log((JSON.stringify(req.body)));
     // console.log(typeof(JSON.stringify(req.body)));
