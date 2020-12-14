@@ -625,17 +625,18 @@
                   <table class="card">
                     <tr>
                       <td>
-                        <img class="img-height" src="https://our-river-our-life-images.s3.ap-south-1.amazonaws.com/static/nitrates-nitrites-icon.svg" alt="ICON">
+                        <img class="img-height" src="https://our-river-our-life-images.s3.ap-south-1.amazonaws.com/static/total-dissolved-solids-icon.svg" alt="ICON">
                       </td>
                       <td class="ml-10">
                         <span class="parameter">Total Dissolved Solids</span><br/>
-                        <span class="reason">Lead contamination in any amount is unsafe</span><br/>
+                        <span class="reason">Poor: </span><span class="range">900 - 1200</span><br/>
+                        <span class="reason">Unacceptable: </span><span class="range">Above 1200</span><br/>
                       </td>
                       <td class="text-right">
-                        <% if (waterTestDetails.waterTesting.totalDissolvedSolids * 1 == 0) { %>
+                        <% if (waterTestDetails.waterTesting.totalDissolvedSolids * 1 < 900) { %>
                           <span class="row"><span class="value-green1"><%= waterTestDetails.waterTesting.totalDissolvedSolids %></span> <span class="value-green2">ppm</span> </span>
                           <% }%>
-                          <% if (waterTestDetails.waterTesting.totalDissolvedSolids > 0) { %>
+                          <% if (waterTestDetails.waterTesting.totalDissolvedSolids >= 900) { %>
                             <span class="row"><span class="value-red1"><%= waterTestDetails.waterTesting.totalDissolvedSolids %></span> <span class="value-red2">ppm</span> </span>
                             <% }%>
                       </td>
@@ -643,25 +644,25 @@
                     <tr>
                       <td colspan="3" class="hr-border">
                         <p class="info">
-                          Important sources of environmental contamination include mining, smelting, manufacturing and recycling activities, and, in some countries, the continued use of leaded paint, leaded gasoline, and leaded aviation fuel. More than three quarters of global lead consumption is for the manufacture of lead-acid batteries for motor vehicles. Lead is, however, also used in many other products, for example pigments, paints, solder, stained glass, lead crystal glassware, ammunition, ceramic glazes, jewellery, toys and in some cosmetics and traditional medicines.
-                        </p>
+Total dissolved solids is a measure of the dissolved combined content of inorganic salts, as well as organic matter. Common inorganic salts that can be found in water include calcium, magnesium, potassium and sodium, which are all cations, and carbonates, nitrates, bicarbonates, chlorides and sulfates, which are all anions.                        </p>
                       </td>
                     </tr>
                   </table>
                   <table class="card">
                     <tr>
                       <td>
-                        <img class="img-height" src="https://our-river-our-life-images.s3.ap-south-1.amazonaws.com/static/nitrates-nitrites-icon.svg" alt="ICON">
+                        <img class="img-height" src="https://our-river-our-life-images.s3.ap-south-1.amazonaws.com/static/conductivity-icon.svg" alt="ICON">
                       </td>
                       <td class="ml-10">
                         <span class="parameter">Conductivity</span><br/>
-                        <span class="reason">Lead contamination in any amount is unsafe</span><br/>
+                        <span class="reason">* High conductivity (1000 to 10,000 µS/cm) is an indicator of saline conditions. Waters that have been heavily impacted by industry can fall into this range.
+</span><br/>
                       </td>
                       <td class="text-right">
-                        <% if (waterTestDetails.waterTesting.conductivity * 1 == 0) { %>
+                        <% if (waterTestDetails.waterTesting.conductivity * 1 < 1000 && waterTestDetails.waterTesting.conductivity * 1 > 10000) { %>
                           <span class="row"><span class="value-green1"><%= waterTestDetails.waterTesting.conductivity %></span> <span class="value-green2">μS</span> </span>
                           <% }%>
-                          <% if (waterTestDetails.waterTesting.conductivity > 0) { %>
+                          <% if (waterTestDetails.waterTesting.conductivity * 1 >=1000 && waterTestDetails.waterTesting.conductivity * 1 <= 10000) { %>
                             <span class="row"><span class="value-red1"><%= waterTestDetails.waterTesting.conductivity %></span> <span class="value-red2">μS</span> </span>
                             <% }%>
                       </td>
@@ -669,7 +670,7 @@
                     <tr>
                       <td colspan="3" class="hr-border">
                         <p class="info">
-                          Important sources of environmental contamination include mining, smelting, manufacturing and recycling activities, and, in some countries, the continued use of leaded paint, leaded gasoline, and leaded aviation fuel. More than three quarters of global lead consumption is for the manufacture of lead-acid batteries for motor vehicles. Lead is, however, also used in many other products, for example pigments, paints, solder, stained glass, lead crystal glassware, ammunition, ceramic glazes, jewellery, toys and in some cosmetics and traditional medicines.
+                          Conductivity is a measure of the ability of water to pass an electrical current. Because dissolved salts and other inorganic chemicals conduct electrical current. Conductivity is useful as a general measure of water quality. Each water body tends to have a relatively constant range of conductivity that, once established, can be used as a baseline for comparison with regular conductivity measurements. Significant changes in conductivity could then be an indicator that a discharge or some other source of pollution has entered the aquatic resource.
                         </p>
                       </td>
                     </tr>
