@@ -7,7 +7,7 @@ import aws from 'aws-sdk';
 var WaterTestDetailsController = require('../water-test-details/controller')
 
 export const generateReportWeb = (req, res, next) => {
-  console.log(req);
+  console.log(req.body);
   var waterTestDetailsId=req.body.id;
   var certificateURL="";
   ejs.renderFile(path.join(__dirname, "/report-template.ejs"), {
