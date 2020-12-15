@@ -338,10 +338,12 @@ export const createWaterTestDetails = async(req, res, next) =>{
     req.body.groupPicture = results[3];
     req.body.activity = results[4];
     req.body.river = results[5];
+    req.body.waterTesting=JSON.parse(JSON.stringify(req.body.waterTesting));
     console.log("souj");
-    console.log(JSON.parse(JSON.stringify(req.body.waterTesting)));
-    console.log(JSON.parse(JSON.stringify(req.body)));
-    WaterTestDetails.create(JSON.parse(JSON.stringify(req.body)))
+
+    req.body.waterTesting= { pH: '12', waterTemperature: '43', dissolvedOxygen: '33' },
+        console.log(req.body.waterTesting);
+    WaterTestDetails.create(req.body)
     .then((waterTestDetails) => waterTestDetails.view(true))
     .then(success(res, 201))
     .catch(next)
