@@ -339,11 +339,12 @@ export const createWaterTestDetails = async(req, res, next) =>{
     req.body.activity = results[4];
     req.body.river = results[5];
     WaterTestDetails.create(JSON.parse(JSON.stringify(req.body)))
-    .then(async(waterTestDetails) => {
-      await PDFController.generateReport(waterTestDetails).then((res)=>{
-          console.log("x "+res);
-          waterTestDetails.view(true)})
-      })
+    .then((waterTestDetails) =>   waterTestDetails.view(true)})
+    // {
+    //   await PDFController.generateReport(waterTestDetails).then((res)=>{
+    //       console.log("x "+res);
+    //
+    //   })
     .then(success(res, 201))
     .catch(next)
   });
