@@ -338,12 +338,12 @@ export const createWaterTestDetails = async(req, res, next) =>{
     req.body.groupPicture = results[3];
     req.body.activity = results[4];
     req.body.river = results[5];
-    req.body.waterTesting=JSON.parse(JSON.stringify(req.body.waterTesting));
-    console.log("souj");
-
-    req.body.waterTesting= { pH: '12', waterTemperature: '43', dissolvedOxygen: '33' },
-    req.body.waterTesting = JSON.stringify(req.body.waterTesting);
-        console.log(req.body.waterTesting);
+    // req.body.waterTesting=JSON.parse(JSON.stringify(req.body.waterTesting));
+    // console.log("souj");
+    //
+    // req.body.waterTesting= { pH: '12', waterTemperature: '43', dissolvedOxygen: '33' },
+    // req.body.waterTesting = JSON.stringify(req.body.waterTesting);
+    //     console.log(req.body.waterTesting);
     WaterTestDetails.create(JSON.parse(JSON.stringify(req.body)))
     .then((waterTestDetails) => waterTestDetails.view(true))
     .then(success(res, 201))
