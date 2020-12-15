@@ -6,7 +6,8 @@ let path = require("path");
 import aws from 'aws-sdk';
 var WaterTestDetailsController = require('../water-test-details/controller')
 
-export const generateReport = (req, res, next) => {
+export const generateReportWeb = (req, res, next) => {
+  console.log(req);
   var waterTestDetailsId=req.body.id;
   var certificateURL="";
   ejs.renderFile(path.join(__dirname, "/report-template.ejs"), {
@@ -74,16 +75,14 @@ export const generateReport = (req, res, next) => {
     }//else
   });
 }
-export const generateReportWeb = async (req, res, next) => {
-  console.log(req);
-  console.log("in gen report "+req.id);
-  var waterTestDetailsId =req.id;
+export const generateReport = (req, res, next) => {
+  var waterTestDetailsId=req.body.id;
   var certificateURL="";
-   ejs.renderFile(path.join(__dirname, "/report-template.ejs"), {
-    waterTestDetails: req
+  ejs.renderFile(path.join(__dirname, "/report-template.ejs"), {
+    waterTestDetails: req.body
   }, (err, data) => {
     if (err) {
-      err.send("Error in report template "+err);
+      res.send("Error in report template "+err);
     } else {
       let options = {
         "height": "11.25in",
@@ -96,9 +95,9 @@ export const generateReportWeb = async (req, res, next) => {
         },
 
       };
-       pdf.create(data, options).toBuffer(function (err, data) {
+      pdf.create(data, options).toBuffer(function (err, data) {
         if (err) {
-          data.send(err);
+          res.send(err);
         } else {
           console.log('This is a buffer:', data);
 
@@ -109,52 +108,39 @@ export const generateReportWeb = async (req, res, next) => {
           });
 
           const s3 = new aws.S3();
-          console.log("here "+req.id)
+          console.log("here "+req.body.id)
 
           var params = {
             ACL: 'public-read',
             Bucket: "our-river-our-life-images/certificate",
-            Key: `certificate_`+req.id,
+            Key: `certificate_`+req.body.id,
             Body: data,
             ContentEncoding: "buffer",
             ContentType: "application/pdf"
           };
 
-           s3.upload(params, async function(err, data) {
+          s3.upload(params, function(err, data) {
 
             if (err) {
               console.log(err);
               console.log("Error uploading data: ", data);
             } else {
               certificateURL=data.Location;
-              // console.log("url "+certificateURL)
-              // console.log('Data: ',data)
-              // console.log("data: ", data.Location)
+              console.log("url "+certificateURL)
+              console.log('Data: ',data)
+              console.log("data: ", data.Location)
               console.log("succesfully uploaded pdf!")
-              params = {"id":waterTestDetailsId, "certificate":data.Location, "fieldName":"certificate"}
-              //console.log(params);
-               await WaterTestDetailsController.updateImage({params})
-               certificateURL= "https://our-river-our-life-images.s3.amazonaws.com/certificate/certificate_"+waterTestDetailsId;
-               // res.send({"certificateURL:"+certificateURL});
-               console.log("sue "+certificateURL);
-               // return certificateURL;
-                // data.send({certificateURL:certificateURL})
+              params = {"id":req.body.id, "certificate":data.Location, "fieldName":"certificate"}
+
+              WaterTestDetailsController.updateImage({params})
             }
- console.log("sue1 "+certificateURL);
+
           });
-
- console.log("sue2 "+certificateURL);
-
-            //return certificateURL;
-          // res.status(200).json({certificateURL:x})
+          var  x= "https://our-river-our-life-images.s3.amazonaws.com/certificate/certificate_"+waterTestDetailsId;
+          res.status(200).json({certificateURL:x})
         }
-          res.status(200).json({certificateURL:certificateURL})
-         console.log("sue3 "+certificateURL);
       }); //pdf create
- console.log("sue 4"+certificateURL);
-      // data.send({"certificateURL:"+certificateURL});
     }//else
-     console.log("sue5 "+certificateURL);
   });
 }
 
