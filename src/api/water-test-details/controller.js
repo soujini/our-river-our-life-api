@@ -344,7 +344,7 @@ export const createWaterTestDetails = async(req, res, next) =>{
     req.body.waterTesting= { pH: '12', waterTemperature: '43', dissolvedOxygen: '33' },
     req.body.waterTesting = JSON.stringify(req.body.waterTesting);
         console.log(req.body.waterTesting);
-    WaterTestDetails.create(req.body)
+    WaterTestDetails.create(JSON.parse(JSON.stringify(req.body)))
     .then((waterTestDetails) => waterTestDetails.view(true))
     .then(success(res, 201))
     .catch(next)
