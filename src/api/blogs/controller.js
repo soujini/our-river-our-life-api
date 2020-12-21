@@ -10,13 +10,14 @@ export const createBlog = async(req,res,next)=>{
     req.body.featuredPhoto = results[0][0];
     req.body.featuredAdditionalPhotos = results[1];
     Blogs.create(JSON.parse(JSON.stringify(req.body)))
-    .then(async(blogs) => {
+    .then(async blogs => ({
       var params = {"userId":blogs['userId']};
       var user = await UserController.getUser({params});
       blogs.contributorName = user.firstName + ' ' +user.lastName;
+      console.log(blogs.contributorName);
       // return waterTestDetail.view();
       blogs.view(true)
-    })
+    }))
     .then(success(res, 201))
     .catch(next)
   });
