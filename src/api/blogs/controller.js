@@ -139,7 +139,7 @@ export const create = ({ bodymen: { body } }, res, next) =>
 export const index = async({ querymen: { query, select, cursor } }, res, next) =>
   Blogs.count(query)
     .then(count => Blogs.find(query, select, cursor)
-      .then((blogs) => ({
+      .then(async(blogs) => ({
         count,
         rows:  await Promise.all(blogs.map(async(blog) => {
           var params = {"userId":blog['userId']};
