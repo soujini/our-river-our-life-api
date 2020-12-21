@@ -14,7 +14,6 @@ export const createBlog = async(req,res,next)=>{
       var params = {"userId":blogs['userId']};
       var user = await UserController.getUser({params});
       blogs.contributorName = user.firstName + ' ' +user.lastName;
-      console.log(blogs.contributorName);
        return blogs.view();
       //blogs.view(true)
     })
@@ -137,12 +136,17 @@ export const create = ({ bodymen: { body } }, res, next) =>
     .then(success(res, 201))
     .catch(next)
 
-export const index = ({ querymen: { query, select, cursor } }, res, next) =>
+export const index = async({ querymen: { query, select, cursor } }, res, next) =>
   Blogs.count(query)
     .then(count => Blogs.find(query, select, cursor)
       .then((blogs) => ({
         count,
-        rows: blogs.map((blogs) => blogs.view())
+        rows: blogs.map(async (blogs) => {
+          var params = {"userId":blogs['userId']};
+          var user = await UserController.getUser({params});
+          blogs.contributorName = user.firstName + ' ' +user.lastName;
+          return blogs.view()
+        })
       }))
     )
     .then(success(res))
