@@ -6,9 +6,6 @@ import fs from 'fs';
 export const createBlog = (req,res,next)=>{
   Promise.all([uploadFeaturedPhoto(req), uploadAdditionalFeaturedPhotos(req)])
   .then(results => {
-    console.log("create");
-    console.log(results[0]);
-    console.log(results[1]);
     req.body.featuredPhoto = results[0][0];
     req.body.featuredAdditionalPhotos = results[1];
     Blogs.create(JSON.parse(JSON.stringify(req.body)))
