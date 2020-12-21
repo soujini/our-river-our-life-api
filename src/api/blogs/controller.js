@@ -141,12 +141,12 @@ export const index = async({ querymen: { query, select, cursor } }, res, next) =
     .then(count => Blogs.find(query, select, cursor)
       .then((blogs) => ({
         count,
-        rows: blogs.map(async (blogs) => {
-          var params = {"userId":blogs['userId']};
+        rows:  await Promise.all(blogs.map(async(blog) => {
+          var params = {"userId":blog['userId']};
           var user = await UserController.getUser({params});
-          blogs.contributorName = user.firstName + ' ' +user.lastName;
-          blogs.view(true)
-        })
+          blog.contributorName = user.firstName + ' ' +user.lastName;
+          return blog.view();
+        }))
       }))
     )
     .then(success(res))
