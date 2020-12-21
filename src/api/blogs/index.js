@@ -8,7 +8,7 @@ export Blogs, { schema } from './model'
 import multer from 'multer'
 const router = new Router()
 
-const { templateType, userId, featuredTitle, featuredDescription, featuredPhoto, featuredAdditionalPhotos, featuredVideo, featuredAdditionalVideos } = schema.tree
+const { templateType, userId, contributorName, featuredTitle, featuredDescription, featuredPhoto, featuredAdditionalPhotos, featuredVideo, featuredAdditionalVideos } = schema.tree
 
 const accessTokenSecret = 'youraccesstokensecret';
 const jwt = require('jsonwebtoken');

@@ -7,6 +7,9 @@ const blogsSchema = new Schema({
   userId: {
     type: String
   },
+  contributorName: {
+    type: String
+  },
   featuredTitle: {
     type: String
   },
@@ -44,6 +47,7 @@ blogsSchema.methods = {
       id: this.id,
       templateType: this.templateType,
       userId: this.userId,
+      contributorName: this.contributorName,
       featuredTitle: this.featuredTitle,
       featuredDescription: this.featuredDescription,
       featuredPhoto: this.featuredPhoto,
