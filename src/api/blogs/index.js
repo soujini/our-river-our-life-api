@@ -1,13 +1,36 @@
 import { Router } from 'express'
 import { middleware as query } from 'querymen'
 import { middleware as body } from 'bodymen'
-import { token } from '../../services/passport'
+// import { token } from '../../services/passport'
 import { createBlog, create, index, show, update, destroy } from './controller'
 import { schema } from './model'
 export Blogs, { schema } from './model'
-
+import multer from 'multer'
 const router = new Router()
+
 const { templateType, userId, featuredTitle, featuredDescription, featuredPhoto, featuredAdditionalPhotos, featuredVideo, featuredAdditionalVideos } = schema.tree
+
+const accessTokenSecret = 'youraccesstokensecret';
+const jwt = require('jsonwebtoken');
+
+const authenticateJWT = (req, res, next) => {
+  const authHeader = req.headers.authorization;
+
+  if (authHeader) {
+    const token = authHeader.split(' ')[1];
+
+    jwt.verify(token, accessTokenSecret, (err, user) => {
+      if (err) {
+        return res.sendStatus(403);
+      }
+
+      req.user = user;
+      next();
+    });
+  } else {
+    res.sendStatus(401);
+  }
+};
 
 router.post('/create-blog',authenticateJWT,
 multer({ dest: 'temp/', limits: { fieldSize: 8 * 1024 * 1024 } }).fields([{
@@ -49,8 +72,7 @@ createBlog)
  * @apiError 404 Blogs not found.
  * @apiError 401 admin access only.
  */
-router.post('/',
-  token({ required: true, roles: ['admin'] }),
+router.post('/',authenticateJWT,
   body({ templateType, userId, featuredTitle, featuredDescription, featuredPhoto, featuredAdditionalPhotos, featuredVideo, featuredAdditionalVideos }),
   create)
 
@@ -97,8 +119,7 @@ router.get('/:id',
  * @apiError 404 Blogs not found.
  * @apiError 401 admin access only.
  */
-router.put('/:id',
-  token({ required: true, roles: ['admin'] }),
+router.put('/:id',authenticateJWT,
   body({ templateType, userId, featuredTitle, featuredDescription, featuredPhoto, featuredAdditionalPhotos, featuredVideo, featuredAdditionalVideos }),
   update)
 
@@ -112,8 +133,7 @@ router.put('/:id',
  * @apiError 404 Blogs not found.
  * @apiError 401 admin access only.
  */
-router.delete('/:id',
-  token({ required: true, roles: ['admin'] }),
+router.delete('/:id',authenticateJWT,
   destroy)
 
 export default router
