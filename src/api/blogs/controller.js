@@ -91,7 +91,9 @@ export const uploadFeaturedPhoto =  function(req) {
 
         return uploadToS3(params).then(element => {
           // featuredPhoto.push({imageURL:element});
-          featuredPhoto.imageURL=element;
+          // featuredPhoto.imageURL=element;
+          featuredPhoto.push({imageURL:element});
+
           return featuredPhoto;
         });
       });
