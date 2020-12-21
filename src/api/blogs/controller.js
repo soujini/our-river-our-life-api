@@ -2,6 +2,7 @@ import { success, notFound } from '../../services/response/'
 import { Blogs } from '.'
 import aws from 'aws-sdk';
 import fs from 'fs';
+var UserController = require('../user/controller')
 
 export const createBlog = (req,res,next)=>{
   Promise.all([uploadFeaturedPhoto(req), uploadAdditionalFeaturedPhotos(req)])
@@ -9,7 +10,13 @@ export const createBlog = (req,res,next)=>{
     req.body.featuredPhoto = results[0][0];
     req.body.featuredAdditionalPhotos = results[1];
     Blogs.create(JSON.parse(JSON.stringify(req.body)))
-    .then((waterTestDetails) => waterTestDetails.view(true))
+    .then((blogs) => {
+      var params = {"userId":blogs['userId']};
+      var user = await UserController.getUser({params});
+      blogs.contributorName = user.firstName + ' ' +user.lastName;
+      // return waterTestDetail.view();
+      blogs.view(true)
+    })
     .then(success(res, 201))
     .catch(next)
   });
