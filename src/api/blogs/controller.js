@@ -145,7 +145,7 @@ export const index = async({ querymen: { query, select, cursor } }, res, next) =
           var params = {"userId":blogs['userId']};
           var user = await UserController.getUser({params});
           blogs.contributorName = user.firstName + ' ' +user.lastName;
-          return blogs.view()
+          blogs.view(true)
         })
       }))
     )
