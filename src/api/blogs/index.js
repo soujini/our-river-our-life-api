@@ -2,13 +2,34 @@ import { Router } from 'express'
 import { middleware as query } from 'querymen'
 import { middleware as body } from 'bodymen'
 import { token } from '../../services/passport'
-import { create, index, show, update, destroy } from './controller'
+import { createBlog, create, index, show, update, destroy } from './controller'
 import { schema } from './model'
 export Blogs, { schema } from './model'
 
 const router = new Router()
 const { templateType, userId, featuredTitle, featuredDescription, featuredPhoto, featuredAdditionalPhotos, featuredVideo, featuredAdditionalVideos } = schema.tree
 
+router.post('/create-blog',authenticateJWT,
+multer({ dest: 'temp/', limits: { fieldSize: 8 * 1024 * 1024 } }).fields([{
+  name: 'featuredPhoto', maxCount: 1
+}, {
+  name: 'featuredAdditionalPhotos', maxCount: 5
+}]),
+// body({
+//   userId,
+//   generalInformation,
+//   waterLevelAndWeather,
+//   surroundings,
+//   waterTesting,
+//   flora,
+//   fauna,
+//   artwork,
+//   groupPicture,
+//   activity,
+//   river,
+//   certificateURL
+// }),
+createBlog)
 /**
  * @api {post} /blogs Create blogs
  * @apiName CreateBlogs
