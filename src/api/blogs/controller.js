@@ -4,13 +4,13 @@ import aws from 'aws-sdk';
 import fs from 'fs';
 var UserController = require('../user/controller')
 
-export const createBlog = (req,res,next)=>{
+export const createBlog = async(req,res,next)=>{
   Promise.all([uploadFeaturedPhoto(req), uploadAdditionalFeaturedPhotos(req)])
   .then(results => {
     req.body.featuredPhoto = results[0][0];
     req.body.featuredAdditionalPhotos = results[1];
     Blogs.create(JSON.parse(JSON.stringify(req.body)))
-    .then((blogs) => {
+    .then(async(blogs) => {
       var params = {"userId":blogs['userId']};
       var user = await UserController.getUser({params});
       blogs.contributorName = user.firstName + ' ' +user.lastName;
