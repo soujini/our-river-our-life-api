@@ -9,7 +9,7 @@ export const createBlog = (req,res,next)=>{
     console.log("create");
     console.log(results[0]);
     console.log(results[1]);
-    req.body.featuredPhoto = results[0];
+    req.body.featuredPhoto = results[0][0];
     req.body.featuredAdditionalPhotos = results[1];
     Blogs.create(JSON.parse(JSON.stringify(req.body)))
     .then((waterTestDetails) => waterTestDetails.view(true))
@@ -30,9 +30,9 @@ export const uploadAdditionalFeaturedPhotos =  function(req) {
     "secretAccessKey": 'UKG2g/WWfOcLlz4rXPLDEe4jcwcTJ+tfEP9DneJo',
   });
   return new Promise((resolve, reject) => {
-    if(req.files.additionalFeaturedPhotos){
-      var additionalFeaturedPhotos=[];
-      let promises = req.files.additionalFeaturedPhotos.map((item) => {
+    if(req.files.featuredAdditionalPhotos){
+      var featuredAdditionalPhotos=[];
+      let promises = req.files.featuredAdditionalPhotos.map((item) => {
         customFieldName = item.fieldname;
         customPath = item.path;
         bucketName="our-river-our-life-images/blogs";
@@ -45,14 +45,14 @@ export const uploadAdditionalFeaturedPhotos =  function(req) {
         };
 
         return uploadToS3(params).then(element => {
-          additionalFeaturedPhotos.push({imageURL:element});
-          return additionalFeaturedPhotos;
+          featuredAdditionalPhotos.push({imageURL:element});
+          return featuredAdditionalPhotos;
         });
       });
 
       Promise.all(promises)
       .then(results => {
-        resolve(additionalFeaturedPhotos);
+        resolve(featuredAdditionalPhotos);
       })
       .catch(e => {
         console.error(e);
