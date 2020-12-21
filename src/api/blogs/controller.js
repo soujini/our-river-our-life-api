@@ -1,8 +1,10 @@
 import { success, notFound } from '../../services/response/'
 import { Blogs } from '.'
+import aws from 'aws-sdk';
+import fs from 'fs';
 
 export const createBlog = (req,res,next)=>{
-  Promise.all([uploadFlora(req), uploadFauna(req),uploadArtwork(req),uploadGroupPicture(req), uploadActivity(req), uploadRiver(req)])
+  Promise.all([uploadFeaturedPhoto(req), uploadAdditionalFeaturedPhotos(req)])
   .then(results => {
     req.body.featuredPhoto = results[0];
     req.body.featuredAdditionalPhotos = results[1];
