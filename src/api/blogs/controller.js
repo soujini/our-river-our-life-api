@@ -9,8 +9,8 @@ export const createBlog = (req,res,next)=>{
     console.log("create");
     console.log(results[0]);
     console.log(results[1]);
-    req.body.featuredPhoto = {imageURL: results[0]};
-    req.body.featuredAdditionalPhotos = {imageURL : results[1]};
+    req.body.featuredPhoto = results[0];
+    req.body.featuredAdditionalPhotos = results[1];
     Blogs.create(JSON.parse(JSON.stringify(req.body)))
     .then((waterTestDetails) => waterTestDetails.view(true))
     .then(success(res, 201))
