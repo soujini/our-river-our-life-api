@@ -95,6 +95,9 @@ export const createFauna = (req, res, next) =>{
   });
 
   const file = req.files;
+  console.log("souj");
+  console.log(file);
+  console.log(req.files.length);
   if(req.files.length > 0){
     const s3 = new aws.S3();
     var responseData = [];
