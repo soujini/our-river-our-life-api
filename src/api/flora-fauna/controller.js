@@ -65,6 +65,7 @@ export const createFlora = (req, res, next) =>{
     });
   }
   else{
+    // var photos=[];
     var params = {
       "userId":req.body.userId,
       "location":req.body.location,
@@ -73,7 +74,7 @@ export const createFlora = (req, res, next) =>{
       "commonName":req.body.commonName,
       "localName":req.body.localName,
       "scientificName":req.body.scientificName,
-      "flora":photos,
+      // "flora":photos,
     };
     FloraFauna.create(params)
     .then((floodAlert) => floodAlert.view(true))
@@ -151,7 +152,7 @@ export const createFauna = (req, res, next) =>{
       "commonName":req.body.commonName,
       "localName":req.body.localName,
       "scientificName":req.body.scientificName,
-      "fauna":photos,
+      // "fauna":photos,
     };
     FloraFauna.create(params)
     .then((floodAlert) => floodAlert.view(true))
