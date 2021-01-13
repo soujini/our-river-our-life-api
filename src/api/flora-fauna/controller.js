@@ -16,7 +16,13 @@ export const createFlora = (req, res, next) =>{
     "secretAccessKey": 'UKG2g/WWfOcLlz4rXPLDEe4jcwcTJ+tfEP9DneJo',
   });
 
+
   const file = req.files;
+
+  console.log("souj");
+  console.log(file);
+  console.log(req.files.length);
+
   if(req.files.length > 0){
     const s3 = new aws.S3();
     var responseData = [];
@@ -26,7 +32,8 @@ export const createFlora = (req, res, next) =>{
         Bucket: bucketName,
         Key: item.originalname,
         Body: fs.createReadStream(item.path),
-        ACL: 'public-read'
+        ACL: 'public-read',
+        ContentType: 'image/jpeg'
       };
       s3.upload(params, function (err, data) {
         if (err) {
@@ -95,9 +102,7 @@ export const createFauna = (req, res, next) =>{
   });
 
   const file = req.files;
-  console.log("souj");
-  console.log(file);
-  console.log(req.files.length);
+
   if(req.files.length > 0){
     const s3 = new aws.S3();
     var responseData = [];
