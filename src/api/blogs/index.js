@@ -2,7 +2,7 @@ import { Router } from 'express'
 import { middleware as query } from 'querymen'
 import { middleware as body } from 'bodymen'
 // import { token } from '../../services/passport'
-import { createBlog, create, index, show, update, destroy } from './controller'
+import { createBlog, create, index, getTop10, show, update, destroy } from './controller'
 import { schema } from './model'
 export Blogs, { schema } from './model'
 import multer from 'multer'
@@ -88,6 +88,19 @@ router.post('/',authenticateJWT,
 router.get('/',
   query(),
   index)
+
+  /**
+   * @api {get} /blogs Retrieve blogs
+   * @apiName RetrieveBlogs
+   * @apiGroup Blogs
+   * @apiUse listParams
+   * @apiSuccess {Number} count Total amount of blogs.
+   * @apiSuccess {Object[]} rows List of blogs.
+   * @apiError {Object} 400 Some parameters may contain invalid values.
+   */
+  router.get('/top10',
+    query(),
+    getTop10)
 
 /**
  * @api {get} /blogs/:id Retrieve blogs
