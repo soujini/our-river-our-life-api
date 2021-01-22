@@ -138,7 +138,7 @@ export const create = ({ bodymen: { body } }, res, next) =>
 
 export const index = async({ querymen: { query, select, cursor } }, res, next) =>
   Blogs.count(query)
-    .then(count => Blogs.find(query, select, cursor)
+    .then(count => Blogs.find(query, select, cursor).limit(2)
       .then(async(blogs) => ({
         count,
         rows:  await Promise.all(blogs.map(async(blog) => {
@@ -151,6 +151,8 @@ export const index = async({ querymen: { query, select, cursor } }, res, next) =
     )
     .then(success(res))
     .catch(next)
+
+    //Get top 10 Blogs
 
 export const show = ({ params }, res, next) =>
   Blogs.findById(params.id)
