@@ -136,6 +136,14 @@ const waterTestDetailsSchema = new Schema({
        type:String
      }
    }],
+   surrounding:[{
+     imageURL:{
+       type:String
+     },
+     description:{
+       type:String
+     }
+   }],
    certificateURL:{
      type:String
    }
@@ -192,6 +200,7 @@ waterTestDetailsSchema.methods = {
       groupPicture:this.groupPicture,
       activity:this.activity,
       river:this.river,
+      surrounding:this.surrounding,
       createdAt: this.createdAt,
       updatedAt: this.updatedAt,
       certificateURL:this.certificateURL

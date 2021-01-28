@@ -7,7 +7,7 @@ export WaterTestDetails, { schema } from './model'
 import multer from 'multer'
 
 const router = new Router()
-const { userId, contributorName, generalInformation,waterLevelAndWeather,surroundings,waterTesting, flora, fauna, artwork, groupPicture, activity, river, certificateURL } = schema.tree
+const { userId, contributorName, generalInformation,waterLevelAndWeather,surroundings,waterTesting, flora, fauna, artwork, groupPicture, activity, river, surrounding,certificateURL } = schema.tree
 
 const accessTokenSecret = 'youraccesstokensecret';
 const jwt = require('jsonwebtoken');
@@ -44,7 +44,11 @@ multer({ dest: 'temp/', limits: { fieldSize: 8 * 1024 * 1024 } }).fields([{
   name: 'activity', maxCount: 5
 }, {
   name: 'river', maxCount: 5
-}]),
+},
+{
+  name: 'surrounding', maxCount: 5
+}
+]),
 body({
   userId,
   generalInformation,
@@ -57,6 +61,7 @@ body({
   groupPicture,
   activity,
   river,
+  surrounding,
   certificateURL
 }),
 createWaterTestDetails)
@@ -86,6 +91,7 @@ body({
   groupPicture,
   activity,
   river,
+  surrounding,
   certificateURL
 }),
 create)
