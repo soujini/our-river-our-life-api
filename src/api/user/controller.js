@@ -92,7 +92,7 @@ export const update = ({ bodymen: { body }, params }, res, next) =>{
   .catch(next)
 }
 export const updateProfile = (req, res, next) =>{
-  var customOriginalName="avatar_"+req.body.id;
+  var customOriginalName="avatar_"+req.body.id+"_"+Date.now();
   var customPath="";
   var customFieldName="";
   var bucketName="our-river-our-life-images/users";
