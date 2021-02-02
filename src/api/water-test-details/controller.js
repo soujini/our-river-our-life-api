@@ -342,7 +342,7 @@ export const uploadSurrounding = function(req) {
   });
   return new Promise((resolve, reject) => {
     if(req.files.surrounding){
-      var river=[];
+      var surrounding=[];
       let promises = req.files.surrounding.map((item) => {
         customFieldName = item.fieldname;
         customPath = item.path;
