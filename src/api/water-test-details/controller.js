@@ -83,6 +83,8 @@ export const uploadFlora =  function(req) {
           Body: fs.createReadStream(item.path),
           Key: item.originalname,
         };
+        console.log("asti");
+        console.log(item.originalname);
 
         return uploadToS3(params).then(element => {
           flora.push({imageURL:element});
@@ -384,6 +386,7 @@ export const createWaterTestDetails = async(req, res, next) =>{
     req.body.activity = results[4];
     req.body.river = results[5];
     req.body.surrounding = results[6];
+    console.log(req.body);
     // req.body.waterTesting=JSON.parse(JSON.stringify(req.body.waterTesting));
     // console.log("souj");
     //
