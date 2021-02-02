@@ -363,7 +363,7 @@ export const uploadSurrounding = function(req) {
 
       Promise.all(promises)
       .then(results => {
-        resolve(river);
+        resolve(surrounding);
       })
       .catch(e => {
         console.error(e);
