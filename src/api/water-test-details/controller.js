@@ -428,7 +428,7 @@ export const index = ({ querymen: { query, select, cursor } }, res, next) =>{
       var params = {"userId":waterTestDetail['userId']};
       var userId  = waterTestDetail['userId'];
       var user = await UserController.getUser({params});
-      waterTestDetail.contributorName = user.firstName != null && user.firstName != ''?user.firstName :'' + ' ' +user.lastName != null && user.lastName != ''?user.lastName :'';
+      waterTestDetail.contributorName = user.firstName != null && user.firstName != '' ? user.firstName :'' + ' ' +user.lastName != null && user.lastName != '' ? user.lastName :'';
       return waterTestDetail.view();
     }))
   }))
