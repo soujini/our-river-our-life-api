@@ -83,7 +83,6 @@ export const uploadFlora =  function(req) {
           Body: fs.createReadStream(item.path),
           Key: item.originalname,
         };
-        console.log("asti");
         console.log(item.originalname);
 
         return uploadToS3(params).then(element => {
