@@ -111,8 +111,8 @@ export const createFishSanctuary = async(req, res, next) =>{
     //     console.log(req.body.waterTesting);
 
 
-    WaterTestDetails.create(JSON.parse(JSON.stringify(req.body)))
-    .then((waterTestDetails) => waterTestDetails.view(true))
+    FishSanctuaries.create(JSON.parse(JSON.stringify(req.body)))
+    .then((fishSanctuaries) => fishSanctuaries.view(true))
     .then(success(res, 201))
     .catch(next)
   //});
