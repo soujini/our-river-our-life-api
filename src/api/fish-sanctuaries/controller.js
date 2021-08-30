@@ -98,7 +98,7 @@ export const uploadSpeciesPictures = function(req) {
   });
 }
 export const createFishSanctuary = async(req, res, next) =>{
-  Promise.all([uploadSanctuaryPictures(req))
+  Promise.all([uploadSanctuaryPictures(req)])
     // , uploadFishInformation(req)
   .then(results => {
 
