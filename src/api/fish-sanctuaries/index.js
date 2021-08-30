@@ -12,6 +12,10 @@ const { userId,locationDetails, habitatCharacteristics, managementActions, fishI
 const accessTokenSecret = 'youraccesstokensecret';
 const jwt = require('jsonwebtoken');
 
+multer({ dest: 'temp/', limits: { fieldSize: 8 * 1024 * 1024 }}).array('photos', 10),
+  createAlert
+)
+
 const authenticateJWT = (req, res, next) => {
   const authHeader = req.headers.authorization;
 
@@ -31,12 +35,13 @@ const authenticateJWT = (req, res, next) => {
   }
 };
 router.post('/create-fish-sanctuary',authenticateJWT,
-multer({ dest: 'temp/', limits: { fieldSize: 8 * 1024 * 1024 } }).fields([{
-  name: 'sanctuaryPictures', maxCount: 5
-}, {
-  name: 'fishInformation', maxCount: 5
-},
-]),
+multer({ dest: 'temp/', limits: { fieldSize: 8 * 1024 * 1024 } }).array("locationDetails['sanctuaryPictures']", 10),
+// .fields([{
+//   name: 'sanctuaryPictures', maxCount: 5
+// }, {
+//   name: 'fishInformation', maxCount: 5
+// },
+// ]),
 body({
   userId,
   locationDetails,
