@@ -6,6 +6,7 @@ import pdf from './pdf'
 import floodAlert from './flood-alert'
 import floraFauna from './flora-fauna'
 import blogs from './blogs'
+import fishSanctuaries from './fish-sanctuaries'
 
 const router = new Router()
 
@@ -40,5 +41,6 @@ router.use('/pdf', pdf)
 router.use('/flood-alert', floodAlert)
 router.use('/flora-fauna', floraFauna)
 router.use('/blogs', blogs)
+router.use('/fish-sanctuaries', fishSanctuaries)
 
 export default router
