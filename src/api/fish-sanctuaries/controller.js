@@ -16,9 +16,12 @@ export const uploadSanctuaryPictures = function(req) {
     "secretAccessKey": 'UKG2g/WWfOcLlz4rXPLDEe4jcwcTJ+tfEP9DneJo',
   });
   return new Promise((resolve, reject) => {
-    if(req.files.sanctuaryPictures){
+    console.log("SOUJINI");
+    console.log(req.files.sanctuaryPictures.imageURL);
+    console.log(req.files.sanctuaryPictures.imageURL.length);
+    if(req.files.sanctuaryPictures.imageURL){
       var sanctuaryPictures=[];
-      let promises = req.files.sanctuaryPictures.map((item) => {
+      let promises = req.files.sanctuaryPictures.imageURL.map((item) => {
         customFieldName = item.fieldname;
         customPath = item.path;
         bucketName="our-river-our-life-images/fish-sanctuary";
@@ -95,13 +98,15 @@ export const uploadSpeciesPictures = function(req) {
   });
 }
 export const createFishSanctuary = async(req, res, next) =>{
-  //Promise.all([uploadFishSanctuary(req), uploadFishInformation(req))
-  //.then(results => {
+  Promise.all([uploadFishSanctuary(req))
+    // , uploadFishInformation(req)
+  .then(results => {
+
+    console.log("SOUJANYA");
     // req.body.sanctuaryPictures = results[1];
     // req.body.fishInformation = results[2];
-    console.log("SOUJANYA");
-    // console.log(results[1]);
-    // console.log(results[2]);
+     console.log(results[1]);
+     // console.log(results[2]);
     console.log(req.body);
     // req.body.waterTesting=JSON.parse(JSON.stringify(req.body.waterTesting));
     // console.log("souj");
@@ -115,7 +120,7 @@ export const createFishSanctuary = async(req, res, next) =>{
     .then((fishSanctuaries) => fishSanctuaries.view(true))
     .then(success(res, 201))
     .catch(next)
-  //});
+  });
 }
 export const create = ({ bodymen: { body } }, res, next) =>
   FishSanctuaries.create(body)
