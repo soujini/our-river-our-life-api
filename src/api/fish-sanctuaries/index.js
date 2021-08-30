@@ -109,7 +109,7 @@ router.get('/:id',
  * @apiError 401 master access only.
  */
 router.put('/:id',
-  master(),
+  // master(),
   body({ locationDetails, habitatCharacteristics, managementActions, fishInformation, culturalHistoricalSignificance }),
   update)
 
@@ -124,7 +124,7 @@ router.put('/:id',
  * @apiError 401 master access only.
  */
 router.delete('/:id',
-  master(),
+  // master(),
   destroy)
 
 export default router
