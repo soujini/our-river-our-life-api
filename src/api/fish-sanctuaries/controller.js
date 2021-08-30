@@ -1,52 +1,9 @@
 import { success, notFound } from '../../services/response/'
 import { FishSanctuaries } from '.'
+import aws from 'aws-sdk';
+import fs from 'fs';
+var UserController = require('../user/controller')
 
-export const uploadFlora =  function(req) {
-  var customOriginalName="";
-  var customPath="";
-  var customFieldName="";
-  var bucketName="";
-
-  aws.config.setPromisesDependency();
-  aws.config.update({
-    "accessKeyId": 'AKIAJ24JCG5UUXOOHKDA',
-    "secretAccessKey": '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',
-  });
-  return new Promise((resolve, reject) => {
-    if(req.files.flora){
-      var flora=[];
-      let promises = req.files.flora.map((item) => {
-        customFieldName = item.fieldname;
-        customPath = item.path;
-        bucketName="our-river-our-life-images/flora";
-
-        var params = {
-          ACL: 'public-read',
-          Bucket: bucketName,
-          Body: fs.createReadStream(item.path),
-          Key: item.originalname,
-        };
-        console.log(item.originalname);
-
-        return uploadToS3(params).then(element => {
-          flora.push({imageURL:element});
-          return flora;
-        });
-      });
-
-      Promise.all(promises)
-      .then(results => {
-        resolve(flora);
-      })
-      .catch(e => {
-        console.error(e);
-      })
-    }
-    else{
-      resolve([]);
-    }
-  });
-}
 export const uploadSanctuaryPictures = function(req) {
   var customOriginalName="";
   var customPath="";
@@ -138,13 +95,13 @@ export const uploadSpeciesPictures = function(req) {
   });
 }
 export const createFishSanctuary = async(req, res, next) =>{
-  Promise.all([uploadFishSanctuary(req), uploadFishInformation(req))
-  .then(results => {
-    req.body.sanctuaryPictures = results[1];
-    req.body.fishInformation = results[2];
+  //Promise.all([uploadFishSanctuary(req), uploadFishInformation(req))
+  //.then(results => {
+    // req.body.sanctuaryPictures = results[1];
+    // req.body.fishInformation = results[2];
     console.log("SOUJANYA");
-    console.log(results[1]);
-    console.log(results[2]);
+    // console.log(results[1]);
+    // console.log(results[2]);
     console.log(req.body);
     // req.body.waterTesting=JSON.parse(JSON.stringify(req.body.waterTesting));
     // console.log("souj");
@@ -154,11 +111,11 @@ export const createFishSanctuary = async(req, res, next) =>{
     //     console.log(req.body.waterTesting);
 
 
-    // WaterTestDetails.create(JSON.parse(JSON.stringify(req.body)))
-    // .then((waterTestDetails) => waterTestDetails.view(true))
-    // .then(success(res, 201))
-    // .catch(next)
-  });
+    WaterTestDetails.create(JSON.parse(JSON.stringify(req.body)))
+    .then((waterTestDetails) => waterTestDetails.view(true))
+    .then(success(res, 201))
+    .catch(next)
+  //});
 }
 export const create = ({ bodymen: { body } }, res, next) =>
   FishSanctuaries.create(body)

@@ -8,7 +8,7 @@ export FishSanctuaries, { schema } from './model'
 import multer from 'multer'
 
 const router = new Router()
-const { locationDetails, habitatCharacteristics, managementActions, fishInformation, culturalHistoricalSignificance } = schema.tree
+const { UserId,locationDetails, habitatCharacteristics, managementActions, fishInformation, culturalHistoricalSignificance } = schema.tree
 const accessTokenSecret = 'youraccesstokensecret';
 const jwt = require('jsonwebtoken');
 
@@ -39,18 +39,11 @@ multer({ dest: 'temp/', limits: { fieldSize: 8 * 1024 * 1024 } }).fields([{
 ]),
 body({
   userId,
-  generalInformation,
-  waterLevelAndWeather,
-  surroundings,
-  waterTesting,
-  flora,
-  fauna,
-  artwork,
-  groupPicture,
-  activity,
-  river,
-  surrounding,
-  certificateURL
+  locationDetails,
+  habitatCharacteristics,
+  managementActions,
+  fishInformation,
+  culturalHistoricalSignificance
 }),
 createFishSanctuary)
 
