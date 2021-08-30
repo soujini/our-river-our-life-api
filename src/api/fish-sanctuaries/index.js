@@ -12,9 +12,9 @@ const { userId,locationDetails, habitatCharacteristics, managementActions, fishI
 const accessTokenSecret = 'youraccesstokensecret';
 const jwt = require('jsonwebtoken');
 
-multer({ dest: 'temp/', limits: { fieldSize: 8 * 1024 * 1024 }}).array('photos', 10),
-  createAlert
-)
+// multer({ dest: 'temp/', limits: { fieldSize: 8 * 1024 * 1024 }}).array('photos', 10),
+//   createAlert
+// )
 
 const authenticateJWT = (req, res, next) => {
   const authHeader = req.headers.authorization;
