@@ -4,7 +4,7 @@ import { BasicStrategy } from 'passport-http'
 import { Strategy as BearerStrategy } from 'passport-http-bearer'
 import { Strategy as JwtStrategy, ExtractJwt } from 'passport-jwt'
 import { jwtSecret, masterKey } from '../../config'
-import Login, { schema } from '../../api/login/model'
+// import Login, { schema } from '../../api/login/model'
 
 export const id = () => (req, res, next) =>
   passport.authenticate('id', { session: false }, (err, user, info) => {
