@@ -46,29 +46,29 @@ const fishSanctuariesSchema = new Schema({
       type:Array
     },
     leftBankHabitat:{
-      naturalVegetation:[
+      naturalVegetation:{
         type:Array
-      ],
-      naturalPhysicalFeatures:[
+      },
+      naturalPhysicalFeatures:{
         type:Array
-      ],
-      manMadePhysicalFeatures:[
+      },
+      manMadePhysicalFeatures:{
         type:Array
-      ],
+      },
       bankErosion:{
         type:Boolean
       }
     },
     rightBankHabitat:{
-      naturalVegetation:[
+      naturalVegetation:{
         type:Array
-      ],
-      naturalPhysicalFeatures:[
+      },
+      naturalPhysicalFeatures:{
         type:Array
-      ],
-      manMadePhysicalFeatures:[
+      },
+      manMadePhysicalFeatures:{
         type:Array
-      ],
+      },
       bankErosion:{
         type:Boolean
       }
