@@ -18,7 +18,7 @@ export const uploadSanctuaryPictures = function(req) {
   return new Promise((resolve, reject) => {
     console.log("SOUJINI");
     console.log(req.files.sanctuaryPictures);
-    console.log(req.files.sanctuaryPictures.length);
+    // console.log(req.files.sanctuaryPictures.length);
     if(req.files.sanctuaryPictures.imageURL){
       var sanctuaryPictures=[];
       let promises = req.files.sanctuaryPictures.imageURL.map((item) => {
@@ -64,7 +64,9 @@ export const uploadSpeciesPictures = function(req) {
     "secretAccessKey": 'UKG2g/WWfOcLlz4rXPLDEe4jcwcTJ+tfEP9DneJo',
   });
   return new Promise((resolve, reject) => {
-    if(req.files.fishInformation){
+    if(req.files.speciesPictures){
+      console.log("SOUJINI");
+      console.log(req.files.speciesPictures);
       var fishInformation=[];
       let promises = req.files.speciesPictures.map((item) => {
         customFieldName = item.fieldname;
