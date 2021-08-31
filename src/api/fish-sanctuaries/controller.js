@@ -119,6 +119,8 @@ export const createFishSanctuary = async(req, res, next) =>{
   Promise.all([uploadSanctuaryPictures(req),uploadSpeciesPictures(req)])
     // , uploadFishInformation(req)
   .then(results => {
+    console.log("RESULTS");
+    console.log(results);
     console.log("SOUJANYA0");
 console.log(results[1]);
     console.log("SOUJANYA1");
