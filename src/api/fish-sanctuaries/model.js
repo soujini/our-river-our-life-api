@@ -114,7 +114,13 @@ const fishSanctuariesSchema = new Schema({
   }],
   culturalHistoricalSignificance: {
     type: String
-  }
+  },
+  sanctuaryFiles:{
+    type:Array
+  },
+  speciesFiles:{
+    type:Array
+  },
 }, {
   timestamps: true,
   toJSON: {
@@ -170,6 +176,8 @@ fishSanctuariesSchema.methods = {
       },
       speciesPictures: this.speciesPictures,
       culturalHistoricalSignificance: this.culturalHistoricalSignificance,
+      sanctuaryFiles:this.sanctuaryFiles,
+      speciesFiles:this.speciesFiles,
       createdAt: this.createdAt,
       updatedAt: this.updatedAt
     }

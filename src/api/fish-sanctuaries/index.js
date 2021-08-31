@@ -8,7 +8,7 @@ export FishSanctuaries, { schema } from './model'
 import multer from 'multer'
 
 const router = new Router()
-const { userId,locationDetails, habitatCharacteristics, managementActions, speciesPictures, culturalHistoricalSignificance } = schema.tree
+const { userId,locationDetails, habitatCharacteristics, managementActions, speciesPictures, culturalHistoricalSignificance,sanctuaryFiles,speciesFiles } = schema.tree
 const accessTokenSecret = 'youraccesstokensecret';
 const jwt = require('jsonwebtoken');
 
@@ -44,9 +44,9 @@ router.post('/create-fish-sanctuary',authenticateJWT,
 multer({ dest: 'temp/', limits: { fieldSize: 8 * 1024 * 1024 } })
 // .array("locationDetails.sanctuaryPictures.imageURL", 10),
 .fields([{
-  name: 'locationDetails', maxCount: 5
+  name: 'sanctuaryFiles', maxCount: 5
 }, {
-  name: 'speciesPictures', maxCount: 5
+  name: 'speciesFiles', maxCount: 5
 },
 ]),
 body({

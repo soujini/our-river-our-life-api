@@ -31,13 +31,10 @@ export const uploadSanctuaryPictures = function(req) {
     "secretAccessKey": 'UKG2g/WWfOcLlz4rXPLDEe4jcwcTJ+tfEP9DneJo',
   });
   return new Promise((resolve, reject) => {
-    console.log("SOUUUUUUUUUUUUUU");
-    console.log(req.files.locationDetails);
-    console.log(req.files.locationDetails.length);
     // console.log(req.files.sanctuaryPictures.length);
-    if(req.files.locationDetails.sanctuaryPictures){
+    if(req.files.sanctuaryFiles){
       var sanctuaryPictures=[];
-      let promises = req.files.locationDetails.sanctuaryPictures.map((item) => {
+      let promises = req.files.sanctuaryFiles.map((item) => {
         customFieldName = item.fieldname;
         customPath = item.path;
         bucketName="our-river-our-life-images/fish-sanctuary";
@@ -80,11 +77,10 @@ export const uploadSpeciesPictures = function(req) {
     "secretAccessKey": 'UKG2g/WWfOcLlz4rXPLDEe4jcwcTJ+tfEP9DneJo',
   });
   return new Promise((resolve, reject) => {
-    if(req.files.speciesPictures){
-      console.log("SOUJINI");
-      console.log(req.files.speciesPictures);
+    if(req.files.speciesFiles){
+      console.log(req.files.speciesFiles);
       var fishInformation=[];
-      let promises = req.files.speciesPictures.map((item) => {
+      let promises = req.files.speciesFiles.map((item) => {
         customFieldName = item.fieldname;
         customPath = item.path;
         bucketName="our-river-our-life-images/species";
@@ -116,8 +112,6 @@ export const uploadSpeciesPictures = function(req) {
   });
 }
 export const createFishSanctuary = async(req, res, next) =>{
-  console.log("CREATE");
-  console.log(req);
   Promise.all([uploadSanctuaryPictures(req),uploadSpeciesPictures(req)])
     // , uploadFishInformation(req)
   .then(results => {
@@ -126,8 +120,7 @@ export const createFishSanctuary = async(req, res, next) =>{
     // req.body.sanctuaryPictures = results[1];
     // req.body.fishInformation = results[2];
      console.log(results[1]);
-     // console.log(results[2]);
-    console.log(req.body);
+      console.log(results[2]);
     // req.body.waterTesting=JSON.parse(JSON.stringify(req.body.waterTesting));
     // console.log("souj");
     //
