@@ -68,7 +68,7 @@ createFishSanctuary)
  * @apiParam locationDetails Fish sanctuaries's locationDetails.
  * @apiParam habitatCharacteristics Fish sanctuaries's habitatCharacteristics.
  * @apiParam managementActions Fish sanctuaries's managementActions.
- * @apiParam fishInformation Fish sanctuaries's fishInformation.
+ * @apiParam speciesPictures Fish sanctuaries's speciesPictures.
  * @apiParam culturalHistoricalSignificance Fish sanctuaries's culturalHistoricalSignificance.
  * @apiSuccess {Object} fishSanctuaries Fish sanctuaries's data.
  * @apiError {Object} 400 Some parameters may contain invalid values.
@@ -77,7 +77,7 @@ createFishSanctuary)
  */
 router.post('/',
   token({ required: true, roles: ['admin'] }),
-  body({ locationDetails, habitatCharacteristics, managementActions, fishInformation, culturalHistoricalSignificance }),
+  body({ locationDetails, habitatCharacteristics, managementActions, speciesPictures, culturalHistoricalSignificance }),
   create)
 
 /**
@@ -113,7 +113,7 @@ router.get('/:id',
  * @apiParam locationDetails Fish sanctuaries's locationDetails.
  * @apiParam habitatCharacteristics Fish sanctuaries's habitatCharacteristics.
  * @apiParam managementActions Fish sanctuaries's managementActions.
- * @apiParam fishInformation Fish sanctuaries's fishInformation.
+ * @apiParam speciesPictures Fish sanctuaries's speciesPictures.
  * @apiParam culturalHistoricalSignificance Fish sanctuaries's culturalHistoricalSignificance.
  * @apiSuccess {Object} fishSanctuaries Fish sanctuaries's data.
  * @apiError {Object} 400 Some parameters may contain invalid values.
@@ -122,7 +122,7 @@ router.get('/:id',
  */
 router.put('/:id',
   // master(),
-  body({ locationDetails, habitatCharacteristics, managementActions, fishInformation, culturalHistoricalSignificance }),
+  body({ locationDetails, habitatCharacteristics, managementActions, speciesPictures, culturalHistoricalSignificance }),
   update)
 
 /**
