@@ -4,6 +4,21 @@ import aws from 'aws-sdk';
 import fs from 'fs';
 var UserController = require('../user/controller')
 
+export const uploadToS3 = function(params) {
+  return new Promise((resolve, reject) => {
+    const s3 = new aws.S3();
+    var responseData=[];
+    s3.upload(params, function (err, res) {
+      if (err) {
+        console.log('Error occured while trying to upload Flora to the S3 bucket', err);
+        res.send(err);
+      }if(res){
+        // console.log("loc "+res.Location);
+        resolve(res.Location);
+      }
+    });
+  });
+}
 export const uploadSanctuaryPictures = function(req) {
   var customOriginalName="";
   var customPath="";
