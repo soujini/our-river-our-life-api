@@ -63,6 +63,8 @@ export const uploadSpeciesPictures = function(req) {
     "accessKeyId": 'AKIAJ24JCG5UUXOOHKDA',
     "secretAccessKey": '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',
   });
+  console.log("SOUJI");
+  console.log(req);
   return new Promise((resolve, reject) => {
     if(req.files.speciesPictures){
       console.log("SOUJINI");
