@@ -32,11 +32,11 @@ export const uploadSanctuaryPictures = function(req) {
   });
   return new Promise((resolve, reject) => {
     console.log("SOUJINI");
-    console.log(req.files.sanctuaryPictures);
+    console.log(req.files.locationDetails.anctuaryPictures);
     // console.log(req.files.sanctuaryPictures.length);
-    if(req.files.sanctuaryPictures){
+    if(req.files.locationDetails.sanctuaryPictures){
       var sanctuaryPictures=[];
-      let promises = req.files.sanctuaryPictures.map((item) => {
+      let promises = req.files.locationDetails.sanctuaryPictures.map((item) => {
         customFieldName = item.fieldname;
         customPath = item.path;
         bucketName="our-river-our-life-images/fish-sanctuary";
