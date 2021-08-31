@@ -31,8 +31,8 @@ export const uploadSanctuaryPictures = function(req) {
     "secretAccessKey": 'UKG2g/WWfOcLlz4rXPLDEe4jcwcTJ+tfEP9DneJo',
   });
   return new Promise((resolve, reject) => {
-    console.log("SOUJINI");
-    console.log(req.files.locationDetails.anctuaryPictures);
+    console.log("SOUUUUUUUUUUUUUU");
+    console.log(req.files.locationDetails.sanctuaryPictures);
     // console.log(req.files.sanctuaryPictures.length);
     if(req.files.locationDetails.sanctuaryPictures){
       var sanctuaryPictures=[];
