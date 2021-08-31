@@ -49,6 +49,8 @@ export const uploadSanctuaryPictures = function(req) {
 
         return uploadToS3(params).then(element => {
           sanctuaryPictures.push({imageURL:element});
+          console.log("OLA");
+          console.log(sanctuaryPictures);
           return sanctuaryPictures;
         });
       });
