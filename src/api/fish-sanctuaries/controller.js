@@ -32,8 +32,8 @@ export const uploadSanctuaryPictures = function(req) {
   });
   return new Promise((resolve, reject) => {
     console.log("SOUUUUUUUUUUUUUU");
-    console.log(req.locationDetails.sanctuaryPictures);
-    console.log(req.locationDetails.sanctuaryPictures.length);
+    console.log(req.files.locationDetails);
+    console.log(req.files.locationDetails.length);
     // console.log(req.files.sanctuaryPictures.length);
     if(req.files.locationDetails.sanctuaryPictures){
       var sanctuaryPictures=[];
