@@ -17,8 +17,8 @@ export const uploadSanctuaryPictures = function(req) {
   });
   return new Promise((resolve, reject) => {
     console.log("SOUJINI");
-    console.log(req.files.sanctuaryPictures.imageURL);
-    console.log(req.files.sanctuaryPictures.imageURL.length);
+    console.log(req.files.sanctuaryPictures);
+    console.log(req.files.sanctuaryPictures.length);
     if(req.files.sanctuaryPictures.imageURL){
       var sanctuaryPictures=[];
       let promises = req.files.sanctuaryPictures.imageURL.map((item) => {
