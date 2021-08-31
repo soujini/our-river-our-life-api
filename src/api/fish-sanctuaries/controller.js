@@ -19,9 +19,9 @@ export const uploadSanctuaryPictures = function(req) {
     console.log("SOUJINI");
     console.log(req.files.sanctuaryPictures);
     // console.log(req.files.sanctuaryPictures.length);
-    if(req.files.sanctuaryPictures.imageURL){
+    if(req.files.sanctuaryPictures){
       var sanctuaryPictures=[];
-      let promises = req.files.sanctuaryPictures.imageURL.map((item) => {
+      let promises = req.files.sanctuaryPictures.map((item) => {
         customFieldName = item.fieldname;
         customPath = item.path;
         bucketName="our-river-our-life-images/fish-sanctuary";
