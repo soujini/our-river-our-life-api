@@ -49,8 +49,6 @@ export const uploadSanctuaryPictures = function(req) {
 
         return uploadToS3(params).then(element => {
           sanctuaryPictures.push({imageURL:element});
-          console.log("AAA");
-          console.log(sanctuaryPictures);
           return sanctuaryPictures;
         });
       });
@@ -119,11 +117,13 @@ export const createFishSanctuary = async(req, res, next) =>{
   Promise.all([uploadSanctuaryPictures(req),uploadSpeciesPictures(req)])
     // , uploadFishInformation(req)
   .then(results => {
-
-    console.log("SOUJANYA");
+    console.log("SOUJANYA0");
+console.log(results[1]);
+    console.log("SOUJANYA1");
     // req.body.sanctuaryPictures = results[1];
     // req.body.fishInformation = results[2];
      console.log(results[1]);
+     console.log("SOUJANYA2");
       console.log(results[2]);
     // req.body.waterTesting=JSON.parse(JSON.stringify(req.body.waterTesting));
     // console.log("souj");
