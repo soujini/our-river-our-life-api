@@ -8,7 +8,7 @@ export FishSanctuaries, { schema } from './model'
 import multer from 'multer'
 
 const router = new Router()
-const { userId,locationDetails, habitatCharacteristics, managementActions, fishInformation, culturalHistoricalSignificance } = schema.tree
+const { userId,locationDetails, habitatCharacteristics, managementActions, speciesPictures, culturalHistoricalSignificance } = schema.tree
 const accessTokenSecret = 'youraccesstokensecret';
 const jwt = require('jsonwebtoken');
 
@@ -35,29 +35,29 @@ const authenticateJWT = (req, res, next) => {
   }
 };
 
-router.post('/create-fish-sanctuary',authenticateJWT,
-multer({ dest: 'temp/', limits: { fieldSize: 8 * 1024 * 1024 } }).array('locationDetails.sanctuaryPictures', 10),
-createFishSanctuary)
-
-
 // router.post('/create-fish-sanctuary',authenticateJWT,
-// multer({ dest: 'temp/', limits: { fieldSize: 8 * 1024 * 1024 } })
-// // .array("locationDetails.sanctuaryPictures.imageURL", 10),
-// .fields([{
-//   name: 'locationDetails.sanctuaryPictures.imageURL', maxCount: 5
-// }, {
-//   name: 'fishInformation.imageURL', maxCount: 5
-// },
-// ]),
-// body({
-//   userId,
-//   locationDetails,
-//   habitatCharacteristics,
-//   managementActions,
-//   fishInformation,
-//   culturalHistoricalSignificance
-// }),
+// multer({ dest: 'temp/', limits: { fieldSize: 8 * 1024 * 1024 } }).array('locationDetails.sanctuaryPictures', 10),
 // createFishSanctuary)
+
+
+router.post('/create-fish-sanctuary',authenticateJWT,
+multer({ dest: 'temp/', limits: { fieldSize: 8 * 1024 * 1024 } })
+// .array("locationDetails.sanctuaryPictures.imageURL", 10),
+.fields([{
+  name: 'locationDetails.sanctuaryPictures', maxCount: 5
+}, {
+  name: 'speciesPictures', maxCount: 5
+},
+]),
+body({
+  userId,
+  locationDetails,
+  habitatCharacteristics,
+  managementActions,
+  speciesPictures,
+  culturalHistoricalSignificance,
+}),
+createFishSanctuary)
 
 /**
  * @api {post} /fish-sanctuaries Create fish sanctuaries

@@ -66,7 +66,7 @@ export const uploadSpeciesPictures = function(req) {
   return new Promise((resolve, reject) => {
     if(req.files.fishInformation){
       var fishInformation=[];
-      let promises = req.files.fishInformation.map((item) => {
+      let promises = req.files.speciesPictures.map((item) => {
         customFieldName = item.fieldname;
         customPath = item.path;
         bucketName="our-river-our-life-images/species";

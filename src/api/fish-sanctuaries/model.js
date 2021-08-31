@@ -98,7 +98,7 @@ const fishSanctuariesSchema = new Schema({
       },
     }
   },
-  fishInformation: [{
+  speciesPictures: [{
     imageURL:{
       type:String
     },
@@ -139,7 +139,7 @@ fishSanctuariesSchema.methods = {
         latitude:this.locationDetails.latitude,
         longitude:this.locationDetails.longitude,
         extent:this.locationDetails.extent,
-        riverPictures:this.locationDetails.riverPictures
+        sanctuaryPictures:this.locationDetails.sanctuaryPictures
       },
       habitatCharacteristics: {
         physicalInfrastructure: this.habitatCharacteristics.physicalInfrastructure,
@@ -168,7 +168,7 @@ fishSanctuariesSchema.methods = {
           description:this.managementActions.patrollingAllowed.description
         }
       },
-      fishInformation: this.fishInformation,
+      speciesPictures: this.speciesPictures,
       culturalHistoricalSignificance: this.culturalHistoricalSignificance,
       createdAt: this.createdAt,
       updatedAt: this.updatedAt
