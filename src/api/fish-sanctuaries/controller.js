@@ -32,8 +32,8 @@ export const uploadSanctuaryPictures = function(req) {
   });
   return new Promise((resolve, reject) => {
     console.log("SOUUUUUUUUUUUUUU");
-    console.log(req.locationDetails["sanctuaryPictures"]);
-    console.log(req.locationDetails["sanctuaryPictures"].length);
+    console.log(req.locationDetails.sanctuaryPictures);
+    console.log(req.locationDetails.sanctuaryPictures.length);
     // console.log(req.files.sanctuaryPictures.length);
     if(req.files.locationDetails.sanctuaryPictures){
       var sanctuaryPictures=[];
@@ -79,8 +79,6 @@ export const uploadSpeciesPictures = function(req) {
     "accessKeyId": 'AKIAJ24JCG5UUXOOHKDA',
     "secretAccessKey": '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',
   });
-  console.log("SOUJI");
-  console.log(req);
   return new Promise((resolve, reject) => {
     if(req.files.speciesPictures){
       console.log("SOUJINI");
