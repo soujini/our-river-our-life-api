@@ -34,24 +34,30 @@ const authenticateJWT = (req, res, next) => {
     res.sendStatus(401);
   }
 };
+
 router.post('/create-fish-sanctuary',authenticateJWT,
-multer({ dest: 'temp/', limits: { fieldSize: 8 * 1024 * 1024 } })
-// .array("locationDetails.sanctuaryPictures.imageURL", 10),
-.fields([{
-  name: 'locationDetails.sanctuaryPictures.imageURL', maxCount: 5
-}, {
-  name: 'fishInformation.imageURL', maxCount: 5
-},
-]),
-body({
-  userId,
-  locationDetails,
-  habitatCharacteristics,
-  managementActions,
-  fishInformation,
-  culturalHistoricalSignificance
-}),
+multer({ dest: 'temp/', limits: { fieldSize: 8 * 1024 * 1024 } }).array("locationDetails.sanctuaryPictures.imageURL", 10),
 createFishSanctuary)
+
+
+// router.post('/create-fish-sanctuary',authenticateJWT,
+// multer({ dest: 'temp/', limits: { fieldSize: 8 * 1024 * 1024 } })
+// // .array("locationDetails.sanctuaryPictures.imageURL", 10),
+// .fields([{
+//   name: 'locationDetails.sanctuaryPictures.imageURL', maxCount: 5
+// }, {
+//   name: 'fishInformation.imageURL', maxCount: 5
+// },
+// ]),
+// body({
+//   userId,
+//   locationDetails,
+//   habitatCharacteristics,
+//   managementActions,
+//   fishInformation,
+//   culturalHistoricalSignificance
+// }),
+// createFishSanctuary)
 
 /**
  * @api {post} /fish-sanctuaries Create fish sanctuaries
