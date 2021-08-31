@@ -44,7 +44,7 @@ router.post('/create-fish-sanctuary',authenticateJWT,
 multer({ dest: 'temp/', limits: { fieldSize: 8 * 1024 * 1024 } })
 // .array("locationDetails.sanctuaryPictures.imageURL", 10),
 .fields([{
-  name: 'locationDetails.sanctuaryPictures', maxCount: 5
+  name: 'locationDetails["sanctuaryPictures"]', maxCount: 5
 }, {
   name: 'speciesPictures', maxCount: 5
 },
