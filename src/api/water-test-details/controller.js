@@ -385,7 +385,6 @@ export const createWaterTestDetails = async(req, res, next) =>{
     req.body.activity = results[4];
     req.body.river = results[5];
     req.body.surrounding = results[6];
-    console.log(req.body);
     // req.body.waterTesting=JSON.parse(JSON.stringify(req.body.waterTesting));
     // console.log("souj");
     //

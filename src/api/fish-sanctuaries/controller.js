@@ -119,16 +119,18 @@ export const createFishSanctuary = async(req, res, next) =>{
   Promise.all([uploadSanctuaryPictures(req),uploadSpeciesPictures(req)])
     // , uploadFishInformation(req)
   .then(results => {
-    console.log("RESULTS");
-    console.log(results);
-    console.log("SOUJANYA0");
-console.log(results[1]);
-    console.log("SOUJANYA1");
+    for(var i=0;i<results[0].length;i++){
+      req.body.locationDetails.sanctuaryPictures[i].imageURL=results[0][i];
+    }
+    for(var i=0;i<results[1].length;i++){
+      req.body.speciesPictures[i].imageURL=results[1][i];
+    }
+    console.log(req.body.sanctuaryPictures);
+    console.log(results[0]);
     // req.body.sanctuaryPictures = results[1];
     // req.body.fishInformation = results[2];
      console.log(results[1]);
-     console.log("SOUJANYA2");
-      console.log(results[2]);
+
     // req.body.waterTesting=JSON.parse(JSON.stringify(req.body.waterTesting));
     // console.log("souj");
     //
