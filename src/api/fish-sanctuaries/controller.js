@@ -49,8 +49,6 @@ export const uploadSanctuaryPictures = function(req) {
 
         return uploadToS3(params).then(element => {
           sanctuaryPictures.push({imageURL:element});
-          console.log("OLA");
-          console.log(sanctuaryPictures);
           return sanctuaryPictures;
         });
       });
@@ -82,8 +80,6 @@ export const uploadSpeciesPictures = function(req) {
   return new Promise((resolve, reject) => {
       var fishInformation=[];
     if(req.files.speciesFiles){
-      console.log(req.files.speciesFiles);
-
       let promises = req.files.speciesFiles.map((item) => {
         customFieldName = item.fieldname;
         customPath = item.path;
@@ -116,20 +112,23 @@ export const uploadSpeciesPictures = function(req) {
   });
 }
 export const createFishSanctuary = async(req, res, next) =>{
+  console.log("CREATE");
+  console.log(req.body.locationDetails.sanctuaryPictures);
   Promise.all([uploadSanctuaryPictures(req),uploadSpeciesPictures(req)])
     // , uploadFishInformation(req)
   .then(results => {
     for(var i=0;i<results[0].length;i++){
-      req.body.locationDetails.sanctuaryPictures[i].imageURL=results[0][i];
+      console.log(results[0][i]);
+      // req.body.locationDetails.sanctuaryPictures[i].imageURL=results[0][i];
     }
     for(var i=0;i<results[1].length;i++){
-      req.body.speciesPictures[i].imageURL=results[1][i];
+      // req.body.speciesPictures[i].imageURL=results[1][i];
     }
-    console.log(req.body.sanctuaryPictures);
-    console.log(results[0]);
-    // req.body.sanctuaryPictures = results[1];
-    // req.body.fishInformation = results[2];
-     console.log(results[1]);
+    // console.log(req.body.sanctuaryPictures);
+    // console.log(results[0]);
+    // // req.body.sanctuaryPictures = results[1];
+    // // req.body.fishInformation = results[2];
+    //  console.log(results[1]);
 
     // req.body.waterTesting=JSON.parse(JSON.stringify(req.body.waterTesting));
     // console.log("souj");
