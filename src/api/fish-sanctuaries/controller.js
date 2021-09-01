@@ -119,10 +119,10 @@ export const createFishSanctuary = async(req, res, next) =>{
   .then(results => {
     for(var i=0;i<results[0].length;i++){
       console.log(results[0][i]);
-      // req.body.locationDetails.sanctuaryPictures[i].imageURL=results[0][i];
+      req.body.locationDetails.sanctuaryPictures[i].imageURL=results[0][i].imageURL;
     }
     for(var i=0;i<results[1].length;i++){
-      // req.body.speciesPictures[i].imageURL=results[1][i];
+       req.body.speciesPictures[i].imageURL=results[1][i].imageURL;
     }
     // console.log(req.body.sanctuaryPictures);
     // console.log(results[0]);
