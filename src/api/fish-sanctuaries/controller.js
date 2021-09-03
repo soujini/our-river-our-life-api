@@ -121,7 +121,7 @@ export const createFishSanctuary = async(req, res, next) =>{
       }
       else{
         req.body.locationDetails.sanctuaryPictures.push(
-          "imageURL":results[0][i].imageURL);
+          "imageURL":results[0][i].imageURL)
         }
       }
     }
@@ -131,7 +131,7 @@ export const createFishSanctuary = async(req, res, next) =>{
      }
      else{
        req.body.speciesPictures.push(
-         "imageURL":results[1][i].imageURL);
+         "imageURL":results[1][i].imageURL)
        }
      }
     }
