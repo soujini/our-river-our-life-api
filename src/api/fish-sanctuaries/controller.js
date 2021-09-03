@@ -124,7 +124,7 @@ export const createFishSanctuary = async(req, res, next) =>{
           {"imageURL":results[0][i].imageURL})
         }
       }
-    }
+
     for(var i=0;i<results[1].length;i++){
       if(req.body.speciesPictures != undefined || req.body.speciesPictures != null){
        req.body.speciesPictures[i].imageURL=results[1][i].imageURL;
@@ -134,7 +134,7 @@ export const createFishSanctuary = async(req, res, next) =>{
          {"imageURL":results[1][i].imageURL})
        }
      }
-    }
+
     // console.log(req.body.sanctuaryPictures);
     // console.log(results[0]);
     // // req.body.sanctuaryPictures = results[1];
