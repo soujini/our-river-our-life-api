@@ -52,6 +52,7 @@ multer({ dest: 'temp/', limits: { fieldSize: 8 * 1024 * 1024 } })
 body({
   userId,
   locationDetails,
+  JSON.parse(locationDetails['sanctuaryPictures']),
   habitatCharacteristics,
   managementActions,
   speciesPictures,
