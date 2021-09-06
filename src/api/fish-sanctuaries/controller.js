@@ -33,7 +33,7 @@ export const uploadSanctuaryPictures = function(req) {
   return new Promise((resolve, reject) => {
     // console.log(req.files.sanctuaryPictures.length);
     var sanctuaryPictures=[];
-    console.log("LENGTH OF SANC FILE "+req.files.sanctuaryFiles);
+    console.log("LENGTH OF SANC FILE "+req.files.sanctuaryFiles.length);
     if(req.files.sanctuaryFiles){
 
       let promises = req.files.sanctuaryFiles.map((item) => {
@@ -126,7 +126,7 @@ export const createFishSanctuary = async(req, res, next) =>{
       console.log("SPECIES");
     console.log(results[1]);
     for(var i=0;i<results[0].length;i++){
-        req.body.speciesPictures[i].imageURL=results[1][i].imageURL;
+        req.body.locationDetails.sanctuaryPictures[i].imageURL=results[0][i].imageURL;
       //if(req.body.locationDetails.sanctuaryPictures != undefined || req.body.locationDetails.sanctuaryPictures != null){
       //  console.log("SOUJ");
         //console.log(req.body.locationDetails.sanctuaryPictures.length);
@@ -140,7 +140,9 @@ export const createFishSanctuary = async(req, res, next) =>{
       }
 
     for(var i=0;i<results[1].length;i++){
-        req.body.locationDetails.sanctuaryPictures[i].imageURL=results[0][i].imageURL;
+
+
+          req.body.speciesPictures[i].imageURL=results[1][i].imageURL;
 
     }
      //  if(req.body.speciesPictures != undefined || req.body.speciesPictures != null){
