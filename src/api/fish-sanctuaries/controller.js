@@ -33,6 +33,7 @@ export const uploadSanctuaryPictures = function(req) {
   return new Promise((resolve, reject) => {
     // console.log(req.files.sanctuaryPictures.length);
     var sanctuaryPictures=[];
+    console.log("LENGTH OF SANC FILE "+req.files.sanctuaryFiles);
     if(req.files.sanctuaryFiles){
 
       let promises = req.files.sanctuaryFiles.map((item) => {
