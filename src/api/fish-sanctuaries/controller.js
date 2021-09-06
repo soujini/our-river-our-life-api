@@ -119,12 +119,12 @@ export const createFishSanctuary = async(req, res, next) =>{
 
   Promise.all([uploadSanctuaryPictures(req),uploadSpeciesPictures(req)])
   .then(results => {
-    console.log('ASTI KUTTY');
+    console.log('ASTI KUTTY '+results[0].length);
     console.log("SANC");
     console.log(results[0]);
       console.log("SPECIES");
     console.log(results[1]);
-    for(var i=0;i<results[0].length>0;i++){
+    for(var i=0;i<results[0].length;i++){
       //if(req.body.locationDetails.sanctuaryPictures != undefined || req.body.locationDetails.sanctuaryPictures != null){
       //  console.log("SOUJ");
         //console.log(req.body.locationDetails.sanctuaryPictures.length);
@@ -137,7 +137,7 @@ export const createFishSanctuary = async(req, res, next) =>{
       //   }
       }
 
-    for(var i=0;i<results[1].length > 0;i++){
+    for(var i=0;i<results[1].length;i++){
       req.body.speciesPictures[i].imageURL=results[1][i].imageURL;
     }
      //  if(req.body.speciesPictures != undefined || req.body.speciesPictures != null){
