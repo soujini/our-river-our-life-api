@@ -84,10 +84,10 @@ const fishSanctuariesSchema = new Schema({
       },
     },
     fishingAnglingAllowed:{
-      type:Boolean
+      type:Number
     },
     swimmingAllowed:{
-      type:Boolean
+      type:Number
     },
     patrollingAllowed:{
       type:{

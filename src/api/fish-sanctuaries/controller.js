@@ -80,7 +80,7 @@ export const uploadSpeciesPictures = function(req) {
     "secretAccessKey": 'UKG2g/WWfOcLlz4rXPLDEe4jcwcTJ+tfEP9DneJo',
   });
   return new Promise((resolve, reject) => {
-      var fishInformation=[];
+    var fishInformation=[];
     if(req.files.speciesFiles){
       let promises = req.files.speciesFiles.map((item) => {
         customFieldName = item.fieldname;
@@ -114,44 +114,49 @@ export const uploadSpeciesPictures = function(req) {
   });
 }
 export const createFishSanctuary = async(req, res, next) =>{
-  req.body['locationDetails']['sanctuaryPictures'] = JSON.parse(req.body['locationDetails']['sanctuaryPictures']);
-  req.body['speciesPictures'] = JSON.parse(req.body['speciesPictures']);
+
+  if(req.body['locationDetails']['sanctuaryPictures'] != undefined){
+    req.body['locationDetails']['sanctuaryPictures'] = JSON.parse(req.body['locationDetails']['sanctuaryPictures']);
+  }
+  if(req.body['locationDetails']['speciesPictures'] != undefined){
+    req.body['speciesPictures'] = JSON.parse(req.body['speciesPictures']);
+  }
 
   Promise.all([uploadSanctuaryPictures(req),uploadSpeciesPictures(req)])
   .then(results => {
     console.log('ASTI KUTTY '+results[0].length);
     console.log("SANC");
     console.log(results[0]);
-      console.log("SPECIES");
+    console.log("SPECIES");
     console.log(results[1]);
     for(var i=0;i<results[0].length;i++){
-        req.body.locationDetails.sanctuaryPictures[i].imageURL=results[0][i].imageURL;
+      req.body.locationDetails.sanctuaryPictures[i].imageURL=results[0][i].imageURL;
       //if(req.body.locationDetails.sanctuaryPictures != undefined || req.body.locationDetails.sanctuaryPictures != null){
       //  console.log("SOUJ");
-        //console.log(req.body.locationDetails.sanctuaryPictures.length);
+      //console.log(req.body.locationDetails.sanctuaryPictures.length);
 
-        // console.log(results[0][i].imageURL);
-    //  }
+      // console.log(results[0][i].imageURL);
+      //  }
       // else{
       //   req.body.locationDetails.sanctuaryPictures.push(
       //     {"imageURL":results[0][i].imageURL})
       //   }
-      }
+    }
 
     for(var i=0;i<results[1].length;i++){
 
 
-          req.body.speciesPictures[i].imageURL=results[1][i].imageURL;
+      //  req.body.speciesPictures[i].imageURL=results[1][i].imageURL;
 
     }
-     //  if(req.body.speciesPictures != undefined || req.body.speciesPictures != null){
-     //   req.body.speciesPictures[i].imageURL=results[1][i].imageURL;
-     // }
-     // else{
-     //   req.body.speciesPictures.push(
-     //     {"imageURL":results[1][i].imageURL})
-     //   }
-     // }
+    //  if(req.body.speciesPictures != undefined || req.body.speciesPictures != null){
+    //   req.body.speciesPictures[i].imageURL=results[1][i].imageURL;
+    // }
+    // else{
+    //   req.body.speciesPictures.push(
+    //     {"imageURL":results[1][i].imageURL})
+    //   }
+    // }
 
     // console.log(req.body.sanctuaryPictures);
     // console.log(results[0]);
@@ -174,40 +179,40 @@ export const createFishSanctuary = async(req, res, next) =>{
   });
 }
 export const create = ({ bodymen: { body } }, res, next) =>
-  FishSanctuaries.create(body)
-    .then((fishSanctuaries) => fishSanctuaries.view(true))
-    .then(success(res, 201))
-    .catch(next)
+FishSanctuaries.create(body)
+.then((fishSanctuaries) => fishSanctuaries.view(true))
+.then(success(res, 201))
+.catch(next)
 
 export const index = ({ querymen: { query, select, cursor } }, res, next) =>
-  FishSanctuaries.count(query)
-    .then(count => FishSanctuaries.find(query, select, cursor)
-      .then((fishSanctuaries) => ({
-        count,
-        rows: fishSanctuaries.map((fishSanctuaries) => fishSanctuaries.view())
-      }))
-    )
-    .then(success(res))
-    .catch(next)
+FishSanctuaries.count(query)
+.then(count => FishSanctuaries.find(query, select, cursor)
+.then((fishSanctuaries) => ({
+  count,
+  rows: fishSanctuaries.map((fishSanctuaries) => fishSanctuaries.view())
+}))
+)
+.then(success(res))
+.catch(next)
 
 export const show = ({ params }, res, next) =>
-  FishSanctuaries.findById(params.id)
-    .then(notFound(res))
-    .then((fishSanctuaries) => fishSanctuaries ? fishSanctuaries.view() : null)
-    .then(success(res))
-    .catch(next)
+FishSanctuaries.findById(params.id)
+.then(notFound(res))
+.then((fishSanctuaries) => fishSanctuaries ? fishSanctuaries.view() : null)
+.then(success(res))
+.catch(next)
 
 export const update = ({ bodymen: { body }, params }, res, next) =>
-  FishSanctuaries.findById(params.id)
-    .then(notFound(res))
-    .then((fishSanctuaries) => fishSanctuaries ? Object.assign(fishSanctuaries, body).save() : null)
-    .then((fishSanctuaries) => fishSanctuaries ? fishSanctuaries.view(true) : null)
-    .then(success(res))
-    .catch(next)
+FishSanctuaries.findById(params.id)
+.then(notFound(res))
+.then((fishSanctuaries) => fishSanctuaries ? Object.assign(fishSanctuaries, body).save() : null)
+.then((fishSanctuaries) => fishSanctuaries ? fishSanctuaries.view(true) : null)
+.then(success(res))
+.catch(next)
 
 export const destroy = ({ params }, res, next) =>
-  FishSanctuaries.findById(params.id)
-    .then(notFound(res))
-    .then((fishSanctuaries) => fishSanctuaries ? fishSanctuaries.remove() : null)
-    .then(success(res, 204))
-    .catch(next)
+FishSanctuaries.findById(params.id)
+.then(notFound(res))
+.then((fishSanctuaries) => fishSanctuaries ? fishSanctuaries.remove() : null)
+.then(success(res, 204))
+.catch(next)
