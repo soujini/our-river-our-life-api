@@ -114,6 +114,7 @@ export const uploadSpeciesPictures = function(req) {
 export const createFishSanctuary = async(req, res, next) =>{
   console.log(req.body);
   console.log(req.body.locationDetails);
+  console.log(req.body['locationDetails']);
   Promise.all([uploadSanctuaryPictures(req),uploadSpeciesPictures(req)])
     // , uploadFishInformation(req)
   .then(results => {
