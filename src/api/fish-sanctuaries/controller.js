@@ -120,13 +120,14 @@ export const createFishSanctuary = async(req, res, next) =>{
   .then(results => {
 
     console.log('ASTI');
-    console.log(results);
+    console.log(results[0]);
+    console.log(results[0]);
     for(var i=0;i<results[0].length;i++){
       //if(req.body.locationDetails.sanctuaryPictures != undefined || req.body.locationDetails.sanctuaryPictures != null){
-        console.log("SOUJ");
-        console.log(req.body.locationDetails.sanctuaryPictures.length);
+      //  console.log("SOUJ");
+        //console.log(req.body.locationDetails.sanctuaryPictures.length);
         req.body.locationDetails.sanctuaryPictures[i].imageURL=results[0][i].imageURL;
-        console.log(results[0][i].imageURL);
+        // console.log(results[0][i].imageURL);
     //  }
       // else{
       //   req.body.locationDetails.sanctuaryPictures.push(
@@ -136,7 +137,7 @@ export const createFishSanctuary = async(req, res, next) =>{
 
     for(var i=0;i<results[1].length;i++){
         console.log(results[1][i].imageURL);
-      }
+    }
      //  if(req.body.speciesPictures != undefined || req.body.speciesPictures != null){
      //   req.body.speciesPictures[i].imageURL=results[1][i].imageURL;
      // }
