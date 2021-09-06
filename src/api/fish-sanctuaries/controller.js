@@ -62,7 +62,7 @@ export const uploadSanctuaryPictures = function(req) {
       })
     }
     else{
-      resolve(sanctuaryPictures);
+      resolve([]);
     }
   });
 }
@@ -107,7 +107,7 @@ export const uploadSpeciesPictures = function(req) {
       })
     }
     else{
-      resolve(fishInformation);
+      resolve([]);
     }
   });
 }
@@ -119,7 +119,7 @@ export const createFishSanctuary = async(req, res, next) =>{
     // , uploadFishInformation(req)
   .then(results => {
 
-    console.log('ASTI');
+    console.log('ASTI KUTTY');
     console.log(results[0]);
     console.log(results[1]);
     for(var i=0;i<results[0].length;i++){
