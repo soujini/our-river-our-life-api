@@ -120,7 +120,9 @@ export const createFishSanctuary = async(req, res, next) =>{
   .then(results => {
 
     console.log('ASTI KUTTY');
+    console.log("SANC");
     console.log(results[0]);
+      console.log("SPECIES");
     console.log(results[1]);
     for(var i=0;i<results[0].length;i++){
       //if(req.body.locationDetails.sanctuaryPictures != undefined || req.body.locationDetails.sanctuaryPictures != null){
