@@ -62,7 +62,7 @@ export const uploadSanctuaryPictures = function(req) {
       })
     }
     else{
-      resolve([]);
+      resolve(sanctuaryPictures);
     }
   });
 }
@@ -107,7 +107,7 @@ export const uploadSpeciesPictures = function(req) {
       })
     }
     else{
-      resolve([]);
+      resolve(fishInformation);
     }
   });
 }
