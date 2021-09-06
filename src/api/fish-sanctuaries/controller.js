@@ -113,14 +113,10 @@ export const uploadSpeciesPictures = function(req) {
 }
 export const createFishSanctuary = async(req, res, next) =>{
   req.body['locationDetails']['sanctuaryPictures'] = JSON.parse(req.body['locationDetails']['sanctuaryPictures']);
-  req.body['speciesPictures'] = JSON.parse(req.body['sanctuaryPictures']);
+  req.body['speciesPictures'] = JSON.parse(req.body['speciesPictures']);
 
-  //console.log(req.body);
-    console.log(req.body['locationDetails']['sanctuaryPictures']);
   Promise.all([uploadSanctuaryPictures(req),uploadSpeciesPictures(req)])
-    // , uploadFishInformation(req)
   .then(results => {
-
     console.log('ASTI KUTTY');
     console.log("SANC");
     console.log(results[0]);
