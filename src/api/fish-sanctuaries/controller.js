@@ -112,17 +112,19 @@ export const uploadSpeciesPictures = function(req) {
   });
 }
 export const createFishSanctuary = async(req, res, next) =>{
+  console.log(req.body);
+  console.log(req.body.locationDetails.sanctuaryPictures);
   Promise.all([uploadSanctuaryPictures(req),uploadSpeciesPictures(req)])
     // , uploadFishInformation(req)
   .then(results => {
     for(var i=0;i<results[0].length;i++){
-      if(req.body.locationDetails.sanctuaryPictures != undefined || req.body.locationDetails.sanctuaryPictures != null){
+      //if(req.body.locationDetails.sanctuaryPictures != undefined || req.body.locationDetails.sanctuaryPictures != null){
         req.body.locationDetails.sanctuaryPictures[i].imageURL=results[0][i].imageURL;
-      }
-      else{
-        req.body.locationDetails.sanctuaryPictures.push(
-          {"imageURL":results[0][i].imageURL})
-        }
+    //  }
+      // else{
+      //   req.body.locationDetails.sanctuaryPictures.push(
+      //     {"imageURL":results[0][i].imageURL})
+      //   }
       }
 
     for(var i=0;i<results[1].length;i++){
