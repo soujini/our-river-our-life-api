@@ -113,6 +113,8 @@ export const uploadSpeciesPictures = function(req) {
 }
 export const createFishSanctuary = async(req, res, next) =>{
   req.body['locationDetails']['sanctuaryPictures'] = JSON.parse(req.body['locationDetails']['sanctuaryPictures']);
+  req.body['speciesPictures'] = JSON.parse(req.body['sanctuaryPictures']);
+
   //console.log(req.body);
     console.log(req.body['locationDetails']['sanctuaryPictures']);
   Promise.all([uploadSanctuaryPictures(req),uploadSpeciesPictures(req)])
