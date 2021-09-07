@@ -115,12 +115,12 @@ export const uploadSpeciesPictures = function(req) {
 }
 export const createFishSanctuary = async(req, res, next) =>{
 
-  if(req.body['locationDetails']['sanctuaryPictures'] != undefined){
+  // if(req.body['locationDetails']['sanctuaryPictures'] != undefined){
     req.body['locationDetails']['sanctuaryPictures'] = JSON.parse(req.body['locationDetails']['sanctuaryPictures']);
-  }
-  if(req.body['locationDetails']['speciesPictures'] != undefined){
+  // }
+  // if(req.body['locationDetails']['speciesPictures'] != undefined){
     req.body['speciesPictures'] = JSON.parse(req.body['speciesPictures']);
-  }
+  // }
 
   Promise.all([uploadSanctuaryPictures(req),uploadSpeciesPictures(req)])
   .then(results => {
