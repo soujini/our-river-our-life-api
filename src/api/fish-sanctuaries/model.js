@@ -29,69 +29,78 @@ const fishSanctuariesSchema = new Schema({
     longitude: {
       type: Number
     },
-    extent:{
-      type:String
+    extent: {
+      type: String
     },
-    sanctuaryPictures:[{
-      imageURL:{
-        type:String
+    sanctuaryPictures: [{
+      imageURL: {
+        type: String
       },
-      description:{
-        type:String
+      description: {
+        type: String
       }
     }],
   },
   habitatCharacteristics: {
-    physicalInfrastructure:{
-      type:Array
-    },
-    leftBankHabitat:{
-      naturalVegetation:{
-        type:Array
+    physicalInfrastructure: [{
+      id: {
+        type: String
       },
-      naturalPhysicalFeatures:{
-        type:Array
+      // name: {
+      //   type: String
+      // },
+      description: {
+        type: String
+      }
+    }],
+
+    leftBankHabitat: {
+      naturalVegetation: {
+        type: Array
       },
-      manMadePhysicalFeatures:{
-        type:Array
+      naturalPhysicalFeatures: {
+        type: Array
       },
-      bankErosion:{
-        type:Boolean
+      manMadePhysicalFeatures: {
+        type: Array
+      },
+      bankErosion: {
+        type: Boolean
       }
     },
-    rightBankHabitat:{
-      naturalVegetation:{
-        type:Array
+    rightBankHabitat: {
+      naturalVegetation: {
+        type: Array
       },
-      naturalPhysicalFeatures:{
-        type:Array
+      naturalPhysicalFeatures: {
+        type: Array
       },
-      manMadePhysicalFeatures:{
-        type:Array
+      manMadePhysicalFeatures: {
+        type: Array
       },
-      bankErosion:{
-        type:Boolean
+      bankErosion: {
+        type: Boolean
       }
     }
   },
   managementActions: {
-    foodProvisioning:{
-      type:{
-        type:Number
+    foodProvisioning: {
+      type: {
+        type: Number
       },
       description: {
         type: String
       },
     },
-    fishingAnglingAllowed:{
-      type:Number
+    fishingAnglingAllowed: {
+      type: Number
     },
-    swimmingAllowed:{
-      type:Number
+    swimmingAllowed: {
+      type: Number
     },
-    patrollingAllowed:{
-      type:{
-        type:Number
+    patrollingAllowed: {
+      type: {
+        type: Number
       },
       description: {
         type: String
@@ -99,27 +108,27 @@ const fishSanctuariesSchema = new Schema({
     }
   },
   speciesPictures: [{
-    imageURL:{
-      type:String
+    imageURL: {
+      type: String
     },
-    commonName:{
-      type:String
+    commonName: {
+      type: String
     },
-    localName:{
-      type:String
+    localName: {
+      type: String
     },
-    scientificName:{
-      type:String
+    scientificName: {
+      type: String
     }
   }],
   culturalHistoricalSignificance: {
     type: String
   },
-  sanctuaryFiles:{
-    type:Array
+  sanctuaryFiles: {
+    type: Array
   },
-  speciesFiles:{
-    type:Array
+  speciesFiles: {
+    type: Array
   },
 }, {
   timestamps: true,
@@ -130,54 +139,54 @@ const fishSanctuariesSchema = new Schema({
 })
 
 fishSanctuariesSchema.methods = {
-  view (full) {
+  view(full) {
     const view = {
       // simple view
       id: this.id,
       userId: this.userId,
       contributorName: this.contributorName,
       locationDetails: {
-        name:this.locationDetails.name,
-        riverName:this.locationDetails.riverName,
-        activityDate:this.locationDetails.activityDate,
-        testerName:this.locationDetails.testerName,
-        location:this.locationDetails.location,
-        latitude:this.locationDetails.latitude,
-        longitude:this.locationDetails.longitude,
-        extent:this.locationDetails.extent,
-        sanctuaryPictures:this.locationDetails.sanctuaryPictures
+        name: this.locationDetails.name,
+        riverName: this.locationDetails.riverName,
+        activityDate: this.locationDetails.activityDate,
+        testerName: this.locationDetails.testerName,
+        location: this.locationDetails.location,
+        latitude: this.locationDetails.latitude,
+        longitude: this.locationDetails.longitude,
+        extent: this.locationDetails.extent,
+        sanctuaryPictures: this.locationDetails.sanctuaryPictures
       },
       habitatCharacteristics: {
         physicalInfrastructure: this.habitatCharacteristics.physicalInfrastructure,
-        leftBankHabitat:{
-          naturalVegetation:this.habitatCharacteristics.leftBankHabitat.naturalVegetation,
-          naturalPhysicalFeatures:this.habitatCharacteristics.leftBankHabitat.naturalPhysicalFeatures,
-          manMadePhysicalFeatures:this.habitatCharacteristics.leftBankHabitat.manMadePhysicalFeatures,
-          bankErosion:this.habitatCharacteristics.leftBankHabitat.bankErosion
+        leftBankHabitat: {
+          naturalVegetation: this.habitatCharacteristics.leftBankHabitat.naturalVegetation,
+          naturalPhysicalFeatures: this.habitatCharacteristics.leftBankHabitat.naturalPhysicalFeatures,
+          manMadePhysicalFeatures: this.habitatCharacteristics.leftBankHabitat.manMadePhysicalFeatures,
+          bankErosion: this.habitatCharacteristics.leftBankHabitat.bankErosion
         },
-        rightBankHabitat:{
-          naturalVegetation:this.habitatCharacteristics.rightBankHabitat.naturalVegetation,
-          naturalPhysicalFeatures:this.habitatCharacteristics.rightBankHabitat.naturalPhysicalFeatures,
-          manMadePhysicalFeatures:this.habitatCharacteristics.rightBankHabitat.manMadePhysicalFeatures,
-          bankErosion:this.habitatCharacteristics.rightBankHabitat.bankErosion
+        rightBankHabitat: {
+          naturalVegetation: this.habitatCharacteristics.rightBankHabitat.naturalVegetation,
+          naturalPhysicalFeatures: this.habitatCharacteristics.rightBankHabitat.naturalPhysicalFeatures,
+          manMadePhysicalFeatures: this.habitatCharacteristics.rightBankHabitat.manMadePhysicalFeatures,
+          bankErosion: this.habitatCharacteristics.rightBankHabitat.bankErosion
         },
       },
       managementActions: {
-        foodProvisioning:{
-          type:this.managementActions.foodProvisioning.type,
-          description:this.managementActions.foodProvisioning.description
+        foodProvisioning: {
+          type: this.managementActions.foodProvisioning.type,
+          description: this.managementActions.foodProvisioning.description
         },
-        fishingAnglingAllowed:this.managementActions.fishingAnglingAllowed,
-        swimmingAllowed:this.managementActions.fishingAnglingAllowed,
-        patrollingAllowed:{
-          type:this.managementActions.patrollingAllowed.type,
-          description:this.managementActions.patrollingAllowed.description
+        fishingAnglingAllowed: this.managementActions.fishingAnglingAllowed,
+        swimmingAllowed: this.managementActions.fishingAnglingAllowed,
+        patrollingAllowed: {
+          type: this.managementActions.patrollingAllowed.type,
+          description: this.managementActions.patrollingAllowed.description
         }
       },
       speciesPictures: this.speciesPictures,
       culturalHistoricalSignificance: this.culturalHistoricalSignificance,
-      sanctuaryFiles:this.sanctuaryFiles,
-      speciesFiles:this.speciesFiles,
+      sanctuaryFiles: this.sanctuaryFiles,
+      speciesFiles: this.speciesFiles,
       createdAt: this.createdAt,
       updatedAt: this.updatedAt
     }
