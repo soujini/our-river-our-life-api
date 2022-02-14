@@ -46,38 +46,86 @@ const fishSanctuariesSchema = new Schema({
       id: {
         type: String
       },
-      // name: {
-      //   type: String
-      // },
+      name: {
+        type: String
+      },
       description: {
         type: String
       }
     }],
 
     leftBankHabitat: {
-      naturalVegetation: {
-        type: Array
-      },
-      naturalPhysicalFeatures: {
-        type: Array
-      },
-      manMadePhysicalFeatures: {
-        type: Array
-      },
+      naturalVegetation: [{
+        id: {
+          type: String
+        },
+        name: {
+          type: String
+        },
+        description: {
+          type: String
+        }
+      }],
+      naturalPhysicalFeatures: [{
+        id: {
+          type: String
+        },
+        name: {
+          type: String
+        },
+        description: {
+          type: String
+        }
+      }],
+      manMadePhysicalFeatures: [{
+        id: {
+          type: String
+        },
+        name: {
+          type: String
+        },
+        description: {
+          type: String
+        }
+      }],
       bankErosion: {
         type: Boolean
       }
     },
     rightBankHabitat: {
-      naturalVegetation: {
-        type: Array
-      },
-      naturalPhysicalFeatures: {
-        type: Array
-      },
-      manMadePhysicalFeatures: {
-        type: Array
-      },
+      naturalVegetation: [{
+        id: {
+          type: String
+        },
+        name: {
+          type: String
+        },
+        description: {
+          type: String
+        }
+      }],
+      naturalPhysicalFeatures: [{
+        id: {
+          type: String
+        },
+        name: {
+          type: String
+        },
+        description: {
+          type: String
+        }
+      }],
+      manMadePhysicalFeatures: [{
+        id: {
+          type: String
+        },
+        name: {
+          type: String
+        },
+        description: {
+          type: String
+        }
+      }],
       bankErosion: {
         type: Boolean
       }
