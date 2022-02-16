@@ -19,6 +19,29 @@ export const uploadToS3 = function (params) {
     });
   });
 }
+
+export const deleteFromBucket = function () {
+  var params = {
+    ACL: 'public-read',
+    Bucket: bucketName,
+    Body: fs.createReadStream(item.path),
+    Key: item.originalname, //url name
+  };
+
+  return new Promise((resolve, reject) => {
+    const s3 = new aws.S3();
+    var responseData = [];
+    s3.deleteObject(params, function (err, res) {
+      if (err) {
+        console.log('Error occured while trying to delete image from the S3 bucket', err);
+        res.send(err);
+      } if (res) {
+        // console.log("loc "+res.Location);
+        resolve(res.Location);
+      }
+    });
+  });
+}
 export const uploadSanctuaryPictures = function (req) {
   var customOriginalName = "";
   var customPath = "";
@@ -49,8 +72,6 @@ export const uploadSanctuaryPictures = function (req) {
 
         return uploadToS3(params).then(element => {
           sanctuaryPictures.push({ imageURL: element });
-          console.log("step 1");
-          console.log(element);
           return sanctuaryPictures;
         });
       });
@@ -197,9 +218,11 @@ export const show = ({ params }, res, next) =>
     .catch(next)
 
 export const update = ({ bodymen: { body }, params }, res, next) =>
+  // FishSanctuaries.create(JSON.parse(JSON.stringify(req.body)))
   FishSanctuaries.findById(params.id)
     .then(notFound(res))
-    .then((fishSanctuaries) => fishSanctuaries ? Object.assign(fishSanctuaries, body).save() : null)
+    .then((fishSanctuaries) => fishSanctuaries ? Object.assign(fishSanctuaries, JSON.parse(JSON.stringify(req.body))).save() : null)
+    // .then((fishSanctuaries) => fishSanctuaries ? Object.assign(fishSanctuaries, body).save() : null)
     .then((fishSanctuaries) => fishSanctuaries ? fishSanctuaries.view(true) : null)
     .then(success(res))
     .catch(next)
