@@ -141,10 +141,14 @@ const fishSanctuariesSchema = new Schema({
       },
     },
     fishingAnglingAllowed: {
-      type: Number
+      type: {
+        type: Number
+      },
     },
     swimmingAllowed: {
-      type: Number
+      type: {
+        type: Number
+      },
     },
     patrollingAllowed: {
       type: {
