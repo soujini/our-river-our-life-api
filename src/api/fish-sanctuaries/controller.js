@@ -221,7 +221,7 @@ export const update = ({ bodymen: { body }, params }, res, next) =>
   // FishSanctuaries.create(JSON.parse(JSON.stringify(req.body)))
   FishSanctuaries.findById(params.id)
     .then(notFound(res))
-    .then((fishSanctuaries) => fishSanctuaries ? Object.assign(fishSanctuaries, JSON.parse(JSON.stringify(req.body))).save() : null)
+    .then((fishSanctuaries) => fishSanctuaries ? Object.assign(fishSanctuaries, JSON.parse(JSON.stringify(body))).save() : null)
     // .then((fishSanctuaries) => fishSanctuaries ? Object.assign(fishSanctuaries, body).save() : null)
     .then((fishSanctuaries) => fishSanctuaries ? fishSanctuaries.view(true) : null)
     .then(success(res))
