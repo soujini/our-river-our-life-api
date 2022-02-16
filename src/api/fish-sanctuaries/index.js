@@ -2,13 +2,13 @@ import { Router } from 'express'
 import { middleware as query } from 'querymen'
 import { middleware as body } from 'bodymen'
 import { token, master } from '../../services/passport'
-import { createFishSanctuary, create, index, show, update, destroy } from './controller'
+import { createFishSanctuary, updateFishSanctuary, create, index, show, update, destroy } from './controller'
 import { schema } from './model'
 export FishSanctuaries, { schema } from './model'
 import multer from 'multer'
 
 const router = new Router()
-const { userId,locationDetails, habitatCharacteristics, managementActions, speciesPictures, culturalHistoricalSignificance,sanctuaryFiles,speciesFiles } = schema.tree
+const { userId, locationDetails, habitatCharacteristics, managementActions, speciesPictures, culturalHistoricalSignificance, sanctuaryFiles, speciesFiles } = schema.tree
 const accessTokenSecret = 'youraccesstokensecret';
 const jwt = require('jsonwebtoken');
 
@@ -40,24 +40,43 @@ const authenticateJWT = (req, res, next) => {
 // createFishSanctuary)
 
 
-router.post('/create-fish-sanctuary',authenticateJWT,
-multer({ dest: 'temp/', limits: { fieldSize: 8 * 1024 * 1024 } })
-// .array("locationDetails.sanctuaryPictures.imageURL", 10),
-.fields([{
-  name: 'sanctuaryFiles', maxCount: 5
-}, {
-  name: 'speciesFiles', maxCount: 5
-},
-]),
-body({
-  userId,
-  locationDetails,
-  habitatCharacteristics,
-  managementActions,
-  speciesPictures,
-  culturalHistoricalSignificance,
-}),
-createFishSanctuary)
+router.post('/create-fish-sanctuary', authenticateJWT,
+  multer({ dest: 'temp/', limits: { fieldSize: 8 * 1024 * 1024 } })
+    // .array("locationDetails.sanctuaryPictures.imageURL", 10),
+    .fields([{
+      name: 'sanctuaryFiles', maxCount: 5
+    }, {
+      name: 'speciesFiles', maxCount: 5
+    },
+    ]),
+  body({
+    userId,
+    locationDetails,
+    habitatCharacteristics,
+    managementActions,
+    speciesPictures,
+    culturalHistoricalSignificance,
+  }),
+  createFishSanctuary)
+
+router.put('/update-fish-sanctuary', authenticateJWT,
+  multer({ dest: 'temp/', limits: { fieldSize: 8 * 1024 * 1024 } })
+    // .array("locationDetails.sanctuaryPictures.imageURL", 10),
+    .fields([{
+      name: 'sanctuaryFiles', maxCount: 5
+    }, {
+      name: 'speciesFiles', maxCount: 5
+    },
+    ]),
+  body({
+    userId,
+    locationDetails,
+    habitatCharacteristics,
+    managementActions,
+    speciesPictures,
+    culturalHistoricalSignificance,
+  }),
+  updateFishSanctuary)
 
 /**
  * @api {post} /fish-sanctuaries Create fish sanctuaries
