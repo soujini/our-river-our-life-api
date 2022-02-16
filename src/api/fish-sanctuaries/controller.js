@@ -193,6 +193,14 @@ export const createFishSanctuary = async (req, res, next) => {
         .catch(next)
     });
 }
+
+export const updateFishSanctuary = async (req, res, next) => {
+  FishSanctuaries.update(JSON.parse(JSON.stringify(req.body)))
+    .then((fishSanctuaries) => fishSanctuaries.view(true))
+    .then(success(res, 201))
+    .catch(next)
+}
+
 export const create = ({ bodymen: { body } }, res, next) =>
   FishSanctuaries.create(body)
     .then((fishSanctuaries) => fishSanctuaries.view(true))
@@ -220,13 +228,10 @@ export const show = ({ params }, res, next) =>
 export const update = ({ bodymen: { body }, params }, res, next) => {
   console.log("HERE1")
   console.log(body)
-  console.log("HERE2")
-  console.log(JSON.parse(JSON.stringify(body)))
-  // FishSanctuaries.create(JSON.parse(JSON.stringify(req.body)))
   FishSanctuaries.findById(params.id)
     .then(notFound(res))
-    .then((fishSanctuaries) => fishSanctuaries ? Object.assign(fishSanctuaries, JSON.parse(JSON.stringify(body))).save() : null)
-    // .then((fishSanctuaries) => fishSanctuaries ? Object.assign(fishSanctuaries, body).save() : null)
+    // .then((fishSanctuaries) => fishSanctuaries ? Object.assign(fishSanctuaries, JSON.parse(JSON.stringify(body))).save() : null)
+    .then((fishSanctuaries) => fishSanctuaries ? Object.assign(fishSanctuaries, body).save() : null)
     .then((fishSanctuaries) => fishSanctuaries ? fishSanctuaries.view(true) : null)
     .then(success(res))
     .catch(next)
