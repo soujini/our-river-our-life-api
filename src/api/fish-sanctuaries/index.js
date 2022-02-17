@@ -59,6 +59,8 @@ router.post('/create-fish-sanctuary', authenticateJWT,
   }),
   createFishSanctuary)
 
+
+
 router.put('/update-fish-sanctuary/:id', authenticateJWT,
   multer({ dest: 'temp/', limits: { fieldSize: 8 * 1024 * 1024 } })
     // .array("locationDetails.sanctuaryPictures.imageURL", 10),
