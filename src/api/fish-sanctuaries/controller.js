@@ -162,7 +162,7 @@ export const createFishSanctuary = async (req, res, next) => {
 
 export const updateFishSanctuary = async (req, res, next) => {
   console.log("In UpdateFishSanc");
-  console.log("souj " + req.body['locationDetails']['speciesPictures'].length);
+  console.log("souj " + req.body['locationDetails']['speciesPictures']);
   if (req.body['locationDetails']['speciesPictures'] != undefined) {
     req.body['locationDetails']['sanctuaryPictures'] = JSON.parse(req.body['locationDetails']['sanctuaryPictures']);
   }
