@@ -179,12 +179,11 @@ export const updateFishSanctuary = async (req, res, next) => {
       for (var i = 0; i < results[1].length; i++) {
         req.body.speciesPictures[i].imageURL = results[1][i].imageURL;
       }
-      req.body.id = '620cfbbe7ee6030018681377';
-      bla();
+      req.body.id = '620cfbbe7ee6030018681377'
       var params = {
         id: '620cfbbe7ee6030018681377'
       }
-      update(req.body, params);
+      update(JSON.parse(JSON.stringify(req.body)), params);
       // update({
       //   bodymen: JSON.parse(JSON.stringify(req.body, params))
       // });
@@ -193,10 +192,6 @@ export const updateFishSanctuary = async (req, res, next) => {
       //   .then(success(res, 201))
       //   .catch(next)
     });
-}
-
-export const bla = () => {
-  console.log("IN BLADDDDDD");
 }
 
 export const create = ({ bodymen: { body } }, res, next) =>
@@ -225,7 +220,7 @@ export const show = ({ params }, res, next) =>
 
 // export const update = ({ bodymen: { body }, params }, res, next) => {
 
-export const update = (body, params, res, next) => {
+export const update = ({ body, params }, res, next) => {
   console.log("HERE1 " + body.id)
   console.log("HERE1 " + params.id)
   console.log(body)
