@@ -222,10 +222,10 @@ export const update = ({ bodymen: { body }, params }, res, next) => {
   console.log("HERE1 ")
   console.log(body)
   if (body['locationDetails']['sanctuaryPictures'] != undefined) {
-    body['locationDetails']['sanctuaryPictures'] = JSON.parse(body['locationDetails']['sanctuaryPictures']);
+    body['locationDetails']['sanctuaryPictures'] = (body['locationDetails']['sanctuaryPictures']);
   }
   if (body['locationDetails']['speciesPictures'] != undefined) {
-    body['speciesPictures'] = JSON.parse(body['speciesPictures']);
+    body['speciesPictures'] = (body['speciesPictures']);
   }
 
   Promise.all([uploadSanctuaryPictures(body), uploadSpeciesPictures(body)])
