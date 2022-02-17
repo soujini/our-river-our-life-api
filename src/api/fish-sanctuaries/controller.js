@@ -161,8 +161,7 @@ export const createFishSanctuary = async (req, res, next) => {
 }
 
 export const updateFishSanctuary = async (req, res, next) => {
-  console.log("In UpdateFishSanc");
-  console.log("souj " + req.body['locationDetails']['speciesPictures']);
+
   if (req.body['locationDetails']['speciesPictures'] != undefined) {
     req.body['locationDetails']['sanctuaryPictures'] = JSON.parse(req.body['locationDetails']['sanctuaryPictures']);
   }
@@ -221,8 +220,7 @@ export const show = ({ params }, res, next) =>
 // export const update = ({ bodymen: { body }, params }, res, next) => {
 
 export const update = ({ bodymen: { body }, params }, res, next) => {
-  console.log("HERE1 " + body.id)
-  console.log("HERE2 " + params.id)
+  console.log("HERE1 ")
   console.log(body)
   FishSanctuaries.findById(body.id)
     .then(notFound(res))
