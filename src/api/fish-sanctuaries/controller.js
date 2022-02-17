@@ -223,6 +223,7 @@ export const show = ({ params }, res, next) =>
     .catch(next)
 
 export const update = ({ bodymen: { body }, params }, res, next) => {
+  console.log("HERE1 " + body.id)
   console.log("HERE1 " + params.id)
   console.log(body)
   FishSanctuaries.findById(body.id)
