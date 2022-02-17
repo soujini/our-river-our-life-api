@@ -147,45 +147,11 @@ export const createFishSanctuary = async (req, res, next) => {
     .then(results => {
       for (var i = 0; i < results[0].length; i++) {
         req.body.locationDetails.sanctuaryPictures[i].imageURL = results[0][i].imageURL;
-        //if(req.body.locationDetails.sanctuaryPictures != undefined || req.body.locationDetails.sanctuaryPictures != null){
-        //  console.log("SOUJ");
-        //console.log(req.body.locationDetails.sanctuaryPictures.length);
-
-        // console.log(results[0][i].imageURL);
-        //  }
-        // else{
-        //   req.body.locationDetails.sanctuaryPictures.push(
-        //     {"imageURL":results[0][i].imageURL})
-        //   }
       }
 
       for (var i = 0; i < results[1].length; i++) {
         req.body.speciesPictures[i].imageURL = results[1][i].imageURL;
       }
-
-
-      //  if(req.body.speciesPictures != undefined || req.body.speciesPictures != null){
-      //   req.body.speciesPictures[i].imageURL=results[1][i].imageURL;
-      // }
-      // else{
-      //   req.body.speciesPictures.push(
-      //     {"imageURL":results[1][i].imageURL})
-      //   }
-      // }
-
-      // console.log(req.body.sanctuaryPictures);
-      // console.log(results[0]);
-      // // req.body.sanctuaryPictures = results[1];
-      // // req.body.fishInformation = results[2];
-      //  console.log(results[1]);
-
-      // req.body.waterTesting=JSON.parse(JSON.stringify(req.body.waterTesting));
-      // console.log("souj");
-      //
-      // req.body.waterTesting= { pH: '12', waterTemperature: '43', dissolvedOxygen: '33' },
-      // req.body.waterTesting = JSON.stringify(req.body.waterTesting);
-      //     console.log(req.body.waterTesting);
-
 
       FishSanctuaries.create(JSON.parse(JSON.stringify(req.body)))
         .then((fishSanctuaries) => fishSanctuaries.view(true))
@@ -195,10 +161,27 @@ export const createFishSanctuary = async (req, res, next) => {
 }
 
 export const updateFishSanctuary = async (req, res, next) => {
-  FishSanctuaries.update(JSON.parse(JSON.stringify(req.body)))
-    .then((fishSanctuaries) => fishSanctuaries.view(true))
-    .then(success(res, 201))
-    .catch(next)
+  console.log("In UpdateFishSanc");
+  req.body['locationDetails']['sanctuaryPictures'] = JSON.parse(req.body['locationDetails']['sanctuaryPictures']);
+  // }
+  // if(req.body['locationDetails']['speciesPictures'] != undefined){
+  req.body['speciesPictures'] = JSON.parse(req.body['speciesPictures']);
+  // }
+
+  Promise.all([uploadSanctuaryPictures(req), uploadSpeciesPictures(req)])
+    .then(results => {
+      for (var i = 0; i < results[0].length; i++) {
+        req.body.locationDetails.sanctuaryPictures[i].imageURL = results[0][i].imageURL;
+      }
+
+      for (var i = 0; i < results[1].length; i++) {
+        req.body.speciesPictures[i].imageURL = results[1][i].imageURL;
+      }
+      FishSanctuaries.update(JSON.parse(JSON.stringify(req.body)))
+        .then((fishSanctuaries) => fishSanctuaries.view(true))
+        .then(success(res, 201))
+        .catch(next)
+    });
 }
 
 export const create = ({ bodymen: { body } }, res, next) =>
