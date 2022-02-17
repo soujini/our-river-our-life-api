@@ -59,7 +59,7 @@ router.post('/create-fish-sanctuary', authenticateJWT,
   }),
   createFishSanctuary)
 
-router.put('/update-fish-sanctuary', authenticateJWT,
+router.put('/update-fish-sanctuary/:id', authenticateJWT,
   multer({ dest: 'temp/', limits: { fieldSize: 8 * 1024 * 1024 } })
     // .array("locationDetails.sanctuaryPictures.imageURL", 10),
     .fields([{
@@ -76,7 +76,7 @@ router.put('/update-fish-sanctuary', authenticateJWT,
     speciesPictures,
     culturalHistoricalSignificance,
   }),
-  updateFishSanctuary)
+  update)
 
 /**
  * @api {post} /fish-sanctuaries Create fish sanctuaries
