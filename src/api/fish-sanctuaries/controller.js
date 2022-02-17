@@ -228,14 +228,14 @@ export const update = ({ bodymen: { body }, params }, res, next) => {
     body['speciesPictures'] = JSON.parse(body['speciesPictures']);
   }
 
-  Promise.all([uploadSanctuaryPictures(req), uploadSpeciesPictures(req)])
+  Promise.all([uploadSanctuaryPictures(body), uploadSpeciesPictures(body)])
     .then(results => {
       for (var i = 0; i < results[0].length; i++) {
-        req.body.locationDetails.sanctuaryPictures[i].imageURL = results[0][i].imageURL;
+        body.locationDetails.sanctuaryPictures[i].imageURL = results[0][i].imageURL;
       }
 
       for (var i = 0; i < results[1].length; i++) {
-        req.body.speciesPictures[i].imageURL = results[1][i].imageURL;
+        body.speciesPictures[i].imageURL = results[1][i].imageURL;
       }
 
       FishSanctuaries.findById(params.id)
