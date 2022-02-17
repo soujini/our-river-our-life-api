@@ -217,12 +217,11 @@ export const show = ({ params }, res, next) =>
     .then(success(res))
     .catch(next)
 
-// export const update = ({ bodymen: { body }, params }, res, next) => {
 
 export const update = ({ bodymen: { body }, params }, res, next) => {
   console.log("HERE1 ")
   console.log(body)
-  FishSanctuaries.findById(body.id)
+  FishSanctuaries.findById(params.id)
     .then(notFound(res))
     .then((fishSanctuaries) => fishSanctuaries ? Object.assign(fishSanctuaries, body).save() : null)
     .then((fishSanctuaries) => fishSanctuaries ? fishSanctuaries.view(true) : null)
