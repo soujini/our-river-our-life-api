@@ -43,6 +43,8 @@ export const deleteFromBucket = function () {
   });
 }
 export const uploadSanctuaryPictures = function (req) {
+  console.log("IN UPLOAD SANC");
+  console.log(req);
   var customOriginalName = "";
   var customPath = "";
   var customFieldName = "";
@@ -218,9 +220,9 @@ export const show = ({ params }, res, next) =>
     .catch(next)
 
 
-export const update = ({ bodymen: { body }, params }, res, next) => {
+export const update = (req, { bodymen: { body }, params }, res, next) => {
   console.log("HERE1 ")
-  console.log(body)
+  console.log(req.files);
   if (body['locationDetails']['sanctuaryPictures'] != undefined) {
     body['locationDetails']['sanctuaryPictures'] = (body['locationDetails']['sanctuaryPictures']);
   }
@@ -228,7 +230,7 @@ export const update = ({ bodymen: { body }, params }, res, next) => {
     body['speciesPictures'] = (body['speciesPictures']);
   }
 
-  Promise.all([uploadSanctuaryPictures(body), uploadSpeciesPictures(body)])
+  Promise.all([uploadSanctuaryPictures(req), uploadSpeciesPictures(req)])
     .then(results => {
       for (var i = 0; i < results[0].length; i++) {
         body.locationDetails.sanctuaryPictures[i].imageURL = results[0][i].imageURL;
