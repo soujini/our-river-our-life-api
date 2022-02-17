@@ -179,11 +179,14 @@ export const updateFishSanctuary = async (req, res, next) => {
       for (var i = 0; i < results[1].length; i++) {
         req.body.speciesPictures[i].imageURL = results[1][i].imageURL;
       }
+      req.body.id = '620cfbbe7ee6030018681377';
       bla();
       var params = {
         id: '620cfbbe7ee6030018681377'
       }
-      update({ bodymen: req.body }, params);
+      update({
+        bodymen: JSON.parse(JSON.stringify(req.body, params))
+      });
       // FishSanctuaries.update(JSON.parse(JSON.stringify(req.body), { id: '620cfbbe7ee6030018681377' }))
       //   .then((fishSanctuaries) => fishSanctuaries.view(true))
       //   .then(success(res, 201))
@@ -220,11 +223,10 @@ export const show = ({ params }, res, next) =>
     .catch(next)
 
 export const update = ({ bodymen: { body }, params }, res, next) => {
-  console.log("HERE1")
+  console.log("HERE1 " + params.id)
   console.log(body)
-  FishSanctuaries.findById(params.id)
+  FishSanctuaries.findById(body.id)
     .then(notFound(res))
-    // .then((fishSanctuaries) => fishSanctuaries ? Object.assign(fishSanctuaries, JSON.parse(JSON.stringify(body))).save() : null)
     .then((fishSanctuaries) => fishSanctuaries ? Object.assign(fishSanctuaries, body).save() : null)
     .then((fishSanctuaries) => fishSanctuaries ? fishSanctuaries.view(true) : null)
     .then(success(res))
