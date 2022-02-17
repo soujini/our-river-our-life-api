@@ -179,8 +179,8 @@ export const updateFishSanctuary = async (req, res, next) => {
       for (var i = 0; i < results[1].length; i++) {
         req.body.speciesPictures[i].imageURL = results[1][i].imageURL;
       }
-      this.bla();
-      this.update(req.body, { id: '620cfbbe7ee6030018681377' });
+      bla();
+      update(req.body, { id: '620cfbbe7ee6030018681377' });
       // FishSanctuaries.update(JSON.parse(JSON.stringify(req.body), { id: '620cfbbe7ee6030018681377' }))
       //   .then((fishSanctuaries) => fishSanctuaries.view(true))
       //   .then(success(res, 201))
