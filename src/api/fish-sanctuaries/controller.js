@@ -226,10 +226,10 @@ export const update = (req, res, next) => {
 
   FishSanctuaries.findById('620cfbbe7ee6030018681377')
     .then(notFound(res))
-    .then((fishSanctuaries) => fishSanctuaries ? Object.assign(fishSanctuaries, JSON.parse(JSON.stringify(req.body))).save() : null)
+    .then((fishSanctuaries) => fishSanctuaries ? Object.assign(fishSanctuaries, (req.body)).save() : null)
     .then((fishSanctuaries) => fishSanctuaries ? fishSanctuaries.view(true) : null)
-    .then(success(res, 201))
-    .catch(next)
+  // .then(success(res, 201))
+  // .catch(next)
 }
 
 export const destroy = ({ params }, res, next) =>
