@@ -78,7 +78,7 @@ router.put('/update-fish-sanctuary/:id', authenticateJWT,
     speciesPictures,
     culturalHistoricalSignificance,
   }),
-  update)
+  updateFishSanctuary)
 
 /**
  * @api {post} /fish-sanctuaries Create fish sanctuaries
