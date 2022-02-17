@@ -183,7 +183,7 @@ export const updateFishSanctuary = async (req, res, next) => {
       var params = {
         id: '620cfbbe7ee6030018681377'
       }
-      update({ body: JSON.parse(JSON.stringify(req.body)), params: params });
+      update({ body: req.body, params: params });
       // update({
       //   bodymen: JSON.parse(JSON.stringify(req.body, params))
       // });
@@ -220,7 +220,7 @@ export const show = ({ params }, res, next) =>
 
 // export const update = ({ bodymen: { body }, params }, res, next) => {
 
-export const update = ({ body, params }, res, next) => {
+export const update = ({ bodymen: { body }, params }, res, next) => {
   console.log("HERE1 " + body.id)
   console.log("HERE2 " + params.id)
   console.log(body)
