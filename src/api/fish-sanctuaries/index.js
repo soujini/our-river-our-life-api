@@ -59,10 +59,10 @@ router.post('/create-fish-sanctuary', authenticateJWT,
   }),
   createFishSanctuary)
 
-router.put('/:id',
-  // master(),
-  body({ locationDetails, habitatCharacteristics, managementActions, speciesPictures, culturalHistoricalSignificance }),
-  update)
+// router.put('/:id',
+//   // master(),
+//   body({ locationDetails, habitatCharacteristics, managementActions, speciesPictures, culturalHistoricalSignificance }),
+//   update)
 
 router.put('/update-fish-sanctuary/:id', authenticateJWT,
   multer({ dest: 'temp/', limits: { fieldSize: 8 * 1024 * 1024 } })

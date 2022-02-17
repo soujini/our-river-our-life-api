@@ -162,6 +162,7 @@ export const createFishSanctuary = async (req, res, next) => {
 
 export const updateFishSanctuary = async (req, res, next) => {
   console.log("In UpdateFishSanc");
+  console.log(req.body['locationDetails']['sanctuaryPictures']);
   req.body['locationDetails']['sanctuaryPictures'] = JSON.parse(req.body['locationDetails']['sanctuaryPictures']);
   // }
   // if(req.body['locationDetails']['speciesPictures'] != undefined){
@@ -178,9 +179,9 @@ export const updateFishSanctuary = async (req, res, next) => {
         req.body.speciesPictures[i].imageURL = results[1][i].imageURL;
       }
       FishSanctuaries.update(JSON.parse(JSON.stringify(req.body)))
-        .then((fishSanctuaries) => fishSanctuaries.view(true))
-        .then(success(res, 201))
-        .catch(next)
+      // .then((fishSanctuaries) => fishSanctuaries.view(true))
+      // .then(success(res, 201))
+      // .catch(next)
     });
 }
 
