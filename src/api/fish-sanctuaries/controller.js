@@ -56,7 +56,7 @@ export const uploadSanctuaryPictures = function (req) {
   return new Promise((resolve, reject) => {
     // console.log(req.files.sanctuaryPictures.length);
     var sanctuaryPictures = [];
-    if (req.files.sanctuaryFiles) {
+    if (req.files.sanctuaryFiles != undefined) {
 
       let promises = req.files.sanctuaryFiles.map((item) => {
         customFieldName = item.fieldname;
@@ -221,7 +221,7 @@ export const show = ({ params }, res, next) =>
 export const update = ({ bodymen: { body }, params }, res, next) => {
   console.log("HERE1 ")
   console.log(body)
-  if (body['locationDetails']['speciesPictures'] != undefined) {
+  if (body['locationDetails']['sanctuaryPictures'] != undefined) {
     body['locationDetails']['sanctuaryPictures'] = JSON.parse(body['locationDetails']['sanctuaryPictures']);
   }
   if (body['locationDetails']['speciesPictures'] != undefined) {
