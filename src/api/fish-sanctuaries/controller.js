@@ -184,9 +184,10 @@ export const updateFishSanctuary = async (req, res, next) => {
       var params = {
         id: '620cfbbe7ee6030018681377'
       }
-      update({
-        bodymen: JSON.parse(JSON.stringify(req.body, params))
-      });
+      update(req.body, params);
+      // update({
+      //   bodymen: JSON.parse(JSON.stringify(req.body, params))
+      // });
       // FishSanctuaries.update(JSON.parse(JSON.stringify(req.body), { id: '620cfbbe7ee6030018681377' }))
       //   .then((fishSanctuaries) => fishSanctuaries.view(true))
       //   .then(success(res, 201))
@@ -222,7 +223,9 @@ export const show = ({ params }, res, next) =>
     .then(success(res))
     .catch(next)
 
-export const update = ({ bodymen: { body }, params }, res, next) => {
+// export const update = ({ bodymen: { body }, params }, res, next) => {
+
+export const update = (body, params, res, next) => {
   console.log("HERE1 " + body.id)
   console.log("HERE1 " + params.id)
   console.log(body)
