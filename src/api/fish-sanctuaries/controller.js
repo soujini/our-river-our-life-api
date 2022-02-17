@@ -180,9 +180,9 @@ export const updateFishSanctuary = async (req, res, next) => {
         req.body.speciesPictures[i].imageURL = results[1][i].imageURL;
       }
       FishSanctuaries.update(JSON.parse(JSON.stringify(req.body)))
-        .then((fishSanctuaries) => fishSanctuaries.view(true))
-        .then(success(res, 201))
-        .catch(next)
+      // .then((fishSanctuaries) => fishSanctuaries.view(true))
+      // .then(success(res, 201))
+      // .catch(next)
     });
 }
 
