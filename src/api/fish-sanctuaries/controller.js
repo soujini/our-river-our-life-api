@@ -221,12 +221,30 @@ export const show = ({ params }, res, next) =>
 export const update = ({ bodymen: { body }, params }, res, next) => {
   console.log("HERE1 ")
   console.log(body)
-  FishSanctuaries.findById(params.id)
-    .then(notFound(res))
-    .then((fishSanctuaries) => fishSanctuaries ? Object.assign(fishSanctuaries, body).save() : null)
-    .then((fishSanctuaries) => fishSanctuaries ? fishSanctuaries.view(true) : null)
-    .then(success(res))
-    .catch(next)
+  if (body['locationDetails']['speciesPictures'] != undefined) {
+    body['locationDetails']['sanctuaryPictures'] = JSON.parse(body['locationDetails']['sanctuaryPictures']);
+  }
+  if (body['locationDetails']['speciesPictures'] != undefined) {
+    body['speciesPictures'] = JSON.parse(body['speciesPictures']);
+  }
+
+  Promise.all([uploadSanctuaryPictures(req), uploadSpeciesPictures(req)])
+    .then(results => {
+      for (var i = 0; i < results[0].length; i++) {
+        req.body.locationDetails.sanctuaryPictures[i].imageURL = results[0][i].imageURL;
+      }
+
+      for (var i = 0; i < results[1].length; i++) {
+        req.body.speciesPictures[i].imageURL = results[1][i].imageURL;
+      }
+
+      FishSanctuaries.findById(params.id)
+        .then(notFound(res))
+        .then((fishSanctuaries) => fishSanctuaries ? Object.assign(fishSanctuaries, body).save() : null)
+        .then((fishSanctuaries) => fishSanctuaries ? fishSanctuaries.view(true) : null)
+        .then(success(res))
+        .catch(next)
+    });
 }
 
 export const destroy = ({ params }, res, next) =>
