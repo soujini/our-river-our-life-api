@@ -228,7 +228,7 @@ export const update = (req, res, next) => {
     .then(notFound(res))
     .then((fishSanctuaries) => fishSanctuaries ? Object.assign(fishSanctuaries, (req.body)).save() : null)
     .then((fishSanctuaries) => fishSanctuaries ? fishSanctuaries.view(true) : null)
-    .then(success(res, 201))
+    .then(success(res))
     .catch(next)
 }
 
