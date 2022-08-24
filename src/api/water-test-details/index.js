@@ -7,7 +7,7 @@ export WaterTestDetails, { schema } from './model'
 import multer from 'multer'
 
 const router = new Router()
-const { userId, contributorName, generalInformation,waterLevelAndWeather,surroundings,waterTesting, flora, fauna, artwork, groupPicture, activity, river, surrounding,certificateURL } = schema.tree
+const { userId, contributorName, generalInformation, waterLevelAndWeather, surroundings, waterTesting, flora, fauna, artwork, groupPicture, activity, river, surrounding, certificateURL } = schema.tree
 
 const accessTokenSecret = 'youraccesstokensecret';
 const jwt = require('jsonwebtoken');
@@ -31,40 +31,40 @@ const authenticateJWT = (req, res, next) => {
   }
 };
 
-router.post('/create-web',authenticateJWT,
-multer({ dest: 'temp/', limits: { fieldSize: 8 * 1024 * 1024 } }).fields([{
-  name: 'flora', maxCount: 5
-}, {
-  name: 'fauna', maxCount: 5
-}, {
-  name: 'artwork', maxCount: 5
-}, {
-  name: 'groupPicture', maxCount: 5
-}, {
-  name: 'activity', maxCount: 5
-}, {
-  name: 'river', maxCount: 5
-},
-{
-  name: 'surrounding', maxCount: 5
-}
-]),
-body({
-  userId,
-  generalInformation,
-  waterLevelAndWeather,
-  surroundings,
-  waterTesting,
-  flora,
-  fauna,
-  artwork,
-  groupPicture,
-  activity,
-  river,
-  surrounding,
-  certificateURL
-}),
-createWaterTestDetails)
+router.post('/create-web', authenticateJWT,
+  multer({ dest: 'temp/', limits: { fieldSize: 8 * 1024 * 1024 } }).fields([{
+    name: 'flora', maxCount: 5
+  }, {
+    name: 'fauna', maxCount: 5
+  }, {
+    name: 'artwork', maxCount: 5
+  }, {
+    name: 'groupPicture', maxCount: 5
+  }, {
+    name: 'activity', maxCount: 5
+  }, {
+    name: 'river', maxCount: 5
+  },
+  {
+    name: 'surrounding', maxCount: 5
+  }
+  ]),
+  body({
+    userId,
+    generalInformation,
+    waterLevelAndWeather,
+    surroundings,
+    waterTesting,
+    flora,
+    fauna,
+    artwork,
+    groupPicture,
+    activity,
+    river,
+    surrounding,
+    certificateURL
+  }),
+  createWaterTestDetails)
 
 
 /**
@@ -78,23 +78,23 @@ createWaterTestDetails)
 * @apiError {Object} 400 Some parameters may contain invalid values.
 * @apiError 404 Water test details not found.
 */
-router.post('/',authenticateJWT,
-body({
-  userId,
-  generalInformation,
-  waterLevelAndWeather,
-  surroundings,
-  waterTesting,
-  flora,
-  fauna,
-  artwork,
-  groupPicture,
-  activity,
-  river,
-  surrounding,
-  certificateURL
-}),
-create)
+router.post('/', authenticateJWT,
+  body({
+    userId,
+    generalInformation,
+    waterLevelAndWeather,
+    surroundings,
+    waterTesting,
+    flora,
+    fauna,
+    artwork,
+    groupPicture,
+    activity,
+    river,
+    surrounding,
+    certificateURL
+  }),
+  create)
 
 /**
 * @api {get} /water-test-details Retrieve water test details
@@ -106,8 +106,8 @@ create)
 * @apiError {Object} 400 Some parameters may contain invalid values.
 */
 router.get('/',
-query(),
-index)
+  query(),
+  index)
 
 /**
 * @api {get} /water-test-details/:id Retrieve water test details
@@ -117,8 +117,8 @@ index)
 * @apiError {Object} 400 Some parameters may contain invalid values.
 * @apiError 404 Water test details not found.
 */
-router.get('/:id',authenticateJWT,
-show)
+router.get('/:id', authenticateJWT,
+  show)
 
 /**
 * @api {put} /water-test-details/:id Update water test details
@@ -131,9 +131,9 @@ show)
 * @apiError {Object} 400 Some parameters may contain invalid values.
 * @apiError 404 Water test details not found.
 */
-router.put('/:id',authenticateJWT,
-body({ userId, flora, fauna, artwork, groupPicture, activity, river, certificateURL }),
-update)
+router.put('/:id', authenticateJWT,
+  body({ userId, flora, fauna, artwork, groupPicture, activity, river, certificateURL }),
+  update)
 
 /**
 * @api {delete} /water-test-details/:id Delete water test details
@@ -142,7 +142,7 @@ update)
 * @apiSuccess (Success 204) 204 No Content.
 * @apiError 404 Water test details not found.
 */
-router.delete('/:id',authenticateJWT,
-destroy)
+router.delete('/:id', authenticateJWT,
+  destroy)
 
 export default router

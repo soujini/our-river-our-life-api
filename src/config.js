@@ -36,7 +36,7 @@ const config = {
       }
     }
   },
-  test: { },
+  test: {},
   development: {
     mongo: {
       uri: 'mongodb://localhost/our-river-our-life-api-dev',

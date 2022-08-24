@@ -50,15 +50,15 @@ const authenticateJWT = (req, res, next) => {
  * @apiError 401 master access only.
  */
 
- router.post('/create-flora',authenticateJWT,
- multer({ dest: 'temp/', limits: { fieldSize: 8 * 1024 * 1024 }}).array('flora', 10),
-   createFlora
- )
+router.post('/create-flora', authenticateJWT,
+  multer({ dest: 'temp/', limits: { fieldSize: 8 * 1024 * 1024 } }).array('flora', 10),
+  createFlora
+)
 
- router.post('/create-fauna',authenticateJWT,
- multer({ dest: 'temp/', limits: { fieldSize: 8 * 1024 * 1024 }}).array('fauna', 10),
-   createFauna
- )
+router.post('/create-fauna', authenticateJWT,
+  multer({ dest: 'temp/', limits: { fieldSize: 8 * 1024 * 1024 } }).array('fauna', 10),
+  createFauna
+)
 
 router.post('/',
   // master(),

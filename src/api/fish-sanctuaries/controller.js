@@ -224,13 +224,14 @@ export const update = (req, res, next) => {
   console.log("in update");
   console.log(req.body);
 
-  FishSanctuaries.findById('620cfbbe7ee6030018681377')
+  FishSanctuaries.findById(req.body.id)
     .then(notFound(res))
     .then((fishSanctuaries) => fishSanctuaries ? Object.assign(fishSanctuaries, (req.body)).save() : null)
     .then((fishSanctuaries) => fishSanctuaries ? fishSanctuaries.view(true) : null)
-  // .then(success(res, 201))
-  // .catch(next)
+    .then(success(res, 201))
+    .catch(next)
 }
+
 
 export const destroy = ({ params }, res, next) =>
   FishSanctuaries.findById(params.id)

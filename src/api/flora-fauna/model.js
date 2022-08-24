@@ -17,12 +17,12 @@ const floraFaunaSchema = new Schema({
     type: String
   },
   flora: {
-      type: Array,
-      timestamps: true
+    type: Array,
+    timestamps: true
   },
   fauna: {
-      type: Array,
-      timestamps: true
+    type: Array,
+    timestamps: true
   },
   commonName: {
     type: String
@@ -46,11 +46,11 @@ const floraFaunaSchema = new Schema({
 })
 
 floraFaunaSchema.methods = {
-  view (full) {
+  view(full) {
     const view = {
       // simple view
       id: this.id,
-      userId:this.userId,
+      userId: this.userId,
       // username:this.username,
       latitude: this.latitude,
       longitude: this.longitude,
@@ -62,7 +62,7 @@ floraFaunaSchema.methods = {
       scientificName: this.scientificName,
       createdAt: this.createdAt,
       updatedAt: this.updatedAt,
-      contributorName:this.contributorName
+      contributorName: this.contributorName
     }
 
     return full ? {
