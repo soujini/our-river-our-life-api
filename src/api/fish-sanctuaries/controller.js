@@ -184,7 +184,15 @@ export const updateFishSanctuary = async (req, res, next) => {
       var params = {
         id: '620cfbbe7ee6030018681377'
       }
-      update(req);
+
+
+      // update(req);
+      FishSanctuaries.findById(req.body.id)
+        .then(notFound(res))
+        .then((fishSanctuaries) => fishSanctuaries ? Object.assign(fishSanctuaries, (JSON.parse(req.body))).save() : null)
+        .then((fishSanctuaries) => fishSanctuaries ? fishSanctuaries.view(true) : null)
+        .then(success(res))
+        .catch(next)
       // update({
       //   bodymen: JSON.parse(JSON.stringify(req.body, params))
       // });
