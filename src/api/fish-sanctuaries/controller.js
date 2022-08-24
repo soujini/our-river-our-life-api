@@ -180,11 +180,6 @@ export const updateFishSanctuary = async (req, res, next) => {
       for (var i = 0; i < results[1].length; i++) {
         req.body.speciesPictures[i].imageURL = results[1][i].imageURL;
       }
-      req.body.id = '620cfbbe7ee6030018681377'
-      var params = {
-        id: '620cfbbe7ee6030018681377'
-      }
-
 
       // update(req);
       FishSanctuaries.findById(req.body.id)
