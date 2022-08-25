@@ -164,7 +164,7 @@ export const createFishSanctuary = async (req, res, next) => {
 
 export const updateFishSanctuary = async (req, res, next) => {
   console.log("update fish sanctuary")
-  console.log(req.body)
+  console.log(req)
 
   req.body['locationDetails']['sanctuaryPictures'] = JSON.parse(req.body['locationDetails']['sanctuaryPictures']);
   req.body['speciesPictures'] = JSON.parse(req.body['speciesPictures']);
