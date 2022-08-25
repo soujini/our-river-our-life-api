@@ -137,7 +137,8 @@ export const uploadSpeciesPictures = function (req) {
   });
 }
 export const createFishSanctuary = async (req, res, next) => {
-
+  console.log("update fish sanctuary")
+  console.log(req.body)
   // if(req.body['locationDetails']['sanctuaryPictures'] != undefined){
   req.body['locationDetails']['sanctuaryPictures'] = JSON.parse(req.body['locationDetails']['sanctuaryPictures']);
   // }
@@ -164,7 +165,7 @@ export const createFishSanctuary = async (req, res, next) => {
 
 export const updateFishSanctuary = async (req, res, next) => {
   console.log("update fish sanctuary")
-  console.log(req)
+  console.log(Json.parse(req.body))
 
   req.body['locationDetails']['sanctuaryPictures'] = JSON.parse(req.body['locationDetails']['sanctuaryPictures']);
   req.body['speciesPictures'] = JSON.parse(req.body['speciesPictures']);
