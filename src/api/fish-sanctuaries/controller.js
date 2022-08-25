@@ -184,7 +184,7 @@ export const updateFishSanctuary = async (req, res, next) => {
       // update(req);
       FishSanctuaries.findById(req.body.id)
         .then(notFound(res))
-        .then((fishSanctuaries) => fishSanctuaries ? Object.assign(fishSanctuaries, (req.body)).save() : null)
+        .then((fishSanctuaries) => fishSanctuaries ? Object.assign(fishSanctuaries, (Json.parse(Json.stringify(req.body)))).save() : null)
         .then((fishSanctuaries) => fishSanctuaries ? fishSanctuaries.view(true) : null)
         .then(success(res))
         .catch(next)
