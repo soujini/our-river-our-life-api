@@ -164,12 +164,8 @@ export const createFishSanctuary = async (req, res, next) => {
 
 export const updateFishSanctuary = async (req, res, next) => {
 
-  if (req.body['locationDetails']['speciesPictures'] != undefined) {
-    req.body['locationDetails']['sanctuaryPictures'] = JSON.parse(req.body['locationDetails']['sanctuaryPictures']);
-  }
-  if (req.body['locationDetails']['speciesPictures'] != undefined) {
-    req.body['speciesPictures'] = JSON.parse(req.body['speciesPictures']);
-  }
+  req.body['locationDetails']['sanctuaryPictures'] = JSON.parse(req.body['locationDetails']['sanctuaryPictures']);
+  req.body['speciesPictures'] = JSON.parse(req.body['speciesPictures']);
 
   Promise.all([uploadSanctuaryPictures(req), uploadSpeciesPictures(req)])
     .then(results => {
