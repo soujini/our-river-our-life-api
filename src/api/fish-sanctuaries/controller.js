@@ -138,6 +138,8 @@ export const uploadSpeciesPictures = function (req) {
 }
 export const createFishSanctuary = async (req, res, next) => {
 
+  console.log("In create nodejs")
+  console.log(req.body.userId)
   // if(req.body['locationDetails']['sanctuaryPictures'] != undefined){
   req.body['locationDetails']['sanctuaryPictures'] = JSON.parse(req.body['locationDetails']['sanctuaryPictures']);
   // }
