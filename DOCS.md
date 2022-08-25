@@ -2,38 +2,53 @@
 
 
 
-- [Auth](#auth)
-	- [Authenticate](#authenticate)
+- [Blogs](#blogs)
+	- [Create blogs](#create-blogs)
+	- [Delete blogs](#delete-blogs)
+	- [Retrieve blogs](#retrieve-blogs)
+	- [Update blogs](#update-blogs)
 	
-- [Login](#login)
-	- [Create login](#create-login)
-	- [Delete login](#delete-login)
-	- [login](#login)
-	- [Retrieve login](#retrieve-login)
-	- [Retrieve logins](#retrieve-logins)
-	- [Update login](#update-login)
+- [FishSanctuaries](#fishsanctuaries)
+	- [Create fish sanctuaries](#create-fish-sanctuaries)
+	- [Delete fish sanctuaries](#delete-fish-sanctuaries)
+	- [Retrieve fish sanctuaries](#retrieve-fish-sanctuaries)
+	- [Update fish sanctuaries](#update-fish-sanctuaries)
 	
-- [Test2](#test2)
-	- [Create test 2](#create-test-2)
-	- [Delete test 2](#delete-test-2)
-	- [Retrieve test 2](#retrieve-test-2)
-	- [Retrieve test 2 s](#retrieve-test-2-s)
-	- [Update test 2](#update-test-2)
+- [FloodAlert](#floodalert)
+	- [Create flood alert](#create-flood-alert)
+	- [Delete flood alert](#delete-flood-alert)
+	- [Retrieve flood alert](#retrieve-flood-alert)
+	- [Retrieve flood alerts](#retrieve-flood-alerts)
+	- [Update flood alert](#update-flood-alert)
 	
-- [Test](#test)
-	- [Create test](#create-test)
-	- [Delete test](#delete-test)
-	- [Retrieve test](#retrieve-test)
-	- [Retrieve tests](#retrieve-tests)
-	- [Update test](#update-test)
+- [FloraFauna](#florafauna)
+	- [Create flora fauna](#create-flora-fauna)
+	- [Delete flora fauna](#delete-flora-fauna)
+	- [Retrieve flora fauna](#retrieve-flora-fauna)
+	- [Retrieve flora faunas](#retrieve-flora-faunas)
+	- [Update flora fauna](#update-flora-fauna)
+	
+- [FloraFaunaImagesUpload](#florafaunaimagesupload)
+	- [Upload flora fauna images upload](#upload-flora-fauna-images-upload)
+	
+- [Images](#images)
+	- [Create images](#create-images)
+	- [Delete images](#delete-images)
+	- [Retrieve images](#retrieve-images)
+	- [Update images](#update-images)
+	
+- [Pdf](#pdf)
+	- [Create pdf](#create-pdf)
+	- [Delete pdf](#delete-pdf)
+	- [Retrieve pdf](#retrieve-pdf)
+	- [Retrieve pdfs](#retrieve-pdfs)
+	- [Update pdf](#update-pdf)
 	
 - [User](#user)
-	- [Create user](#create-user)
+	- [user](#user)
 	- [Delete user](#delete-user)
-	- [Retrieve current user](#retrieve-current-user)
 	- [Retrieve user](#retrieve-user)
 	- [Retrieve users](#retrieve-users)
-	- [Update password](#update-password)
 	- [Update user](#update-user)
 	
 - [WaterTestDetails](#watertestdetails)
@@ -44,73 +59,47 @@
 	
 
 
-# Auth
+# Blogs
 
-## Authenticate
-
-
-
-	POST /auth
-
-### Headers
-
-| Name    | Type      | Description                          |
-|---------|-----------|--------------------------------------|
-| Authorization			| String			|  <p>Basic authorization with email and password.</p>							|
-
-### Parameters
-
-| Name    | Type      | Description                          |
-|---------|-----------|--------------------------------------|
-| access_token			| String			|  <p>Master access_token.</p>							|
-
-# Login
-
-## Create login
+## Create blogs
 
 
 
-	POST /login
+	POST /blogs
 
 
 ### Parameters
 
 | Name    | Type      | Description                          |
 |---------|-----------|--------------------------------------|
-| phoneNumber			| 			|  <p>Login's phoneNumber.</p>							|
+| access_token			| String			|  <p>admin access token.</p>							|
+| templateType			| 			|  <p>Blogs's templateType.</p>							|
+| userId			| 			|  <p>Blogs's userId.</p>							|
+| featuredTitle			| 			|  <p>Blogs's featuredTitle.</p>							|
+| featuredDescription			| 			|  <p>Blogs's featuredDescription.</p>							|
+| featuredPhoto			| 			|  <p>Blogs's featuredPhoto.</p>							|
+| featuredAdditionalPhotos			| 			|  <p>Blogs's featuredAdditionalPhotos.</p>							|
+| featuredVideo			| 			|  <p>Blogs's featuredVideo.</p>							|
+| featuredAdditionalVideos			| 			|  <p>Blogs's featuredAdditionalVideos.</p>							|
 
-## Delete login
+## Delete blogs
 
 
 
-	DELETE /login/:id
-
-
-## login
-
-
-
-	POST /login
+	DELETE /blogs/:id
 
 
 ### Parameters
 
 | Name    | Type      | Description                          |
 |---------|-----------|--------------------------------------|
-| phoneNumber			| 			|  <p>Login's phoneNumber.</p>							|
+| access_token			| String			|  <p>admin access token.</p>							|
 
-## Retrieve login
-
-
-
-	GET /login/:id
-
-
-## Retrieve logins
+## Retrieve blogs
 
 
 
-	GET /login
+	GET /blogs
 
 
 ### Parameters
@@ -123,53 +112,65 @@
 | sort			| String[]			| **optional** <p>Order of returned items.</p>							|
 | fields			| String[]			| **optional** <p>Fields to be returned.</p>							|
 
-## Update login
+## Update blogs
 
 
 
-	PUT /login/:id
-
-
-### Parameters
-
-| Name    | Type      | Description                          |
-|---------|-----------|--------------------------------------|
-| phoneNumber			| 			|  <p>Login's phoneNumber.</p>							|
-
-# Test2
-
-## Create test 2
-
-
-
-	POST /test2
+	PUT /blogs/:id
 
 
 ### Parameters
 
 | Name    | Type      | Description                          |
 |---------|-----------|--------------------------------------|
-| phoneNumber			| 			|  <p>Test 2's phoneNumber.</p>							|
+| access_token			| String			|  <p>admin access token.</p>							|
+| templateType			| 			|  <p>Blogs's templateType.</p>							|
+| userId			| 			|  <p>Blogs's userId.</p>							|
+| featuredTitle			| 			|  <p>Blogs's featuredTitle.</p>							|
+| featuredDescription			| 			|  <p>Blogs's featuredDescription.</p>							|
+| featuredPhoto			| 			|  <p>Blogs's featuredPhoto.</p>							|
+| featuredAdditionalPhotos			| 			|  <p>Blogs's featuredAdditionalPhotos.</p>							|
+| featuredVideo			| 			|  <p>Blogs's featuredVideo.</p>							|
+| featuredAdditionalVideos			| 			|  <p>Blogs's featuredAdditionalVideos.</p>							|
 
-## Delete test 2
+# FishSanctuaries
 
-
-
-	DELETE /test2/:id
-
-
-## Retrieve test 2
-
-
-
-	GET /test2/:id
-
-
-## Retrieve test 2 s
+## Create fish sanctuaries
 
 
 
-	GET /test2
+	POST /fish-sanctuaries
+
+
+### Parameters
+
+| Name    | Type      | Description                          |
+|---------|-----------|--------------------------------------|
+| access_token			| String			|  <p>admin access token.</p>							|
+| locationDetails			| 			|  <p>Fish sanctuaries's locationDetails.</p>							|
+| habitatCharacteristics			| 			|  <p>Fish sanctuaries's habitatCharacteristics.</p>							|
+| managementActions			| 			|  <p>Fish sanctuaries's managementActions.</p>							|
+| speciesPictures			| 			|  <p>Fish sanctuaries's speciesPictures.</p>							|
+| culturalHistoricalSignificance			| 			|  <p>Fish sanctuaries's culturalHistoricalSignificance.</p>							|
+
+## Delete fish sanctuaries
+
+
+
+	DELETE /fish-sanctuaries/:id
+
+
+### Parameters
+
+| Name    | Type      | Description                          |
+|---------|-----------|--------------------------------------|
+| access_token			| String			|  <p>master access token.</p>							|
+
+## Retrieve fish sanctuaries
+
+
+
+	GET /fish-sanctuaries
 
 
 ### Parameters
@@ -182,39 +183,123 @@
 | sort			| String[]			| **optional** <p>Order of returned items.</p>							|
 | fields			| String[]			| **optional** <p>Fields to be returned.</p>							|
 
-## Update test 2
+## Update fish sanctuaries
 
 
 
-	PUT /test2/:id
-
-
-### Parameters
-
-| Name    | Type      | Description                          |
-|---------|-----------|--------------------------------------|
-| phoneNumber			| 			|  <p>Test 2's phoneNumber.</p>							|
-
-# Test
-
-## Create test
-
-
-
-	POST /test
+	PUT /fish-sanctuaries/:id
 
 
 ### Parameters
 
 | Name    | Type      | Description                          |
 |---------|-----------|--------------------------------------|
-| phoneNumber			| 			|  <p>Test's phoneNumber.</p>							|
+| access_token			| String			|  <p>master access token.</p>							|
+| locationDetails			| 			|  <p>Fish sanctuaries's locationDetails.</p>							|
+| habitatCharacteristics			| 			|  <p>Fish sanctuaries's habitatCharacteristics.</p>							|
+| managementActions			| 			|  <p>Fish sanctuaries's managementActions.</p>							|
+| speciesPictures			| 			|  <p>Fish sanctuaries's speciesPictures.</p>							|
+| culturalHistoricalSignificance			| 			|  <p>Fish sanctuaries's culturalHistoricalSignificance.</p>							|
 
-## Delete test
+# FloodAlert
+
+## Create flood alert
 
 
 
-	DELETE /test/:id
+	POST /flood-alert
+
+
+### Parameters
+
+| Name    | Type      | Description                          |
+|---------|-----------|--------------------------------------|
+| location			| 			|  <p>Flood alert's location.</p>							|
+| latitude			| 			|  <p>Flood alert's latitude.</p>							|
+| longitude			| 			|  <p>Flood alert's longitude.</p>							|
+| date			| 			|  <p>Flood alert's date.</p>							|
+| time			| 			|  <p>Flood alert's time.</p>							|
+| photos			| 			|  <p>Flood alert's photos.</p>							|
+| experience			| 			|  <p>Flood alert's experience.</p>							|
+
+## Delete flood alert
+
+
+
+	DELETE /flood-alert/:id
+
+
+## Retrieve flood alert
+
+
+
+	GET /flood-alert/:id
+
+
+## Retrieve flood alerts
+
+
+
+	GET /flood-alert
+
+
+### Parameters
+
+| Name    | Type      | Description                          |
+|---------|-----------|--------------------------------------|
+| q			| String			| **optional** <p>Query to search.</p>							|
+| page			| Number			| **optional** <p>Page number.</p>							|
+| limit			| Number			| **optional** <p>Amount of returned items.</p>							|
+| sort			| String[]			| **optional** <p>Order of returned items.</p>							|
+| fields			| String[]			| **optional** <p>Fields to be returned.</p>							|
+
+## Update flood alert
+
+
+
+	PUT /flood-alert/:id
+
+
+### Parameters
+
+| Name    | Type      | Description                          |
+|---------|-----------|--------------------------------------|
+| location			| 			|  <p>Flood alert's location.</p>							|
+| latitude			| 			|  <p>Flood alert's latitude.</p>							|
+| longitude			| 			|  <p>Flood alert's longitude.</p>							|
+| date			| 			|  <p>Flood alert's date.</p>							|
+| time			| 			|  <p>Flood alert's time.</p>							|
+| photos			| 			|  <p>Flood alert's photos.</p>							|
+| experience			| 			|  <p>Flood alert's experience.</p>							|
+
+# FloraFauna
+
+## Create flora fauna
+
+
+
+	POST /flora-fauna
+
+
+### Parameters
+
+| Name    | Type      | Description                          |
+|---------|-----------|--------------------------------------|
+| access_token			| String			|  <p>master access token.</p>							|
+| latitude			| 			|  <p>Flora fauna's latitude.</p>							|
+| longitude			| 			|  <p>Flora fauna's longitude.</p>							|
+| location			| 			|  <p>Flora fauna's location.</p>							|
+| flora			| 			|  <p>Flora fauna's flora.</p>							|
+| fauna			| 			|  <p>Flora fauna's fauna.</p>							|
+| commonName			| 			|  <p>Flora fauna's commonName.</p>							|
+| localName			| 			|  <p>Flora fauna's localName.</p>							|
+| scientificName			| 			|  <p>Flora fauna's scientificName.</p>							|
+
+## Delete flora fauna
+
+
+
+	DELETE /flora-fauna/:id
 
 
 ### Parameters
@@ -223,11 +308,11 @@
 |---------|-----------|--------------------------------------|
 | access_token			| String			|  <p>master access token.</p>							|
 
-## Retrieve test
+## Retrieve flora fauna
 
 
 
-	GET /test/:id
+	GET /flora-fauna/:id
 
 
 ### Parameters
@@ -236,11 +321,11 @@
 |---------|-----------|--------------------------------------|
 | access_token			| String			|  <p>master access token.</p>							|
 
-## Retrieve tests
+## Retrieve flora faunas
 
 
 
-	GET /test
+	GET /flora-fauna
 
 
 ### Parameters
@@ -254,11 +339,11 @@
 | sort			| String[]			| **optional** <p>Order of returned items.</p>							|
 | fields			| String[]			| **optional** <p>Fields to be returned.</p>							|
 
-## Update test
+## Update flora fauna
 
 
 
-	PUT /test/:id
+	PUT /flora-fauna/:id
 
 
 ### Parameters
@@ -266,111 +351,196 @@
 | Name    | Type      | Description                          |
 |---------|-----------|--------------------------------------|
 | access_token			| String			|  <p>master access token.</p>							|
-| phoneNumber			| 			|  <p>Test's phoneNumber.</p>							|
+| latitude			| 			|  <p>Flora fauna's latitude.</p>							|
+| longitude			| 			|  <p>Flora fauna's longitude.</p>							|
+| location			| 			|  <p>Flora fauna's location.</p>							|
+| flora			| 			|  <p>Flora fauna's flora.</p>							|
+| fauna			| 			|  <p>Flora fauna's fauna.</p>							|
+| commonName			| 			|  <p>Flora fauna's commonName.</p>							|
+| localName			| 			|  <p>Flora fauna's localName.</p>							|
+| scientificName			| 			|  <p>Flora fauna's scientificName.</p>							|
+
+# FloraFaunaImagesUpload
+
+## Upload flora fauna images upload
+
+
+
+	POST /flora-fauna-images-upload
+
+
+### Parameters
+
+| Name    | Type      | Description                          |
+|---------|-----------|--------------------------------------|
+| flora			| 			|  <p>Flora fauna images upload's flora.</p>							|
+| fauna			| 			|  <p>Flora fauna images upload's fauna.</p>							|
+
+# Images
+
+## Create images
+
+
+
+	POST /images
+
+
+### Parameters
+
+| Name    | Type      | Description                          |
+|---------|-----------|--------------------------------------|
+| flora			| 			|  <p>Images's flora.</p>							|
+| fauna			| 			|  <p>Images's fauna.</p>							|
+| artwork			| 			|  <p>Images's artwork.</p>							|
+| groupPicture			| 			|  <p>Images's groupPicture.</p>							|
+| activity			| 			|  <p>Images's activity.</p>							|
+
+## Delete images
+
+
+
+	DELETE /images/:id
+
+
+## Retrieve images
+
+
+
+	GET /images
+
+
+### Parameters
+
+| Name    | Type      | Description                          |
+|---------|-----------|--------------------------------------|
+| q			| String			| **optional** <p>Query to search.</p>							|
+| page			| Number			| **optional** <p>Page number.</p>							|
+| limit			| Number			| **optional** <p>Amount of returned items.</p>							|
+| sort			| String[]			| **optional** <p>Order of returned items.</p>							|
+| fields			| String[]			| **optional** <p>Fields to be returned.</p>							|
+
+## Update images
+
+
+
+	PUT /images/:id
+
+
+### Parameters
+
+| Name    | Type      | Description                          |
+|---------|-----------|--------------------------------------|
+| flora			| 			|  <p>Images's flora.</p>							|
+| fauna			| 			|  <p>Images's fauna.</p>							|
+| artwork			| 			|  <p>Images's artwork.</p>							|
+| groupPicture			| 			|  <p>Images's groupPicture.</p>							|
+| activity			| 			|  <p>Images's activity.</p>							|
+
+# Pdf
+
+## Create pdf
+
+
+
+	POST /pdf
+
+
+## Delete pdf
+
+
+
+	DELETE /pdf/:id
+
+
+## Retrieve pdf
+
+
+
+	GET /pdf/:id
+
+
+## Retrieve pdfs
+
+
+
+	GET /pdf
+
+
+### Parameters
+
+| Name    | Type      | Description                          |
+|---------|-----------|--------------------------------------|
+| q			| String			| **optional** <p>Query to search.</p>							|
+| page			| Number			| **optional** <p>Page number.</p>							|
+| limit			| Number			| **optional** <p>Amount of returned items.</p>							|
+| sort			| String[]			| **optional** <p>Order of returned items.</p>							|
+| fields			| String[]			| **optional** <p>Fields to be returned.</p>							|
+
+## Update pdf
+
+
+
+	PUT /pdf/:id
+
 
 # User
 
-## Create user
+## user
 
 
 
-	POST /users
+	POST /user
 
 
 ### Parameters
 
 | Name    | Type      | Description                          |
 |---------|-----------|--------------------------------------|
-| access_token			| String			|  <p>Master access_token.</p>							|
-| email			| String			|  <p>User's email.</p>							|
-| password			| String			|  <p>User's password.</p>							|
-| name			| String			| **optional** <p>User's name.</p>							|
-| picture			| String			| **optional** <p>User's picture.</p>							|
-| role			| String			| **optional** <p>User's role.</p>							|
+| phoneNumber			| 			|  <p>User's phoneNumber.</p>							|
 
 ## Delete user
 
 
 
-	DELETE /users/:id
+	DELETE /user/:id
 
-
-### Parameters
-
-| Name    | Type      | Description                          |
-|---------|-----------|--------------------------------------|
-| access_token			| String			|  <p>User access_token.</p>							|
-
-## Retrieve current user
-
-
-
-	GET /users/me
-
-
-### Parameters
-
-| Name    | Type      | Description                          |
-|---------|-----------|--------------------------------------|
-| access_token			| String			|  <p>User access_token.</p>							|
 
 ## Retrieve user
 
 
 
-	GET /users/:id
+	GET /user/:id
 
 
 ## Retrieve users
 
 
 
-	GET /users
+	GET /user
 
 
 ### Parameters
 
 | Name    | Type      | Description                          |
 |---------|-----------|--------------------------------------|
-| access_token			| String			|  <p>User access_token.</p>							|
 | q			| String			| **optional** <p>Query to search.</p>							|
 | page			| Number			| **optional** <p>Page number.</p>							|
 | limit			| Number			| **optional** <p>Amount of returned items.</p>							|
 | sort			| String[]			| **optional** <p>Order of returned items.</p>							|
 | fields			| String[]			| **optional** <p>Fields to be returned.</p>							|
 
-## Update password
-
-
-
-	PUT /users/:id/password
-
-### Headers
-
-| Name    | Type      | Description                          |
-|---------|-----------|--------------------------------------|
-| Authorization			| String			|  <p>Basic authorization with email and password.</p>							|
-
-### Parameters
-
-| Name    | Type      | Description                          |
-|---------|-----------|--------------------------------------|
-| password			| String			|  <p>User's new password.</p>							|
-
 ## Update user
 
 
 
-	PUT /users/:id
+	POST /user/:id
 
 
 ### Parameters
 
 | Name    | Type      | Description                          |
 |---------|-----------|--------------------------------------|
-| access_token			| String			|  <p>User access_token.</p>							|
-| name			| String			| **optional** <p>User's name.</p>							|
-| picture			| String			| **optional** <p>User's picture.</p>							|
+| phoneNumber			| 			|  <p>User's phoneNumber.</p>							|
 
 # WaterTestDetails
 
@@ -385,7 +555,7 @@
 
 | Name    | Type      | Description                          |
 |---------|-----------|--------------------------------------|
-| phoneNumber			| 			|  <p>Water test details's phoneNumber.</p>							|
+| userId			| 			|  <p>Water test details's userId.</p>							|
 | generalInformation:			| 			|  <p>{name Water test details's generalInformation:{name.</p>							|
 | test			| 			|  <p>} Water test details's test}.</p>							|
 
@@ -424,7 +594,7 @@
 
 | Name    | Type      | Description                          |
 |---------|-----------|--------------------------------------|
-| phoneNumber			| 			|  <p>Water test details's phoneNumber.</p>							|
+| userId			| 			|  <p>Water test details's userId.</p>							|
 | generalInformation:			| 			|  <p>{name Water test details's generalInformation:{name.</p>							|
 | test			| 			|  <p>} Water test details's test}.</p>							|
 
