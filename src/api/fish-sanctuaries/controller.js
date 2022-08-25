@@ -163,9 +163,13 @@ export const createFishSanctuary = async (req, res, next) => {
 }
 
 export const updateFishSanctuary = async (req, res, next) => {
-  console.log("in upppppp");
-  console.log(req.body["userId"]);
-  req.body['locationDetails']['sanctuaryPictures'] = JSON.parse(req.body['locationDetails']['sanctuaryPictures']);
+
+  console.log("in update");
+  console.log(req.body.userId);
+
+  if (req.body['locationDetails']['speciesPictures'] != undefined) {
+    req.body['locationDetails']['sanctuaryPictures'] = JSON.parse(req.body['locationDetails']['sanctuaryPictures']);
+  }
   if (req.body['locationDetails']['speciesPictures'] != undefined) {
     req.body['speciesPictures'] = JSON.parse(req.body['speciesPictures']);
   }
@@ -179,14 +183,11 @@ export const updateFishSanctuary = async (req, res, next) => {
       for (var i = 0; i < results[1].length; i++) {
         req.body.speciesPictures[i].imageURL = results[1][i].imageURL;
       }
-
-      // update(req);
-      FishSanctuaries.findById(req.body.id)
-        .then(notFound(res))
-        .then((fishSanctuaries) => fishSanctuaries ? Object.assign(fishSanctuaries, (Json.parse(Json.stringify(req.body)))).save() : null)
-        .then((fishSanctuaries) => fishSanctuaries ? fishSanctuaries.view(true) : null)
-        .then(success(res))
-        .catch(next)
+      // req.body.id = '620cfbbe7ee6030018681377'
+      // var params = {
+      //   id: '620cfbbe7ee6030018681377'
+      // }
+      update(req);
       // update({
       //   bodymen: JSON.parse(JSON.stringify(req.body, params))
       // });
@@ -226,14 +227,13 @@ export const update = (req, res, next) => {
   console.log("in update");
   console.log(req.body);
 
-  FishSanctuaries.findById(req.body.id)
+  FishSanctuaries.findById('620cfbbe7ee6030018681377')
     .then(notFound(res))
     .then((fishSanctuaries) => fishSanctuaries ? Object.assign(fishSanctuaries, (req.body)).save() : null)
     .then((fishSanctuaries) => fishSanctuaries ? fishSanctuaries.view(true) : null)
-    .then(success(res))
-    .catch(next)
+  // .then(success(res, 201))
+  // .catch(next)
 }
-
 
 export const destroy = ({ params }, res, next) =>
   FishSanctuaries.findById(params.id)
