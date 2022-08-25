@@ -184,7 +184,7 @@ export const updateFishSanctuary = async (req, res, next) => {
       for (var i = 0; i < results[1].length; i++) {
         req.body.speciesPictures[i].imageURL = results[1][i].imageURL;
       }
-      FishSanctuaries.findById(params.id)
+      FishSanctuaries.findById(req.body.userId)
         .then(notFound(res))
         .then((fishSanctuaries) => fishSanctuaries ? Object.assign(fishSanctuaries, body).save() : null)
         .then((fishSanctuaries) => fishSanctuaries ? fishSanctuaries.view(true) : null)
