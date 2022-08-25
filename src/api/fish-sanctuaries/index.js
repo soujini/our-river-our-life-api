@@ -35,11 +35,6 @@ const authenticateJWT = (req, res, next) => {
   }
 };
 
-// router.post('/create-fish-sanctuary',authenticateJWT,
-// multer({ dest: 'temp/', limits: { fieldSize: 8 * 1024 * 1024 } }).array('locationDetails.sanctuaryPictures', 10),
-// createFishSanctuary)
-
-
 router.post('/create-fish-sanctuary', authenticateJWT,
   multer({ dest: 'temp/', limits: { fieldSize: 8 * 1024 * 1024 } })
     // .array("locationDetails.sanctuaryPictures.imageURL", 10),
@@ -58,7 +53,6 @@ router.post('/create-fish-sanctuary', authenticateJWT,
     culturalHistoricalSignificance,
   }),
   createFishSanctuary)
-
 
 
 router.put('/update-fish-sanctuary/:id',
