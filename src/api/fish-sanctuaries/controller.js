@@ -165,12 +165,12 @@ export const updateFishSanctuary = async (req, res, next) => {
   console.log("in update");
   console.log(req.params.id);
 
-  if (req.body['locationDetails']['speciesPictures'] != undefined) {
-    req.body['locationDetails']['sanctuaryPictures'] = JSON.parse(req.body['locationDetails']['sanctuaryPictures']);
-  }
-  if (req.body['locationDetails']['speciesPictures'] != undefined) {
-    req.body['speciesPictures'] = JSON.parse(req.body['speciesPictures']);
-  }
+  // if (req.body['locationDetails']['speciesPictures'] != undefined) {
+  req.body['locationDetails']['sanctuaryPictures'] = JSON.parse(req.body['locationDetails']['sanctuaryPictures']);
+  // }
+  // if (req.body['locationDetails']['speciesPictures'] != undefined) {
+  req.body['speciesPictures'] = JSON.parse(req.body['speciesPictures']);
+  // }
 
   Promise.all([uploadSanctuaryPictures(req), uploadSpeciesPictures(req)])
     .then(results => {
