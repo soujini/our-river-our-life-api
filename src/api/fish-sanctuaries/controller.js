@@ -137,9 +137,6 @@ export const uploadSpeciesPictures = function (req) {
   });
 }
 export const createFishSanctuary = async (req, res, next) => {
-
-  console.log("In create nodejs")
-  console.log(req.body.userId)
   // if(req.body['locationDetails']['sanctuaryPictures'] != undefined){
   req.body['locationDetails']['sanctuaryPictures'] = JSON.parse(req.body['locationDetails']['sanctuaryPictures']);
   // }
@@ -184,7 +181,7 @@ export const updateFishSanctuary = async (req, res, next) => {
       for (var i = 0; i < results[1].length; i++) {
         req.body.speciesPictures[i].imageURL = results[1][i].imageURL;
       }
-      FishSanctuaries.findById({ _id: req.body.userId })
+      FishSanctuaries.findById(_id, req.body.userId)
         .then(notFound(res))
         .then((fishSanctuaries) => fishSanctuaries ? Object.assign(fishSanctuaries, body).save() : null)
         .then((fishSanctuaries) => fishSanctuaries ? fishSanctuaries.view(true) : null)
