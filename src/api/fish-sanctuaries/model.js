@@ -182,6 +182,9 @@ const fishSanctuariesSchema = new Schema({
   speciesFiles: {
     type: Array
   },
+  recognizeFish: {
+    type: Number
+  }
 }, {
   timestamps: true,
   toJSON: {
@@ -239,6 +242,7 @@ fishSanctuariesSchema.methods = {
       culturalHistoricalSignificance: this.culturalHistoricalSignificance,
       sanctuaryFiles: this.sanctuaryFiles,
       speciesFiles: this.speciesFiles,
+      recognizeFish: this.recognizeFish,
       createdAt: this.createdAt,
       updatedAt: this.updatedAt
     }

@@ -8,7 +8,7 @@ export FishSanctuaries, { schema } from './model'
 import multer from 'multer'
 
 const router = new Router()
-const { userId, locationDetails, habitatCharacteristics, managementActions, speciesPictures, culturalHistoricalSignificance, sanctuaryFiles, speciesFiles } = schema.tree
+const { userId, locationDetails, habitatCharacteristics, managementActions, speciesPictures, culturalHistoricalSignificance, sanctuaryFiles, speciesFiles, recognizeFish } = schema.tree
 const accessTokenSecret = 'youraccesstokensecret';
 const jwt = require('jsonwebtoken');
 
@@ -51,6 +51,7 @@ router.post('/create-fish-sanctuary', authenticateJWT,
     managementActions,
     speciesPictures,
     culturalHistoricalSignificance,
+    recognizeFish
   }),
   createFishSanctuary)
 
@@ -71,6 +72,7 @@ router.put('/update-fish-sanctuary/:id',
     managementActions,
     speciesPictures,
     culturalHistoricalSignificance,
+    recognizeFish
   }),
   updateFishSanctuary)
 
@@ -137,7 +139,7 @@ router.get('/:id',
  */
 router.put('/:id',
   // master(),
-  body({ locationDetails, habitatCharacteristics, managementActions, speciesPictures, culturalHistoricalSignificance }),
+  body({ locationDetails, habitatCharacteristics, managementActions, speciesPictures, culturalHistoricalSignificance, recognizeFish }),
   update)
 
 /**
