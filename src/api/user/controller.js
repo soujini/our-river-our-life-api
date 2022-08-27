@@ -14,10 +14,10 @@ export const create = ({ bodymen: { body } }, res, next) => {
     .then(success(res, 201))
     .catch(next)
 }
-export const auth = ({ bodymen: { body } }, res, next) => {
+export const auth = async ({ bodymen: { body } }, res, next) => {
   // Filter user from the users array by username and password
   if (body.phoneNumber != null) {
-    User.findOne({ phoneNumber: body.phoneNumber }, function (err, user) {
+    await User.findOne({ phoneNumber: body.phoneNumber }, function (err, user) {
       if (err) {
         console.log("ERROR")
         console.log(err)
@@ -40,7 +40,7 @@ export const auth = ({ bodymen: { body } }, res, next) => {
   else {
     console.log("AUTH")
     console.log(body.email)
-    User.findOne({ email: body.email }, function (err, user) {
+    await User.findOne({ email: body.email }, function (err, user) {
       if (err) {
         console.log("ERROR IN AUTH")
         console.log(err)
