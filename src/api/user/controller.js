@@ -35,7 +35,7 @@ export const auth = ({ bodymen: { body } }, res, next) => {
           res.send('Phone Number is incorrect');
         }
       }
-    });
+    }).exec();
   }
   else {
     console.log("AUTH")
@@ -71,7 +71,7 @@ export const auth = ({ bodymen: { body } }, res, next) => {
       //   console.log(err)
       //   res.send('Email is incorrect')
       // }
-    });
+    }).exec();
   }
 }
 export const signIn = ({ bodymen: { body } }, res, next) => {
