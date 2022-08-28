@@ -100,8 +100,9 @@ export const index = ({ querymen: { query, select, cursor } }, res, next) => {
     .catch(next)
 }
 export const getUser = async ({ params }, res, next) => {
-  console.log("userId " + params.userId);
-  var user = await User.findById(params.userId);
+  console.log("userId... " + params.userId);
+  console.log(User);
+  var user = await User.findById(params.userId).exec();
   return user;
 }
 export const show = ({ params }, res, next) => {
