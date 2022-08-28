@@ -25,6 +25,7 @@ export const auth = async ({ bodymen: { body } }, res, next) => {
       else {
         if (user) {
           // Generate an access token
+          console.log("ALL GOOD")
           const accessToken = jwt.sign({ phoneNumber: user.phoneNumber }, accessTokenSecret);
           res.json({
             user,
@@ -47,6 +48,7 @@ export const auth = async ({ bodymen: { body } }, res, next) => {
       }
       else {
         if (user) {
+          console.log("ALL GOOD")
           // Generate an access token
           const accessToken = jwt.sign({ email: user.email }, accessTokenSecret);
           res.json({
