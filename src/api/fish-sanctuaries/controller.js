@@ -2,7 +2,6 @@ import { success, notFound } from '../../services/response/'
 import { FishSanctuaries } from '.'
 import aws from 'aws-sdk';
 import fs from 'fs';
-var UserController = require('../user/controller')
 
 export const uploadToS3 = function (params) {
   return new Promise((resolve, reject) => {
