@@ -3,25 +3,25 @@ import mongoose, { Schema } from 'mongoose'
 const userSchema = new Schema({
   phoneNumber: {
     type: String,
-    unique:true,
-    sparse:true
+    // unique:true,
+    sparse: true
   },
   email: {
     type: String,
-    unique:true,
-    sparse:true
+    // unique:true,
+    sparse: true
   },
   firstName: {
     type: String,
     // unique:true,
-    sparse:true
+    sparse: true
   },
   lastName: {
     type: String,
     // unique:true,
-    sparse:true
+    sparse: true
   },
-  avatarURL:{
+  avatarURL: {
     type: Array,
   }
 }, {
@@ -33,7 +33,7 @@ const userSchema = new Schema({
 })
 
 userSchema.methods = {
-  view (full) {
+  view(full) {
     const view = {
       // simple view
       id: this.id,
@@ -41,7 +41,7 @@ userSchema.methods = {
       email: this.email,
       firstName: this.firstName,
       lastName: this.lastName,
-      avatarURL:this.avatarURL,
+      avatarURL: this.avatarURL,
       createdAt: this.createdAt,
       updatedAt: this.updatedAt
     }
