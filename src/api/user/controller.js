@@ -32,7 +32,7 @@ export const auth = async ({ bodymen: { body } }, res, next) => {
           });
         }
         else {
-          res.send('Phone Number is incorrect');
+          res.send('Phone Number is Incorrect');
         }
       }
     }).exec();
