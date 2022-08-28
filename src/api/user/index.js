@@ -3,7 +3,8 @@ import { middleware as query } from 'querymen'
 import { middleware as body } from 'bodymen'
 import multer from 'multer'
 import { signIn, signInWeb, auth, index, show, update, destroy, create, updateProfile } from './controller'
-export { User, schema } from './model'
+import { schema } from './model'
+export { User } from './model'
 
 const router = new Router()
 const { phoneNumber, email, userId, firstName, lastName, avatarURL, contributorName } = schema.tree
