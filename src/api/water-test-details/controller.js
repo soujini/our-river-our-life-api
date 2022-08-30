@@ -286,6 +286,9 @@ export const uploadActivity = function (req) {
   });
 }
 export const uploadRiver = function (req) {
+  console.log("in river upload")
+  console.log(req.files.riverFiles)
+  console.log(req.files.riverFiles.length)
   var customOriginalName = "";
   var customPath = "";
   var customFieldName = "";
@@ -376,13 +379,6 @@ export const uploadSurrounding = function (req) {
   });
 }
 export const createWaterTestDetails = async (req, res, next) => {
-  console.log("in create water")
-  console.log(req.body['riverPictures'])
-  console.log(typeof (req.body['riverPictures']))
-  console.log("souj");
-  console.log(req.body['riverPictures'])
-  console.log(JSON.parse(req.body['riverPictures']) == undefined)
-
   req.body['riverPictures'] = JSON.parse(req.body['riverPictures'])
   req.body['surroundingPictures'] = JSON.parse(req.body['surroundingPictures'])
   req.body['floraPictures'] = JSON.parse(req.body['floraPictures'])
