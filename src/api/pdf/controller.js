@@ -61,7 +61,7 @@ export const generateReportWeb = (req, res, next) => {
               console.log(err);
               console.log("Error uploading data: ", data);
             } else {
-              console.log("woohoo");
+              console.log("woohoosdsdsd");
               certificateURL = data.Location;
               console.log("url " + certificateURL)
               console.log('Data: ', data)
