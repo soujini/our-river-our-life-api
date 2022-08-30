@@ -3,6 +3,7 @@ import { WaterTestDetails } from '.'
 // var PDFController = require('../pdf/controller')
 import aws from 'aws-sdk';
 import fs from 'fs';
+import { filter } from 'bluebird';
 var UserController = require('../user/controller')
 var PDFController = require('../pdf/controller')
 
@@ -315,7 +316,11 @@ export const uploadRiver = function (req) {
         };
 
         return uploadToS3(params).then(element => {
-          river.push({ imageURL: element });
+          // Get description field by comparing file names
+          req.riverPictures.forEach(element => {
+
+          });
+          river.push({ imageURL: element, fileName: item.originalname });
           console.log(element)
           return river;
         });
@@ -392,12 +397,19 @@ export const createWaterTestDetails = async (req, res, next) => {
     .then(results => {
       console.log("in promise")
       console.log(results[0])
-      req.body.flora = results[0];
+      results[0].forEach((element, index) => {
+        req.riverPictures.forEach((element2, index2) => {
+          if (element.fileName == element2.imageURL)
+            req.riverPictures[index2].imageURL = element.imageURL
+        });
+      });
+
+      req.body.flora = results[0]
       req.body.fauna = results[1];
       req.body.artwork = results[2];
       req.body.groupPicture = results[3];
       req.body.activity = results[4];
-      req.body.river = results[5];
+      // req.body.river = results[5];
       req.body.surrounding = results[6];
       // req.body.waterTesting=JSON.parse(JSON.stringify(req.body.waterTesting));
       // console.log("souj");
