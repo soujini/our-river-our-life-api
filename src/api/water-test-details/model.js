@@ -144,6 +144,27 @@ const waterTestDetailsSchema = new Schema({
       type: String
     }
   }],
+  floraFiles: {
+    type: Array
+  },
+  faunaFiles: {
+    type: Array
+  },
+  artworkFiles: {
+    type: Array
+  },
+  groupFiles: {
+    type: Array
+  },
+  activityFiles: {
+    type: Array
+  },
+  riverFiles: {
+    type: Array
+  },
+  surroundingFiles: {
+    type: Array
+  },
   certificateURL: {
     type: String
   }
@@ -194,13 +215,13 @@ waterTestDetailsSchema.methods = {
         dissolvedSolids: this.waterTesting.dissolvedSolids,
         conductivity: this.waterTesting.conductivity
       },
-      flora: this.flora,
-      fauna: this.fauna,
-      artwork: this.artwork,
-      groupPicture: this.groupPicture,
-      activity: this.activity,
-      river: this.river,
-      surrounding: this.surrounding,
+      floraPictures: this.floraPictures,
+      faunaPictures: this.faunaPictures,
+      artworkPictures: this.artworkPictures,
+      groupPictures: this.groupPictures,
+      activityPictures: this.activityPictures,
+      riverPictures: this.riverPictures,
+      surroundingPictures: this.surroundingPictures,
       createdAt: this.createdAt,
       updatedAt: this.updatedAt,
       certificateURL: this.certificateURL

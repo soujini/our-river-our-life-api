@@ -70,9 +70,9 @@ export const uploadFlora = function (req) {
     "secretAccessKey": 'UKG2g/WWfOcLlz4rXPLDEe4jcwcTJ+tfEP9DneJo',
   });
   return new Promise((resolve, reject) => {
-    if (req.files.floraPictures) {
+    if (req.files.floraFiles) {
       var flora = [];
-      let promises = req.files.floraPictures.map((item) => {
+      let promises = req.files.floraFiles.map((item) => {
         customFieldName = item.fieldname;
         customPath = item.path;
         bucketName = "our-river-our-life-images/flora";
@@ -116,9 +116,9 @@ export const uploadFauna = function (req) {
     "secretAccessKey": 'UKG2g/WWfOcLlz4rXPLDEe4jcwcTJ+tfEP9DneJo',
   });
   return new Promise((resolve, reject) => {
-    if (req.files.faunaPictures) {
+    if (req.files.faunaFiles) {
       var fauna = [];
-      let promises = req.files.faunaPictures.map((item) => {
+      let promises = req.files.faunaFiles.map((item) => {
         customFieldName = item.fieldname;
         customPath = item.path;
         bucketName = "our-river-our-life-images/fauna";
@@ -161,9 +161,9 @@ export const uploadArtwork = function (req) {
     "secretAccessKey": 'UKG2g/WWfOcLlz4rXPLDEe4jcwcTJ+tfEP9DneJo',
   });
   return new Promise((resolve, reject) => {
-    if (req.files.artworkPictures) {
+    if (req.files.artworkFiles) {
       var artwork = [];
-      let promises = req.files.artworkPictures.map((item) => {
+      let promises = req.files.artworkFiles.map((item) => {
         customFieldName = item.fieldname;
         customPath = item.path;
         bucketName = "our-river-our-life-images/artwork";
@@ -206,9 +206,9 @@ export const uploadGroupPicture = function (req) {
     "secretAccessKey": 'UKG2g/WWfOcLlz4rXPLDEe4jcwcTJ+tfEP9DneJo',
   });
   return new Promise((resolve, reject) => {
-    if (req.files.groupPictures) {
+    if (req.files.groupFiles) {
       var groupPicture = [];
-      let promises = req.files.groupPictures.map((item) => {
+      let promises = req.files.groupFiles.map((item) => {
         customFieldName = item.fieldname;
         customPath = item.path;
         bucketName = "our-river-our-life-images/groupPicture";
@@ -252,9 +252,9 @@ export const uploadActivity = function (req) {
     "secretAccessKey": 'UKG2g/WWfOcLlz4rXPLDEe4jcwcTJ+tfEP9DneJo',
   });
   return new Promise((resolve, reject) => {
-    if (req.files.activityPictures) {
+    if (req.files.activityFiles) {
       var activity = [];
-      let promises = req.files.activityPictures.map((item) => {
+      let promises = req.files.activityFiles.map((item) => {
         customFieldName = item.fieldname;
         customPath = item.path;
         bucketName = "our-river-our-life-images/activity";
@@ -297,9 +297,9 @@ export const uploadRiver = function (req) {
     "secretAccessKey": 'UKG2g/WWfOcLlz4rXPLDEe4jcwcTJ+tfEP9DneJo',
   });
   return new Promise((resolve, reject) => {
-    if (req.files.riverPictures) {
+    if (req.files.riverFiles) {
       var river = [];
-      let promises = req.files.riverPictures.map((item) => {
+      let promises = req.files.riverFiles.map((item) => {
         customFieldName = item.fieldname;
         customPath = item.path;
         bucketName = "our-river-our-life-images/river";
@@ -342,9 +342,9 @@ export const uploadSurrounding = function (req) {
     "secretAccessKey": 'UKG2g/WWfOcLlz4rXPLDEe4jcwcTJ+tfEP9DneJo',
   });
   return new Promise((resolve, reject) => {
-    if (req.files.surroundingPictures) {
+    if (req.files.surroundingFiles) {
       var surrounding = [];
-      let promises = req.files.surroundingPictures.map((item) => {
+      let promises = req.files.surroundingFiles.map((item) => {
         customFieldName = item.fieldname;
         customPath = item.path;
         bucketName = "our-river-our-life-images/surrounding";

@@ -7,7 +7,7 @@ export WaterTestDetails, { schema } from './model'
 import multer from 'multer'
 
 const router = new Router()
-const { userId, contributorName, generalInformation, waterLevelAndWeather, surroundings, waterTesting, floraPictures, faunaPictures, artworkPictures, groupPictures, activityPictures, riverPictures, surroundingPictures, certificateURL } = schema.tree
+const { userId, contributorName, generalInformation, waterLevelAndWeather, surroundings, waterTesting, floraPictures, faunaPictures, artworkPictures, groupPictures, activityPictures, riverPictures, surroundingPictures, certificateURL, floraFiles, faunaFiles, artworkFiles, groupFiles, activityFiles, riverFiles, surroundingFiles } = schema.tree
 
 const accessTokenSecret = 'youraccesstokensecret';
 const jwt = require('jsonwebtoken');
@@ -33,20 +33,20 @@ const authenticateJWT = (req, res, next) => {
 
 router.post('/create-web', authenticateJWT,
   multer({ dest: 'temp/', limits: { fieldSize: 8 * 1024 * 1024 } }).fields([{
-    name: 'floraPictures', maxCount: 5
+    name: 'floraFiles', maxCount: 5
   }, {
-    name: 'faunaPictures', maxCount: 5
+    name: 'faunaFiles', maxCount: 5
   }, {
-    name: 'artworkPictures', maxCount: 5
+    name: 'artworkFiles', maxCount: 5
   }, {
-    name: 'groupPictures', maxCount: 5
+    name: 'groupFiles', maxCount: 5
   }, {
-    name: 'activityPictures', maxCount: 5
+    name: 'activityFiles', maxCount: 5
   }, {
-    name: 'riverPictures', maxCount: 5
+    name: 'riverFiles', maxCount: 5
   },
   {
-    name: 'surroundingPictures', maxCount: 5
+    name: 'surroundingFiles', maxCount: 5
   }
   ]),
   body({
@@ -132,7 +132,7 @@ router.get('/:id', authenticateJWT,
 * @apiError 404 Water test details not found.
 */
 router.put('/:id', authenticateJWT,
-  body({ userId, flora, fauna, artwork, groupPicture, activity, river, certificateURL }),
+  body({ userId, floraPictures, faunaPictures, artworkPictures, groupPictures, activityPictures, riverPictures, certificateURL }),
   update)
 
 /**
