@@ -376,13 +376,15 @@ export const uploadSurrounding = function (req) {
   });
 }
 export const createWaterTestDetails = async (req, res, next) => {
-  req.body['riverPictures'] = JSON.parse(req.body['riverPictures']);
-  req.body['surroungingPictures'] = JSON.parse(req.body['surroungingPictures']);
-  req.body['floraPictures'] = JSON.parse(req.body['floraPictures']);
-  req.body['faunaPictures'] = JSON.parse(req.body['faunaPictures']);
-  req.body['groupPictures'] = JSON.parse(req.body['groupPictures']);
-  req.body['activityPictures'] = JSON.parse(req.body['activityPictures']);
-  req.body['artworkPictures'] = JSON.parse(req.body['artworkPictures']);
+  console.log("in create water")
+  console.log(req.body['riverPictures'].length)
+  req.body['riverPictures'] = JSON.parse(req.body['riverPictures'])
+  req.body['surroungingPictures'] = JSON.parse(req.body['surroungingPictures'])
+  req.body['floraPictures'] = JSON.parse(req.body['floraPictures'])
+  req.body['faunaPictures'] = JSON.parse(req.body['faunaPictures'])
+  req.body['groupPictures'] = JSON.parse(req.body['groupPictures'])
+  req.body['activityPictures'] = JSON.parse(req.body['activityPictures'])
+  req.body['artworkPictures'] = JSON.parse(req.body['artworkPictures'])
 
   Promise.all([uploadFlora(req), uploadFauna(req), uploadArtwork(req), uploadGroupPicture(req), uploadActivity(req), uploadRiver(req), uploadSurrounding(req)])
     .then(results => {
