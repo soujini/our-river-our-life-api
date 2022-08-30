@@ -393,7 +393,7 @@ export const createWaterTestDetails = async (req, res, next) => {
   Promise.all([uploadFlora(req), uploadFauna(req), uploadArtwork(req), uploadGroupPicture(req), uploadActivity(req), uploadRiver(req), uploadSurrounding(req)])
     .then(results => {
       console.log("in promise")
-      console.log(results[0])
+      console.log(results[5])
       results[5].forEach((element, index) => {
         req.body['riverPictures'].forEach((element2, index2) => {
           if (element.fileName == element2.fileName)
