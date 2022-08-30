@@ -81,6 +81,8 @@ export const generateReportWeb = (req, res, next) => {
   });
 }
 export const generateReport = (req, res, next) => {
+  console.log("IN GEN REPORT")
+  console.log(req.body)
   var waterTestDetailsId = req.body.id;
   var certificateURL = "";
   ejs.renderFile(path.join(__dirname, "/report-template.ejs"), {
@@ -138,11 +140,10 @@ export const generateReport = (req, res, next) => {
               params = { "id": req.body.id, "certificate": data.Location, "fieldName": "certificate" }
 
               WaterTestDetailsController.updateImage({ params })
+              var x = "https://our-river-our-life-images.s3.amazonaws.com/certificate/certificate_" + waterTestDetailsId;
+              res.status(200).json({ certificateURL: x })
             }
-
           });
-          var x = "https://our-river-our-life-images.s3.amazonaws.com/certificate/certificate_" + waterTestDetailsId;
-          res.status(200).json({ certificateURL: x })
         }
       }); //pdf create
     }//else
