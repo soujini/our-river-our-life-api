@@ -317,9 +317,6 @@ export const uploadRiver = function (req) {
 
         return uploadToS3(params).then(element => {
           // Get description field by comparing file names
-          req.riverPictures.forEach(element => {
-
-          });
           river.push({ imageURL: element, fileName: item.originalname });
           console.log(element)
           return river;
@@ -397,10 +394,11 @@ export const createWaterTestDetails = async (req, res, next) => {
     .then(results => {
       console.log("in promise")
       console.log(results[0])
-      results[0].forEach((element, index) => {
+      results[5].forEach((element, index) => {
         req.riverPictures.forEach((element2, index2) => {
           if (element.fileName == element2.imageURL)
             req.riverPictures[index2].imageURL = element.imageURL
+
         });
       });
 
