@@ -381,7 +381,7 @@ export const createWaterTestDetails = async (req, res, next) => {
   console.log(typeof (req.body['riverPictures']))
   console.log("souj");
   console.log(req.body['riverPictures'])
-  console.log(req.body['riverPictures'].length)
+  console.log(JSON.parse(req.body['riverPictures']) == undefined)
 
   req.body['riverPictures'] = JSON.parse(req.body['riverPictures'])
   req.body['surroungingPictures'] = JSON.parse(req.body['surroungingPictures'])
