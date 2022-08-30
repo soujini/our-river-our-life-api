@@ -7,7 +7,7 @@ const waterTestDetailsSchema = new Schema({
   contributorName: {
     type: String
   },
-  generalInformation:{
+  generalInformation: {
     activityDate: {
       type: String
     },
@@ -24,7 +24,7 @@ const waterTestDetailsSchema = new Schema({
       type: Number
     },
   },
-  waterLevelAndWeather:{
+  waterLevelAndWeather: {
     airTemperature: {
       type: Number
     },
@@ -35,7 +35,7 @@ const waterTestDetailsSchema = new Schema({
       type: String
     },
   },
-  waterTesting:{
+  waterTesting: {
     waterTemperature: {
       type: String
     },
@@ -85,70 +85,70 @@ const waterTestDetailsSchema = new Schema({
       type: String
     },
   },
-   surroundings:{
-     type:Array
-   },
-   flora:[{
-     imageURL:{
-       type:String
-     },
-     description:{
-       type:String
-     }
-   }],
-   fauna:[{
-     imageURL:{
-       type:String
-     },
-     description:{
-       type:String
-     }
-   }],
-   artwork:[{
-     imageURL:{
-       type:String
-     },
-     description:{
-       type:String
-     }
-   }],
-   groupPicture:[{
-     imageURL:{
-       type:String
-     },
-     description:{
-       type:String
-     }
-   }],
-   activity:[{
-     imageURL:{
-       type:String
-     },
-     description:{
-       type:String
-     }
-   }],
-   river:[{
-     imageURL:{
-       type:String
-     },
-     description:{
-       type:String
-     }
-   }],
-   surrounding:[{
-     imageURL:{
-       type:String
-     },
-     description:{
-       type:String
-     }
-   }],
-   certificateURL:{
-     type:String
-   }
+  surroundings: {
+    type: Array
+  },
+  floraPictures: [{
+    imageURL: {
+      type: String
+    },
+    description: {
+      type: String
+    }
+  }],
+  faunaPictures: [{
+    imageURL: {
+      type: String
+    },
+    description: {
+      type: String
+    }
+  }],
+  artworkPictures: [{
+    imageURL: {
+      type: String
+    },
+    description: {
+      type: String
+    }
+  }],
+  groupPictures: [{
+    imageURL: {
+      type: String
+    },
+    description: {
+      type: String
+    }
+  }],
+  activityPictures: [{
+    imageURL: {
+      type: String
+    },
+    description: {
+      type: String
+    }
+  }],
+  riverPictures: [{
+    imageURL: {
+      type: String
+    },
+    description: {
+      type: String
+    }
+  }],
+  surroundingPictures: [{
+    imageURL: {
+      type: String
+    },
+    description: {
+      type: String
+    }
+  }],
+  certificateURL: {
+    type: String
+  }
 
-},{
+}, {
   timestamps: true,
   toJSON: {
     virtuals: true,
@@ -157,53 +157,53 @@ const waterTestDetailsSchema = new Schema({
 })
 
 waterTestDetailsSchema.methods = {
-  view (full) {
+  view(full) {
     const view = {
       // simple view
       id: this.id,
       userId: this.userId,
       contributorName: this.contributorName,
-      generalInformation:{
-        activityDate:this.generalInformation.activityDate,
-        testerName:this.generalInformation.testerName,
-        location:this.generalInformation.location,
-        latitude:this.generalInformation.latitude,
-        longitude:this.generalInformation.longitude,
+      generalInformation: {
+        activityDate: this.generalInformation.activityDate,
+        testerName: this.generalInformation.testerName,
+        location: this.generalInformation.location,
+        latitude: this.generalInformation.latitude,
+        longitude: this.generalInformation.longitude,
       },
-      waterLevelAndWeather:{
-        airTemperature:this.waterLevelAndWeather.airTemperature,
-        waterLevel:this.waterLevelAndWeather.waterLevel,
-        weather:this.waterLevelAndWeather.weather,
+      waterLevelAndWeather: {
+        airTemperature: this.waterLevelAndWeather.airTemperature,
+        waterLevel: this.waterLevelAndWeather.waterLevel,
+        weather: this.waterLevelAndWeather.weather,
       },
-      surroundings:this.surroundings,
-      waterTesting:{
-        waterTemperature:this.waterTesting.waterTemperature,
-        pH:this.waterTesting.pH,
-        dissolvedOxygen:this.waterTesting.dissolvedOxygen,
-        hardness:this.waterTesting.hardness,
-        nitrate:this.waterTesting.nitrate,
-        nitrite:this.waterTesting.nitrite,
-        chlorine:this.waterTesting.chlorine,
-        alkalinity:this.waterTesting.alkalinity,
-        iron:this.waterTesting.iron,
-        bacteria:this.waterTesting.bacteria,
-        turbidity:this.waterTesting.turbidity,
-        phosphate:this.waterTesting.phosphate,
-        ammonia:this.waterTesting.ammonia,
-        lead:this.waterTesting.lead,
-        dissolvedSolids:this.waterTesting.dissolvedSolids,
-        conductivity:this.waterTesting.conductivity
+      surroundings: this.surroundings,
+      waterTesting: {
+        waterTemperature: this.waterTesting.waterTemperature,
+        pH: this.waterTesting.pH,
+        dissolvedOxygen: this.waterTesting.dissolvedOxygen,
+        hardness: this.waterTesting.hardness,
+        nitrate: this.waterTesting.nitrate,
+        nitrite: this.waterTesting.nitrite,
+        chlorine: this.waterTesting.chlorine,
+        alkalinity: this.waterTesting.alkalinity,
+        iron: this.waterTesting.iron,
+        bacteria: this.waterTesting.bacteria,
+        turbidity: this.waterTesting.turbidity,
+        phosphate: this.waterTesting.phosphate,
+        ammonia: this.waterTesting.ammonia,
+        lead: this.waterTesting.lead,
+        dissolvedSolids: this.waterTesting.dissolvedSolids,
+        conductivity: this.waterTesting.conductivity
       },
-      flora:this.flora,
-      fauna:this.fauna,
-      artwork:this.artwork,
-      groupPicture:this.groupPicture,
-      activity:this.activity,
-      river:this.river,
-      surrounding:this.surrounding,
+      flora: this.flora,
+      fauna: this.fauna,
+      artwork: this.artwork,
+      groupPicture: this.groupPicture,
+      activity: this.activity,
+      river: this.river,
+      surrounding: this.surrounding,
       createdAt: this.createdAt,
       updatedAt: this.updatedAt,
-      certificateURL:this.certificateURL
+      certificateURL: this.certificateURL
     }
 
     return full ? {
