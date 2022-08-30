@@ -377,7 +377,7 @@ export const uploadSurrounding = function (req) {
 }
 export const createWaterTestDetails = async (req, res, next) => {
   console.log("in create water")
-  console.log(req.body['riverPictures'].length)
+  console.log(req.body['riverPictures'])
   req.body['riverPictures'] = JSON.parse(req.body['riverPictures'])
   req.body['surroungingPictures'] = JSON.parse(req.body['surroungingPictures'])
   req.body['floraPictures'] = JSON.parse(req.body['floraPictures'])
