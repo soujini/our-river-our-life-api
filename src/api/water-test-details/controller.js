@@ -395,7 +395,7 @@ export const createWaterTestDetails = async (req, res, next) => {
       console.log("in promise")
       console.log(results[0])
       results[5].forEach((element, index) => {
-        req.riverPictures.forEach((element2, index2) => {
+        req.body.riverPictures.forEach((element2, index2) => {
           if (element.fileName == element2.imageURL)
             req.riverPictures[index2].imageURL = element.imageURL
 
