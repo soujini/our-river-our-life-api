@@ -316,6 +316,7 @@ export const uploadRiver = function (req) {
 
         return uploadToS3(params).then(element => {
           river.push({ imageURL: element });
+          console.log(element)
           return river;
         });
       });
@@ -389,6 +390,8 @@ export const createWaterTestDetails = async (req, res, next) => {
 
   Promise.all([uploadFlora(req), uploadFauna(req), uploadArtwork(req), uploadGroupPicture(req), uploadActivity(req), uploadRiver(req), uploadSurrounding(req)])
     .then(results => {
+      console.log("in promise")
+      console.log(results[0])
       req.body.flora = results[0];
       req.body.fauna = results[1];
       req.body.artwork = results[2];
