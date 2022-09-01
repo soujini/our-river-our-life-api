@@ -11,6 +11,9 @@ const waterTestDetailsSchema = new Schema({
     activityDate: {
       type: String
     },
+    activityTime: {
+      type: String
+    },
     testerName: {
       type: String
     },
@@ -186,6 +189,7 @@ waterTestDetailsSchema.methods = {
       contributorName: this.contributorName,
       generalInformation: {
         activityDate: this.generalInformation.activityDate,
+        activityTime: this.generalInformation.activityTime
         testerName: this.generalInformation.testerName,
         location: this.generalInformation.location,
         latitude: this.generalInformation.latitude,
