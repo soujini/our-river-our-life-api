@@ -7,30 +7,6 @@ import { filter } from 'bluebird';
 var UserController = require('../user/controller')
 var PDFController = require('../pdf/controller')
 
-// export const uploadFiles = async (req, res, next) =>{
-//   // var customOriginalName="";
-//   // var customPath="";
-//   // var customFieldName="";
-//   // var bucketName="";
-//   //
-//   //
-//   // var responseData = [];
-//   //
-//   // aws.config.setPromisesDependency();
-//   // aws.config.update({
-//   //   "accessKeyId": 'AKIAJ24JCG5UUXOOHKDA',
-//   //   "secretAccessKey": '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',
-//   // });
-//
-//   Promise.all([uploadFlora(req), uploadFauna(req),uploadArtwork(req),uploadGroupPicture(req), uploadActivity(req), uploadRiver(req)])
-//   .then(results => {
-//     // const total = results.reduce((p, c) => p + c);
-//
-//     console.log(`Results: ${results}`);
-//     // console.log(`Total: ${total}`);
-//   });
-//
-
 export const uploadToS3 = function (params) {
   return new Promise((resolve, reject) => {
     const s3 = new aws.S3();
@@ -87,7 +63,7 @@ export const uploadFlora = function (req) {
         console.log(item.originalname);
 
         return uploadToS3(params).then(element => {
-          flora.push({ imageURL: element });
+          flora.push({ imageURL: element, fileName: item.originalname });
           return flora;
         });
       });
@@ -132,7 +108,7 @@ export const uploadFauna = function (req) {
         };
 
         return uploadToS3(params).then(element => {
-          fauna.push({ imageURL: element });
+          fauna.push({ imageURL: element, fileName: item.originalname });
           return fauna;
         });
       });
@@ -177,7 +153,7 @@ export const uploadArtwork = function (req) {
         };
 
         return uploadToS3(params).then(element => {
-          artwork.push({ imageURL: element });
+          artwork.push({ imageURL: element, fileName: item.originalname });
           return artwork;
         });
       });
@@ -222,7 +198,7 @@ export const uploadGroupPicture = function (req) {
         };
 
         return uploadToS3(params).then(element => {
-          groupPicture.push({ imageURL: element });
+          groupPicture.push({ imageURL: element, fileName: item.originalname });
           return groupPicture;
         });
       });
@@ -268,7 +244,7 @@ export const uploadActivity = function (req) {
         };
 
         return uploadToS3(params).then(element => {
-          activity.push({ imageURL: element });
+          activity.push({ imageURL: element, fileName: item.originalname });
           return activity;
         });
       });
@@ -363,7 +339,7 @@ export const uploadSurrounding = function (req) {
         };
 
         return uploadToS3(params).then(element => {
-          surrounding.push({ imageURL: element });
+          surrounding.push({ imageURL: element, fileName: item.originalname });
           return surrounding;
         });
       });
@@ -392,29 +368,54 @@ export const createWaterTestDetails = async (req, res, next) => {
 
   Promise.all([uploadFlora(req), uploadFauna(req), uploadArtwork(req), uploadGroupPicture(req), uploadActivity(req), uploadRiver(req), uploadSurrounding(req)])
     .then(results => {
-      console.log("in promise")
-      console.log(results[5])
+
+      results[0].forEach((element, index) => {
+        req.body['floraPictures'].forEach((element2, index2) => {
+          if (element.fileName == element2.fileName)
+            req.body['floraPictures'][index2].imageURL = element.imageURL
+        });
+      });
+
+      results[1].forEach((element, index) => {
+        req.body['faunaPictures'].forEach((element2, index2) => {
+          if (element.fileName == element2.fileName)
+            req.body['faunaPictures'][index2].imageURL = element.imageURL
+        });
+      });
+
+      results[2].forEach((element, index) => {
+        req.body['artworkPictures'].forEach((element2, index2) => {
+          if (element.fileName == element2.fileName)
+            req.body['artworkPictures'][index2].imageURL = element.imageURL
+        });
+      });
+      results[3].forEach((element, index) => {
+        req.body['groupPictures'].forEach((element2, index2) => {
+          if (element.fileName == element2.fileName)
+            req.body['groupPictures'][index2].imageURL = element.imageURL
+        });
+      });
+      results[4].forEach((element, index) => {
+        req.body['activityPictures'].forEach((element2, index2) => {
+          if (element.fileName == element2.fileName)
+            req.body['activityPictures'][index2].imageURL = element.imageURL
+        });
+      });
+
       results[5].forEach((element, index) => {
         req.body['riverPictures'].forEach((element2, index2) => {
           if (element.fileName == element2.fileName)
             req.body['riverPictures'][index2].imageURL = element.imageURL
-
         });
       });
 
-      req.body.flora = results[0]
-      req.body.fauna = results[1];
-      req.body.artwork = results[2];
-      req.body.groupPicture = results[3];
-      req.body.activity = results[4];
-      // req.body.river = results[5];
-      req.body.surrounding = results[6];
-      // req.body.waterTesting=JSON.parse(JSON.stringify(req.body.waterTesting));
-      // console.log("souj");
-      //
-      // req.body.waterTesting= { pH: '12', waterTemperature: '43', dissolvedOxygen: '33' },
-      // req.body.waterTesting = JSON.stringify(req.body.waterTesting);
-      //     console.log(req.body.waterTesting);
+      results[6].forEach((element, index) => {
+        req.body['surroundingPictures'].forEach((element2, index2) => {
+          if (element.fileName == element2.fileName)
+            req.body['surroundingPictures'][index2].imageURL = element.imageURL
+        });
+      });
+
       WaterTestDetails.create(JSON.parse(JSON.stringify(req.body)))
         .then((waterTestDetails) => waterTestDetails.view(true))
         .then(success(res, 201))
