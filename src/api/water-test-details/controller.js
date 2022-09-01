@@ -362,6 +362,7 @@ export const createWaterTestDetails = async (req, res, next) => {
   req.body['groupPictures'] = JSON.parse(req.body['groupPictures'])
   req.body['activityPictures'] = JSON.parse(req.body['activityPictures'])
   req.body['artworkPictures'] = JSON.parse(req.body['artworkPictures'])
+  req.body['surroundings'] = JSON.parse(req.body['surroundings']);
 
   Promise.all([uploadFlora(req), uploadFauna(req), uploadArtwork(req), uploadGroupPicture(req), uploadActivity(req), uploadRiver(req), uploadSurrounding(req)])
     .then(results => {
