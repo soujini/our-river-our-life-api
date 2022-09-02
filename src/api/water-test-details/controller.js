@@ -421,6 +421,74 @@ export const createWaterTestDetails = async (req, res, next) => {
     });
 }
 
+export const updateWaterTestDetails = async (req, res, next) => {
+  req.body['riverPictures'] = JSON.parse(req.body['riverPictures'])
+  req.body['surroundingPictures'] = JSON.parse(req.body['surroundingPictures'])
+  req.body['floraPictures'] = JSON.parse(req.body['floraPictures'])
+  req.body['faunaPictures'] = JSON.parse(req.body['faunaPictures'])
+  req.body['groupPictures'] = JSON.parse(req.body['groupPictures'])
+  req.body['activityPictures'] = JSON.parse(req.body['activityPictures'])
+  req.body['artworkPictures'] = JSON.parse(req.body['artworkPictures'])
+  req.body['surroundings'] = JSON.parse(req.body['surroundings']);
+
+  Promise.all([uploadFlora(req), uploadFauna(req), uploadArtwork(req), uploadGroupPicture(req), uploadActivity(req), uploadRiver(req), uploadSurrounding(req)])
+    .then(results => {
+
+      results[0].forEach((element, index) => {
+        req.body['floraPictures'].forEach((element2, index2) => {
+          if (element.fileName == element2.fileName)
+            req.body['floraPictures'][index2].imageURL = element.imageURL
+        });
+      });
+
+      results[1].forEach((element, index) => {
+        req.body['faunaPictures'].forEach((element2, index2) => {
+          if (element.fileName == element2.fileName)
+            req.body['faunaPictures'][index2].imageURL = element.imageURL
+        });
+      });
+
+      results[2].forEach((element, index) => {
+        req.body['artworkPictures'].forEach((element2, index2) => {
+          if (element.fileName == element2.fileName)
+            req.body['artworkPictures'][index2].imageURL = element.imageURL
+        });
+      });
+      results[3].forEach((element, index) => {
+        req.body['groupPictures'].forEach((element2, index2) => {
+          if (element.fileName == element2.fileName)
+            req.body['groupPictures'][index2].imageURL = element.imageURL
+        });
+      });
+      results[4].forEach((element, index) => {
+        req.body['activityPictures'].forEach((element2, index2) => {
+          if (element.fileName == element2.fileName)
+            req.body['activityPictures'][index2].imageURL = element.imageURL
+        });
+      });
+
+      results[5].forEach((element, index) => {
+        req.body['riverPictures'].forEach((element2, index2) => {
+          if (element.fileName == element2.fileName)
+            req.body['riverPictures'][index2].imageURL = element.imageURL
+        });
+      });
+
+      results[6].forEach((element, index) => {
+        req.body['surroundingPictures'].forEach((element2, index2) => {
+          if (element.fileName == element2.fileName)
+            req.body['surroundingPictures'][index2].imageURL = element.imageURL
+        });
+      });
+
+      WaterTestDetails.findById({ _id: req.params.id }).exec()
+        .then(notFound(res))
+        .then((waterTestDetails) => waterTestDetails ? Object.assign(waterTestDetails, JSON.parse(JSON.stringify(req.body))).save() : null)
+        .then((waterTestDetails) => waterTestDetails ? waterTestDetails.view(true) : null)
+        .then(success(res))
+        .catch(next)
+    });
+}
 
 export const create = (req, res, next) => {
   WaterTestDetails.create(req)
