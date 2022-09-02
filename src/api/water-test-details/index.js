@@ -131,10 +131,44 @@ router.get('/:id', authenticateJWT,
 * @apiError {Object} 400 Some parameters may contain invalid values.
 * @apiError 404 Water test details not found.
 */
-router.put('/:id', authenticateJWT,
-  body({ userId, floraPictures, faunaPictures, artworkPictures, groupPictures, activityPictures, riverPictures, certificateURL }),
-  updateWaterTestDetails)
+// router.put('/:id', authenticateJWT,
+//   body({ userId, floraPictures, faunaPictures, artworkPictures, groupPictures, activityPictures, riverPictures, certificateURL }),
+//   updateWaterTestDetails)
 
+router.put('/:id', authenticateJWT,
+  multer({ dest: 'temp/', limits: { fieldSize: 8 * 1024 * 1024 } }).fields([{
+    name: 'floraFiles', maxCount: 5
+  }, {
+    name: 'faunaFiles', maxCount: 5
+  }, {
+    name: 'artworkFiles', maxCount: 5
+  }, {
+    name: 'groupFiles', maxCount: 5
+  }, {
+    name: 'activityFiles', maxCount: 5
+  }, {
+    name: 'riverFiles', maxCount: 5
+  },
+  {
+    name: 'surroundingFiles', maxCount: 5
+  }
+  ]),
+  body({
+    userId,
+    generalInformation,
+    waterLevelAndWeather,
+    surroundings,
+    waterTesting,
+    floraPictures,
+    faunaPictures,
+    artworkPictures,
+    groupPictures,
+    activityPictures,
+    riverPictures,
+    surroundingPictures,
+    certificateURL
+  }),
+  updateWaterTestDetails)
 /**
 * @api {delete} /water-test-details/:id Delete water test details
 * @apiName DeleteWaterTestDetails
