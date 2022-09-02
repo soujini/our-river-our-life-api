@@ -1,7 +1,7 @@
 import { Router } from 'express'
 import { middleware as query } from 'querymen'
 import { middleware as body } from 'bodymen'
-import { create, index, show, update, destroy, updateImage, createWaterTestDetails } from './controller'
+import { create, index, show, update, destroy, updateImage, createWaterTestDetails, updateWaterTestDetails } from './controller'
 import { schema } from './model'
 export WaterTestDetails, { schema } from './model'
 import multer from 'multer'
@@ -133,7 +133,7 @@ router.get('/:id', authenticateJWT,
 */
 router.put('/:id', authenticateJWT,
   body({ userId, floraPictures, faunaPictures, artworkPictures, groupPictures, activityPictures, riverPictures, certificateURL }),
-  update)
+  updateWaterTestDetails)
 
 /**
 * @api {delete} /water-test-details/:id Delete water test details
