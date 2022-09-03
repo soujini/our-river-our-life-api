@@ -216,7 +216,7 @@ waterTestDetailsSchema.methods = {
         phosphate: this.waterTesting.phosphate,
         ammonia: this.waterTesting.ammonia,
         lead: this.waterTesting.lead,
-        dissolvedSolids: this.waterTesting.dissolvedSolids,
+        totalDissolvedSolids: this.waterTesting.totalDissolvedSolids,
         conductivity: this.waterTesting.conductivity
       },
       floraPictures: this.floraPictures,
