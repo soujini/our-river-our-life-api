@@ -82,7 +82,6 @@ var WaterTestDetailsController = require('../water-test-details/controller')
 // }
 export const generateReport = (req, res, next) => {
   console.log("IN GEN REPORT 1")
-  console.log(req.body)
   var waterTestDetailsId = req.body.id;
   var certificateURL = "";
   ejs.renderFile(path.join(__dirname, "/report-template.ejs"), {
@@ -106,8 +105,6 @@ export const generateReport = (req, res, next) => {
         if (err) {
           res.send(err);
         } else {
-          console.log('This is a buffer:', data);
-
           aws.config.setPromisesDependency();
           aws.config.update({
             "accessKeyId": 'AKIAJ24JCG5UUXOOHKDA',
