@@ -100,9 +100,12 @@ export const generateReport = (req, res, next) => {
         "footer": {
           "height": "20mm",
         },
-
-      };
-      console.log("DATA")
+        childProcessOptions: {
+          env: {
+            OPENSSL_CONF: '/dev/null',
+          }
+        }
+      }
       pdf.create(data, options).toBuffer(function (err, data) {
         console.log("IN PDF CREATE")
         if (err) {
