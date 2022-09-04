@@ -1,10 +1,19 @@
 import { Router } from 'express'
 import { middleware as query } from 'querymen'
-import { create, index, show, update, destroy, generateReport,generateReportWeb } from './controller'
+import { create, index, show, update, destroy, generateReport } from './controller'
 
 
 const router = new Router()
 
+
+/**
+ * @api {post} /pdf Create pdf
+ * @apiName CreatePdf
+ * @apiGroup Pdf
+ * @apiSuccess {Object} pdf Pdf's data.
+ * @apiError {Object} 400 Some parameters may contain invalid values.
+ * @apiError 404 Pdf not found.
+ */
 router.post('/generateReport',
   generateReport)
 
@@ -16,17 +25,6 @@ router.post('/generateReport',
  * @apiError {Object} 400 Some parameters may contain invalid values.
  * @apiError 404 Pdf not found.
  */
- router.post('/generateReportWeb',
-   generateReport)
-
- /**
-  * @api {post} /pdf Create pdf
-  * @apiName CreatePdf
-  * @apiGroup Pdf
-  * @apiSuccess {Object} pdf Pdf's data.
-  * @apiError {Object} 400 Some parameters may contain invalid values.
-  * @apiError 404 Pdf not found.
-  */
 router.post('/',
   create)
 

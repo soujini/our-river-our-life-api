@@ -6,82 +6,82 @@ let path = require("path");
 import aws from 'aws-sdk';
 var WaterTestDetailsController = require('../water-test-details/controller')
 
-export const generateReportWeb = (req, res, next) => {
-  console.log("IN GEN REP WEB")
-  console.log(req.body);
-  var waterTestDetailsId = req.body.id;
-  var certificateURL = "";
-  ejs.renderFile(path.join(__dirname, "/report-template.ejs"), {
-    waterTestDetails: req.body
-  }, (err, data) => {
-    if (err) {
-      console.log("IN ERROR")
-      res.send("Error in report template " + err);
-    } else {
-      let options = {
-        "height": "11.25in",
-        "width": "8.5in",
-        "header": {
-          "height": "20mm",
-        },
-        "footer": {
-          "height": "20mm",
-        },
+// export const generateReportWeb = (req, res, next) => {
+//   console.log("IN GEN REP WEB")
+//   console.log(req.body);
+//   var waterTestDetailsId = req.body.id;
+//   var certificateURL = "";
+//   ejs.renderFile(path.join(__dirname, "/report-template.ejs"), {
+//     waterTestDetails: req.body
+//   }, (err, data) => {
+//     if (err) {
+//       console.log("IN ERROR")
+//       res.send("Error in report template " + err);
+//     } else {
+//       let options = {
+//         "height": "11.25in",
+//         "width": "8.5in",
+//         "header": {
+//           "height": "20mm",
+//         },
+//         "footer": {
+//           "height": "20mm",
+//         },
 
-      };
-      pdf.create(data, options).toBuffer(function (err, data) {
-        if (err) {
-          console.log("IN ERR2")
-          res.send(err);
-        } else {
-          console.log("GETTING DATA")
-          console.log('This is a buffer:', data);
+//       };
+//       pdf.create(data, options).toBuffer(function (err, data) {
+//         if (err) {
+//           console.log("IN ERR2")
+//           res.send(err);
+//         } else {
+//           console.log("GETTING DATA")
+//           console.log('This is a buffer:', data);
 
-          aws.config.setPromisesDependency();
-          aws.config.update({
-            "accessKeyId": 'AKIAJ24JCG5UUXOOHKDA',
-            "secretAccessKey": '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',
-          });
+//           aws.config.setPromisesDependency();
+//           aws.config.update({
+//             "accessKeyId": 'AKIAJ24JCG5UUXOOHKDA',
+//             "secretAccessKey": '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',
+//           });
 
-          const s3 = new aws.S3();
-          console.log("here " + req.body.id)
+//           const s3 = new aws.S3();
+//           console.log("here " + req.body.id)
 
-          var params = {
-            ACL: 'public-read',
-            Bucket: "our-river-our-life-images/certificate",
-            Key: `certificate_` + req.body.id,
-            Body: data,
-            ContentEncoding: "buffer",
-            ContentType: "application/pdf"
-          };
+//           var params = {
+//             ACL: 'public-read',
+//             Bucket: "our-river-our-life-images/certificate",
+//             Key: `certificate_` + req.body.id,
+//             Body: data,
+//             ContentEncoding: "buffer",
+//             ContentType: "application/pdf"
+//           };
 
-          s3.upload(params, function (err, data) {
+//           s3.upload(params, function (err, data) {
 
-            if (err) {
-              console.log(err);
-              console.log("Error uploading data: ", data);
-            } else {
-              console.log("woohoosdsdsd");
-              certificateURL = data.Location;
-              console.log("url " + certificateURL)
-              console.log('Data: ', data)
-              console.log("data: ", data.Location)
-              console.log("succesfully uploaded pdf!")
-              params = { "id": req.body.id, "certificate": data.Location, "fieldName": "certificate" }
+//             if (err) {
+//               console.log(err);
+//               console.log("Error uploading data: ", data);
+//             } else {
+//               console.log("woohoosdsdsd");
+//               certificateURL = data.Location;
+//               console.log("url " + certificateURL)
+//               console.log('Data: ', data)
+//               console.log("data: ", data.Location)
+//               console.log("succesfully uploaded pdf!")
+//               params = { "id": req.body.id, "certificate": data.Location, "fieldName": "certificate" }
 
-              WaterTestDetailsController.updateImage({ params })
-            }
+//               WaterTestDetailsController.updateImage({ params })
+//             }
 
-          });
-          var x = "https://our-river-our-life-images.s3.amazonaws.com/certificate/certificate_" + waterTestDetailsId;
-          res.status(200).json({ certificateURL: x })
-        }
-      }); //pdf create
-    }//else
-  });
-}
+//           });
+//           var x = "https://our-river-our-life-images.s3.amazonaws.com/certificate/certificate_" + waterTestDetailsId;
+//           res.status(200).json({ certificateURL: x })
+//         }
+//       }); //pdf create
+//     }//else
+//   });
+// }
 export const generateReport = (req, res, next) => {
-  console.log("IN GEN REPORT")
+  console.log("IN GEN REPORT 1")
   console.log(req.body)
   var waterTestDetailsId = req.body.id;
   var certificateURL = "";
