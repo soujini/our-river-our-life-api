@@ -89,6 +89,7 @@ export const generateReport = (req, res, next) => {
   }, (err, data) => {
     if (err) {
       res.send("Error in report template " + err);
+      console.log("error in temp")
     } else {
       let options = {
         "height": "11.25in",
@@ -101,6 +102,8 @@ export const generateReport = (req, res, next) => {
         },
 
       };
+      console.log("DATA")
+      console.log(data)
       pdf.create(data, options).toBuffer(function (err, data) {
         if (err) {
           res.send(err);
@@ -137,8 +140,8 @@ export const generateReport = (req, res, next) => {
               params = { "id": req.body.id, "certificate": data.Location, "fieldName": "certificate" }
 
               WaterTestDetailsController.updateImage({ params })
-              var x = "https://our-river-our-life-images.s3.amazonaws.com/certificate/certificate_" + waterTestDetailsId;
-              res.status(200).json({ certificateURL: x })
+              var url = "https://our-river-our-life-images.s3.amazonaws.com/certificate/certificate_" + waterTestDetailsId;
+              res.status(200).json({ certificateURL: url })
             }
           });
         }
