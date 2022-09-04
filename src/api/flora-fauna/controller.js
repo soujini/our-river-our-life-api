@@ -18,7 +18,6 @@ export const createFlora = (req, res, next) => {
 
 
   const file = req.files;
-  console.log(req.files.length);
 
   if (req.files.length > 0) {
     const s3 = new aws.S3();

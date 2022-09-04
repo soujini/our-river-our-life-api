@@ -42,8 +42,6 @@ export const deleteFromBucket = function () {
   });
 }
 export const uploadSanctuaryPictures = function (req) {
-  console.log("IN UPLOAD SANC");
-  console.log(req);
   var customOriginalName = "";
   var customPath = "";
   var customFieldName = "";
@@ -161,8 +159,6 @@ export const createFishSanctuary = async (req, res, next) => {
 }
 
 export const updateFishSanctuary = async (req, res, next) => {
-  console.log("in update");
-  console.log(req.params.id);
 
   // if (req.body['locationDetails']['speciesPictures'] != undefined) {
   req.body['locationDetails']['sanctuaryPictures'] = JSON.parse(req.body['locationDetails']['sanctuaryPictures']);
