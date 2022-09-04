@@ -103,11 +103,13 @@ export const generateReport = (req, res, next) => {
 
       };
       console.log("DATA")
-      console.log(data)
       pdf.create(data, options).toBuffer(function (err, data) {
+        console.log("IN PDF CREATE")
         if (err) {
           res.send(err);
+          console.log(err)
         } else {
+          console.log("TRYING")
           aws.config.setPromisesDependency();
           aws.config.update({
             "accessKeyId": 'AKIAJ24JCG5UUXOOHKDA',
