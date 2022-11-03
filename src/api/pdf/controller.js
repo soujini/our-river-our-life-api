@@ -107,12 +107,10 @@ export const generateReport = (req, res, next) => {
         }
       }
       pdf.create(data, options).toBuffer(function (err, data) {
-        console.log("IN PDF CREATE")
         if (err) {
           res.send(err);
           console.log(err)
         } else {
-          console.log("TRYING")
           aws.config.setPromisesDependency();
           aws.config.update({
             "accessKeyId": 'AKIAJ24JCG5UUXOOHKDA',
@@ -120,7 +118,6 @@ export const generateReport = (req, res, next) => {
           });
 
           const s3 = new aws.S3();
-          console.log("here " + req.body.id)
 
           var params = {
             ACL: 'public-read',
@@ -138,14 +135,10 @@ export const generateReport = (req, res, next) => {
               console.log("Error uploading data: ", data);
             } else {
               certificateURL = data.Location;
-              console.log("url " + certificateURL)
-              console.log('Data: ', data)
-              console.log("data: ", data.Location)
-              console.log("succesfully uploaded pdf!")
-              params = { "id": req.body.id, "certificate": data.Location, "fieldName": "certificate" }
-
-              WaterTestDetailsController.updateImage({ params })
+              console.log("Succesfully uploaded pdf!")
               var url = "https://our-river-our-life-images.s3.amazonaws.com/certificate/certificate_" + waterTestDetailsId;
+              params = { "id": req.body.id, "certificate": url, "fieldName": "certificate" }
+              await WaterTestDetailsController.updateImage({ params })
               res.status(200).json({ certificateURL: url })
             }
           });
