@@ -80,7 +80,6 @@ var WaterTestDetailsController = require('../water-test-details/controller')
 //     }//else
 //   });
 // }
-export const generateReport = (req, res, next) => {
   console.log("IN GEN REPORT 1")
   var waterTestDetailsId = req.body.id;
   var certificateURL = "";
@@ -106,7 +105,7 @@ export const generateReport = (req, res, next) => {
           }
         }
       }
-      pdf.create(data, options).toBuffer(function (err, data) {
+       pdf.create(data, options).toBuffer(function (err, data) {
         if (err) {
           res.send(err);
           console.log(err)
@@ -128,8 +127,7 @@ export const generateReport = (req, res, next) => {
             ContentType: "application/pdf"
           };
 
-          s3.upload(params, function (err, data) {
-
+           s3.upload(params, async function (err, data) {
             if (err) {
               console.log(err);
               console.log("Error uploading data: ", data);
