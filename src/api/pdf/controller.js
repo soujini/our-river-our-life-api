@@ -1,9 +1,9 @@
-let express = require("express");
-let app = express();
-let ejs = require("ejs");
-let pdf = require("html-pdf");
-let path = require("path");
-import aws from 'aws-sdk';
+let express = require('express')
+let app = express()
+let ejs = require('ejs')
+let pdf = require('tml-pdf')
+let path = require('path')
+import aws from 'aws-sdk'
 var WaterTestDetailsController = require('../water-test-details/controller')
 
 // export const generateReportWeb = (req, res, next) => {
@@ -80,70 +80,69 @@ var WaterTestDetailsController = require('../water-test-details/controller')
 //     }//else
 //   });
 // }
-  console.log("IN GEN REPORT 1")
-  var waterTestDetailsId = req.body.id;
-  var certificateURL = "";
-  ejs.renderFile(path.join(__dirname, "/report-template.ejs"), {
+export const generateReport = (req, res, next) => {
+  console.log('IN GEN REPORT 1')
+  var waterTestDetailsId = req.body.id
+  ejs.renderFile(path.join(__dirname, '/report-template.ejs'), {
     waterTestDetails: req.body
   }, (err, data) => {
     if (err) {
-      res.send("Error in report template " + err);
-      console.log("error in temp")
+      res.send('Error in report template ' + err);
     } else {
-      let options = {
-        "height": "11.25in",
-        "width": "8.5in",
-        "header": {
-          "height": "20mm",
+      var options = {
+        height: '11.25in',
+        width: '8.5in',
+        header: {
+          height: '20mm'
         },
-        "footer": {
-          "height": "20mm",
+        footer: {
+          height: '20mm'
         },
         childProcessOptions: {
           env: {
-            OPENSSL_CONF: '/dev/null',
+            OPENSSL_CONF: '/dev/null'
           }
         }
       }
-       pdf.create(data, options).toBuffer(function (err, data) {
+      pdf.create(data, options).toBuffer(function (err, data) {
         if (err) {
-          res.send(err);
+          res.send(err)
           console.log(err)
         } else {
-          aws.config.setPromisesDependency();
+          aws.config.setPromisesDependency()
           aws.config.update({
-            "accessKeyId": 'AKIAJ24JCG5UUXOOHKDA',
-            "secretAccessKey": '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',
-          });
+            accessKeyId: 'AKIAJ24JCG5UUXOOHKDA',
+            secretAccessKey: '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'
+          })
 
-          const s3 = new aws.S3();
+          const s3 = new aws.S3()
 
           var params = {
             ACL: 'public-read',
-            Bucket: "our-river-our-life-images/certificate",
-            Key: `certificate_` + req.body.id,
+            Bucket: 'our-river-our-life-images/certificate',
+            Key: 'certificate_' + req.body.id,
             Body: data,
-            ContentEncoding: "buffer",
-            ContentType: "application/pdf"
-          };
+            ContentEncoding: 'buffer',
+            ContentType: 'application/pdf'
+          }
 
-           s3.upload(params, async function (err, data) {
+          s3.upload(params, async function (err, data) {
             if (err) {
-              console.log(err);
-              console.log("Error uploading data: ", data);
+              console.log(err)
+              console.log('Error uploading data: ', data)
             } else {
-              certificateURL = data.Location;
-              console.log("Succesfully uploaded pdf!")
-              var url = "https://our-river-our-life-images.s3.amazonaws.com/certificate/certificate_" + waterTestDetailsId;
-              params = { "id": req.body.id, "certificate": url, "fieldName": "certificate" }
+              // var certificateURL = data.Location
+              console.log('Succesfully uploaded pdf!')
+              var url = 'https://our-river-our-life-images.s3.amazonaws.com/certificate/certificate_' + waterTestDetailsId
+              params = { id: req.body.id, certificate: url, fieldName: 'certificate' }
               await WaterTestDetailsController.updateImage({ params })
               res.status(200).json({ certificateURL: url })
             }
-          });
+          })
         }
-      }); //pdf create
-    }//else
-  });
+      })
+    }
+  })
 }
 
 // export const upload = (req, res, next) => {
