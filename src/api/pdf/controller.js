@@ -1,9 +1,7 @@
-let express = require('express')
-let app = express()
-let ejs = require('ejs')
-let pdf = require('tml-pdf')
-let path = require('path')
 import aws from 'aws-sdk'
+const ejs = require('ejs')
+const pdf = require('html-pdf')
+const path = require('path')
 var WaterTestDetailsController = require('../water-test-details/controller')
 
 // export const generateReportWeb = (req, res, next) => {
@@ -87,7 +85,7 @@ export const generateReport = (req, res, next) => {
     waterTestDetails: req.body
   }, (err, data) => {
     if (err) {
-      res.send('Error in report template ' + err);
+      res.send('Error in report template ' + err)
     } else {
       var options = {
         height: '11.25in',
