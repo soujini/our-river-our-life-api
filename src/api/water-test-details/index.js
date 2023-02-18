@@ -1,35 +1,35 @@
 import { Router } from 'express'
 import { middleware as query } from 'querymen'
 import { middleware as body } from 'bodymen'
-import { create, index, show, update, destroy, updateImage, createWaterTestDetails, updateWaterTestDetails } from './controller'
+import { create, index, show, destroy, createWaterTestDetails, updateWaterTestDetails, searchByDate } from './controller'
 import { schema } from './model'
-export WaterTestDetails, { schema } from './model'
 import multer from 'multer'
+export WaterTestDetails, { schema } from './model'
 
 const router = new Router()
-const { userId, contributorName, generalInformation, waterLevelAndWeather, surroundings, waterTesting, floraPictures, faunaPictures, artworkPictures, groupPictures, activityPictures, riverPictures, surroundingPictures, certificateURL, floraFiles, faunaFiles, artworkFiles, groupFiles, activityFiles, riverFiles, surroundingFiles } = schema.tree
+const { userId, generalInformation, waterLevelAndWeather, surroundings, waterTesting, floraPictures, faunaPictures, artworkPictures, groupPictures, activityPictures, riverPictures, surroundingPictures, certificateURL } = schema.tree
 
-const accessTokenSecret = 'youraccesstokensecret';
-const jwt = require('jsonwebtoken');
+const accessTokenSecret = 'youraccesstokensecret'
+const jwt = require('jsonwebtoken')
 
 const authenticateJWT = (req, res, next) => {
-  const authHeader = req.headers.authorization;
+  const authHeader = req.headers.authorization
 
   if (authHeader) {
-    const token = authHeader.split(' ')[1];
+    const token = authHeader.split(' ')[1]
 
     jwt.verify(token, accessTokenSecret, (err, user) => {
       if (err) {
-        return res.sendStatus(403);
+        return res.sendStatus(403)
       }
 
-      req.user = user;
-      next();
-    });
+      req.user = user
+      next()
+    })
   } else {
-    res.sendStatus(401);
+    res.sendStatus(401)
   }
-};
+}
 
 router.post('/create-web', authenticateJWT,
   multer({ dest: 'temp/', limits: { fieldSize: 8 * 1024 * 1024 } }).fields([{
@@ -65,7 +65,6 @@ router.post('/create-web', authenticateJWT,
     certificateURL
   }),
   createWaterTestDetails)
-
 
 /**
 * @api {post} /water-test-details Create water test details
@@ -108,6 +107,19 @@ router.post('/', authenticateJWT,
 router.get('/',
   query(),
   index)
+
+/**
+* @api {get} /water-test-details Retrieve water test details
+* @apiName RetrieveWaterTestDetails
+* @apiGroup WaterTestDetails
+* @apiUse listParams
+* @apiSuccess {Number} count Total amount of water test details.
+* @apiSuccess {Object[]} rows List of water test details.
+* @apiError {Object} 400 Some parameters may contain invalid values.
+*/
+router.get('/searchByDate',
+  query(),
+  searchByDate)
 
 /**
 * @api {get} /water-test-details/:id Retrieve water test details
