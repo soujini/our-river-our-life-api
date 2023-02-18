@@ -1,180 +1,186 @@
 import { success, notFound } from '../../services/response/'
 import { FishSanctuaries } from '.'
-import aws from 'aws-sdk';
-import fs from 'fs';
+import aws from 'aws-sdk'
+import fs from 'fs'
+var UserController = require('../user/controller')
 
 export const uploadToS3 = function (params) {
-  return new Promise((resolve, reject) => {
-    const s3 = new aws.S3();
-    var responseData = [];
+  return new Promise((resolve) => {
+    const s3 = new aws.S3()
     s3.upload(params, function (err, res) {
       if (err) {
-        console.log('Error occured while trying to upload Flora to the S3 bucket', err);
-        res.send(err);
+        console.log('Error occured while trying to upload Flora to the S3 bucket', err)
+        res.send(err)
       } if (res) {
         // console.log("loc "+res.Location);
-        resolve(res.Location);
+        resolve(res.Location)
       }
-    });
-  });
+    })
+  })
 }
 
-export const deleteFromBucket = function () {
-  var params = {
-    ACL: 'public-read',
-    Bucket: bucketName,
-    Body: fs.createReadStream(item.path),
-    Key: item.originalname, //url name
-  };
-
-  return new Promise((resolve, reject) => {
-    const s3 = new aws.S3();
-    var responseData = [];
-    s3.deleteObject(params, function (err, res) {
-      if (err) {
-        console.log('Error occured while trying to delete image from the S3 bucket', err);
-        res.send(err);
-      } if (res) {
-        // console.log("loc "+res.Location);
-        resolve(res.Location);
-      }
-    });
-  });
+export const searchByDate = (req, res, next) => {
+  const query = { createdAt: { $gte: new Date(req.query.start), $lt: new Date(req.query.end) } }
+  var select
+  var cursor
+  FishSanctuaries.count(query)
+    .then(count => FishSanctuaries.find(query, select, cursor)
+      .then(async (fishSanctuaries) => ({
+        count,
+        rows: await Promise.all(fishSanctuaries.map(async (fishSanctuary) => {
+          var params = { userId: fishSanctuary.userId }
+          var user = await UserController.getUser({ params })
+          if (user != null) {
+            fishSanctuary.contributorName = user.firstName != null && user.firstName !== '' ? user.firstName : '' + ' ' + user.lastName != null && user.lastName !== '' ? user.lastName : ''
+          }
+          return fishSanctuary.view()
+        }))
+      }))
+    )
+    .then(success(res))
+    .catch(next)
 }
+
+// export const deleteFromBucket = function () {
+//   var params = {
+//     ACL: 'public-read',
+//     Bucket: bucketName,
+//     Body: fs.createReadStream(item.path),
+//     Key: item.originalname // url name
+//   }
+
+//   return new Promise((resolve, reject) => {
+//     const s3 = new aws.S3()
+//     var responseData = []
+//     s3.deleteObject(params, function (err, res) {
+//       if (err) {
+//         console.log('Error occured while trying to delete image from the S3 bucket', err)
+//         res.send(err)
+//       } if (res) {
+//         // console.log("loc "+res.Location);
+//         resolve(res.Location)
+//       }
+//     })
+//   })
+// }
 export const uploadSanctuaryPictures = function (req) {
-  var customOriginalName = "";
-  var customPath = "";
-  var customFieldName = "";
-  var bucketName = "";
+  var bucketName = ''
 
-  aws.config.setPromisesDependency();
+  aws.config.setPromisesDependency()
   aws.config.update({
-    "accessKeyId": 'AKIAJ24JCG5UUXOOHKDA',
-    "secretAccessKey": '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',
-  });
-  return new Promise((resolve, reject) => {
+    accessKeyId: 'AKIAJ24JCG5UUXOOHKDA',
+    secretAccessKey: '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'
+  })
+  return new Promise((resolve) => {
     // console.log(req.files.sanctuaryPictures.length);
-    var sanctuaryPictures = [];
-    if (req.files.sanctuaryFiles != undefined) {
-
-      let promises = req.files.sanctuaryFiles.map((item) => {
-        customFieldName = item.fieldname;
-        customPath = item.path;
-        bucketName = "our-river-our-life-images/fish-sanctuary";
+    var sanctuaryPictures = []
+    if (req.files.sanctuaryFiles !== undefined) {
+      const promises = req.files.sanctuaryFiles.map(async (item) => {
+        bucketName = 'our-river-our-life-images/fish-sanctuary'
 
         var params = {
           ACL: 'public-read',
           Bucket: bucketName,
           Body: fs.createReadStream(item.path),
-          Key: item.originalname,
-        };
+          Key: item.originalname
+        }
 
-        return uploadToS3(params).then(element => {
-          sanctuaryPictures.push({ imageURL: element });
-          return sanctuaryPictures;
-        });
-      });
+        const element = await uploadToS3(params)
+        sanctuaryPictures.push({ imageURL: element })
+        return sanctuaryPictures
+      })
 
       Promise.all(promises)
-        .then(results => {
-          resolve(sanctuaryPictures);
+        .then(() => {
+          resolve(sanctuaryPictures)
         })
         .catch(e => {
-          console.error(e);
+          console.error(e)
         })
+    } else {
+      resolve([])
     }
-    else {
-      resolve([]);
-    }
-  });
+  })
 }
 export const uploadSpeciesPictures = function (req) {
-  var customOriginalName = "";
-  var customPath = "";
-  var customFieldName = "";
-  var bucketName = "";
+  var bucketName = ''
 
-  aws.config.setPromisesDependency();
+  aws.config.setPromisesDependency()
   aws.config.update({
-    "accessKeyId": 'AKIAJ24JCG5UUXOOHKDA',
-    "secretAccessKey": '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',
-  });
-  return new Promise((resolve, reject) => {
-    var fishInformation = [];
+    accessKeyId: 'AKIAJ24JCG5UUXOOHKDA',
+    secretAccessKey: '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'
+  })
+  return new Promise((resolve) => {
+    var fishInformation = []
     if (req.files.speciesFiles) {
-      let promises = req.files.speciesFiles.map((item) => {
-        customFieldName = item.fieldname;
-        customPath = item.path;
-        bucketName = "our-river-our-life-images/species";
+      const promises = req.files.speciesFiles.map(async (item) => {
+        bucketName = 'our-river-our-life-images/species'
 
         var params = {
           ACL: 'public-read',
           Bucket: bucketName,
           Body: fs.createReadStream(item.path),
-          Key: item.originalname,
-        };
+          Key: item.originalname
+        }
 
-        return uploadToS3(params).then(element => {
-          fishInformation.push({ imageURL: element });
-          return fishInformation;
-        });
-      });
+        const element = await uploadToS3(params)
+        fishInformation.push({ imageURL: element })
+        return fishInformation
+      })
 
       Promise.all(promises)
-        .then(results => {
-          resolve(fishInformation);
+        .then(() => {
+          resolve(fishInformation)
         })
         .catch(e => {
-          console.error(e);
+          console.error(e)
         })
+    } else {
+      resolve([])
     }
-    else {
-      resolve([]);
-    }
-  });
+  })
 }
 export const createFishSanctuary = async (req, res, next) => {
   // if(req.body['locationDetails']['sanctuaryPictures'] != undefined){
-  req.body['locationDetails']['sanctuaryPictures'] = JSON.parse(req.body['locationDetails']['sanctuaryPictures']);
+  req.body.locationDetails.sanctuaryPictures = JSON.parse(req.body.locationDetails.sanctuaryPictures)
   // }
   // if(req.body['locationDetails']['speciesPictures'] != undefined){
-  req.body['speciesPictures'] = JSON.parse(req.body['speciesPictures']);
+  req.body.speciesPictures = JSON.parse(req.body.speciesPictures)
   // }
 
   Promise.all([uploadSanctuaryPictures(req), uploadSpeciesPictures(req)])
     .then(results => {
       for (var i = 0; i < results[0].length; i++) {
-        req.body.locationDetails.sanctuaryPictures[i].imageURL = results[0][i].imageURL;
+        req.body.locationDetails.sanctuaryPictures[i].imageURL = results[0][i].imageURL
       }
 
-      for (var i = 0; i < results[1].length; i++) {
-        req.body.speciesPictures[i].imageURL = results[1][i].imageURL;
+      for (var j = 0; j < results[1].length; j++) {
+        req.body.speciesPictures[j].imageURL = results[1][j].imageURL
       }
 
       FishSanctuaries.create(JSON.parse(JSON.stringify(req.body)))
         .then((fishSanctuaries) => fishSanctuaries.view(true))
         .then(success(res, 201))
         .catch(next)
-    });
+    })
 }
 
 export const updateFishSanctuary = async (req, res, next) => {
-
   // if (req.body['locationDetails']['speciesPictures'] != undefined) {
-  req.body['locationDetails']['sanctuaryPictures'] = JSON.parse(req.body['locationDetails']['sanctuaryPictures']);
+  req.body.locationDetails.sanctuaryPictures = JSON.parse(req.body.locationDetails.sanctuaryPictures)
   // }
   // if (req.body['locationDetails']['speciesPictures'] != undefined) {
-  req.body['speciesPictures'] = JSON.parse(req.body['speciesPictures']);
+  req.body.speciesPictures = JSON.parse(req.body.speciesPictures)
   // }
 
   Promise.all([uploadSanctuaryPictures(req), uploadSpeciesPictures(req)])
     .then(results => {
       for (var i = 0; i < results[0].length; i++) {
-        req.body.locationDetails.sanctuaryPictures[i].imageURL = results[0][i].imageURL;
+        req.body.locationDetails.sanctuaryPictures[i].imageURL = results[0][i].imageURL
       }
 
-      for (var i = 0; i < results[1].length; i++) {
-        req.body.speciesPictures[i].imageURL = results[1][i].imageURL;
+      for (var j = 0; j < results[1].length; j++) {
+        req.body.speciesPictures[j].imageURL = results[1][j].imageURL
       }
       FishSanctuaries.findById({ _id: req.params.id }).exec()
         .then(notFound(res))
@@ -182,7 +188,7 @@ export const updateFishSanctuary = async (req, res, next) => {
         .then((fishSanctuaries) => fishSanctuaries ? fishSanctuaries.view(true) : null)
         .then(success(res))
         .catch(next)
-    });
+    })
 }
 
 export const create = ({ bodymen: { body } }, res, next) =>
@@ -209,10 +215,9 @@ export const show = ({ params }, res, next) =>
     .then(success(res))
     .catch(next)
 
-
-export const update = (req, res, next) => {
-  console.log("in update");
-  console.log(req.body);
+export const update = (req, res) => {
+  console.log('in update')
+  console.log(req.body)
 
   FishSanctuaries.findById('620cfbbe7ee6030018681377')
     .then(notFound(res))

@@ -2,34 +2,34 @@ import { Router } from 'express'
 import { middleware as query } from 'querymen'
 import { middleware as body } from 'bodymen'
 // import { master } from '../../services/passport'
-import { createFlora, createFauna, create, index, show, update, destroy } from './controller'
+import { createFlora, createFauna, create, index, show, update, destroy,searchByDate } from './controller'
 import { schema } from './model'
-export FloraFauna, { schema } from './model'
 import multer from 'multer'
+export FloraFauna, { schema } from './model'
 const router = new Router()
 const { userId, latitude, longitude, location, flora, fauna, commonName, localName, scientificName, contributorName } = schema.tree
-const jwt = require('jsonwebtoken');
+const jwt = require('jsonwebtoken')
 
-const accessTokenSecret = 'youraccesstokensecret';
+const accessTokenSecret = 'youraccesstokensecret'
 
 const authenticateJWT = (req, res, next) => {
-  const authHeader = req.headers.authorization;
+  const authHeader = req.headers.authorization
 
   if (authHeader) {
-    const token = authHeader.split(' ')[1];
+    const token = authHeader.split(' ')[1]
 
     jwt.verify(token, accessTokenSecret, (err, user) => {
       if (err) {
-        return res.sendStatus(403);
+        return res.sendStatus(403)
       }
 
-      req.user = user;
-      next();
-    });
+      req.user = user
+      next()
+    })
   } else {
-    res.sendStatus(401);
+    res.sendStatus(401)
   }
-};
+}
 /**
  * @api {post} /flora-fauna Create flora fauna
  * @apiName CreateFloraFauna
@@ -81,6 +81,10 @@ router.get('/',
   // master(),
   query(),
   index)
+
+router.get('/searchByDate',
+  query(),
+  searchByDate)
 
 /**
  * @api {get} /flora-fauna/:id Retrieve flora fauna

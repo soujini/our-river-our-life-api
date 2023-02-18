@@ -1,27 +1,22 @@
 import { success, notFound } from '../../services/response/'
 import { FloraFauna } from '.'
-import aws from 'aws-sdk';
-import fs from 'fs';
-var UserController = require('../user/controller');
+import aws from 'aws-sdk'
+import fs from 'fs'
+var UserController = require('../user/controller')
 
 export const createFlora = (req, res, next) => {
-  var customOriginalName = "";
-  var customPath = "";
-  var customFieldName = "";
-  var bucketName = "our-river-our-life-images/flora";
-
-  aws.config.setPromisesDependency();
+  var bucketName = 'our-river-our-life-images/flora'
+  aws.config.setPromisesDependency()
   aws.config.update({
-    "accessKeyId": 'AKIAJ24JCG5UUXOOHKDA',
-    "secretAccessKey": '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',
-  });
+    accessKeyId: 'AKIAJ24JCG5UUXOOHKDA',
+    secretAccessKey: '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'
+  })
 
-
-  const file = req.files;
+  const file = req.files
 
   if (req.files.length > 0) {
-    const s3 = new aws.S3();
-    var responseData = [];
+    const s3 = new aws.S3()
+    var responseData = []
 
     file.map((item) => {
       var params = {
@@ -30,33 +25,33 @@ export const createFlora = (req, res, next) => {
         Body: fs.createReadStream(item.path),
         ACL: 'public-read',
         ContentType: 'image/jpeg'
-      };
+      }
       s3.upload(params, function (err, data) {
         if (err) {
-          res.json({ "error": true, "Message": err });
+          res.json({ error: true, Message: err })
         } else {
-          responseData.push(data);
-          if (responseData.length == file.length) {
-            //res.json({ "error": false, "message": "File Uploaded SuceesFully", data: responseData});
+          responseData.push(data)
+          if (responseData.length === file.length) {
+            // res.json({ "error": false, "message": "File Uploaded SuceesFully", data: responseData});
 
-            var photos = [];
+            var photos = []
             responseData.forEach(function (element) {
               photos.push({
-                "imageURL": element.Location
+                imageURL: element.Location
               })
-            });
+            })
 
             var params = {
-              "userId": req.body.userId,
-              "location": req.body.location,
-              "latitude": req.body.latitude,
-              "longitude": req.body.longitude,
-              "commonName": req.body.commonName,
-              "localName": req.body.localName,
-              "scientificName": req.body.scientificName,
-              "flora": photos,
-            };
-            if (params != "") {
+              userId: req.body.userId,
+              location: req.body.location,
+              latitude: req.body.latitude,
+              longitude: req.body.longitude,
+              commonName: req.body.commonName,
+              localName: req.body.localName,
+              scientificName: req.body.scientificName,
+              flora: photos
+            }
+            if (params !== '') {
               FloraFauna.create(params)
                 .then((floodAlert) => floodAlert.view(true))
                 .then(success(res, 201))
@@ -64,21 +59,20 @@ export const createFlora = (req, res, next) => {
             }
           }
         }
-      });
-    });
-  }
-  else {
+      })
+    })
+  } else {
     // var photos=[];
     var params = {
-      "userId": req.body.userId,
-      "location": req.body.location,
-      "latitude": req.body.latitude,
-      "longitude": req.body.longitude,
-      "commonName": req.body.commonName,
-      "localName": req.body.localName,
-      "scientificName": req.body.scientificName,
+      userId: req.body.userId,
+      location: req.body.location,
+      latitude: req.body.latitude,
+      longitude: req.body.longitude,
+      commonName: req.body.commonName,
+      localName: req.body.localName,
+      scientificName: req.body.scientificName
       // "flora":photos,
-    };
+    }
     FloraFauna.create(params)
       .then((floodAlert) => floodAlert.view(true))
       .then(success(res, 201))
@@ -86,22 +80,19 @@ export const createFlora = (req, res, next) => {
   }
 }
 export const createFauna = (req, res, next) => {
-  var customOriginalName = "";
-  var customPath = "";
-  var customFieldName = "";
-  var bucketName = "our-river-our-life-images/fauna";
+  var bucketName = 'our-river-our-life-images/fauna'
 
-  aws.config.setPromisesDependency();
+  aws.config.setPromisesDependency()
   aws.config.update({
-    "accessKeyId": 'AKIAJ24JCG5UUXOOHKDA',
-    "secretAccessKey": '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',
-  });
+    accessKeyId: 'AKIAJ24JCG5UUXOOHKDA',
+    secretAccessKey: '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'
+  })
 
-  const file = req.files;
+  const file = req.files
 
   if (req.files.length > 0) {
-    const s3 = new aws.S3();
-    var responseData = [];
+    const s3 = new aws.S3()
+    var responseData = []
 
     file.map((item) => {
       var params = {
@@ -109,34 +100,34 @@ export const createFauna = (req, res, next) => {
         Key: item.originalname,
         Body: fs.createReadStream(item.path),
         ACL: 'public-read'
-      };
+      }
       s3.upload(params, function (err, data) {
         if (err) {
-          res.json({ "error": true, "Message": err });
+          res.json({ error: true, Message: err })
         } else {
-          responseData.push(data);
-          if (responseData.length == file.length) {
-            //res.json({ "error": false, "message": "File Uploaded SuceesFully", data: responseData});
+          responseData.push(data)
+          if (responseData.length === file.length) {
+            // res.json({ "error": false, "message": "File Uploaded SuceesFully", data: responseData});
 
-            var photos = [];
+            var photos = []
             responseData.forEach(function (element) {
-              //photos.push(element.Location)
+              // photos.push(element.Location)
               photos.push({
-                "imageURL": element.Location
+                imageURL: element.Location
               })
-            });
+            })
 
             var params = {
-              "userId": req.body.userId,
-              "location": req.body.location,
-              "latitude": req.body.latitude,
-              "longitude": req.body.longitude,
-              "commonName": req.body.commonName,
-              "localName": req.body.localName,
-              "scientificName": req.body.scientificName,
-              "fauna": photos,
-            };
-            if (params != "") {
+              userId: req.body.userId,
+              location: req.body.location,
+              latitude: req.body.latitude,
+              longitude: req.body.longitude,
+              commonName: req.body.commonName,
+              localName: req.body.localName,
+              scientificName: req.body.scientificName,
+              fauna: photos
+            }
+            if (params !== '') {
               FloraFauna.create(params)
                 .then((floodAlert) => floodAlert.view(true))
                 .then(success(res, 201))
@@ -144,20 +135,19 @@ export const createFauna = (req, res, next) => {
             }
           }
         }
-      });
-    });
-  }
-  else {
+      })
+    })
+  } else {
     var params = {
-      "userId": req.body.userId,
-      "location": req.body.location,
-      "latitude": req.body.latitude,
-      "longitude": req.body.longitude,
-      "commonName": req.body.commonName,
-      "localName": req.body.localName,
-      "scientificName": req.body.scientificName,
+      userId: req.body.userId,
+      location: req.body.location,
+      latitude: req.body.latitude,
+      longitude: req.body.longitude,
+      commonName: req.body.commonName,
+      localName: req.body.localName,
+      scientificName: req.body.scientificName
       // "fauna":photos,
-    };
+    }
     FloraFauna.create(params)
       .then((floodAlert) => floodAlert.view(true))
       .then(success(res, 201))
@@ -177,11 +167,10 @@ export const index = ({ querymen: { query, select, cursor } }, res, next) => {
       .then(async (floraFaunas) => ({
         count,
         rows: await Promise.all(floraFaunas.map(async (floraFauna) => {
-          var params = { "userId": floraFauna['userId'] };
-          var userId = floraFauna['userId'];
-          var user = await UserController.getUser({ params });
-          floraFauna.contributorName = user.firstName + ' ' + user.lastName;
-          return floraFauna.view();
+          var params = { userId: floraFauna.userId }
+          var user = await UserController.getUser({ params })
+          floraFauna.contributorName = user.firstName + ' ' + user.lastName
+          return floraFauna.view()
         }))
       }))
     )
@@ -210,3 +199,25 @@ export const destroy = ({ params }, res, next) =>
     .then((floraFauna) => floraFauna ? floraFauna.remove() : null)
     .then(success(res, 204))
     .catch(next)
+
+export const searchByDate = (req, res, next) => {
+  const query = { createdAt: { $gte: new Date(req.query.start), $lt: new Date(req.query.end) } }
+  var select
+  var cursor
+  FloraFauna.count(query)
+    .then(count => FloraFauna.find(query, select, cursor)
+      .then(async (floraFaunas) => ({
+        count,
+        rows: await Promise.all(floraFaunas.map(async (floraFauna) => {
+          var params = { userId: floraFauna.userId }
+          var user = await UserController.getUser({ params })
+          if (user != null) {
+            floraFauna.contributorName = user.firstName != null && user.firstName !== '' ? user.firstName : '' + ' ' + user.lastName != null && user.lastName !== '' ? user.lastName : ''
+          }
+          return floraFauna.view()
+        }))
+      }))
+    )
+    .then(success(res))
+    .catch(next)
+}
