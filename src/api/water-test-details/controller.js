@@ -462,6 +462,7 @@ export const searchByDate = (req, res, next) => {
   const query = { createdAt: { $gte: new Date(req.query.start), $lt: new Date(req.query.end) } }
   var select
   var cursor
+
   WaterTestDetails.count(query)
     .then(count => WaterTestDetails.find(query, select, cursor)
       .then(async (waterTestDetails) => ({
