@@ -459,8 +459,10 @@ export const index = ({ querymen: { query, select, cursor } }, res, next) => {
 }
 
 export const searchByDate = ({ querymen: { query, select, cursor } }, res, next) => {
+  console.log(query)
+  query = { createdAt: { $gte: new Date('2022-11-03'), $lt: new Date('2022-11-06') } }
   WaterTestDetails.count(query)
-    .then(count => WaterTestDetails.find({ createdAt: { $gte: new Date('2022-11-03'), $lt: new Date('2022-11-06') } }, select, cursor)
+    .then(count => WaterTestDetails.find(query, select, cursor)
       .then(async (waterTestDetails) => ({
         count,
         rows: await Promise.all(waterTestDetails.map(async (waterTestDetail) => {
