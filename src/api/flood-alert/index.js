@@ -57,8 +57,8 @@ router.get('/',
 router.get('/:id',
   show)
 
+router.get('/searchByDate/search',
 
-router.get('/searchByDate',
   query(),
   searchByDate)
 
