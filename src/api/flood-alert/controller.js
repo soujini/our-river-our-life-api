@@ -74,6 +74,7 @@ export const createAlert = (req, res, next) => {
 }
 
 export const searchByDate = (req, res, next) => {
+  console.log("ajsdkajhdkjahkajshkad")
   const query = { createdAt: { $gte: new Date(req.query.start), $lt: new Date(req.query.end) } }
   var select
   var cursor
