@@ -1,16 +1,16 @@
 import { Router } from 'express'
 import { middleware as query } from 'querymen'
 import { middleware as body } from 'bodymen'
-import { createAlert, create, index, show, update, destroy } from './controller'
+import { createAlert, create, index, show, update, destroy, searchByDate } from './controller'
 import { schema } from './model'
-export FloodAlert, { schema } from './model'
 import multer from 'multer'
+export FloodAlert, { schema } from './model'
 
 const router = new Router()
 const { location, latitude, longitude, date, time, photos, experience } = schema.tree
 
 router.post('/create-alert',
-multer({ dest: 'temp/', limits: { fieldSize: 8 * 1024 * 1024 }}).array('photos', 10),
+  multer({ dest: 'temp/', limits: { fieldSize: 8 * 1024 * 1024 } }).array('photos', 10),
   createAlert
 )
 
@@ -56,6 +56,11 @@ router.get('/',
  */
 router.get('/:id',
   show)
+
+
+router.get('/searchByDate',
+  query(),
+  searchByDate)
 
 /**
  * @api {put} /flood-alert/:id Update flood alert

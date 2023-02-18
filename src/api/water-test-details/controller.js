@@ -458,9 +458,10 @@ export const index = ({ querymen: { query, select, cursor } }, res, next) => {
     .catch(next)
 }
 
-export const searchByDate = ({ querymen: { query, select, cursor } }, res, next) => {
-  console.log(query)
-  query = { createdAt: { $gte: new Date('2022-11-03'), $lt: new Date('2022-11-06') } }
+export const searchByDate = (req, res, next) => {
+  const query = { createdAt: { $gte: new Date(req.query.start), $lt: new Date(req.query.end) } }
+  var select
+  var cursor
   WaterTestDetails.count(query)
     .then(count => WaterTestDetails.find(query, select, cursor)
       .then(async (waterTestDetails) => ({
