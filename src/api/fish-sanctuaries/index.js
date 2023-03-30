@@ -1,39 +1,43 @@
 import { Router } from 'express'
 import { middleware as query } from 'querymen'
 import { middleware as body } from 'bodymen'
-import { token, master } from '../../services/passport'
-import { createFishSanctuary, updateFishSanctuary, create, index, show, update, destroy } from './controller'
+import { token } from '../../services/passport'
+import { createFishSanctuary, updateFishSanctuary, create, index, show, update, destroy, searchByDate } from './controller'
 import { schema } from './model'
-export FishSanctuaries, { schema } from './model'
 import multer from 'multer'
+export FishSanctuaries, { schema } from './model'
 
 const router = new Router()
 const { userId, locationDetails, habitatCharacteristics, managementActions, speciesPictures, culturalHistoricalSignificance, sanctuaryFiles, speciesFiles, recognizeFish } = schema.tree
-const accessTokenSecret = 'youraccesstokensecret';
-const jwt = require('jsonwebtoken');
+const accessTokenSecret = 'youraccesstokensecret'
+const jwt = require('jsonwebtoken')
 
 // multer({ dest: 'temp/', limits: { fieldSize: 8 * 1024 * 1024 }}).array('photos', 10),
 //   createAlert
 // )
 
 const authenticateJWT = (req, res, next) => {
-  const authHeader = req.headers.authorization;
+  const authHeader = req.headers.authorization
 
   if (authHeader) {
-    const token = authHeader.split(' ')[1];
+    const token = authHeader.split(' ')[1]
 
     jwt.verify(token, accessTokenSecret, (err, user) => {
       if (err) {
-        return res.sendStatus(403);
+        return res.sendStatus(403)
       }
 
-      req.user = user;
-      next();
-    });
+      req.user = user
+      next()
+    })
   } else {
-    res.sendStatus(401);
+    res.sendStatus(401)
   }
-};
+}
+
+router.get('/searchByDate',
+  query(),
+  searchByDate)
 
 router.post('/create-fish-sanctuary', authenticateJWT,
   multer({ dest: 'temp/', limits: { fieldSize: 8 * 1024 * 1024 } })
@@ -42,7 +46,7 @@ router.post('/create-fish-sanctuary', authenticateJWT,
       name: 'sanctuaryFiles', maxCount: 5
     }, {
       name: 'speciesFiles', maxCount: 5
-    },
+    }
     ]),
   body({
     userId,
@@ -55,7 +59,6 @@ router.post('/create-fish-sanctuary', authenticateJWT,
   }),
   createFishSanctuary)
 
-
 router.put('/update-fish-sanctuary/:id',
   multer({ dest: 'temp/', limits: { fieldSize: 8 * 1024 * 1024 } })
     // .array("locationDetails.sanctuaryPictures.imageURL", 10),
@@ -63,7 +66,7 @@ router.put('/update-fish-sanctuary/:id',
       name: 'sanctuaryFiles', maxCount: 5
     }, {
       name: 'speciesFiles', maxCount: 5
-    },
+    }
     ]),
   body({
     userId,

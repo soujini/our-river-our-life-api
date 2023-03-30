@@ -3,14 +3,11 @@ import { WaterTestDetails } from '.'
 // var PDFController = require('../pdf/controller')
 import aws from 'aws-sdk'
 import fs from 'fs'
-import { filter } from 'bluebird'
 var UserController = require('../user/controller')
-var PDFController = require('../pdf/controller')
 
 export const uploadToS3 = function (params) {
-  return new Promise((resolve, reject) => {
+  return new Promise((resolve) => {
     const s3 = new aws.S3()
-    var responseData = []
     s3.upload(params, function (err, res) {
       if (err) {
         console.log('Error occured while trying to upload Flora to the S3 bucket', err)
@@ -36,9 +33,6 @@ export const uploadToS3 = function (params) {
 // }
 
 export const uploadFlora = function (req) {
-  var customOriginalName = ''
-  var customPath = ''
-  var customFieldName = ''
   var bucketName = ''
 
   aws.config.setPromisesDependency()
@@ -46,12 +40,10 @@ export const uploadFlora = function (req) {
     accessKeyId: 'AKIAJ24JCG5UUXOOHKDA',
     secretAccessKey: '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'
   })
-  return new Promise((resolve, reject) => {
+  return new Promise((resolve) => {
     if (req.files.floraFiles) {
       var flora = []
-      const promises = req.files.floraFiles.map((item) => {
-        customFieldName = item.fieldname
-        customPath = item.path
+      const promises = req.files.floraFiles.map(async (item) => {
         bucketName = 'our-river-our-life-images/flora'
 
         var params = {
@@ -62,14 +54,13 @@ export const uploadFlora = function (req) {
         }
         console.log(item.originalname)
 
-        return uploadToS3(params).then(element => {
-          flora.push({ imageURL: element, fileName: item.originalname })
-          return flora
-        })
+        const element = await uploadToS3(params)
+        flora.push({ imageURL: element, fileName: item.originalname })
+        return flora
       })
 
       Promise.all(promises)
-        .then(results => {
+        .then(() => {
           resolve(flora)
         })
         .catch(e => {
@@ -81,9 +72,6 @@ export const uploadFlora = function (req) {
   })
 }
 export const uploadFauna = function (req) {
-  var customOriginalName = ''
-  var customPath = ''
-  var customFieldName = ''
   var bucketName = ''
 
   aws.config.setPromisesDependency()
@@ -91,12 +79,10 @@ export const uploadFauna = function (req) {
     accessKeyId: 'AKIAJ24JCG5UUXOOHKDA',
     secretAccessKey: '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'
   })
-  return new Promise((resolve, reject) => {
+  return new Promise((resolve) => {
     if (req.files.faunaFiles) {
       var fauna = []
-      const promises = req.files.faunaFiles.map((item) => {
-        customFieldName = item.fieldname
-        customPath = item.path
+      const promises = req.files.faunaFiles.map(async (item) => {
         bucketName = 'our-river-our-life-images/fauna'
 
         var params = {
@@ -106,14 +92,13 @@ export const uploadFauna = function (req) {
           Key: item.originalname
         }
 
-        return uploadToS3(params).then(element => {
-          fauna.push({ imageURL: element, fileName: item.originalname })
-          return fauna
-        })
+        const element = await uploadToS3(params)
+        fauna.push({ imageURL: element, fileName: item.originalname })
+        return fauna
       })
 
       Promise.all(promises)
-        .then(results => {
+        .then(() => {
           resolve(fauna)
         })
         .catch(e => {
@@ -125,9 +110,6 @@ export const uploadFauna = function (req) {
   })
 }
 export const uploadArtwork = function (req) {
-  var customOriginalName = ''
-  var customPath = ''
-  var customFieldName = ''
   var bucketName = ''
 
   aws.config.setPromisesDependency()
@@ -135,12 +117,10 @@ export const uploadArtwork = function (req) {
     accessKeyId: 'AKIAJ24JCG5UUXOOHKDA',
     secretAccessKey: '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'
   })
-  return new Promise((resolve, reject) => {
+  return new Promise((resolve) => {
     if (req.files.artworkFiles) {
       var artwork = []
-      const promises = req.files.artworkFiles.map((item) => {
-        customFieldName = item.fieldname
-        customPath = item.path
+      const promises = req.files.artworkFiles.map(async (item) => {
         bucketName = 'our-river-our-life-images/artwork'
 
         var params = {
@@ -150,14 +130,13 @@ export const uploadArtwork = function (req) {
           Key: item.originalname
         }
 
-        return uploadToS3(params).then(element => {
-          artwork.push({ imageURL: element, fileName: item.originalname })
-          return artwork
-        })
+        const element = await uploadToS3(params)
+        artwork.push({ imageURL: element, fileName: item.originalname })
+        return artwork
       })
 
       Promise.all(promises)
-        .then(results => {
+        .then(() => {
           resolve(artwork)
         })
         .catch(e => {
@@ -169,9 +148,6 @@ export const uploadArtwork = function (req) {
   })
 }
 export const uploadGroupPicture = function (req) {
-  var customOriginalName = ''
-  var customPath = ''
-  var customFieldName = ''
   var bucketName = ''
 
   aws.config.setPromisesDependency()
@@ -179,12 +155,10 @@ export const uploadGroupPicture = function (req) {
     accessKeyId: 'AKIAJ24JCG5UUXOOHKDA',
     secretAccessKey: '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'
   })
-  return new Promise((resolve, reject) => {
+  return new Promise((resolve) => {
     if (req.files.groupFiles) {
       var groupPicture = []
-      const promises = req.files.groupFiles.map((item) => {
-        customFieldName = item.fieldname
-        customPath = item.path
+      const promises = req.files.groupFiles.map(async (item) => {
         bucketName = 'our-river-our-life-images/groupPicture'
 
         var params = {
@@ -194,14 +168,13 @@ export const uploadGroupPicture = function (req) {
           Key: item.originalname
         }
 
-        return uploadToS3(params).then(element => {
-          groupPicture.push({ imageURL: element, fileName: item.originalname })
-          return groupPicture
-        })
+        const element = await uploadToS3(params)
+        groupPicture.push({ imageURL: element, fileName: item.originalname })
+        return groupPicture
       })
 
       Promise.all(promises)
-        .then(results => {
+        .then(() => {
           resolve(groupPicture)
         })
         .catch(e => {
@@ -213,9 +186,6 @@ export const uploadGroupPicture = function (req) {
   })
 }
 export const uploadActivity = function (req) {
-  var customOriginalName = ''
-  var customPath = ''
-  var customFieldName = ''
   var bucketName = ''
 
   aws.config.setPromisesDependency()
@@ -223,12 +193,10 @@ export const uploadActivity = function (req) {
     accessKeyId: 'AKIAJ24JCG5UUXOOHKDA',
     secretAccessKey: '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'
   })
-  return new Promise((resolve, reject) => {
+  return new Promise((resolve) => {
     if (req.files.activityFiles) {
       var activity = []
-      const promises = req.files.activityFiles.map((item) => {
-        customFieldName = item.fieldname
-        customPath = item.path
+      const promises = req.files.activityFiles.map(async (item) => {
         bucketName = 'our-river-our-life-images/activity'
 
         var params = {
@@ -238,14 +206,13 @@ export const uploadActivity = function (req) {
           Key: item.originalname
         }
 
-        return uploadToS3(params).then(element => {
-          activity.push({ imageURL: element, fileName: item.originalname })
-          return activity
-        })
+        const element = await uploadToS3(params)
+        activity.push({ imageURL: element, fileName: item.originalname })
+        return activity
       })
 
       Promise.all(promises)
-        .then(results => {
+        .then(() => {
           resolve(activity)
         })
         .catch(e => {
@@ -257,9 +224,6 @@ export const uploadActivity = function (req) {
   })
 }
 export const uploadRiver = function (req) {
-  var customOriginalName = ''
-  var customPath = ''
-  var customFieldName = ''
   var bucketName = ''
 
   aws.config.setPromisesDependency()
@@ -267,12 +231,10 @@ export const uploadRiver = function (req) {
     accessKeyId: 'AKIAJ24JCG5UUXOOHKDA',
     secretAccessKey: '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'
   })
-  return new Promise((resolve, reject) => {
+  return new Promise((resolve) => {
     if (req.files.riverFiles) {
       var river = []
-      const promises = req.files.riverFiles.map((item) => {
-        customFieldName = item.fieldname
-        customPath = item.path
+      const promises = req.files.riverFiles.map(async (item) => {
         bucketName = 'our-river-our-life-images/river'
 
         var params = {
@@ -282,16 +244,15 @@ export const uploadRiver = function (req) {
           Key: item.originalname
         }
 
-        return uploadToS3(params).then(element => {
-          // Get description field by comparing file names
-          river.push({ imageURL: element, fileName: item.originalname })
-          console.log(element)
-          return river
-        })
+        const element = await uploadToS3(params)
+        // Get description field by comparing file names
+        river.push({ imageURL: element, fileName: item.originalname })
+        console.log(element)
+        return river
       })
 
       Promise.all(promises)
-        .then(results => {
+        .then(() => {
           resolve(river)
         })
         .catch(e => {
@@ -303,9 +264,6 @@ export const uploadRiver = function (req) {
   })
 }
 export const uploadSurrounding = function (req) {
-  var customOriginalName = ''
-  var customPath = ''
-  var customFieldName = ''
   var bucketName = ''
 
   aws.config.setPromisesDependency()
@@ -313,12 +271,10 @@ export const uploadSurrounding = function (req) {
     accessKeyId: 'AKIAJ24JCG5UUXOOHKDA',
     secretAccessKey: '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'
   })
-  return new Promise((resolve, reject) => {
+  return new Promise((resolve) => {
     if (req.files.surroundingFiles) {
       var surrounding = []
-      const promises = req.files.surroundingFiles.map((item) => {
-        customFieldName = item.fieldname
-        customPath = item.path
+      const promises = req.files.surroundingFiles.map(async (item) => {
         bucketName = 'our-river-our-life-images/surrounding'
 
         var params = {
@@ -328,14 +284,13 @@ export const uploadSurrounding = function (req) {
           Key: item.originalname
         }
 
-        return uploadToS3(params).then(element => {
-          surrounding.push({ imageURL: element, fileName: item.originalname })
-          return surrounding
-        })
+        const element = await uploadToS3(params)
+        surrounding.push({ imageURL: element, fileName: item.originalname })
+        return surrounding
       })
 
       Promise.all(promises)
-        .then(results => {
+        .then(() => {
           resolve(surrounding)
         })
         .catch(e => {
@@ -358,43 +313,43 @@ export const createWaterTestDetails = async (req, res, next) => {
 
   Promise.all([uploadFlora(req), uploadFauna(req), uploadArtwork(req), uploadGroupPicture(req), uploadActivity(req), uploadRiver(req), uploadSurrounding(req)])
     .then(results => {
-      results[0].forEach((element, index) => {
+      results[0].forEach((element) => {
         req.body.floraPictures.forEach((element2, index2) => {
-          if (element.fileName == element2.fileName) { req.body.floraPictures[index2].imageURL = element.imageURL }
+          if (element.fileName === element2.fileName) { req.body.floraPictures[index2].imageURL = element.imageURL }
         })
       })
 
-      results[1].forEach((element, index) => {
+      results[1].forEach((element) => {
         req.body.faunaPictures.forEach((element2, index2) => {
-          if (element.fileName == element2.fileName) { req.body.faunaPictures[index2].imageURL = element.imageURL }
+          if (element.fileName === element2.fileName) { req.body.faunaPictures[index2].imageURL = element.imageURL }
         })
       })
 
-      results[2].forEach((element, index) => {
+      results[2].forEach((element) => {
         req.body.artworkPictures.forEach((element2, index2) => {
-          if (element.fileName == element2.fileName) { req.body.artworkPictures[index2].imageURL = element.imageURL }
+          if (element.fileName === element2.fileName) { req.body.artworkPictures[index2].imageURL = element.imageURL }
         })
       })
-      results[3].forEach((element, index) => {
+      results[3].forEach((element) => {
         req.body.groupPictures.forEach((element2, index2) => {
-          if (element.fileName == element2.fileName) { req.body.groupPictures[index2].imageURL = element.imageURL }
+          if (element.fileName === element2.fileName) { req.body.groupPictures[index2].imageURL = element.imageURL }
         })
       })
-      results[4].forEach((element, index) => {
+      results[4].forEach((element) => {
         req.body.activityPictures.forEach((element2, index2) => {
-          if (element.fileName == element2.fileName) { req.body.activityPictures[index2].imageURL = element.imageURL }
+          if (element.fileName === element2.fileName) { req.body.activityPictures[index2].imageURL = element.imageURL }
         })
       })
 
-      results[5].forEach((element, index) => {
+      results[5].forEach((element) => {
         req.body.riverPictures.forEach((element2, index2) => {
-          if (element.fileName == element2.fileName) { req.body.riverPictures[index2].imageURL = element.imageURL }
+          if (element.fileName === element2.fileName) { req.body.riverPictures[index2].imageURL = element.imageURL }
         })
       })
 
-      results[6].forEach((element, index) => {
+      results[6].forEach((element) => {
         req.body.surroundingPictures.forEach((element2, index2) => {
-          if (element.fileName == element2.fileName) { req.body.surroundingPictures[index2].imageURL = element.imageURL }
+          if (element.fileName === element2.fileName) { req.body.surroundingPictures[index2].imageURL = element.imageURL }
         })
       })
 
@@ -417,61 +372,53 @@ export const updateWaterTestDetails = async (req, res, next) => {
 
   // Promise.all([uploadFlora(req), uploadFauna(req), uploadArtwork(req), uploadGroupPicture(req), uploadActivity(req), uploadRiver(req), uploadSurrounding(req)])
   //   .then(results => {
+  //     results[0].forEach((element) => {
+  //       req.body.floraPictures.forEach((element2, index2) => {
+  //         if (element.fileName === element2.fileName) { req.body.floraPictures[index2].imageURL = element.imageURL }
+  //       })
+  //     })
 
-  //     results[0].forEach((element, index) => {
-  //       req.body['floraPictures'].forEach((element2, index2) => {
-  //         if (element.fileName == element2.fileName)
-  //           req.body['floraPictures'][index2].imageURL = element.imageURL
-  //       });
-  //     });
+  //     results[1].forEach((element) => {
+  //       req.body.faunaPictures.forEach((element2, index2) => {
+  //         if (element.fileName === element2.fileName) { req.body.faunaPictures[index2].imageURL = element.imageURL }
+  //       })
+  //     })
 
-  //     results[1].forEach((element, index) => {
-  //       req.body['faunaPictures'].forEach((element2, index2) => {
-  //         if (element.fileName == element2.fileName)
-  //           req.body['faunaPictures'][index2].imageURL = element.imageURL
-  //       });
-  //     });
+  //     results[2].forEach((element) => {
+  //       req.body.artworkPictures.forEach((element2, index2) => {
+  //         if (element.fileName === element2.fileName) { req.body.artworkPictures[index2].imageURL = element.imageURL }
+  //       })
+  //     })
+  //     results[3].forEach((element) => {
+  //       req.body.groupPictures.forEach((element2, index2) => {
+  //         if (element.fileName === element2.fileName) { req.body.groupPictures[index2].imageURL = element.imageURL }
+  //       })
+  //     })
+  //     results[4].forEach((element) => {
+  //       req.body.activityPictures.forEach((element2, index2) => {
+  //         if (element.fileName === element2.fileName) { req.body.activityPictures[index2].imageURL = element.imageURL }
+  //       })
+  //     })
 
-  //     results[2].forEach((element, index) => {
-  //       req.body['artworkPictures'].forEach((element2, index2) => {
-  //         if (element.fileName == element2.fileName)
-  //           req.body['artworkPictures'][index2].imageURL = element.imageURL
-  //       });
-  //     });
-  //     results[3].forEach((element, index) => {
-  //       req.body['groupPictures'].forEach((element2, index2) => {
-  //         if (element.fileName == element2.fileName)
-  //           req.body['groupPictures'][index2].imageURL = element.imageURL
-  //       });
-  //     });
-  //     results[4].forEach((element, index) => {
-  //       req.body['activityPictures'].forEach((element2, index2) => {
-  //         if (element.fileName == element2.fileName)
-  //           req.body['activityPictures'][index2].imageURL = element.imageURL
-  //       });
-  //     });
+  //     results[5].forEach((element) => {
+  //       req.body.riverPictures.forEach((element2, index2) => {
+  //         if (element.fileName === element2.fileName) { req.body.riverPictures[index2].imageURL = element.imageURL }
+  //       })
+  //     })
 
-  //     results[5].forEach((element, index) => {
-  //       req.body['riverPictures'].forEach((element2, index2) => {
-  //         if (element.fileName == element2.fileName)
-  //           req.body['riverPictures'][index2].imageURL = element.imageURL
-  //       });
-  //     });
+  //     results[6].forEach((element) => {
+  //       req.body.surroundingPictures.forEach((element2, index2) => {
+  //         if (element.fileName === element2.fileName) { req.body.surroundingPictures[index2].imageURL = element.imageURL }
+  //       })
+  //     })
 
-  //     results[6].forEach((element, index) => {
-  //       req.body['surroundingPictures'].forEach((element2, index2) => {
-  //         if (element.fileName == element2.fileName)
-  //           req.body['surroundingPictures'][index2].imageURL = element.imageURL
-  //       });
-  //     });
-
-  WaterTestDetails.findById({ _id: req.params.id }).exec()
-    .then(notFound(res))
-    .then((waterTestDetails) => waterTestDetails ? Object.assign(waterTestDetails, JSON.parse(JSON.stringify(req.body))).save() : null)
-    .then((waterTestDetails) => waterTestDetails ? waterTestDetails.view(true) : null)
-    .then(success(res))
-    .catch(next)
-    // });
+      WaterTestDetails.findById({ _id: req.params.id }).exec()
+        .then(notFound(res))
+        .then((waterTestDetails) => waterTestDetails ? Object.assign(waterTestDetails, JSON.parse(JSON.stringify(req.body))).save() : null)
+        .then((waterTestDetails) => waterTestDetails ? waterTestDetails.view(true) : null)
+        .then(success(res))
+        .catch(next)
+    // })
 }
 
 export const create = (req, res, next) => {
@@ -499,10 +446,32 @@ export const index = ({ querymen: { query, select, cursor } }, res, next) => {
         count,
         rows: await Promise.all(waterTestDetails.map(async (waterTestDetail) => {
           var params = { userId: waterTestDetail.userId }
-          var userId = waterTestDetail.userId
           var user = await UserController.getUser({ params })
           if (user != null) {
-            waterTestDetail.contributorName = user.firstName != null && user.firstName != '' ? user.firstName : '' + ' ' + user.lastName != null && user.lastName != '' ? user.lastName : ''
+            waterTestDetail.contributorName = user.firstName != null && user.firstName !== '' ? user.firstName : '' + ' ' + user.lastName != null && user.lastName !== '' ? user.lastName : ''
+          }
+          return waterTestDetail.view()
+        }))
+      }))
+    )
+    .then(success(res))
+    .catch(next)
+}
+
+export const searchByDate = (req, res, next) => {
+  const query = { createdAt: { $gte: new Date(req.query.start), $lt: new Date(req.query.end) } }
+  var select
+  var cursor
+
+  WaterTestDetails.count(query)
+    .then(count => WaterTestDetails.find(query, select, cursor)
+      .then(async (waterTestDetails) => ({
+        count,
+        rows: await Promise.all(waterTestDetails.map(async (waterTestDetail) => {
+          var params = { userId: waterTestDetail.userId }
+          var user = await UserController.getUser({ params })
+          if (user != null) {
+            waterTestDetail.contributorName = user.firstName != null && user.firstName !== '' ? user.firstName : '' + ' ' + user.lastName != null && user.lastName !== '' ? user.lastName : ''
           }
           return waterTestDetail.view()
         }))
@@ -520,24 +489,24 @@ export const show = ({ params }, res, next) => {
     .catch(next)
 }
 
-export const updateImage = async ({ params }, res, next) => {
-  WaterTestDetails.findById(params.id, function (err, waterTestDetails) {
+export const updateImage = async ({ params }) => {
+  WaterTestDetails.findById(params.id, function (waterTestDetails) {
     if (waterTestDetails) {
-      if (params.fieldName == 'flora') {
+      if (params.fieldName === 'flora') {
         waterTestDetails.flora.push({ imageURL: params.flora, description: params.description })
-      } else if (params.fieldName == 'fauna') {
+      } else if (params.fieldName === 'fauna') {
         waterTestDetails.fauna.push({ imageURL: params.fauna, description: params.description })
-      } else if (params.fieldName == 'artwork') {
+      } else if (params.fieldName === 'artwork') {
         waterTestDetails.artwork.push({ imageURL: params.artwork, description: params.description })
-      } else if (params.fieldName == 'groupPicture') {
+      } else if (params.fieldName === 'groupPicture') {
         waterTestDetails.groupPicture.push({ imageURL: params.groupPicture, description: params.description })
-      } else if (params.fieldName == 'activity') {
+      } else if (params.fieldName === 'activity') {
         waterTestDetails.activity.push({ imageURL: params.activity, description: params.description })
-      } else if (params.fieldName == 'river') {
+      } else if (params.fieldName === 'river') {
         waterTestDetails.river.push({ imageURL: params.river, description: params.description })
-      } else if (params.fieldName == 'surrounding') {
+      } else if (params.fieldName === 'surrounding') {
         waterTestDetails.river.push({ imageURL: params.surrounding, description: params.description })
-      } else if (params.fieldName == 'certificate') {
+      } else if (params.fieldName === 'certificate') {
         waterTestDetails.certificateURL = params.certificate
       }
       waterTestDetails.save()
@@ -547,10 +516,10 @@ export const updateImage = async ({ params }, res, next) => {
   })
 }
 
-export const update = ({ bodymen: { body }, params }, res, next) => {
+export const update = ({ params }, res, next) => {
   WaterTestDetails.findById(params.id)
     .then(notFound(res))
-    .then((waterTestDetails) => waterTestDetails ? Object.assign(waterTestDetails, req).save() : null)
+    .then((waterTestDetails) => waterTestDetails ? Object.assign(waterTestDetails).save() : null)
     .then((waterTestDetails) => waterTestDetails ? waterTestDetails.view(true) : null)
     .then(success(res))
     .catch(next)
