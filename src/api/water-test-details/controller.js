@@ -40,6 +40,9 @@ export const uploadToS3 = function (params) {
 // }
 
 export const uploadFlora = function (req) {
+  console.log('uploadFlora')
+  console.log(req.files.floraFiles)
+  console.log(req.files.floraFiles.length)
   var bucketName = ''
 
   return new Promise((resolve) => {
