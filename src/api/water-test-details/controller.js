@@ -7,6 +7,13 @@ var UserController = require('../user/controller')
 
 export const uploadToS3 = function (params) {
   return new Promise((resolve) => {
+    aws.config.setPromisesDependency()
+    aws.config.update({
+      accessKeyId: 'AKIAJ24JCG5UUXOOHKDA',
+      secretAccessKey: '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'
+    })
+    console.log("aws creds")
+    console.log(aws.config)
     const s3 = new aws.S3()
     s3.upload(params, function (err, res) {
       if (err) {
@@ -35,11 +42,6 @@ export const uploadToS3 = function (params) {
 export const uploadFlora = function (req) {
   var bucketName = ''
 
-  aws.config.setPromisesDependency()
-  aws.config.update({
-    accessKeyId: 'AKIAJ24JCG5UUXOOHKDA',
-    secretAccessKey: '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'
-  })
   return new Promise((resolve) => {
     if (req.files.floraFiles) {
       var flora = []
