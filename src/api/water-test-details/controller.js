@@ -225,6 +225,7 @@ export const uploadActivity = function (req) {
 }
 export const uploadRiver = function (req) {
   console.log("in upload river")
+  console.log(req.files)
   console.log(req.files.riverFiles)
   var bucketName = ''
 
