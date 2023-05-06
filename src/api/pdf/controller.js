@@ -37,8 +37,8 @@ var WaterTestDetailsController = require('../water-test-details/controller')
 
 //           aws.config.setPromisesDependency();
 //           aws.config.update({
-//             "accessKeyId": 'AKIAJ24JCG5UUXOOHKDA',
-//             "secretAccessKey": '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',
+//             "accessKeyId": 'AKIA4UTPTWGNMBJWA7UL',
+//             "secretAccessKey": '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',
 //           });
 
 //           const s3 = new aws.S3();
@@ -109,8 +109,8 @@ export const generateReport = (req, res, next) => {
         } else {
           aws.config.setPromisesDependency()
           aws.config.update({
-            accessKeyId: 'AKIAJ24JCG5UUXOOHKDA',
-            secretAccessKey: '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'
+            accessKeyId: 'AKIA4UTPTWGNMBJWA7UL',
+            secretAccessKey: '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'
           })
 
           const s3 = new aws.S3()
@@ -153,8 +153,8 @@ export const generateReport = (req, res, next) => {
 
 //   aws.config.setPromisesDependency();
 //   aws.config.update({
-//     "accessKeyId": 'AKIAJ24JCG5UUXOOHKDA',
-//     "secretAccessKey": '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',
+//     "accessKeyId": 'AKIA4UTPTWGNMBJWA7UL',
+//     "secretAccessKey": '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',
 //   });
 
 //   if (req.files.floraFiles) {

@@ -8,8 +8,8 @@ export const createFlora = (req, res, next) => {
   var bucketName = 'our-river-our-life-images/flora'
   aws.config.setPromisesDependency()
   aws.config.update({
-    accessKeyId: 'AKIAJ24JCG5UUXOOHKDA',
-    secretAccessKey: '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'
+    accessKeyId: 'AKIA4UTPTWGNMBJWA7UL',
+    secretAccessKey: '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'
   })
 
   const file = req.files
@@ -84,8 +84,8 @@ export const createFauna = (req, res, next) => {
 
   aws.config.setPromisesDependency()
   aws.config.update({
-    accessKeyId: 'AKIAJ24JCG5UUXOOHKDA',
-    secretAccessKey: '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'
+    accessKeyId: 'AKIA4UTPTWGNMBJWA7UL',
+    secretAccessKey: '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'
   })
 
   const file = req.files

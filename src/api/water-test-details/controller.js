@@ -9,11 +9,9 @@ export const uploadToS3 = function (params) {
   return new Promise((resolve) => {
     aws.config.setPromisesDependency()
     aws.config.update({
-      accessKeyId: 'AKIAJ24JCG5UUXOOHKDA',
-      secretAccessKey: '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'
+      accessKeyId: 'AKIA4UTPTWGNMBJWA7UL',
+      secretAccessKey: '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'
     })
-    console.log("aws creds")
-    console.log(aws.config)
     const s3 = new aws.S3()
     s3.upload(params, function (err, res) {
       if (err) {
@@ -41,8 +39,7 @@ export const uploadToS3 = function (params) {
 
 export const uploadFlora = function (req) {
   console.log('uploadFlora')
-  console.log(req.files.floraFiles)
-  console.log(req.files.floraFiles.length)
+  console.log(req.files)
   var bucketName = ''
 
   return new Promise((resolve) => {
@@ -81,8 +78,8 @@ export const uploadFauna = function (req) {
 
   aws.config.setPromisesDependency()
   aws.config.update({
-    accessKeyId: 'AKIAJ24JCG5UUXOOHKDA',
-    secretAccessKey: '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'
+    accessKeyId: 'AKIA4UTPTWGNMBJWA7UL',
+    secretAccessKey: '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'
   })
   return new Promise((resolve) => {
     if (req.files.faunaFiles) {
@@ -119,8 +116,8 @@ export const uploadArtwork = function (req) {
 
   aws.config.setPromisesDependency()
   aws.config.update({
-    accessKeyId: 'AKIAJ24JCG5UUXOOHKDA',
-    secretAccessKey: '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'
+    accessKeyId: 'AKIA4UTPTWGNMBJWA7UL',
+    secretAccessKey: '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'
   })
   return new Promise((resolve) => {
     if (req.files.artworkFiles) {
@@ -157,8 +154,8 @@ export const uploadGroupPicture = function (req) {
 
   aws.config.setPromisesDependency()
   aws.config.update({
-    accessKeyId: 'AKIAJ24JCG5UUXOOHKDA',
-    secretAccessKey: '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'
+    accessKeyId: 'AKIA4UTPTWGNMBJWA7UL',
+    secretAccessKey: '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'
   })
   return new Promise((resolve) => {
     if (req.files.groupFiles) {
@@ -195,8 +192,8 @@ export const uploadActivity = function (req) {
 
   aws.config.setPromisesDependency()
   aws.config.update({
-    accessKeyId: 'AKIAJ24JCG5UUXOOHKDA',
-    secretAccessKey: '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'
+    accessKeyId: 'AKIA4UTPTWGNMBJWA7UL',
+    secretAccessKey: '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'
   })
   return new Promise((resolve) => {
     if (req.files.activityFiles) {
@@ -236,8 +233,8 @@ export const uploadRiver = function (req) {
 
   aws.config.setPromisesDependency()
   aws.config.update({
-    accessKeyId: 'AKIAJ24JCG5UUXOOHKDA',
-    secretAccessKey: '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'
+    accessKeyId: 'AKIA4UTPTWGNMBJWA7UL',
+    secretAccessKey: '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'
   })
   return new Promise((resolve) => {
     if (req.files.riverFiles) {
@@ -276,8 +273,8 @@ export const uploadSurrounding = function (req) {
 
   aws.config.setPromisesDependency()
   aws.config.update({
-    accessKeyId: 'AKIAJ24JCG5UUXOOHKDA',
-    secretAccessKey: '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'
+    accessKeyId: 'AKIA4UTPTWGNMBJWA7UL',
+    secretAccessKey: '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'
   })
   return new Promise((resolve) => {
     if (req.files.surroundingFiles) {
