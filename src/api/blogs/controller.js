@@ -30,8 +30,8 @@ export const uploadAdditionalFeaturedPhotos =  function(req) {
 
   aws.config.setPromisesDependency();
   aws.config.update({
-    "accessKeyId": 'AKIA4UTPTWGNMBJWA7UL',
-    "secretAccessKey": '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',
+    "accessKeyId": 'process.env.AWS_ACCESS_KEY_ID',
+    "secretAccessKey": 'process.env.AWS_SECRET_ACCESS_KEY',
   });
   return new Promise((resolve, reject) => {
     if(req.files.featuredAdditionalPhotos){
@@ -75,8 +75,8 @@ export const uploadFeaturedPhoto =  function(req) {
 
   aws.config.setPromisesDependency();
   aws.config.update({
-    "accessKeyId": 'AKIA4UTPTWGNMBJWA7UL',
-    "secretAccessKey": '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',
+    "accessKeyId": 'process.env.AWS_ACCESS_KEY_ID',
+    "secretAccessKey": 'process.env.AWS_SECRET_ACCESS_KEY',
   });
   return new Promise((resolve, reject) => {
     if(req.files.featuredPhoto){
