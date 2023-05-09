@@ -37,8 +37,8 @@ var WaterTestDetailsController = require('../water-test-details/controller')
 
 //           aws.config.setPromisesDependency();
 //           aws.config.update({
-//             "accessKeyId": 'process.env.AWS_ACCESS_KEY_ID',
-//             "secretAccessKey": 'process.env.AWS_SECRET_ACCESS_KEY',
+//             "accessKeyId": process.env.AWS_ACCESS_KEY_ID,
+//             "secretAccessKey": process.env.AWS_SECRET_ACCESS_KEY,
 //           });
 
 //           const s3 = new aws.S3();
@@ -109,8 +109,8 @@ export const generateReport = (req, res, next) => {
         } else {
           aws.config.setPromisesDependency()
           aws.config.update({
-            accessKeyId: 'process.env.AWS_ACCESS_KEY_ID',
-            secretAccessKey: 'process.env.AWS_SECRET_ACCESS_KEY'
+            accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+            secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY
           })
 
           const s3 = new aws.S3()
@@ -153,8 +153,8 @@ export const generateReport = (req, res, next) => {
 
 //   aws.config.setPromisesDependency();
 //   aws.config.update({
-//     "accessKeyId": 'process.env.AWS_ACCESS_KEY_ID',
-//     "secretAccessKey": 'process.env.AWS_SECRET_ACCESS_KEY',
+//     "accessKeyId": process.env.AWS_ACCESS_KEY_ID,
+//     "secretAccessKey": process.env.AWS_SECRET_ACCESS_KEY,
 //   });
 
 //   if (req.files.floraFiles) {

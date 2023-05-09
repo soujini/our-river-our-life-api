@@ -9,8 +9,8 @@ export const uploadToS3 = function (params) {
   return new Promise((resolve) => {
     aws.config.setPromisesDependency()
     aws.config.update({
-      accessKeyId: 'process.env.AWS_ACCESS_KEY_ID',
-      secretAccessKey: 'process.env.AWS_SECRET_ACCESS_KEY'
+      accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+      secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY
     })
     const s3 = new aws.S3()
     s3.upload(params, function (err, res) {
@@ -78,8 +78,8 @@ export const uploadFauna = function (req) {
 
   aws.config.setPromisesDependency()
   aws.config.update({
-    accessKeyId: 'process.env.AWS_ACCESS_KEY_ID',
-    secretAccessKey: 'process.env.AWS_SECRET_ACCESS_KEY'
+    accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+    secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY
   })
   return new Promise((resolve) => {
     if (req.files.faunaFiles) {
@@ -116,8 +116,8 @@ export const uploadArtwork = function (req) {
 
   aws.config.setPromisesDependency()
   aws.config.update({
-    accessKeyId: 'process.env.AWS_ACCESS_KEY_ID',
-    secretAccessKey: 'process.env.AWS_SECRET_ACCESS_KEY'
+    accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+    secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY
   })
   return new Promise((resolve) => {
     if (req.files.artworkFiles) {
@@ -154,8 +154,8 @@ export const uploadGroupPicture = function (req) {
 
   aws.config.setPromisesDependency()
   aws.config.update({
-    accessKeyId: 'process.env.AWS_ACCESS_KEY_ID',
-    secretAccessKey: 'process.env.AWS_SECRET_ACCESS_KEY'
+    accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+    secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY
   })
   return new Promise((resolve) => {
     if (req.files.groupFiles) {
@@ -192,8 +192,8 @@ export const uploadActivity = function (req) {
 
   aws.config.setPromisesDependency()
   aws.config.update({
-    accessKeyId: 'process.env.AWS_ACCESS_KEY_ID',
-    secretAccessKey: 'process.env.AWS_SECRET_ACCESS_KEY'
+    accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+    secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY
   })
   return new Promise((resolve) => {
     if (req.files.activityFiles) {
@@ -233,8 +233,8 @@ export const uploadRiver = function (req) {
 
   aws.config.setPromisesDependency()
   aws.config.update({
-    accessKeyId: 'process.env.AWS_ACCESS_KEY_ID',
-    secretAccessKey: 'process.env.AWS_SECRET_ACCESS_KEY'
+    accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+    secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY
   })
   return new Promise((resolve) => {
     if (req.files.riverFiles) {
@@ -273,8 +273,8 @@ export const uploadSurrounding = function (req) {
 
   aws.config.setPromisesDependency()
   aws.config.update({
-    accessKeyId: 'process.env.AWS_ACCESS_KEY_ID',
-    secretAccessKey: 'process.env.AWS_SECRET_ACCESS_KEY'
+    accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+    secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY
   })
   return new Promise((resolve) => {
     if (req.files.surroundingFiles) {

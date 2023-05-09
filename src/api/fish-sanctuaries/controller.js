@@ -68,8 +68,8 @@ export const uploadSanctuaryPictures = function (req) {
 
   aws.config.setPromisesDependency()
   aws.config.update({
-    accessKeyId: 'process.env.AWS_ACCESS_KEY_ID',
-    secretAccessKey: 'process.env.AWS_SECRET_ACCESS_KEY'
+    accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+    secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY
   })
   return new Promise((resolve) => {
     // console.log(req.files.sanctuaryPictures.length);
@@ -107,8 +107,8 @@ export const uploadSpeciesPictures = function (req) {
 
   aws.config.setPromisesDependency()
   aws.config.update({
-    accessKeyId: 'process.env.AWS_ACCESS_KEY_ID',
-    secretAccessKey: 'process.env.AWS_SECRET_ACCESS_KEY'
+    accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+    secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY
   })
   return new Promise((resolve) => {
     var fishInformation = []

@@ -8,8 +8,84 @@ export const createFlora = (req, res, next) => {
   var bucketName = 'our-river-our-life-images/flora'
   aws.config.setPromisesDependency()
   aws.config.update({
-    accessKeyId: 'process.env.AWS_ACCESS_KEY_ID',
-    secretAccessKey: 'process.env.AWS_SECRET_ACCESS_KEY'
+    accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+    secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY
+  })
+
+  const file = req.files
+
+  if (req.files.length > 0) {
+    const s3 = new aws.S3()
+    var responseData = []
+
+    file.map((item) => {
+      var params = {
+        Bucket: bucketName,
+        Key: item.originalname,
+        Body: fs.createReadStream(item.path),
+        ACL: 'public-read',
+        ContentType: 'image/jpeg'
+      }
+      s3.upload(params, function (err, data) {
+        if (err) {
+          res.json({ error: true, Message: err })
+        } else {
+          responseData.push(data)
+          if (responseData.length === file.length) {
+            // res.json({ "error": false, "message": "File Uploaded SuceesFully", data: responseData});
+
+            var photos = []
+            responseData.forEach(function (element) {
+              photos.push({
+                imageURL: element.Location
+              })
+            })
+
+            var params = {
+              userId: req.body.userId,
+              location: req.body.location,
+              latitude: req.body.latitude,
+              longitude: req.body.longitude,
+              commonName: req.body.commonName,
+              localName: req.body.localName,
+              scientificName: req.body.scientificName,
+              flora: photos
+            }
+            if (params !== '') {
+              FloraFauna.create(params)
+                .then((floodAlert) => floodAlert.view(true))
+                .then(success(res, 201))
+                .catch(next)
+            }
+          }
+        }
+      })
+    })
+  } else {
+    // var photos=[];
+    var params = {
+      userId: req.body.userId,
+      location: req.body.location,
+      latitude: req.body.latitude,
+      longitude: req.body.longitude,
+      commonName: req.body.commonName,
+      localName: req.body.localName,
+      scientificName: req.body.scientificName
+      // "flora":photos,
+    }
+    FloraFauna.create(params)
+      .then((floodAlert) => floodAlert.view(true))
+      .then(success(res, 201))
+      .catch(next)
+  }
+}
+
+export const updateFlora = (req, res, next) => {
+  var bucketName = 'our-river-our-life-images/flora'
+  aws.config.setPromisesDependency()
+  aws.config.update({
+    accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+    secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY
   })
 
   const file = req.files
@@ -84,8 +160,8 @@ export const createFauna = (req, res, next) => {
 
   aws.config.setPromisesDependency()
   aws.config.update({
-    accessKeyId: 'process.env.AWS_ACCESS_KEY_ID',
-    secretAccessKey: 'process.env.AWS_SECRET_ACCESS_KEY'
+    accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+    secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY
   })
 
   const file = req.files
