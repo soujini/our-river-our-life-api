@@ -370,7 +370,9 @@ export const createWaterTestDetails = async (req, res, next) => {
 
 export const updateWaterTestDetails = async (req, res, next) => {
   console.log("updating water test details")
-  console.log(req.body.riverPictures)
+  console.log("Water test details id: " + req.params.id)
+  console.log(req.body)
+  // console.log(req.body.riverPictures)
   req.body.riverPictures = JSON.parse(req.body.riverPictures)
   req.body.surroundingPictures = JSON.parse(req.body.surroundingPictures)
   req.body.floraPictures = JSON.parse(req.body.floraPictures)
