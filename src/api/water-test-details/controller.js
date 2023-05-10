@@ -451,7 +451,8 @@ export const updateWaterTestDetails = async (req, res, next) => {
           // waterTestDetails ? Object.assign(waterTestDetails, JSON.parse(JSON.stringify(req.body))).save() : null
           console.log('object assigned to waterTestDetails')
           console.log(JSON.parse(JSON.stringify(req.body)))
-          const newObj = Object.assign(waterTestDetails, JSON.parse(JSON.stringify(req.body))).save()
+          // const newObj = Object.assign(waterTestDetails, JSON.parse(JSON.stringify(req.body))).save()
+          const newObj = Object.assign(waterTestDetails, req.body).save()
           console.log("NEW OBJ")
           return newObj
         })
