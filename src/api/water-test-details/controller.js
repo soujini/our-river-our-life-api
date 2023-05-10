@@ -430,7 +430,7 @@ export const updateWaterTestDetails = async (req, res, next) => {
       //     console.log(results)
       //   })
       // res.send(200)
-      WaterTestDetails.findById({ _id: req.params.id }).exec()
+      WaterTestDetails.findById({ _id: req.params.id })
         .then(notFound(res))
         .then((waterTestDetails) => {
           // waterTestDetails ? Object.assign(waterTestDetails, JSON.parse(JSON.stringify(req.body))).save() : null
