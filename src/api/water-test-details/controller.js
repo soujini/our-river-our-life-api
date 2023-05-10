@@ -226,7 +226,7 @@ export const uploadActivity = function (req) {
   })
 }
 export const uploadRiver = function (req) {
-  console.log("in upload river")
+  console.log('in upload river')
   console.log(req.files)
   console.log(req.files.riverFiles)
   var bucketName = ''
@@ -307,7 +307,7 @@ export const uploadSurrounding = function (req) {
   })
 }
 export const createWaterTestDetails = async (req, res, next) => {
-  console.log("creating water test details")
+  console.log('creating water test details')
   console.log(req.body)
   // console.log(type(req.body.riverPictures))
   req.body.riverPictures = JSON.parse(req.body.riverPictures)
@@ -369,8 +369,8 @@ export const createWaterTestDetails = async (req, res, next) => {
 }
 
 export const updateWaterTestDetails = async (req, res, next) => {
-  console.log("updating water test details")
-  console.log("Water test details id: " + req.params.id)
+  console.log('updating water test details')
+  console.log('Water test details id: ' + req.params.id)
   console.log(req.body)
   // console.log(req.body.riverPictures)
   req.body.riverPictures = JSON.parse(req.body.riverPictures)
@@ -424,16 +424,22 @@ export const updateWaterTestDetails = async (req, res, next) => {
         })
       })
 
-      WaterTestDetails.findById({ _id: req.params.id }).exec()
-        .then(notFound(res))
-        .then((waterTestDetails) => waterTestDetails ? Object.assign(waterTestDetails, JSON.parse(JSON.stringify(req.body))).save() : null)
-        .then((waterTestDetails) => {
-          console.log("RESULT: " + waterTestDetails)
-          waterTestDetails.view(true)
-          // waterTestDetails ? waterTestDetails.view(true) : null
+      WaterTestDetails.findById({ _id: req.params.id })
+        .then((results) => {
+          console.log('results of find by id')
+          console.log(results)
         })
-        .then(success(res))
-        .catch(next)
+      res.send(200)
+      // WaterTestDetails.findById({ _id: req.params.id }).exec()
+      //   .then(notFound(res))
+      //   .then((waterTestDetails) => waterTestDetails ? Object.assign(waterTestDetails, JSON.parse(JSON.stringify(req.body))).save() : null)
+      //   .then((waterTestDetails) => {
+      //     console.log("RESULT: " + waterTestDetails)
+      //     waterTestDetails.view(true)
+      //     // waterTestDetails ? waterTestDetails.view(true) : null
+      //   })
+      //   .then(success(res))
+      //   .catch(next)
     })
 }
 
