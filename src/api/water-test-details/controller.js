@@ -385,41 +385,54 @@ export const updateWaterTestDetails = async (req, res, next) => {
   Promise.all([uploadFlora(req), uploadFauna(req), uploadArtwork(req), uploadGroupPicture(req), uploadActivity(req), uploadRiver(req), uploadSurrounding(req)])
     .then(results => {
       results[0].forEach((element) => {
+        console.log("in 0000")
         req.body.floraPictures.forEach((element2, index2) => {
           if (element.fileName === element2.fileName) { req.body.floraPictures[index2].imageURL = element.imageURL }
         })
       })
 
       results[1].forEach((element) => {
+        console.log("in 11111")
         req.body.faunaPictures.forEach((element2, index2) => {
+          console.log("11111")
           if (element.fileName === element2.fileName) { req.body.faunaPictures[index2].imageURL = element.imageURL }
         })
       })
 
       results[2].forEach((element) => {
+        console.log("in 222")
         req.body.artworkPictures.forEach((element2, index2) => {
+          console.log("222")
           if (element.fileName === element2.fileName) { req.body.artworkPictures[index2].imageURL = element.imageURL }
         })
       })
       results[3].forEach((element) => {
+        console.log("in 3333")
         req.body.groupPictures.forEach((element2, index2) => {
+          console.log("3333")
           if (element.fileName === element2.fileName) { req.body.groupPictures[index2].imageURL = element.imageURL }
         })
       })
       results[4].forEach((element) => {
+        console.log("in 4444")
         req.body.activityPictures.forEach((element2, index2) => {
+          console.log("4444")
           if (element.fileName === element2.fileName) { req.body.activityPictures[index2].imageURL = element.imageURL }
         })
       })
 
       results[5].forEach((element) => {
+        console.log("in 5555")
         req.body.riverPictures.forEach((element2, index2) => {
+          console.log(" 5555")
           if (element.fileName === element2.fileName) { req.body.riverPictures[index2].imageURL = element.imageURL }
         })
       })
 
       results[6].forEach((element) => {
+        console.log("in 666")
         req.body.surroundingPictures.forEach((element2, index2) => {
+          console.log(" 666")
           if (element.fileName === element2.fileName) { req.body.surroundingPictures[index2].imageURL = element.imageURL }
         })
       })
@@ -438,9 +451,9 @@ export const updateWaterTestDetails = async (req, res, next) => {
           console.log(req.body)
           return Object.assign(waterTestDetails, JSON.parse(JSON.stringify(req.body))).save()
         })
-        .then((waterTestDetails) => {
-          console.log("RESULT: " + waterTestDetails)
-          waterTestDetails.view(true)
+        .then((res) => {
+          console.log("RESULT: " + res)
+          res.view(true)
           // waterTestDetails ? waterTestDetails.view(true) : null
         })
         .then(success(res))
