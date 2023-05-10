@@ -424,22 +424,27 @@ export const updateWaterTestDetails = async (req, res, next) => {
         })
       })
 
-      WaterTestDetails.findById({ _id: req.params.id })
-        .then((results) => {
-          console.log('results of find by id')
-          console.log(results)
-        })
-      res.send(200)
-      // WaterTestDetails.findById({ _id: req.params.id }).exec()
-      //   .then(notFound(res))
-      //   .then((waterTestDetails) => waterTestDetails ? Object.assign(waterTestDetails, JSON.parse(JSON.stringify(req.body))).save() : null)
-      //   .then((waterTestDetails) => {
-      //     console.log("RESULT: " + waterTestDetails)
-      //     waterTestDetails.view(true)
-      //     // waterTestDetails ? waterTestDetails.view(true) : null
+      // WaterTestDetails.findById({ _id: req.params.id })
+      //   .then((results) => {
+      //     console.log('results of find by id')
+      //     console.log(results)
       //   })
-      //   .then(success(res))
-      //   .catch(next)
+      // res.send(200)
+      WaterTestDetails.findById({ _id: req.params.id }).exec()
+        .then(notFound(res))
+        .then((waterTestDetails) => {
+          // waterTestDetails ? Object.assign(waterTestDetails, JSON.parse(JSON.stringify(req.body))).save() : null
+          console.log("object assigned to waterTestDetails")
+          console.log(req.body)
+          return Object.assign(waterTestDetails, JSON.parse(JSON.stringify(req.body))).save()
+        })
+        .then((waterTestDetails) => {
+          console.log("RESULT: " + waterTestDetails)
+          waterTestDetails.view(true)
+          // waterTestDetails ? waterTestDetails.view(true) : null
+        })
+        .then(success(res))
+        .catch(next)
     })
 }
 
