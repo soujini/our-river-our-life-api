@@ -308,7 +308,7 @@ export const uploadSurrounding = function (req) {
 }
 export const createWaterTestDetails = async (req, res, next) => {
   console.log('creating water test details')
-  console.log(req.body)
+  console.log(JSON.parse(JSON.stringify(req.body)))
   // console.log(type(req.body.riverPictures))
   req.body.riverPictures = JSON.parse(req.body.riverPictures)
   req.body.surroundingPictures = JSON.parse(req.body.surroundingPictures)
@@ -350,6 +350,8 @@ export const createWaterTestDetails = async (req, res, next) => {
       })
 
       results[5].forEach((element) => {
+        console.log("in river response")
+        console.log(element)
         req.body.riverPictures.forEach((element2, index2) => {
           if (element.fileName === element2.fileName) { req.body.riverPictures[index2].imageURL = element.imageURL }
         })
@@ -360,7 +362,8 @@ export const createWaterTestDetails = async (req, res, next) => {
           if (element.fileName === element2.fileName) { req.body.surroundingPictures[index2].imageURL = element.imageURL }
         })
       })
-
+      console.log("create vals")
+      console.log(JSON.parse(JSON.stringify(req.body)))
       WaterTestDetails.create(JSON.parse(JSON.stringify(req.body)))
         .then((waterTestDetails) => waterTestDetails.view(true))
         .then(success(res, 201))

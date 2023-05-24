@@ -25,7 +25,7 @@ const waterTestDetailsSchema = new Schema({
     },
     longitude: {
       type: Number
-    },
+    }
   },
   waterLevelAndWeather: {
     airTemperature: {
@@ -36,7 +36,7 @@ const waterTestDetailsSchema = new Schema({
     },
     weather: {
       type: String
-    },
+    }
   },
   waterTesting: {
     waterTemperature: {
@@ -86,7 +86,7 @@ const waterTestDetailsSchema = new Schema({
     },
     conductivity: {
       type: String
-    },
+    }
   },
   surroundings: {
     type: Array
@@ -181,7 +181,7 @@ const waterTestDetailsSchema = new Schema({
 })
 
 waterTestDetailsSchema.methods = {
-  view(full) {
+  view (full) {
     const view = {
       // simple view
       id: this.id,
@@ -193,12 +193,12 @@ waterTestDetailsSchema.methods = {
         testerName: this.generalInformation.testerName,
         location: this.generalInformation.location,
         latitude: this.generalInformation.latitude,
-        longitude: this.generalInformation.longitude,
+        longitude: this.generalInformation.longitude
       },
       waterLevelAndWeather: {
         airTemperature: this.waterLevelAndWeather.airTemperature,
         waterLevel: this.waterLevelAndWeather.waterLevel,
-        weather: this.waterLevelAndWeather.weather,
+        weather: this.waterLevelAndWeather.weather
       },
       surroundings: this.surroundings,
       waterTesting: {
