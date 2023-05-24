@@ -350,10 +350,14 @@ export const createWaterTestDetails = async (req, res, next) => {
       })
 
       results[5].forEach((element) => {
-        console.log("in river response")
-        console.log(element)
         req.body.riverPictures.forEach((element2, index2) => {
-          if (element.fileName === element2.fileName) { req.body.riverPictures[index2].imageURL = element.imageURL }
+          console.log("in river response")
+          console.log(element)
+          console.log(element2)
+          if (element.fileName === element2.fileName) {
+            req.body.riverPictures[index2].imageURL = element.imageURL
+          }
+          console.log(req.body.riverPictures)
         })
       })
 
