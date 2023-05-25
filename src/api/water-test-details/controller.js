@@ -308,7 +308,7 @@ export const uploadSurrounding = function (req) {
 }
 export const createWaterTestDetails = async (req, res, next) => {
   console.log('creating water test details')
-  console.log(JSON.parse(JSON.stringify(req.body)))
+  console.log(req.body)
   // console.log(type(req.body.riverPictures))
   req.body.riverPictures = JSON.parse(req.body.riverPictures)
   req.body.surroundingPictures = JSON.parse(req.body.surroundingPictures)
@@ -367,8 +367,8 @@ export const createWaterTestDetails = async (req, res, next) => {
         })
       })
       console.log("create vals")
-      console.log(JSON.parse(JSON.stringify(req.body)))
-      WaterTestDetails.create(JSON.parse(JSON.stringify(req.body)))
+      console.log(JSON.parse(req.body))
+      WaterTestDetails.create(JSON.parse(req.body))
         .then((waterTestDetails) => waterTestDetails.view(true))
         .then(success(res, 201))
         .catch(next)
