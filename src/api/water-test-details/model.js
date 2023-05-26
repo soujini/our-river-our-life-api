@@ -40,52 +40,52 @@ const waterTestDetailsSchema = new Schema({
   },
   waterTesting: {
     waterTemperature: {
-      type: String
+      type: Number
     },
     pH: {
-      type: String
+      type: Number
     },
     dissolvedOxygen: {
-      type: String
+      type: Number
     },
     hardness: {
-      type: String
+      type: Number
     },
     nitrate: {
-      type: String
+      type: Number
     },
     nitrite: {
-      type: String
+      type: Number
     },
     chlorine: {
-      type: String
+      type: Number
     },
     alkalinity: {
-      type: String
+      type: Number
     },
     iron: {
-      type: String
+      type: Number
     },
     bacteria: {
       type: String
     },
     turbidity: {
-      type: String
+      type: Number
     },
     phosphate: {
-      type: String
+      type: Number
     },
     ammonia: {
-      type: String
+      type: Number
     },
     lead: {
-      type: String
+      type: Number
     },
     totalDissolvedSolids: {
-      type: String
+      type: Number
     },
     conductivity: {
-      type: String
+      type: Number
     }
   },
   surroundings: {
