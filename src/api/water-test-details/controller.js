@@ -558,7 +558,7 @@ export const updateImage = async ({ params }) => {
       } else if (params.fieldName === 'river') {
         waterTestDetails.river.push({ imageURL: params.river, description: params.description })
       } else if (params.fieldName === 'surrounding') {
-        waterTestDetails.river.push({ imageURL: params.surrounding, description: params.description })
+        waterTestDetails.surrounding.push({ imageURL: params.surrounding, description: params.description })
       } else if (params.fieldName === 'certificate') {
         waterTestDetails.certificateURL = params.certificate
       }
