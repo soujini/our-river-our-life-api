@@ -39,7 +39,7 @@ const config = {
   test: {},
   development: {
     mongo: {
-      uri: 'mongodb://localhost/our-river-our-life-api-dev',
+      uri: 'mongodb://localhost/our-river-our-life-api',
       options: {
         debug: true
       }
@@ -49,7 +49,7 @@ const config = {
     ip: process.env.IP || undefined,
     port: process.env.PORT || 8080,
     mongo: {
-      uri: process.env.MONGODB_URI || 'mongodb://localhost/our-river-our-life-api'
+      uri: process.env.MONGODB_URI || undefined
     }
   }
 }
