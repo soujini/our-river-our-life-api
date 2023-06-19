@@ -39,7 +39,8 @@ const config = {
   test: {},
   development: {
     mongo: {
-      uri: 'mongodb://localhost/our-river-our-life-api-dev',
+      // uri: 'mongodb://localhost/our-river-our-life-api-dev',
+      uri: process.env.MONGODB_URI || 'mongodb+srv://heroku_ljbctvkn:takeexit1Ato605@cluster-ljbctvkn.t9qc1.mongodb.net/heroku_ljbctvkn?retryWrites=true&w=majority',
       options: {
         debug: true
       }
