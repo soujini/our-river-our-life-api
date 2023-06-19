@@ -39,8 +39,7 @@ const config = {
   test: {},
   development: {
     mongo: {
-      // uri: 'mongodb://localhost/our-river-our-life-api-dev',
-      uri: process.env.MONGODB_URI || 'mongodb+srv://heroku_ljbctvkn:takeexit1Ato605@cluster-ljbctvkn.t9qc1.mongodb.net/heroku_ljbctvkn?retryWrites=true&w=majority',
+      uri: 'mongodb://localhost/our-river-our-life-api-dev',
       options: {
         debug: true
       }
@@ -50,8 +49,7 @@ const config = {
     ip: process.env.IP || undefined,
     port: process.env.PORT || 8080,
     mongo: {
-      uri: process.env.MONGODB_URI || 'mongodb+srv://heroku_ljbctvkn:takeexit1Ato605@cluster-ljbctvkn.t9qc1.mongodb.net/heroku_ljbctvkn?retryWrites=true&w=majority'
-      // uri: process.env.MONGODB_URI || 'mongodb://localhost/our-river-our-life-api'
+      uri: process.env.MONGODB_URI || 'mongodb://localhost/our-river-our-life-api'
     }
   }
 }
