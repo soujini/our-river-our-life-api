@@ -1,4 +1,5 @@
 import aws from 'aws-sdk'
+import { logger } from 'handlebars'
 const ejs = require('ejs')
 const pdf = require('html-pdf')
 const path = require('path')
@@ -78,11 +79,14 @@ var WaterTestDetailsController = require('../water-test-details/controller')
 //     }//else
 //   });
 // }
-export const generateReport = (req, res, next) => {
-  console.log('IN GEN REPORT 1')
+export const generateReport = async (req, res, next) => {
+  console.log('In generate report ' + req.body.id)
   var waterTestDetailsId = req.body.id
+  var params1 = { id: waterTestDetailsId }
+  var content = await WaterTestDetailsController.getWaterTestDetailsById({ params1 })
+  console.log('Water Test Details: ' + JSON.stringify(content.generalInformation))
   ejs.renderFile(path.join(__dirname, '/report-template.ejs'), {
-    waterTestDetails: req.body
+    waterTestDetails: content
   }, (err, data) => {
     if (err) {
       res.send('Error in report template ' + err)

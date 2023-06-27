@@ -39,7 +39,8 @@ const config = {
   test: {},
   development: {
     mongo: {
-      uri: 'mongodb://localhost/our-river-our-life-api',
+      // uri: 'mongodb://localhost/our-river-our-life-api',
+      uri: process.env.MONGODB_URI,
       options: {
         debug: true
       }

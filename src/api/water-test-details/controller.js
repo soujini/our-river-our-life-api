@@ -352,7 +352,7 @@ export const createWaterTestDetails = async (req, res, next) => {
 
       results[5].forEach((element) => {
         req.body.riverPictures.forEach((element2, index2) => {
-          console.log("in river response")
+          console.log('in river response')
           console.log(element)
           console.log(element2)
           if (element.fileName === element2.fileName) {
@@ -367,7 +367,7 @@ export const createWaterTestDetails = async (req, res, next) => {
           if (element.fileName === element2.fileName) { req.body.surroundingPictures[index2].imageURL = element.imageURL }
         })
       })
-      console.log("create vals")
+      console.log('create vals')
       console.log(JSON.parse(JSON.stringify(req.body)))
       WaterTestDetails.create(JSON.parse(JSON.stringify(req.body)))
         .then((waterTestDetails) => waterTestDetails.view(true))
@@ -461,7 +461,7 @@ export const updateWaterTestDetails = async (req, res, next) => {
           console.log(JSON.parse(JSON.stringify(req.body)))
           // const newObj = Object.assign(waterTestDetails, JSON.parse(JSON.stringify(req.body))).save()
           const newObj = Object.assign(waterTestDetails, req.body).save()
-          console.log("NEW OBJ")
+          console.log('NEW OBJ')
           return newObj
         })
         .then((newObj) => {
@@ -540,6 +540,14 @@ export const show = ({ params }, res, next) => {
     .then((waterTestDetails) => waterTestDetails ? waterTestDetails.view() : null)
     .then(success(res))
     .catch(next)
+}
+
+export const getWaterTestDetailsById = ({ params1 }, res, next) => {
+  return WaterTestDetails.findById(params1.id)
+    .then(notFound(res))
+    .then((waterTestDetails) => {
+      return waterTestDetails
+    })
 }
 
 export const updateImage = async ({ params }) => {
