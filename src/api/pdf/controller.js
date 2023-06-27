@@ -80,70 +80,136 @@ var WaterTestDetailsController = require('../water-test-details/controller')
 //     }//else
 //   });
 // }
-export const generateReport = async (req, res, next) => {
+// export const generateReport = async (req, res, next) => {
+//   console.log('In generate report ' + req.body.id)
+//   var waterTestDetailsId = req.body.id
+//   var params1 = { id: waterTestDetailsId }
+//   var content = await WaterTestDetailsController.getWaterTestDetailsById({ params1 })
+//   console.log('Water Test Details: ' + JSON.stringify(content))
+//   ejs.renderFile(path.join(__dirname, '/report-template.ejs'), {
+//     waterTestDetails: content
+//   }, async (err, data) => {
+//     if (err) {
+//       res.send('Error in report template ' + err)
+//     } else {
+//       var options = {
+//         height: '11.25in',
+//         width: '8.5in',
+//         header: {
+//           height: '20mm'
+//         },
+//         footer: {
+//           height: '20mm'
+//         },
+//         childProcessOptions: {
+//           env: {
+//             OPENSSL_CONF: '/dev/null'
+//           }
+//         }
+//       }
+//       pdf.create(data, options).toBuffer(function (err, data) {
+//         if (err) {
+//           res.send(err)
+//           console.log(err)
+//         } else {
+//           aws.config.setPromisesDependency()
+//           aws.config.update({
+//             accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+//             secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY
+//           })
+//           const s3 = new aws.S3()
+//           var params = {
+//             ACL: 'public-read',
+//             Bucket: 'our-river-our-life-images/certificate',
+//             Key: 'certificate_' + req.body.id,
+//             Body: data,
+//             ContentEncoding: 'buffer',
+//             ContentType: 'application/pdf'
+//           }
+
+//           s3.upload(params, function (err, data) {
+//             if (err) {
+//               console.log(err)
+//               console.log('Error uploading data: ', data)
+//             } else {
+//               // var certificateURL = data.Location
+//               console.log('Succesfully uploaded pdf!')
+//               var url = 'https://our-river-our-life-images.s3.amazonaws.com/certificate/certificate_' + waterTestDetailsId
+//               params = { id: req.body.id, certificate: url, fieldName: 'certificate' }
+//               WaterTestDetailsController.updateImage({ params })
+//               res.status(200).json({ certificateURL: url })
+//             }
+//           })
+//         }
+//       })
+//     }
+//   })
+// }
+
+export const generateReport = (req, res, next) => {
   console.log('In generate report ' + req.body.id)
   var waterTestDetailsId = req.body.id
   var params1 = { id: waterTestDetailsId }
-  var content = await WaterTestDetailsController.getWaterTestDetailsById({ params1 })
-  console.log('Water Test Details: ' + JSON.stringify(content.generalInformation))
-  ejs.renderFile(path.join(__dirname, '/report-template.ejs'), {
-    waterTestDetails: content
-  }, async (err, data) => {
-    if (err) {
-      res.send('Error in report template ' + err)
-    } else {
-      var options = {
-        height: '11.25in',
-        width: '8.5in',
-        header: {
-          height: '20mm'
-        },
-        footer: {
-          height: '20mm'
-        },
-        childProcessOptions: {
-          env: {
-            OPENSSL_CONF: '/dev/null'
-          }
-        }
+  var options = {
+    height: '11.25in',
+    width: '8.5in',
+    header: {
+      height: '20mm'
+    },
+    footer: {
+      height: '20mm'
+    },
+    childProcessOptions: {
+      env: {
+        OPENSSL_CONF: '/dev/null'
       }
-      pdf.create(data, options).toBuffer(function (err, data) {
+    }
+  }
+  aws.config.setPromisesDependency()
+  aws.config.update({
+    accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+    secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY
+  })
+  const s3 = new aws.S3()
+
+  WaterTestDetailsController.getWaterTestDetailsById({ params1 })
+    .then((waterTestDetails) => {
+      console.log('generateReport: Successfully retrieved water test details ' + JSON.stringify(waterTestDetails))
+      ejs.renderFile(path.join(__dirname, '/report-template.ejs'), {
+        waterTestDetails: waterTestDetails
+      }, async (err, data) => {
         if (err) {
-          res.send(err)
-          console.log(err)
+          res.send('Error in report template ' + err)
         } else {
-          aws.config.setPromisesDependency()
-          aws.config.update({
-            accessKeyId: process.env.AWS_ACCESS_KEY_ID,
-            secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY
-          })
-
-          const s3 = new aws.S3()
-
-          var params = {
-            ACL: 'public-read',
-            Bucket: 'our-river-our-life-images/certificate',
-            Key: 'certificate_' + req.body.id,
-            Body: data,
-            ContentEncoding: 'buffer',
-            ContentType: 'application/pdf'
-          }
-
-          s3.upload(params, function (err, data) {
+          pdf.create(data, options).toBuffer(function (err, data) {
             if (err) {
+              res.send(err)
               console.log(err)
-              console.log('Error uploading data: ', data)
             } else {
-              // var certificateURL = data.Location
-              console.log('Succesfully uploaded pdf!')
-              var url = 'https://our-river-our-life-images.s3.amazonaws.com/certificate/certificate_' + waterTestDetailsId
-              params = { id: req.body.id, certificate: url, fieldName: 'certificate' }
-              WaterTestDetailsController.updateImage({ params })
-              res.status(200).json({ certificateURL: url })
+              var params = {
+                ACL: 'public-read',
+                Bucket: 'our-river-our-life-images/certificate',
+                Key: 'certificate_' + waterTestDetailsId,
+                Body: data,
+                ContentEncoding: 'buffer',
+                ContentType: 'application/pdf'
+              }
+              s3.upload(params, function (err, data) {
+                if (err) {
+                  console.log(err)
+                  console.log('Error uploading data: ', data)
+                } else {
+                  // var certificateURL = data.Location
+                  console.log('Succesfully uploaded pdf!')
+                  var url = 'https://our-river-our-life-images.s3.amazonaws.com/certificate/certificate_' + waterTestDetailsId
+                  params = { id: waterTestDetailsId, certificate: url, fieldName: 'certificate' }
+                  // WaterTestDetailsController.updateImage({ params })
+                  res.status(200).json({ certificateURL: url })
+                }
+              })
             }
           })
         }
       })
-    }
-  })
+    })
 }
