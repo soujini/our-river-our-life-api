@@ -550,9 +550,10 @@ export const getWaterTestDetailsById = ({ params1 }, res, next) => {
     })
 }
 
-export const updateImage = async ({ params }) => {
-  WaterTestDetails.findById(params.id, function (waterTestDetails) {
-    if (waterTestDetails) {
+export const updateImage = ({ params }, res, next) => {
+  WaterTestDetails.findById(params.id)
+    .then((waterTestDetails) => {
+      console.log('updateImage: Successfully retrieved water test details ' + waterTestDetails)
       if (params.fieldName === 'flora') {
         waterTestDetails.flora.push({ imageURL: params.flora, description: params.description })
       } else if (params.fieldName === 'fauna') {
@@ -571,11 +572,39 @@ export const updateImage = async ({ params }) => {
         waterTestDetails.certificateURL = params.certificate
       }
       waterTestDetails.save()
-    } else {
-      console.log('Water test details id is incorrect')
-    }
-  })
+    })
+    .catch((error) => {
+      console.log('updateImage: ' + error.message)
+      return Promise.reject(error)
+    })
 }
+
+// export const updateImage = async ({ params }) => {
+//   WaterTestDetails.findById(params.id, function (waterTestDetails) {
+//     if (waterTestDetails) {
+//       if (params.fieldName === 'flora') {
+//         waterTestDetails.flora.push({ imageURL: params.flora, description: params.description })
+//       } else if (params.fieldName === 'fauna') {
+//         waterTestDetails.fauna.push({ imageURL: params.fauna, description: params.description })
+//       } else if (params.fieldName === 'artwork') {
+//         waterTestDetails.artwork.push({ imageURL: params.artwork, description: params.description })
+//       } else if (params.fieldName === 'groupPicture') {
+//         waterTestDetails.groupPicture.push({ imageURL: params.groupPicture, description: params.description })
+//       } else if (params.fieldName === 'activity') {
+//         waterTestDetails.activity.push({ imageURL: params.activity, description: params.description })
+//       } else if (params.fieldName === 'river') {
+//         waterTestDetails.river.push({ imageURL: params.river, description: params.description })
+//       } else if (params.fieldName === 'surrounding') {
+//         waterTestDetails.surrounding.push({ imageURL: params.surrounding, description: params.description })
+//       } else if (params.fieldName === 'certificate') {
+//         waterTestDetails.certificateURL = params.certificate
+//       }
+//       waterTestDetails.save()
+//     } else {
+//       console.log('Water test details id is incorrect')
+//     }
+//   })
+// }
 
 export const update = ({ params }, res, next) => {
   WaterTestDetails.findById(params.id)

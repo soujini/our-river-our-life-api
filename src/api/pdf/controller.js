@@ -202,7 +202,7 @@ export const generateReport = (req, res, next) => {
                   // var certificateURL = data.Location
                   console.log('Succesfully uploaded pdf!')
                   var url = 'https://our-river-our-life-images.s3.amazonaws.com/certificate/certificate_' + waterTestDetailsId
-                  params = { id: waterTestDetailsId, certificate: url, fieldName: 'certificate' }
+                  params = { id: '649a71da9d819c140420bfaddd', certificate: url, fieldName: 'certificate' }
                   // WaterTestDetailsController.updateImage({ params })
                   res.status(200).json({ certificateURL: url })
                 }
@@ -211,5 +211,8 @@ export const generateReport = (req, res, next) => {
           })
         }
       })
+    })
+    .catch((error) => {
+      res.send(error.message)
     })
 }

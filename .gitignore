@@ -6,6 +6,7 @@ node_modules
 dist
 docs
 .env
+.env.example
 npm-debug.log
 .nyc_output
 coverage
