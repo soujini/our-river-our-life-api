@@ -194,19 +194,20 @@ export const generateReport = (req, res, next) => {
                 ContentEncoding: 'buffer',
                 ContentType: 'application/pdf'
               }
-              s3.upload(params, function (err, data) {
-                if (err) {
-                  console.log(err)
-                  console.log('Error uploading data: ', data)
-                } else {
-                  // var certificateURL = data.Location
-                  console.log('Succesfully uploaded pdf!')
-                  var url = 'https://our-river-our-life-images.s3.amazonaws.com/certificate/certificate_' + waterTestDetailsId
-                  params = { id: '649a71da9d819c140420bfaddd', certificate: url, fieldName: 'certificate' }
-                  // WaterTestDetailsController.updateImage({ params })
-                  res.status(200).json({ certificateURL: url })
-                }
-              })
+              res.status(200).json({ certificateURL: 'wooohoo' })
+              // s3.upload(params, function (err, "ajjs") {
+              //   if (err) {
+              //     console.log(err)
+              //     console.log('Error uploading data: ', data)
+              //   } else {
+              //     // var certificateURL = data.Location
+              //     console.log('Succesfully uploaded pdf!')
+              //     var url = 'https://our-river-our-life-images.s3.amazonaws.com/certificate/certificate_' + waterTestDetailsId
+              //     params = { id: '649a71da9d819c140420bfaddd', certificate: url, fieldName: 'certificate' }
+              //     // WaterTestDetailsController.updateImage({ params })
+              //     res.status(200).json({ certificateURL: url })
+              //   }
+              // })
             }
           })
         }
