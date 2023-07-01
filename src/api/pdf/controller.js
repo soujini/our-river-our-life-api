@@ -147,9 +147,20 @@ var WaterTestDetailsController = require('../water-test-details/controller')
 // }
 
 export const generateReport = (req, res, next) => {
+  if (req.body.id === undefined || req.body.id === '') {
+    res.status(400).json({ error: 'Missing params id' })
+  }
   console.log('In generate report ' + req.body.id)
   var waterTestDetailsId = req.body.id
   var params1 = { id: waterTestDetailsId }
+
+  aws.config.setPromisesDependency()
+  aws.config.update({
+    accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+    secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY
+  })
+  const s3 = new aws.S3()
+
   var options = {
     height: '11.25in',
     width: '8.5in',
@@ -165,12 +176,6 @@ export const generateReport = (req, res, next) => {
       }
     }
   }
-  aws.config.setPromisesDependency()
-  aws.config.update({
-    accessKeyId: process.env.AWS_ACCESS_KEY_ID,
-    secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY
-  })
-  const s3 = new aws.S3()
 
   WaterTestDetailsController.getWaterTestDetailsById({ params1 })
     .then((waterTestDetails) => {
@@ -183,8 +188,9 @@ export const generateReport = (req, res, next) => {
         } else {
           pdf.create(data, options).toBuffer(function (err, data) {
             if (err) {
-              res.send(err)
+              console.log('getting error')
               console.log(err)
+              res.send('Error while creating PDF document ', err)
             } else {
               var params = {
                 ACL: 'public-read',
@@ -194,7 +200,8 @@ export const generateReport = (req, res, next) => {
                 ContentEncoding: 'buffer',
                 ContentType: 'application/pdf'
               }
-              res.status(200).json({ certificateURL: 'wooohoo' })
+              console.log('here')
+              res.send('ajksakjhdakjhdas3u27346')
               // s3.upload(params, function (err, "ajjs") {
               //   if (err) {
               //     console.log(err)
@@ -216,4 +223,11 @@ export const generateReport = (req, res, next) => {
     .catch((error) => {
       res.send(error.message)
     })
+}
+export const test = () => {
+  console.log('Testing')
+  return Promise.resolve('askdhjaksjd')
+}
+export const createPDF = async (data, waterTestDetailsId) => {
+
 }
