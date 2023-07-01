@@ -177,7 +177,7 @@ export const generateReport = (req, res, next) => {
     }
   }
 
-  WaterTestDetailsController.getWaterTestDetailsById({ params1 })
+  return WaterTestDetailsController.getWaterTestDetailsById({ params1 })
     .then((waterTestDetails) => {
       console.log('generateReport: Successfully retrieved water test details ' + JSON.stringify(waterTestDetails))
       ejs.renderFile(path.join(__dirname, '/report-template.ejs'), {
