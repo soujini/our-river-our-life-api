@@ -182,7 +182,7 @@ export const generateReport = (req, res, next) => {
       console.log('generateReport: Successfully retrieved water test details ' + JSON.stringify(waterTestDetails))
       ejs.renderFile(path.join(__dirname, '/report-template.ejs'), {
         waterTestDetails: waterTestDetails
-      }, async (err, data) => {
+      }, (err, data) => {
         if (err) {
           res.send('Error in report template ' + err)
         } else {
