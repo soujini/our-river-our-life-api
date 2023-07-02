@@ -187,7 +187,7 @@ export const generateReport = (req, res, next) => {
           res.send('Error in report template ' + err)
         } else {
           var test = 'Souju'
-          pdf.create(data, options).toBuffer(function (err, data) {
+          return pdf.create(data, options).toBuffer(function (err, data) {
             if (err) {
               console.log('getting error')
               console.log(err)
