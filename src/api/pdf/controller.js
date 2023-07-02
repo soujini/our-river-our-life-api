@@ -202,7 +202,7 @@ export const generateReport = (req, res, next) => {
                 ContentEncoding: 'buffer',
                 ContentType: 'application/pdf'
               }
-              console.log('in resolve')
+              console.log('in resolving')
               res.send(params)
               // res.send('ajksakjhdakjhdas3u27346')
               // s3.upload(params, function (err, buffer) {
