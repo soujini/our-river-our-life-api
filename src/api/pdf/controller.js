@@ -143,7 +143,7 @@ var WaterTestDetailsController = require('../water-test-details/controller')
 //   })
 // }
 
-export const generateReport = async (req, res, next) => {
+export const generateReport = async(req, res, next) => {
   if (req.body.id === undefined || req.body.id === '') {
     res.status(400).json({ error: 'Missing params id' })
   }
@@ -206,9 +206,9 @@ export const generateReport = async (req, res, next) => {
                 ContentEncoding: 'buffer',
                 ContentType: 'application/pdf'
               }
-              // res.setHeader('Content-Type', 'application/pdf')
+              res.setHeader('Content-Type', 'application/pdf')
               res.setHeader('Content-Disposition', 'attachment; filename=pdfFile.pdf');
-              res.send("olaaa")
+              res.send(buffer)
 
               /// / STREAM
 
