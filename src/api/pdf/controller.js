@@ -204,7 +204,7 @@ export const generateReport = (req, res, next) => {
               }
               // res.type('application/pdf');
               res.statusCode = 200;
-              res.send({ success: true });
+              res.send({ data: buffer, success: true });
               // res.status(200).json(params)
               // res.send(params)
               // res.send('ajksakjhdakjhdas3u27346')
