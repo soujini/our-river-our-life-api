@@ -188,7 +188,7 @@ export const generateReport = (req, res, next) => {
         } else {
           var test = 'Souju'
           // res.send(test);
-          return pdf.create(data, options).toBuffer(function (err, buffer) {
+          pdf.create(data, options).toBuffer(function (err, buffer) {
             if (err) {
               console.log('getting error')
               console.log(err)
