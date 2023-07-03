@@ -1,8 +1,7 @@
-import { parseAsync } from '@babel/core'
 import aws from 'aws-sdk'
-import { logger } from 'handlebars'
 const ejs = require('ejs')
-const pdf = require('html-pdf')
+// const pdf = require('html-pdf')
+var pdf = require('pdf-creator-node')
 const path = require('path')
 var WaterTestDetailsController = require('../water-test-details/controller')
 
