@@ -3,7 +3,6 @@ const ejs = require('ejs')
 var pdf = require('html-pdf')
 const path = require('path')
 var WaterTestDetailsController = require('../water-test-details/controller')
-
 // export const generateReportWeb = (req, res, next) => {
 //   console.log("IN GEN REP WEB")
 //   console.log(req.body);
