@@ -206,9 +206,9 @@ export const generateReport = async (req, res, next) => {
                 ContentEncoding: 'buffer',
                 ContentType: 'application/pdf'
               }
-              res.setHeader('Content-Type', 'application/pdf')
+              // res.setHeader('Content-Type', 'application/pdf')
               res.setHeader('Content-Disposition', 'attachment; filename=pdfFile.pdf');
-              res.send(buffer)
+              res.send("olaaa")
 
               /// / STREAM
 
