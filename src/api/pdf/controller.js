@@ -143,7 +143,7 @@ var WaterTestDetailsController = require('../water-test-details/controller')
 //   })
 // }
 
-export const generateReport = (req, res, next) => {
+export const generateReport = async (req, res, next) => {
   if (req.body.id === undefined || req.body.id === '') {
     res.status(400).json({ error: 'Missing params id' })
   }
