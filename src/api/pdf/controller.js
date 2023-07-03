@@ -198,7 +198,7 @@ export const generateReport = (req, res, next) => {
               res.statusCode = 500
               res.send(err)
             } else {
-              var params = {
+              var params1 = {
                 ACL: 'public-read',
                 Bucket: 'our-river-our-life-images/certificate',
                 Key: 'certificate_' + waterTestDetailsId,
