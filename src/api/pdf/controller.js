@@ -175,7 +175,7 @@ export const generateReport = async(req, res, next) => {
   }
 
   return WaterTestDetailsController.getWaterTestDetailsById({ params1 })
-    .then((waterTestDetails) => {
+    .then(async(waterTestDetails) => {
       console.log('generateReport: Successfully retrieved water test details ' + JSON.stringify(waterTestDetails))
       ejs.renderFile(path.join(__dirname, '/report-template.ejs'), {
         waterTestDetails: waterTestDetails
@@ -207,11 +207,10 @@ export const generateReport = async(req, res, next) => {
                 ContentType: 'application/pdf'
               }
               res.setHeader('Content-Type', 'application/pdf')
-              res.setHeader('Content-Disposition', 'attachment; filename=pdfFile.pdf');
+              res.setHeader('Content-Disposition', 'attachment; filename=pdfFile.pdf')
               res.send(buffer)
 
               /// / STREAM
-
               // // res.setHeader('Content-type', 'application/pdf')
               // res.setHeader('Content-disposition', 'attachment; filename=export-from-html.pdf') // Remove this if you don't want direct download
               // res.setHeader('Content-length', +stream.length)
