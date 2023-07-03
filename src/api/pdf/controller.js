@@ -1,7 +1,6 @@
 import aws from 'aws-sdk'
 const ejs = require('ejs')
-// const pdf = require('html-pdf')
-var pdf = require('pdf-creator-node')
+var pdf = require('html-pdf')
 const path = require('path')
 var WaterTestDetailsController = require('../water-test-details/controller')
 
@@ -190,8 +189,8 @@ export const generateReport = (req, res, next) => {
           pdf.create(data, options).toBuffer(function (err, buffer) {
             if (err) {
               console.log('Error creating PDF: ' + err)
-              res.statusCode = 500;
-              res.send(err);
+              res.statusCode = 500
+              res.send(err)
             } else {
               var params = {
                 ACL: 'public-read',
