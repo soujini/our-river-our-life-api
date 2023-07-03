@@ -192,7 +192,7 @@ export const generateReport = (req, res, next) => {
           //   .catch((error) => {
           //     console.error(error)
           //   })
-          pdf.create(html, options).toStream(function (err, stream) {
+          pdf.create(html, options).toBuffer(function (err, buffer) {
             if (err) {
               console.log('Error creating PDF: ' + err)
               res.statusCode = 500
@@ -206,17 +206,17 @@ export const generateReport = (req, res, next) => {
                 ContentEncoding: 'buffer',
                 ContentType: 'application/pdf'
               }
-              // res.type('application/pdf');
-              // res.statusCode = 200
-              // res.send({ data: buffer, success: true })
+              res.setHeader('Content-Type', 'application/pdf')
+              res.setHeader('Content-Disposition', 'attachment; filename=pdfFile.pdf');
+              res.send(buffer)
 
               /// / STREAM
 
-              // res.setHeader('Content-type', 'application/pdf')
-              res.setHeader('Content-disposition', 'attachment; filename=export-from-html.pdf') // Remove this if you don't want direct download
-              res.setHeader('Content-length', +stream.length)
-              // stream.pipe(res)
-              res.send(stream)
+              // // res.setHeader('Content-type', 'application/pdf')
+              // res.setHeader('Content-disposition', 'attachment; filename=export-from-html.pdf') // Remove this if you don't want direct download
+              // res.setHeader('Content-length', +stream.length)
+              // // stream.pipe(res)
+              // res.send(stream)
               // res.status(200).json(params)
               // res.send(params)
               // res.send('ajksakjhdakjhdas3u27346')
