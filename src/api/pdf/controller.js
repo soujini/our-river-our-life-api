@@ -190,10 +190,9 @@ export const generateReport = (req, res, next) => {
           // res.send(test);
           pdf.create(data, options).toBuffer(function (err, buffer) {
             if (err) {
-              console.log('getting error')
-              console.log(err)
-              // res.send(err)
-              return err
+              console.log('Error creating PDF: ' + err)
+              res.statusCode = 500;
+              res.send(err);
             } else {
               var params = {
                 ACL: 'public-read',
@@ -203,7 +202,10 @@ export const generateReport = (req, res, next) => {
                 ContentEncoding: 'buffer',
                 ContentType: 'application/pdf'
               }
-              res.status(200).json(params)
+              // res.type('application/pdf');
+              res.statusCode = 200;
+              res.send({ success: true });
+              // res.status(200).json(params)
               // res.send(params)
               // res.send('ajksakjhdakjhdas3u27346')
               // s3.upload(params, function (err, buffer) {
