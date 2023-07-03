@@ -143,7 +143,7 @@ var WaterTestDetailsController = require('../water-test-details/controller')
 //   })
 // }
 
-export const generateReport = async(req, res, next) => {
+export const generateReport = async (req, res, next) => {
   if (req.body.id === undefined || req.body.id === '') {
     res.status(400).json({ error: 'Missing params id' })
   }
@@ -175,7 +175,7 @@ export const generateReport = async(req, res, next) => {
   }
 
   return WaterTestDetailsController.getWaterTestDetailsById({ params1 })
-    .then(async(waterTestDetails) => {
+    .then(async (waterTestDetails) => {
       console.log('generateReport: Successfully retrieved water test details ' + JSON.stringify(waterTestDetails))
       ejs.renderFile(path.join(__dirname, '/report-template.ejs'), {
         waterTestDetails: waterTestDetails
