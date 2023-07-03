@@ -192,7 +192,8 @@ export const generateReport = (req, res, next) => {
             if (err) {
               console.log('getting error')
               console.log(err)
-              res.send(err)
+              // res.send(err)
+              return err
             } else {
               var params = {
                 ACL: 'public-read',
@@ -202,8 +203,8 @@ export const generateReport = (req, res, next) => {
                 ContentEncoding: 'buffer',
                 ContentType: 'application/pdf'
               }
-              console.log('in resolving')
-              res.send(params)
+              res.status(200).json(params)
+              // res.send(params)
               // res.send('ajksakjhdakjhdas3u27346')
               // s3.upload(params, function (err, buffer) {
               //   if (err) {
