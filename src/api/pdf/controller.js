@@ -1,8 +1,11 @@
 import aws from 'aws-sdk'
+import * as souj from 'html-pdf-node'
 const ejs = require('ejs')
-var pdf = require('html-pdf')
+// var pdf = require('html-pdf')
 const path = require('path')
+
 var WaterTestDetailsController = require('../water-test-details/controller')
+
 // export const generateReportWeb = (req, res, next) => {
 //   console.log("IN GEN REP WEB")
 //   console.log(req.body);
@@ -184,56 +187,56 @@ export const generateReport = async (req, res, next) => {
           res.send('Error in report template ' + err)
         } else {
           var test = 'Souju'
-          // pdf
-          //   .create(html, options)
-          //   .then((res) => {
-          //     console.log(res)
-          //   })
-          //   .catch((error) => {
-          //     console.error(error)
-          //   })
-          pdf.create(html, options).toBuffer(function (err, buffer) {
-            if (err) {
-              console.log('Error creating PDF: ' + err)
-              res.statusCode = 500
-              res.send(err)
-            } else {
-              var params1 = {
-                ACL: 'public-read',
-                Bucket: 'our-river-our-life-images/certificate',
-                Key: 'certificate_' + waterTestDetailsId,
-                Body: html,
-                ContentEncoding: 'buffer',
-                ContentType: 'application/pdf'
-              }
-              res.setHeader('Content-Type', 'application/pdf')
-              res.setHeader('Content-Disposition', 'attachment; filename=pdfFile.pdf')
-              res.send(buffer)
-
-              /// / STREAM
-              // // res.setHeader('Content-type', 'application/pdf')
-              // res.setHeader('Content-disposition', 'attachment; filename=export-from-html.pdf') // Remove this if you don't want direct download
-              // res.setHeader('Content-length', +stream.length)
-              // // stream.pipe(res)
-              // res.send(stream)
-              // res.status(200).json(params)
-              // res.send(params)
-              // res.send('ajksakjhdakjhdas3u27346')
-              // s3.upload(params, function (err, buffer) {
-              //   if (err) {
-              //     console.log(err)
-              //     console.log('Error uploading data: ', data)
-              //   } else {
-              //     // var certificateURL = data.Location
-              //     console.log('Succesfully uploaded pdf!')
-              //     var url = 'https://our-river-our-life-images.s3.amazonaws.com/certificate/certificate_' + waterTestDetailsId
-              //     params = { id: '649a71da9d819c140420bfaddd', certificate: url, fieldName: 'certificate' }
-              //     // WaterTestDetailsController.updateImage({ params })
-              //     res.status(200).json({ certificateURL: url })
-              //   }
-              // })
-            }
+          const file = { content: html }
+          souj.generatePdf(file, options).then(pdfBuffer => {
+            console.log('PDF Buffer:-', pdfBuffer)
+            res.setHeader('Content-Type', 'application/pdf')
+            res.setHeader('Content-Disposition', 'attachment; filename=pdfFile.pdf')
+            res.send(pdfBuffer)
           })
+
+          // pdf.create(html, options).toBuffer(function (err, buffer) {
+          //   if (err) {
+          //     console.log('Error creating PDF: ' + err)
+          //     res.statusCode = 500
+          //     res.send(err)
+          //   } else {
+          //     var params1 = {
+          //       ACL: 'public-read',
+          //       Bucket: 'our-river-our-life-images/certificate',
+          //       Key: 'certificate_' + waterTestDetailsId,
+          //       Body: html,
+          //       ContentEncoding: 'buffer',
+          //       ContentType: 'application/pdf'
+          //     }
+          //     res.setHeader('Content-Type', 'application/pdf')
+          //     res.setHeader('Content-Disposition', 'attachment; filename=pdfFile.pdf')
+          //     res.send(buffer)
+
+          //     /// / STREAM
+          //     // // res.setHeader('Content-type', 'application/pdf')
+          //     // res.setHeader('Content-disposition', 'attachment; filename=export-from-html.pdf') // Remove this if you don't want direct download
+          //     // res.setHeader('Content-length', +stream.length)
+          //     // // stream.pipe(res)
+          //     // res.send(stream)
+          //     // res.status(200).json(params)
+          //     // res.send(params)
+          //     // res.send('ajksakjhdakjhdas3u27346')
+          //     // s3.upload(params, function (err, buffer) {
+          //     //   if (err) {
+          //     //     console.log(err)
+          //     //     console.log('Error uploading data: ', data)
+          //     //   } else {
+          //     //     // var certificateURL = data.Location
+          //     //     console.log('Succesfully uploaded pdf!')
+          //     //     var url = 'https://our-river-our-life-images.s3.amazonaws.com/certificate/certificate_' + waterTestDetailsId
+          //     //     params = { id: '649a71da9d819c140420bfaddd', certificate: url, fieldName: 'certificate' }
+          //     //     // WaterTestDetailsController.updateImage({ params })
+          //     //     res.status(200).json({ certificateURL: url })
+          //     //   }
+          //     // })
+          //   }
+          // })
         }
       })
     })

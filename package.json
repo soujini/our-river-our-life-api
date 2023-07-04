@@ -63,6 +63,7 @@
     "express-force-ssl": "^0.3.2",
     "handlebars": "^4.7.6",
     "html-pdf": "^3.0.1",
+    "html-pdf-node": "^1.0.8",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.9.4",
     "mongoose-keywords": "^0.4.0",
