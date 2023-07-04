@@ -181,7 +181,10 @@ export const generateReport = async (req, res, next) => {
     .then((waterTestDetails) => {
       console.log('generateReport: Successfully retrieved water test details ' + JSON.stringify(waterTestDetails))
       console.log(__dirname)
-      res.send(waterTestDetails)
+      return renderFile(waterTestDetails)
+        .then((html) => {
+          res.send(html)
+        })
     }).catch((error) => {
       res.send(error)
     })
@@ -248,6 +251,18 @@ export const generateReport = async (req, res, next) => {
   // }
   //   })
 }
+const renderFile = (data) => {
+  return new Promise((resolve, reject) => {
+    ejs.renderFile(path.join(__dirname, '/report-template.ejs'), { waterTestDetails: data }, (err, result) => {
+      if (err) {
+        // logger.error(err)
+        reject(err)
+      }
+      resolve(result)
+    })
+  })
+}
+
 export const test = () => {
   console.log('Testing')
   return Promise.resolve('askdhjaksjd')
