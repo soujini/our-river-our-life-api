@@ -189,7 +189,7 @@ export const generateReport = async (req, res, next) => {
             .then(pdfBuffer => {
               // res.setHeader('Content-Type', 'application/pdf')
               // res.setHeader('Content-Disposition', 'attachment; filename=pdfFile.pdf')
-              res.send(pdfBuffer)
+              res.send("olaaaaaa")
             })
         }).catch((error) => {
           res.send(error)
