@@ -182,17 +182,17 @@ export const generateReport = async (req, res, next) => {
       console.log('generateReport: Successfully retrieved water test details ' + JSON.stringify(waterTestDetails))
       ejs.renderFile(path.join(__dirname, '/report-template.ejs'), {
         waterTestDetails: waterTestDetails
-      }, (err, html) => {
+      }, async (err, html) => {
         if (err) {
           res.send('Error in report template ' + err)
         } else {
           var test = 'Souju'
           const file = { content: html }
-          souj.generatePdf(file, options).then(pdfBuffer => {
+          await souj.generatePdf(file, options).then(pdfBuffer => {
             // console.log('PDF Buffer:-', pdfBuffer)
             // res.setHeader('Content-Type', 'application/pdf')
             // res.setHeader('Content-Disposition', 'attachment; filename=pdfFile.pdf')
-            res.send(pdfBuffer)
+            res.send(html)
           }).catch((err) => {
             res.send(err)
           })
