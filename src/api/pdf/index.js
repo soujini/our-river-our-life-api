@@ -11,7 +11,7 @@ const router = new Router()
  * @apiError {Object} 400 Some parameters may contain invalid values.
  * @apiError 404 Pdf not found.
  */
-router.get('/generateReport',
+router.post('/generateReport',
   generateReport)
 
 export default router

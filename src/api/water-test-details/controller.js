@@ -1,6 +1,5 @@
 import { success, notFound } from '../../services/response/'
 import { WaterTestDetails } from '.'
-// var PDFController = require('../pdf/controller')
 import aws from 'aws-sdk'
 import fs from 'fs'
 var UserController = require('../user/controller')
@@ -581,33 +580,6 @@ export const updateImage = ({ params }, res, next) => {
       })
   })
 }
-
-// export const updateImage = async ({ params }) => {
-//   WaterTestDetails.findById(params.id, function (waterTestDetails) {
-//     if (waterTestDetails) {
-//       if (params.fieldName === 'flora') {
-//         waterTestDetails.flora.push({ imageURL: params.flora, description: params.description })
-//       } else if (params.fieldName === 'fauna') {
-//         waterTestDetails.fauna.push({ imageURL: params.fauna, description: params.description })
-//       } else if (params.fieldName === 'artwork') {
-//         waterTestDetails.artwork.push({ imageURL: params.artwork, description: params.description })
-//       } else if (params.fieldName === 'groupPicture') {
-//         waterTestDetails.groupPicture.push({ imageURL: params.groupPicture, description: params.description })
-//       } else if (params.fieldName === 'activity') {
-//         waterTestDetails.activity.push({ imageURL: params.activity, description: params.description })
-//       } else if (params.fieldName === 'river') {
-//         waterTestDetails.river.push({ imageURL: params.river, description: params.description })
-//       } else if (params.fieldName === 'surrounding') {
-//         waterTestDetails.surrounding.push({ imageURL: params.surrounding, description: params.description })
-//       } else if (params.fieldName === 'certificate') {
-//         waterTestDetails.certificateURL = params.certificate
-//       }
-//       waterTestDetails.save()
-//     } else {
-//       console.log('Water test details id is incorrect')
-//     }
-//   })
-// }
 
 export const update = ({ params }, res, next) => {
   WaterTestDetails.findById(params.id)
