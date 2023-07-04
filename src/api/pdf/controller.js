@@ -188,12 +188,12 @@ export const generateReport = (req, res, next) => {
           return souj.generatePdf(file, options)
             .then((data, error) => {
               if (data) {
-                res.setHeader('Content-Type', 'application/pdf')
-                res.setHeader('Content-Disposition', 'attachment; filename=pdfFile.pdf')
-                res.send(data)
+                // res.setHeader('Content-Type', 'application/pdf')
+                // res.setHeader('Content-Disposition', 'attachment; filename=pdfFile.pdf')
+                res.send('ola')
               } else {
                 console.log('in error')
-                res.send(error)
+                res.send('erroring')
               }
             })
         }).catch((error) => {
