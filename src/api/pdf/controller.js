@@ -183,7 +183,7 @@ export const generateReport = (req, res, next) => {
       console.log(__dirname)
       return renderFile(waterTestDetails)
         .then((html) => {
-          const file = { content: '<h1>Welcome to html-pdf-node</h1>' }
+          const file = { content: html }
           return htmlToPdf.generatePdf(file, options)
             .then((pdfBuffer) => {
               res.setHeader('Content-Type', 'application/pdf')
