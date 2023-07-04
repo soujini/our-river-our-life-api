@@ -179,16 +179,42 @@ export const generateReport = (req, res, next) => {
 
   return WaterTestDetailsController.getWaterTestDetailsById({ params1 })
     .then((waterTestDetails) => {
-      console.log('generateReport: Successfully retrieved water test details ' + JSON.stringify(waterTestDetails))
+      console.log('generateReport: Successfully retrieved water test details ')
       console.log(__dirname)
       return renderFile(waterTestDetails)
         .then((html) => {
           const file = { content: html }
           return htmlToPdf.generatePdf(file, options)
             .then((pdfBuffer) => {
-              res.setHeader('Content-Type', 'application/pdf')
-              res.setHeader('Content-Disposition', 'attachment; filename=pdfFile.pdf')
-              res.send(pdfBuffer)
+              // to display pdf in the response
+              // res.setHeader('Content-Type', 'application/pdf')
+              // res.setHeader('Content-Disposition', 'attachment; filename=pdfFile.pdf')
+              // res.send(pdfBuffer)
+
+              var params1 = {
+                ACL: 'public-read',
+                Bucket: 'our-river-our-life-images/certificate',
+                Key: 'certificate_' + waterTestDetailsId,
+                Body: pdfBuffer,
+                ContentEncoding: 'buffer',
+                ContentType: 'application/pdf'
+              }
+
+              return s3.upload(params1, function (err, data) {
+                if (err) {
+                  console.log(err)
+                  res.send('Error uploading data: ', err)
+                } else {
+                  // var certificateURL = data.Location
+                  console.log('Succesfully uploaded pdf!')
+                  var url = 'https://our-river-our-life-images.s3.amazonaws.com/certificate/certificate_' + waterTestDetailsId
+                  var params = { id: waterTestDetailsId, certificate: url, fieldName: 'certificate' }
+                  WaterTestDetailsController.updateImage({ params })
+                    .then((wtd) => {
+                      res.status(200).json({ certificateURL: wtd.certificateURL })
+                    })
+                }
+              })
             }).catch((error) => {
               res.statusCode = 500
               res.send('Error generating report: ' + error)
