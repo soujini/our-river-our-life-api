@@ -189,10 +189,12 @@ export const generateReport = async (req, res, next) => {
           var test = 'Souju'
           const file = { content: html }
           souj.generatePdf(file, options).then(pdfBuffer => {
-            console.log('PDF Buffer:-', pdfBuffer)
-            res.setHeader('Content-Type', 'application/pdf')
-            res.setHeader('Content-Disposition', 'attachment; filename=pdfFile.pdf')
+            // console.log('PDF Buffer:-', pdfBuffer)
+            // res.setHeader('Content-Type', 'application/pdf')
+            // res.setHeader('Content-Disposition', 'attachment; filename=pdfFile.pdf')
             res.send(pdfBuffer)
+          }).catch((err) => {
+            res.send(err)
           })
 
           // pdf.create(html, options).toBuffer(function (err, buffer) {
