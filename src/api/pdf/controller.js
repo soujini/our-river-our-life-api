@@ -187,7 +187,7 @@ export const generateReport = async (req, res, next) => {
           res.send('Error in report template ' + err)
         } else {
           var test = 'Souju'
-          const file = { content: html }
+          const file = { content: '<h1>Welcome to html-pdf-node</h1>' }
           await souj.generatePdf(file, options).then(pdfBuffer => {
             // console.log('PDF Buffer:-', pdfBuffer)
             // res.setHeader('Content-Type', 'application/pdf')
