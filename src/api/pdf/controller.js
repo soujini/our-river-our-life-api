@@ -183,10 +183,17 @@ export const generateReport = async (req, res, next) => {
       console.log(__dirname)
       return renderFile(waterTestDetails)
         .then((html) => {
-          res.send(html)
+          // res.send(html)
+          const file = { content: '<h1>Welcome to html-pdf-node</h1>' }
+          souj.generatePdf(file, options)
+            .then(pdfBuffer => {
+              // res.setHeader('Content-Type', 'application/pdf')
+              // res.setHeader('Content-Disposition', 'attachment; filename=pdfFile.pdf')
+              res.send(pdfBuffer)
+            })
+        }).catch((error) => {
+          res.send(error)
         })
-    }).catch((error) => {
-      res.send(error)
     })
   // ejs.renderFile(path.join(__dirname, '/report-template.ejs'), {
   //   waterTestDetails: waterTestDetails
