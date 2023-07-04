@@ -146,7 +146,7 @@ var WaterTestDetailsController = require('../water-test-details/controller')
 //   })
 // }
 
-export const generateReport = async (req, res, next) => {
+export const generateReport = (req, res, next) => {
   if (req.body.id === undefined || req.body.id === '') {
     res.status(400).json({ error: 'Missing params id' })
   }
@@ -185,11 +185,16 @@ export const generateReport = async (req, res, next) => {
         .then((html) => {
           // res.send(html)
           const file = { content: '<h1>Welcome to html-pdf-node</h1>' }
-          souj.generatePdf(file, options)
-            .then(pdfBuffer => {
-              // res.setHeader('Content-Type', 'application/pdf')
-              // res.setHeader('Content-Disposition', 'attachment; filename=pdfFile.pdf')
-              res.send("olaaaaaa")
+          return souj.generatePdf(file, options)
+            .then((data, error) => {
+              if (data) {
+                res.setHeader('Content-Type', 'application/pdf')
+                res.setHeader('Content-Disposition', 'attachment; filename=pdfFile.pdf')
+                res.send(data)
+              } else {
+                console.log('in error')
+                res.send(error)
+              }
             })
         }).catch((error) => {
           res.send(error)
