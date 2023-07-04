@@ -197,7 +197,7 @@ export const generateReport = (req, res, next) => {
               }
             })
         }).catch((error) => {
-          res.send(error)
+          res.send('erroring in catch ' + error)
         })
     })
   // ejs.renderFile(path.join(__dirname, '/report-template.ejs'), {
