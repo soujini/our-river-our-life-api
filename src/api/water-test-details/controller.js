@@ -310,14 +310,14 @@ export const createWaterTestDetails = async (req, res, next) => {
   console.log(req.body)
   console.log(typeof (req.body))
   // console.log(type(req.body.riverPictures))
-  req.body.riverPictures = JSON.parse(req.body.riverPictures)
-  req.body.surroundingPictures = JSON.parse(req.body.surroundingPictures)
-  req.body.floraPictures = JSON.parse(req.body.floraPictures)
-  req.body.faunaPictures = JSON.parse(req.body.faunaPictures)
-  req.body.groupPictures = JSON.parse(req.body.groupPictures)
-  req.body.activityPictures = JSON.parse(req.body.activityPictures)
-  req.body.artworkPictures = JSON.parse(req.body.artworkPictures)
-  req.body.surroundings = JSON.parse(req.body.surroundings)
+  req.body.riverPictures = req.body.riverPictures ? JSON.parse(req.body.riverPictures) : req.body.riverPictures
+  req.body.surroundingPictures = req.body.surroundingPictures ? JSON.parse(req.body.surroundingPictures) : req.body.surroundingPictures
+  req.body.floraPictures = req.body.floraPictures ? JSON.parse(req.body.floraPictures) : req.body.floraPictures
+  req.body.faunaPictures = req.body.faunaPictures ? JSON.parse(req.body.faunaPictures) : req.body.faunaPictures
+  req.body.groupPictures = req.body.groupPictures ? JSON.parse(req.body.groupPictures) : req.body.groupPictures
+  req.body.activityPictures = req.body.activityPictures ? JSON.parse(req.body.activityPictures) : req.body.activityPictures
+  req.body.artworkPictures = req.body.artworkPictures ? JSON.parse(req.body.artworkPictures) : req.body.artworkPictures
+  req.body.surroundings = req.body.surroundings ? JSON.parse(req.body.surroundings) : req.body.surroundings
 
   Promise.all([uploadFlora(req), uploadFauna(req), uploadArtwork(req), uploadGroupPicture(req), uploadActivity(req), uploadRiver(req), uploadSurrounding(req)])
     .then(results => {
@@ -380,14 +380,14 @@ export const updateWaterTestDetails = async (req, res, next) => {
   console.log('Water test details id: ' + req.params.id)
   console.log(typeof (req.body))
   // console.log(req.body.riverPictures)
-  req.body.riverPictures = JSON.parse(req.body.riverPictures)
-  req.body.surroundingPictures = JSON.parse(req.body.surroundingPictures)
-  req.body.floraPictures = JSON.parse(req.body.floraPictures)
-  req.body.faunaPictures = JSON.parse(req.body.faunaPictures)
-  req.body.groupPictures = JSON.parse(req.body.groupPictures)
-  req.body.activityPictures = JSON.parse(req.body.activityPictures)
-  req.body.artworkPictures = JSON.parse(req.body.artworkPictures)
-  req.body.surroundings = JSON.parse(req.body.surroundings)
+  req.body.riverPictures = req.body.riverPictures ? JSON.parse(req.body.riverPictures) : req.body.riverPictures
+  req.body.surroundingPictures = req.body.surroundingPictures ? JSON.parse(req.body.surroundingPictures) : req.body.surroundingPictures
+  req.body.floraPictures = req.body.floraPictures ? JSON.parse(req.body.floraPictures) : req.body.floraPictures
+  req.body.faunaPictures = req.body.faunaPictures ? JSON.parse(req.body.faunaPictures) : req.body.faunaPictures
+  req.body.groupPictures = req.body.groupPictures ? JSON.parse(req.body.groupPictures) : req.body.groupPictures
+  req.body.activityPictures = req.body.activityPictures ? JSON.parse(req.body.activityPictures) : req.body.activityPictures
+  req.body.artworkPictures = req.body.artworkPictures ? JSON.parse(req.body.artworkPictures) : req.body.artworkPictures
+  req.body.surroundings = req.body.surroundings ? JSON.parse(req.body.surroundings) : req.body.surroundings
 
   Promise.all([uploadFlora(req), uploadFauna(req), uploadArtwork(req), uploadGroupPicture(req), uploadActivity(req), uploadRiver(req), uploadSurrounding(req)])
     .then(results => {
@@ -463,12 +463,13 @@ export const updateWaterTestDetails = async (req, res, next) => {
           console.log('NEW OBJ')
           return newObj
         })
-        .then((newObj) => {
-          console.log('RESULT: ' + newObj)
-          newObj.view(true)
+        .then((waterTestDetails) => {
+          console.log('RESULT: ' + waterTestDetails)
+          // waterTestDetails.view(true)
+          res.send(200, waterTestDetails)
           // waterTestDetails ? waterTestDetails.view(true) : null
         })
-        .then(success(res))
+        // .then(success(res))
         .catch(next)
     })
 }
