@@ -231,11 +231,11 @@ export const createFauna = (req, res, next) => {
   }
 }
 
-export const create = ({ bodymen: { body } }, res, next) =>
-  FloraFauna.create(body)
-    .then((floraFauna) => floraFauna.view(true))
-    .then(success(res, 201))
-    .catch(next)
+// export const create = ({ bodymen: { body } }, res, next) =>
+//   FloraFauna.create(body)
+//     .then((floraFauna) => floraFauna.view(true))
+//     .then(success(res, 201))
+//     .catch(next)
 
 export const index = ({ querymen: { query, select, cursor } }, res, next) => {
   FloraFauna.count(query)
@@ -261,13 +261,13 @@ export const show = ({ params }, res, next) =>
     .then(success(res))
     .catch(next)
 
-export const update = ({ bodymen: { body }, params }, res, next) =>
-  FloraFauna.findById(params.id)
-    .then(notFound(res))
-    .then((floraFauna) => floraFauna ? Object.assign(floraFauna, body).save() : null)
-    .then((floraFauna) => floraFauna ? floraFauna.view(true) : null)
-    .then(success(res))
-    .catch(next)
+// export const update = ({ bodymen: { body }, params }, res, next) =>
+//   FloraFauna.findById(params.id)
+//     .then(notFound(res))
+//     .then((floraFauna) => floraFauna ? Object.assign(floraFauna, body).save() : null)
+//     .then((floraFauna) => floraFauna ? floraFauna.view(true) : null)
+//     .then(success(res))
+//     .catch(next)
 
 export const destroy = ({ params }, res, next) =>
   FloraFauna.findById(params.id)
