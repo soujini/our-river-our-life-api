@@ -21,21 +21,21 @@ const waterTestDetailsSchema = new Schema({
       type: String
     },
     latitude: {
-      type: Number,
-      default: ''
+      type: String
     },
     longitude: {
-      type: Number,
+      type: String,
       default: ''
     }
   },
   waterLevelAndWeather: {
     airTemperature: {
-      type: Number,
+      type: String,
       default: ''
     },
+
     waterLevel: {
-      type: String,
+      type: String
     },
     weather: {
       type: String
@@ -43,66 +43,66 @@ const waterTestDetailsSchema = new Schema({
   },
   waterTesting: {
     waterTemperature: {
-      type: Number,
+      type: String,
       default: ''
     },
     pH: {
-      type: Number,
+      type: String,
       default: ''
     },
     dissolvedOxygen: {
-      type: Number,
+      type: String,
       default: ''
     },
     hardness: {
-      type: Number,
+      type: String,
       default: ''
     },
     nitrate: {
-      type: Number,
+      type: String,
       default: ''
     },
     nitrite: {
-      type: Number,
+      type: String,
       default: ''
     },
     chlorine: {
-      type: Number,
+      type: String,
       default: ''
     },
     alkalinity: {
-      type: Number,
+      type: String,
       default: ''
     },
     iron: {
-      type: Number,
+      type: String,
       default: ''
     },
     bacteria: {
       type: String
     },
     turbidity: {
-      type: Number,
+      type: String,
       default: ''
     },
     phosphate: {
-      type: Number,
+      type: String,
       default: ''
     },
     ammonia: {
-      type: Number,
+      type: String,
       default: ''
     },
     lead: {
-      type: Number,
+      type: String,
       default: ''
     },
     totalDissolvedSolids: {
-      type: Number,
+      type: String,
       default: ''
     },
     conductivity: {
-      type: Number,
+      type: String,
       default: ''
     }
   },

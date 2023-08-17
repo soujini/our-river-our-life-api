@@ -336,12 +336,12 @@
           <span class="range">6.5 - 8.5</span>
         </td>
         <td class="text-right">
-          <% if (waterTestDetails.waterTesting.pH * 1>= 6.5 && waterTestDetails.waterTesting.pH * 1 <= 8.5) { %>
+          <% if (parseInt(waterTestDetails.waterTesting.pH) * 1>= 6.5 && parseInt(waterTestDetails.waterTesting.pH) * 1 <= 8.5) { %>
               <span class="row"><span class="value-green1">
                   <%= waterTestDetails.waterTesting.pH %>
                 </span> <span class="value-green2">pH</span> </span>
               <% }%>
-                <% if (waterTestDetails.waterTesting.pH * 1 < 6.5 || waterTestDetails.waterTesting.pH * 1> 8.5) { %>
+                <% if (parseInt(waterTestDetails.waterTesting.pH) * 1 < 6.5 || parseInt(waterTestDetails.waterTesting.pH) * 1> 8.5) { %>
                   <span class="row"><span class="value-red1">
                       <%= waterTestDetails.waterTesting.pH %>
                     </span> <span class="value-red2">pH</span> </span>
@@ -373,13 +373,13 @@
           <span class="range">20 mg/L - 250 mg/L</span>
         </td>
         <td class="text-right">
-          <% if (waterTestDetails.waterTesting.alkalinity * 1>= 20 && waterTestDetails.waterTesting.alkalinity * 1 <=
+          <% if (parseInt(waterTestDetails.waterTesting.alkalinity) * 1>= 20 && parseInt(waterTestDetails.waterTesting.alkalinity) * 1 <=
               250) { %>
               <span class="row"><span class="value-green1">
                   <%= waterTestDetails.waterTesting.alkalinity %>
                 </span> <span class="value-green2">mg/L</span> </span>
               <% }%>
-                <% if (waterTestDetails.waterTesting.alkalinity * 1 < 20 || waterTestDetails.waterTesting.alkalinity *
+                <% if (parseInt(waterTestDetails.waterTesting.alkalinity) * 1 < 20 || parseInt(waterTestDetails.waterTesting.alkalinity) *
                   1> 250) { %>
                   <span class="row"><span class="value-red1">
                       <%= waterTestDetails.waterTesting.alkalinity %>
@@ -411,12 +411,12 @@
           <span class="range">1 mg/L</span>
         </td>
         <td class="text-right">
-          <% if (waterTestDetails.waterTesting.nitrate * 1 <=1) { %>
+          <% if (parseInt(waterTestDetails.waterTesting.nitrate) * 1 <=1) { %>
             <span class="row"><span class="value-green1">
                 <%= waterTestDetails.waterTesting.nitrate %>
               </span> <span class="value-green2">mg/L</span> </span>
             <% }%>
-              <% if (waterTestDetails.waterTesting.nitrate * 1> 1 ) { %>
+              <% if (parseInt(waterTestDetails.waterTesting.nitrate) * 1> 1 ) { %>
                 <span class="row"><span class="value-red1">
                     <%= waterTestDetails.waterTesting.nitrate %>
                   </span> <span class="value-red2">mg/L</span> </span>
@@ -448,12 +448,12 @@
           <span class="range">1 mg/L</span>
         </td>
         <td class="text-right">
-          <% if (waterTestDetails.waterTesting.nitrite * 1 <=1) { %>
+          <% if (parseInt(waterTestDetails.waterTesting.nitrite) * 1 <=1) { %>
             <span class="row"><span class="value-green1">
                 <%= waterTestDetails.waterTesting.nitrite %>
               </span> <span class="value-green2">mg/L</span> </span>
             <% }%>
-              <% if (waterTestDetails.waterTesting.nitrite * 1> 1 ) { %>
+              <% if (parseInt(waterTestDetails.waterTesting.nitrite) * 1> 1 ) { %>
                 <span class="row"><span class="value-red1">
                     <%= waterTestDetails.waterTesting.nitrite %>
                   </span> <span class="value-red2">mg/L</span> </span>
@@ -516,13 +516,13 @@
           <span class="range">0.2 - 1.0 mg/L</span>
         </td>
         <td class="text-right">
-          <% if (waterTestDetails.waterTesting.chlorine * 1>= 0.2 && waterTestDetails.waterTesting.chlorine * 1 <= 1.0)
+          <% if (parseInt(waterTestDetails.waterTesting.chlorine) * 1>= 0.2 && parseInt(waterTestDetails.waterTesting.chlorine) * 1 <= 1.0)
               { %>
               <span class="row"><span class="value-green1">
                   <%= waterTestDetails.waterTesting.chlorine %>
                 </span> <span class="value-green2">mg/L</span> </span>
               <% }%>
-                <% if (waterTestDetails.waterTesting.chlorine * 1 < 0.2 || waterTestDetails.waterTesting.chlorine * 1>
+                <% if (parseInt(waterTestDetails.waterTesting.chlorine) * 1 < 0.2 || parseInt(waterTestDetails.waterTesting.chlorine) * 1>
                   1.0) { %>
                   <span class="row"><span class="value-red1">
                       <%= waterTestDetails.waterTesting.chlorine %>
@@ -553,14 +553,14 @@
           <span class="range">4.0 - 20.0 mg/L</span>
         </td>
         <td class="text-right">
-          <% if (waterTestDetails.waterTesting.dissolvedOxygen * 1>= 4.0 &&
-            waterTestDetails.waterTesting.dissolvedOxygen * 1 <= 20.0) { %>
+          <% if (parseInt(waterTestDetails.waterTesting.dissolvedOxygen) * 1>= 4.0 &&
+          parseInt(waterTestDetails.waterTesting.dissolvedOxygen) * 1 <= 20.0) { %>
               <span class="row"><span class="value-green1">
                   <%= waterTestDetails.waterTesting.dissolvedOxygen %>
                 </span> <span class="value-green2">mg/L</span> </span>
               <% }%>
-                <% if (waterTestDetails.waterTesting.dissolvedOxygen * 1 < 4.0 ||
-                  waterTestDetails.waterTesting.dissolvedOxygen * 1> 20.0) { %>
+                <% if (parseInt(waterTestDetails.waterTesting.dissolvedOxygen) * 1 < 4.0 ||
+                parseInt(waterTestDetails.waterTesting.dissolvedOxygen) * 1> 20.0) { %>
                   <span class="row"><span class="value-red1">
                       <%= waterTestDetails.waterTesting.dissolvedOxygen %>
                     </span> <span class="value-red2">mg/L</span> </span>
@@ -591,12 +591,12 @@
           <span class="range">0.2 - 2.0 mg/L</span>
         </td>
         <td class="text-right">
-          <% if (waterTestDetails.waterTesting.iron * 1>= 0.2 && waterTestDetails.waterTesting.iron * 1 <= 2.0) { %>
+          <% if (parseInt(waterTestDetails.waterTesting.iron) * 1>= 0.2 && parseInt(waterTestDetails.waterTesting.iron) * 1 <= 2.0) { %>
               <span class="row"><span class="value-green1">
                   <%= waterTestDetails.waterTesting.iron %>
                 </span> <span class="value-green2">mg/L</span> </span>
               <% }%>
-                <% if (waterTestDetails.waterTesting.iron * 1 < 0.2 || waterTestDetails.waterTesting.iron * 1> 2.0) { %>
+                <% if (parseInt(waterTestDetails.waterTesting.iron) * 1 < 0.2 || parseInt(waterTestDetails.waterTesting.iron) * 1 > 2.0) { %>
                   <span class="row"><span class="value-red1">
                       <%= waterTestDetails.waterTesting.iron %>
                     </span> <span class="value-red2">mg/L</span> </span>
@@ -663,12 +663,12 @@
           <span class="range">Upto 15,000 NTU</span>
         </td>
         <td class="text-right">
-          <% if (waterTestDetails.waterTesting.turbidity * 1 <=15000) { %>
+          <% if (parseInt(waterTestDetails.waterTesting.turbidity) * 1 <=15000) { %>
             <span class="row"><span class="value-green1">
                 <%= waterTestDetails.waterTesting.turbidity %>
               </span> <span class="value-green2">NTU</span> </span>
             <% }%>
-              <% if (waterTestDetails.waterTesting.turbidity> 15000) { %>
+              <% if (parseInt(waterTestDetails.waterTesting.turbidity) > 15000) { %>
                 <span class="row"><span class="value-red1">
                     <%= waterTestDetails.waterTesting.turbidity %>
                   </span> <span class="value-red2">NTU</span> </span>
@@ -699,13 +699,13 @@
           <span class="range">0.2 - 1.2 mg/L</span>
         </td>
         <td class="text-right">
-          <% if (waterTestDetails.waterTesting.ammonia * 1>= 0.2 && waterTestDetails.waterTesting.ammonia * 1 <= 1.2) {
+          <% if (parseInt(waterTestDetails.waterTesting.ammonia) * 1>= 0.2 && parseInt(waterTestDetails.waterTesting.ammonia) * 1 <= 1.2) {
               %>
               <span class="row"><span class="value-green1">
                   <%= waterTestDetails.waterTesting.ammonia %>
                 </span> <span class="value-green2">mg/L</span> </span>
               <% }%>
-                <% if (waterTestDetails.waterTesting.ammonia * 1 < 0.2 || waterTestDetails.waterTesting.ammonia * 1>
+                <% if (parseInt(waterTestDetails.waterTesting.ammonia) * 1 < 0.2 || parseInt(waterTestDetails.waterTesting.ammonia) * 1>
                   1.2) { %>
                   <span class="row"><span class="value-red1">
                       <%= waterTestDetails.waterTesting.ammonia %>
@@ -740,12 +740,12 @@
           <span class="range">Upto 0.1 mg/L</span>
         </td>
         <td class="text-right">
-          <% if (waterTestDetails.waterTesting.phosphate * 1 <=0.1) { %>
+          <% if (parseInt(waterTestDetails.waterTesting.phosphate) * 1 <= 0.1) { %>
             <span class="row"><span class="value-green1">
                 <%= waterTestDetails.waterTesting.phosphate %>
               </span> <span class="value-green2">mg/L</span> </span>
             <% }%>
-              <% if (waterTestDetails.waterTesting.phosphate> 0.1) { %>
+              <% if (parseInt(waterTestDetails.waterTesting.phosphate)> 0.1) { %>
                 <span class="row"><span class="value-red1">
                     <%= waterTestDetails.waterTesting.phosphate %>
                   </span> <span class="value-red2">mg/L</span> </span>
@@ -779,12 +779,12 @@
           <span class="reason">Lead contamination in any amount is unsafe</span><br />
         </td>
         <td class="text-right">
-          <% if (waterTestDetails.waterTesting.lead * 1==0) { %>
+          <% if (parseInt(waterTestDetails.waterTesting.lead) * 1== 0) { %>
             <span class="row"><span class="value-green1">
                 <%= waterTestDetails.waterTesting.lead %>
               </span> <span class="value-green2">mg/L</span> </span>
             <% }%>
-              <% if (waterTestDetails.waterTesting.lead> 0) { %>
+              <% if (parseInt(waterTestDetails.waterTesting.lead) > 0) { %>
                 <span class="row"><span class="value-red1">
                     <%= waterTestDetails.waterTesting.lead %>
                   </span> <span class="value-red2">mg/L</span> </span>
@@ -817,7 +817,7 @@
           <span class="reason">Unacceptable: </span><span class="range">Above 1200</span><br />
         </td>
         <td class="text-right">
-          <% if (waterTestDetails.waterTesting.totalDissolvedSolids * 1 < 900) { %>
+          <% if (parseInt(waterTestDetails.waterTesting.totalDissolvedSolids) * 1 < 900) { %>
             <span class="row"><span class="value-green1">
                 <%= waterTestDetails.waterTesting.totalDissolvedSolids %>
               </span> <span class="value-green2">ppm</span> </span>
@@ -852,13 +852,13 @@
           </span><br />
         </td>
         <td class="text-right">
-          <% if (waterTestDetails.waterTesting.conductivity * 1 < 1000 && waterTestDetails.waterTesting.conductivity *
+          <% if (parseInt(waterTestDetails.waterTesting.conductivity) * 1 < 1000 && parseInt(waterTestDetails.waterTesting.conductivity) *
             1> 10000) { %>
             <span class="row"><span class="value-green1">
                 <%= waterTestDetails.waterTesting.conductivity %>
               </span> <span class="value-green2">μS</span> </span>
             <% }%>
-              <% if (waterTestDetails.waterTesting.conductivity * 1>=1000 && waterTestDetails.waterTesting.conductivity
+              <% if (parseInt(waterTestDetails.waterTesting.conductivity) * 1>=1000 && parseInt(waterTestDetails.waterTesting.conductivity)
                 * 1 <= 10000) { %>
                   <span class="row"><span class="value-red1">
                       <%= waterTestDetails.waterTesting.conductivity %>
