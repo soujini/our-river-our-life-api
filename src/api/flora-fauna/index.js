@@ -2,7 +2,7 @@ import { Router } from 'express'
 import { middleware as query } from 'querymen'
 import { middleware as body } from 'bodymen'
 // import { master } from '../../services/passport'
-import { createFlora, createFauna, index, show, destroy, searchByDate } from './controller'
+import { createFlora, createFauna, index, show, destroy, searchByDate, updateFlora, updateFauna } from './controller'
 import { schema } from './model'
 import multer from 'multer'
 export FloraFauna, { schema } from './model'
@@ -58,6 +58,16 @@ router.post('/create-flora', authenticateJWT,
 router.post('/create-fauna', authenticateJWT,
   multer({ dest: 'temp/', limits: { fieldSize: 8 * 1024 * 1024 } }).array('fauna', 10),
   createFauna
+)
+
+router.put('/update-flora', authenticateJWT,
+  multer({ dest: 'temp/', limits: { fieldSize: 8 * 1024 * 1024 } }).array('flora', 10),
+  updateFlora
+)
+
+router.put('/update-fauna', authenticateJWT,
+  multer({ dest: 'temp/', limits: { fieldSize: 8 * 1024 * 1024 } }).array('fauna', 10),
+  updateFauna
 )
 
 // router.post('/',

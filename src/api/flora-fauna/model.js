@@ -46,7 +46,7 @@ const floraFaunaSchema = new Schema({
 })
 
 floraFaunaSchema.methods = {
-  view(full) {
+  view (full) {
     const view = {
       // simple view
       id: this.id,
