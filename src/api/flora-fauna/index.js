@@ -60,12 +60,12 @@ router.post('/create-fauna', authenticateJWT,
   createFauna
 )
 
-router.put('/update-flora', authenticateJWT,
+router.put('/update-flora/:id', authenticateJWT,
   multer({ dest: 'temp/', limits: { fieldSize: 8 * 1024 * 1024 } }).array('flora', 10),
   updateFlora
 )
 
-router.put('/update-fauna', authenticateJWT,
+router.put('/update-fauna/:id', authenticateJWT,
   multer({ dest: 'temp/', limits: { fieldSize: 8 * 1024 * 1024 } }).array('fauna', 10),
   updateFauna
 )
