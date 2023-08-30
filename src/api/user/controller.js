@@ -10,9 +10,9 @@ const accessTokenSecret = 'youraccesstokensecret'
 export const create = ({ bodymen: { body } }, res, next) => {
   User.create(body)
     .then((user) => {
-      user.view(true)
+      return res.status(201).send(user)
     })
-    .then(success(res, 201))
+    // .then(success(res, 201))
     .catch((error) => {
       if (error.name === 'MongoError' && error.code === 11000) {
         console.log(error)
