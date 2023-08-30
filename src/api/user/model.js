@@ -12,17 +12,17 @@ const userSchema = new Schema({
     sparse: true
   },
   firstName: {
-    type: String,
+    type: String
     // unique:true,
-    sparse: true
+    // sparse: true
   },
   lastName: {
-    type: String,
+    type: String
     // unique:true,
-    sparse: true
+    // sparse: true
   },
   avatarURL: {
-    type: Array,
+    type: Array
   }
 }, {
   timestamps: true,

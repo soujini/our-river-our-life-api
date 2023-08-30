@@ -9,9 +9,19 @@ const accessTokenSecret = 'youraccesstokensecret'
 
 export const create = ({ bodymen: { body } }, res, next) => {
   User.create(body)
-    .then((user) => user.view(true))
+    .then((user) => {
+      user.view(true)
+    })
     .then(success(res, 201))
-    .catch(next)
+    .catch((error) => {
+      if (error.name === 'MongoError' && error.code === 11000) {
+        console.log(error)
+        // Duplicate username
+        return res.status(422).send({ succes: false, message: 'Phone number or email already exists!' })
+      }
+      // Some other error
+      return res.status(422).send(error)
+    })
 }
 export const auth = async ({ bodymen: { body } }, res, next) => {
   // Filter user from the users array by username and password
@@ -73,8 +83,11 @@ export const signIn = ({ bodymen: { body } }, res, next) => {
     .catch(next)
 }
 export const signInWeb = ({ bodymen: { body } }, res, next) => {
-  User.findOneAndUpdate({ phoneNumber: body.phoneNumber }, { phoneNumber: body.phoneNumber, email: body.email, firstName: body.firstName, lastName: body.lastName }, { new: true, upsert: true })
-    .then((user) => (user.view(true)))
+  User.findOneAndUpdate({ email: body.email }, { phoneNumber: body.phoneNumber, email: body.email, firstName: body.firstName, lastName: body.lastName }, { new: true, upsert: true })
+    .then((user) => {
+      console.log(user)
+      user.view(true)
+    })
     .then(success(res, 201))
     .catch(next)
 }
