@@ -2,21 +2,25 @@ import mongoose, { Schema } from 'mongoose'
 
 const fishSanctuariesSchema = new Schema({
   userId: {
-    type: String
+    type: String,
+    required: true
   },
   contributorName: {
-    type: String
+    type: String,
+    required: true
   },
   locationDetails: {
     name: {
-      type: String
+      type: String,
+      required: true
     },
     riverName: {
-      type: String
+      type: String,
+      required: true
     },
-    activityDate: {
-      type: String
-    },
+    // activityDate: {
+    //   type: String
+    // },
     testerName: {
       type: String
     },
@@ -24,10 +28,12 @@ const fishSanctuariesSchema = new Schema({
       type: String
     },
     latitude: {
-      type: Number
+      type: Number,
+      validate: /^[-+]?[0-9]{1,7}(\.[0-9]+)?$/
     },
     longitude: {
-      type: Number
+      type: Number,
+      validate: /^[-+]?[0-9]{1,7}(\.[0-9]+)?$/
     },
     extent: {
       type: String
@@ -37,9 +43,10 @@ const fishSanctuariesSchema = new Schema({
         type: String
       },
       description: {
-        type: String
+        type: String,
+        maxlength: 100
       }
-    }],
+    }]
   },
   habitatCharacteristics: {
     physicalInfrastructure: [{
@@ -134,29 +141,33 @@ const fishSanctuariesSchema = new Schema({
   managementActions: {
     foodProvisioning: {
       type: {
-        type: Number
+        type: Number,
+        required: true
       },
       description: {
         type: String
-      },
+      }
     },
     fishingAnglingAllowed: {
       type: {
-        type: Number
-      },
+        type: Number,
+        required: true
+      }
     },
     swimmingAllowed: {
       type: {
-        type: Number
-      },
+        type: Number,
+        required: true
+      }
     },
     patrollingAllowed: {
       type: {
-        type: Number
+        type: Number,
+        required: true
       },
       description: {
         type: String
-      },
+      }
     }
   },
   speciesPictures: [{
@@ -194,7 +205,7 @@ const fishSanctuariesSchema = new Schema({
 })
 
 fishSanctuariesSchema.methods = {
-  view(full) {
+  view (full) {
     const view = {
       // simple view
       id: this.id,
@@ -203,7 +214,7 @@ fishSanctuariesSchema.methods = {
       locationDetails: {
         name: this.locationDetails.name,
         riverName: this.locationDetails.riverName,
-        activityDate: this.locationDetails.activityDate,
+        // activityDate: this.locationDetails.activityDate,
         testerName: this.locationDetails.testerName,
         location: this.locationDetails.location,
         latitude: this.locationDetails.latitude,
@@ -224,7 +235,7 @@ fishSanctuariesSchema.methods = {
           naturalPhysicalFeatures: this.habitatCharacteristics.rightBankHabitat.naturalPhysicalFeatures,
           manMadePhysicalFeatures: this.habitatCharacteristics.rightBankHabitat.manMadePhysicalFeatures,
           bankErosion: this.habitatCharacteristics.rightBankHabitat.bankErosion
-        },
+        }
       },
       managementActions: {
         foodProvisioning: {

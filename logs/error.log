@@ -1,0 +1,84 @@
+{"timestamp": "Sep-03-2023 13:26:58" "logLevel": "error" "message": "undefined"}
+{"timestamp": "Sep-03-2023 13:26:58" "logLevel": "error" "message": "errorHandler: {"status":400,"code":40001,"fieldName":"latitude","message":"Validator failed for path `latitude` with value `223`","type":"user defined"}"}
+{"timestamp": "Sep-03-2023 13:26:58" "logLevel": "error" "message": "createMainCategory: Error creating a mainCategory"}
+{"timestamp": "Sep-03-2023 13:29:50" "logLevel": "error" "message": "errorHandler: {"status":400,"code":40001,"fieldName":"latitude","message":"Validator failed for path `latitude` with value `adsa`","type":"user defined"}"}
+{"timestamp": "Sep-03-2023 13:29:50" "logLevel": "error" "message": "createMainCategory: Error creating a mainCategory"}
+{"timestamp": "Sep-03-2023 13:29:57" "logLevel": "error" "message": "errorHandler: {"status":400,"code":40001,"fieldName":"latitude","message":"Validator failed for path `latitude` with value `223`","type":"user defined"}"}
+{"timestamp": "Sep-03-2023 13:29:57" "logLevel": "error" "message": "createMainCategory: Error creating a mainCategory"}
+{"timestamp": "Sep-03-2023 13:30:08" "logLevel": "error" "message": "errorHandler: {"status":400,"code":40001,"fieldName":"latitude","message":"Validator failed for path `latitude` with value `10`","type":"user defined"}"}
+{"timestamp": "Sep-03-2023 13:30:08" "logLevel": "error" "message": "createMainCategory: Error creating a mainCategory"}
+{"timestamp": "Sep-03-2023 13:32:17" "logLevel": "error" "message": "errorHandler: {"status":400,"code":40001,"fieldName":"latitude","message":"Validator failed for path `latitude` with value `10`","type":"user defined"}"}
+{"timestamp": "Sep-03-2023 13:32:17" "logLevel": "error" "message": "errorHandler: {"status":400,"code":40001,"fieldName":"experience","message":"Path `experience` (`jasdkgaskdhgadgaskdgka`) is longer than the maximum allowed length (5).","type":"maxlength"}"}
+{"timestamp": "Sep-03-2023 13:32:17" "logLevel": "error" "message": "createMainCategory: Error creating a mainCategory"}
+{"timestamp": "Sep-03-2023 13:32:34" "logLevel": "error" "message": "errorHandler: {"status":400,"code":40001,"fieldName":"latitude","message":"Validator failed for path `latitude` with value `10`","type":"user defined"}"}
+{"timestamp": "Sep-03-2023 13:32:34" "logLevel": "error" "message": "errorHandler: {"status":400,"code":40001,"fieldName":"experience","message":"Path `experience` (`jasdkgaskdhgadgaskdgka`) is longer than the maximum allowed length (5).","type":"maxlength"}"}
+{"timestamp": "Sep-03-2023 13:32:34" "logLevel": "error" "message": "createMainCategory: Error creating a mainCategory"}
+{"timestamp": "Sep-03-2023 13:33:16" "logLevel": "error" "message": "errorHandler: {"status":400,"code":40001,"fieldName":"experience","message":"Path `experience` (`jasdkgaskdhgadgaskdgka`) is longer than the maximum allowed length (5).","type":"maxlength"}"}
+{"timestamp": "Sep-03-2023 13:33:16" "logLevel": "error" "message": "createMainCategory: Error creating a mainCategory"}
+{"timestamp": "Sep-03-2023 13:34:59" "logLevel": "error" "message": "errorHandler: {"status":400,"code":40001,"fieldName":"latitude","message":"Validator failed for path `latitude` with value `10`","type":"user defined"}"}
+{"timestamp": "Sep-03-2023 13:34:59" "logLevel": "error" "message": "errorHandler: {"status":400,"code":40001,"fieldName":"experience","message":"Path `experience` (`jasdkgaskdhgadgaskdgka`) is longer than the maximum allowed length (5).","type":"maxlength"}"}
+{"timestamp": "Sep-03-2023 13:34:59" "logLevel": "error" "message": "createMainCategory: Error creating a mainCategory"}
+{"timestamp": "Sep-03-2023 13:35:06" "logLevel": "error" "message": "errorHandler: {"status":400,"code":40001,"fieldName":"latitude","message":"Validator failed for path `latitude` with value `10.00`","type":"user defined"}"}
+{"timestamp": "Sep-03-2023 13:35:06" "logLevel": "error" "message": "errorHandler: {"status":400,"code":40001,"fieldName":"experience","message":"Path `experience` (`jasdkgaskdhgadgaskdgka`) is longer than the maximum allowed length (5).","type":"maxlength"}"}
+{"timestamp": "Sep-03-2023 13:35:06" "logLevel": "error" "message": "createMainCategory: Error creating a mainCategory"}
+{"timestamp": "Sep-03-2023 13:35:21" "logLevel": "error" "message": "errorHandler: {"status":400,"code":40001,"fieldName":"latitude","message":"Validator failed for path `latitude` with value `9.9824245`","type":"user defined"}"}
+{"timestamp": "Sep-03-2023 13:35:21" "logLevel": "error" "message": "errorHandler: {"status":400,"code":40001,"fieldName":"experience","message":"Path `experience` (`jasdkgaskdhgadgaskdgka`) is longer than the maximum allowed length (5).","type":"maxlength"}"}
+{"timestamp": "Sep-03-2023 13:35:21" "logLevel": "error" "message": "createMainCategory: Error creating a mainCategory"}
+{"timestamp": "Sep-03-2023 13:35:29" "logLevel": "error" "message": "errorHandler: {"status":400,"code":40001,"fieldName":"latitude","message":"Validator failed for path `latitude` with value `9.9824245`","type":"user defined"}"}
+{"timestamp": "Sep-03-2023 13:35:29" "logLevel": "error" "message": "errorHandler: {"status":400,"code":40001,"fieldName":"experience","message":"Path `experience` (`jasdkgaskdhgadgaskdgka`) is longer than the maximum allowed length (5).","type":"maxlength"}"}
+{"timestamp": "Sep-03-2023 13:35:29" "logLevel": "error" "message": "createMainCategory: Error creating a mainCategory"}
+{"timestamp": "Sep-03-2023 13:45:43" "logLevel": "error" "message": "errorHandler: {"status":400,"code":40001,"fieldName":"latitude","message":"Validator failed for path `latitude` with value `9.9824245`","type":"user defined"}"}
+{"timestamp": "Sep-03-2023 13:45:43" "logLevel": "error" "message": "errorHandler: {"status":400,"code":40001,"fieldName":"experience","message":"Path `experience` (`jasdkgaskdhgadgaskdgka`) is longer than the maximum allowed length (5).","type":"maxlength"}"}
+{"timestamp": "Sep-03-2023 13:45:43" "logLevel": "error" "message": "createMainCategory: Error creating a mainCategory"}
+{"timestamp": "Sep-03-2023 13:46:00" "logLevel": "error" "message": "errorHandler: {"status":400,"code":40001,"fieldName":"latitude","message":"Validator failed for path `latitude` with value `9.9824245`","type":"user defined"}"}
+{"timestamp": "Sep-03-2023 13:46:00" "logLevel": "error" "message": "errorHandler: {"status":400,"code":40001,"fieldName":"experience","message":"Path `experience` (`jasdkgaskdhgadgaskdgka`) is longer than the maximum allowed length (5).","type":"maxlength"}"}
+{"timestamp": "Sep-03-2023 13:46:00" "logLevel": "error" "message": "createMainCategory: Error creating a mainCategory"}
+{"timestamp": "Sep-03-2023 13:46:08" "logLevel": "error" "message": "errorHandler: {"status":400,"code":40001,"fieldName":"latitude","message":"Validator failed for path `latitude` with value `9.9824245`","type":"user defined"}"}
+{"timestamp": "Sep-03-2023 13:46:08" "logLevel": "error" "message": "errorHandler: {"status":400,"code":40001,"fieldName":"experience","message":"Path `experience` (`jasdkgaskdhgadgaskdgka`) is longer than the maximum allowed length (5).","type":"maxlength"}"}
+{"timestamp": "Sep-03-2023 13:46:08" "logLevel": "error" "message": "createMainCategory: Error creating a mainCategory"}
+{"timestamp": "Sep-03-2023 13:49:21" "logLevel": "error" "message": "errorHandler: {"status":400,"code":40001,"fieldName":"experience","message":"Path `experience` (`jasdkgaskdhgadgaskdgka`) is longer than the maximum allowed length (5).","type":"maxlength"}"}
+{"timestamp": "Sep-03-2023 13:49:21" "logLevel": "error" "message": "createMainCategory: Error creating a mainCategory"}
+{"timestamp": "Sep-03-2023 13:49:27" "logLevel": "error" "message": "errorHandler: {"status":400,"code":40001,"fieldName":"experience","message":"Path `experience` (`jasdkgaskdhgadgaskdgka`) is longer than the maximum allowed length (5).","type":"maxlength"}"}
+{"timestamp": "Sep-03-2023 13:49:27" "logLevel": "error" "message": "createMainCategory: Error creating a mainCategory"}
+{"timestamp": "Sep-03-2023 13:49:33" "logLevel": "error" "message": "errorHandler: {"status":400,"code":40001,"fieldName":"experience","message":"Path `experience` (`jasdkgaskdhgadgaskdgka`) is longer than the maximum allowed length (5).","type":"maxlength"}"}
+{"timestamp": "Sep-03-2023 13:49:33" "logLevel": "error" "message": "createMainCategory: Error creating a mainCategory"}
+{"timestamp": "Sep-03-2023 13:49:37" "logLevel": "error" "message": "errorHandler: {"status":400,"code":40001,"fieldName":"latitude","message":"Validator failed for path `latitude` with value `asdd`","type":"user defined"}"}
+{"timestamp": "Sep-03-2023 13:49:37" "logLevel": "error" "message": "errorHandler: {"status":400,"code":40001,"fieldName":"experience","message":"Path `experience` (`jasdkgaskdhgadgaskdgka`) is longer than the maximum allowed length (5).","type":"maxlength"}"}
+{"timestamp": "Sep-03-2023 13:49:37" "logLevel": "error" "message": "createMainCategory: Error creating a mainCategory"}
+{"timestamp": "Sep-03-2023 13:55:54" "logLevel": "error" "message": "errorHandler: {"status":400,"code":40001,"fieldName":"latitude","message":"Validator failed for path `latitude` with value `9.9824245`","type":"user defined"}"}
+{"timestamp": "Sep-03-2023 13:55:54" "logLevel": "error" "message": "errorHandler: {"status":400,"code":40001,"fieldName":"experience","message":"Path `experience` (`jasdkgaskdhgadgaskdgka`) is longer than the maximum allowed length (5).","type":"maxlength"}"}
+{"timestamp": "Sep-03-2023 13:55:54" "logLevel": "error" "message": "createMainCategory: Error creating a mainCategory"}
+{"timestamp": "Sep-03-2023 13:56:00" "logLevel": "error" "message": "errorHandler: {"status":400,"code":40001,"fieldName":"latitude","message":"Validator failed for path `latitude` with value `9.9824245`","type":"user defined"}"}
+{"timestamp": "Sep-03-2023 13:56:00" "logLevel": "error" "message": "errorHandler: {"status":400,"code":40001,"fieldName":"experience","message":"Path `experience` (`jasdkgaskdhgadgaskdgka`) is longer than the maximum allowed length (5).","type":"maxlength"}"}
+{"timestamp": "Sep-03-2023 13:56:00" "logLevel": "error" "message": "createMainCategory: Error creating a mainCategory"}
+{"timestamp": "Sep-03-2023 13:56:10" "logLevel": "error" "message": "errorHandler: {"status":400,"code":40001,"fieldName":"latitude","message":"Validator failed for path `latitude` with value `9.9824245`","type":"user defined"}"}
+{"timestamp": "Sep-03-2023 13:56:10" "logLevel": "error" "message": "errorHandler: {"status":400,"code":40001,"fieldName":"experience","message":"Path `experience` (`jasdkgaskdhgadgaskdgka`) is longer than the maximum allowed length (5).","type":"maxlength"}"}
+{"timestamp": "Sep-03-2023 13:56:10" "logLevel": "error" "message": "createMainCategory: Error creating a mainCategory"}
+{"timestamp": "Sep-03-2023 13:57:19" "logLevel": "error" "message": "errorHandler: {"status":400,"code":40001,"fieldName":"latitude","message":"Validator failed for path `latitude` with value `9.9824245`","type":"user defined"}"}
+{"timestamp": "Sep-03-2023 13:57:19" "logLevel": "error" "message": "errorHandler: {"status":400,"code":40001,"fieldName":"experience","message":"Path `experience` (`jasdkgaskdhgadgaskdgka`) is longer than the maximum allowed length (5).","type":"maxlength"}"}
+{"timestamp": "Sep-03-2023 13:57:19" "logLevel": "error" "message": "createMainCategory: Error creating a mainCategory"}
+{"timestamp": "Sep-03-2023 13:57:47" "logLevel": "error" "message": "errorHandler: {"status":400,"code":40001,"fieldName":"experience","message":"Path `experience` (`jasdkgaskdhgadgaskdgka`) is longer than the maximum allowed length (5).","type":"maxlength"}"}
+{"timestamp": "Sep-03-2023 13:57:47" "logLevel": "error" "message": "createMainCategory: Error creating a mainCategory"}
+{"timestamp": "Sep-03-2023 13:57:54" "logLevel": "error" "message": "errorHandler: {"status":400,"code":40001,"fieldName":"experience","message":"Path `experience` (`jasdkgaskdhgadgaskdgka`) is longer than the maximum allowed length (5).","type":"maxlength"}"}
+{"timestamp": "Sep-03-2023 13:57:54" "logLevel": "error" "message": "createMainCategory: Error creating a mainCategory"}
+{"timestamp": "Sep-03-2023 13:57:59" "logLevel": "error" "message": "errorHandler: {"status":400,"code":40001,"fieldName":"latitude","message":"Validator failed for path `latitude` with value `9.9824245 N`","type":"user defined"}"}
+{"timestamp": "Sep-03-2023 13:57:59" "logLevel": "error" "message": "errorHandler: {"status":400,"code":40001,"fieldName":"experience","message":"Path `experience` (`jasdkgaskdhgadgaskdgka`) is longer than the maximum allowed length (5).","type":"maxlength"}"}
+{"timestamp": "Sep-03-2023 13:57:59" "logLevel": "error" "message": "createMainCategory: Error creating a mainCategory"}
+{"timestamp": "Sep-03-2023 13:58:06" "logLevel": "error" "message": "errorHandler: {"status":400,"code":40001,"fieldName":"experience","message":"Path `experience` (`jasdkgaskdhgadgaskdgka`) is longer than the maximum allowed length (5).","type":"maxlength"}"}
+{"timestamp": "Sep-03-2023 13:58:06" "logLevel": "error" "message": "createMainCategory: Error creating a mainCategory"}
+{"timestamp": "Sep-03-2023 13:59:46" "logLevel": "error" "message": "errorHandler: {"status":400,"code":40001,"fieldName":"latitude","message":"Validator failed for path `latitude` with value `ass9.9824245`","type":"user defined"}"}
+{"timestamp": "Sep-03-2023 13:59:46" "logLevel": "error" "message": "errorHandler: {"status":400,"code":40001,"fieldName":"longitude","message":"Validator failed for path `longitude` with value `ads`","type":"user defined"}"}
+{"timestamp": "Sep-03-2023 13:59:46" "logLevel": "error" "message": "errorHandler: {"status":400,"code":40001,"fieldName":"experience","message":"Path `experience` (`jasdkgaskdhgadgaskdgka`) is longer than the maximum allowed length (5).","type":"maxlength"}"}
+{"timestamp": "Sep-03-2023 13:59:46" "logLevel": "error" "message": "createMainCategory: Error creating a mainCategory"}
+{"timestamp": "Sep-03-2023 13:59:51" "logLevel": "error" "message": "errorHandler: {"status":400,"code":40001,"fieldName":"latitude","message":"Validator failed for path `latitude` with value `28347293842942.9824245`","type":"user defined"}"}
+{"timestamp": "Sep-03-2023 13:59:51" "logLevel": "error" "message": "errorHandler: {"status":400,"code":40001,"fieldName":"longitude","message":"Validator failed for path `longitude` with value `ads`","type":"user defined"}"}
+{"timestamp": "Sep-03-2023 13:59:51" "logLevel": "error" "message": "errorHandler: {"status":400,"code":40001,"fieldName":"experience","message":"Path `experience` (`jasdkgaskdhgadgaskdgka`) is longer than the maximum allowed length (5).","type":"maxlength"}"}
+{"timestamp": "Sep-03-2023 13:59:51" "logLevel": "error" "message": "createMainCategory: Error creating a mainCategory"}
+{"timestamp": "Sep-03-2023 13:59:58" "logLevel": "error" "message": "errorHandler: {"status":400,"code":40001,"fieldName":"longitude","message":"Validator failed for path `longitude` with value `ads`","type":"user defined"}"}
+{"timestamp": "Sep-03-2023 13:59:58" "logLevel": "error" "message": "errorHandler: {"status":400,"code":40001,"fieldName":"experience","message":"Path `experience` (`jasdkgaskdhgadgaskdgka`) is longer than the maximum allowed length (5).","type":"maxlength"}"}
+{"timestamp": "Sep-03-2023 13:59:58" "logLevel": "error" "message": "createMainCategory: Error creating a mainCategory"}
+{"timestamp": "Sep-03-2023 14:00:14" "logLevel": "error" "message": "errorHandler: {"status":400,"code":40001,"fieldName":"longitude","message":"Validator failed for path `longitude` with value `2342342342439.9824245`","type":"user defined"}"}
+{"timestamp": "Sep-03-2023 14:00:14" "logLevel": "error" "message": "errorHandler: {"status":400,"code":40001,"fieldName":"experience","message":"Path `experience` (`jasdkgaskdhgadgaskdgka`) is longer than the maximum allowed length (5).","type":"maxlength"}"}
+{"timestamp": "Sep-03-2023 14:00:14" "logLevel": "error" "message": "createMainCategory: Error creating a mainCategory"}
+{"timestamp": "Sep-03-2023 14:00:26" "logLevel": "error" "message": "errorHandler: {"status":400,"code":40001,"fieldName":"experience","message":"Path `experience` (`jasdkgaskdhgadgaskdgka`) is longer than the maximum allowed length (5).","type":"maxlength"}"}
+{"timestamp": "Sep-03-2023 14:00:26" "logLevel": "error" "message": "createMainCategory: Error creating a mainCategory"}

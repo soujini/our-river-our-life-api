@@ -2,6 +2,8 @@ import { success, notFound } from '../../services/response/'
 import { FloodAlert } from '.'
 import aws from 'aws-sdk'
 import fs from 'fs'
+import { errorHandler } from '../../services/error'
+const logger = require('../../logger').default
 var UserController = require('../user/controller')
 
 export const createAlert = (req, res, next) => {
@@ -14,7 +16,7 @@ export const createAlert = (req, res, next) => {
   })
 
   const file = req.files
-  if (req.files.length > 0) {
+  if (req.files?.length > 0) {
     const s3 = new aws.S3()
     var responseData = []
 
@@ -51,7 +53,12 @@ export const createAlert = (req, res, next) => {
               FloodAlert.create(params)
                 .then((floodAlert) => floodAlert.view(true))
                 .then(success(res, 201))
-                .catch(next)
+                .catch((error) => {
+                  errorHandler(error, res).then((err) => {
+                    logger.error('createAlert: Error creating a flood alert')
+                    return res.status(err.error[0].status).send(err)
+                  })
+                })
             }
           }
         }
@@ -67,11 +74,43 @@ export const createAlert = (req, res, next) => {
       experience: req.body.experience
     }
     FloodAlert.create(params)
-      .then((floodAlert) => floodAlert.view(true))
+      .then((floodAlert) => {
+        return floodAlert.view(true)
+      })
       .then(success(res, 201))
-      .catch(next)
+      .catch((error) => {
+        errorHandler(error, res).then((err) => {
+          logger.error('createAlert: Error creating a flood alert')
+          return res.status(err.error[0].status).send(err)
+        })
+      })
   }
 }
+
+export const updateAlert = ({ bodymen: { body }, params }, res, next) =>
+  FloodAlert.findById(params.id)
+    .then(notFound(res))
+    .then((floodAlert) => floodAlert ? Object.assign(floodAlert, body).save() : null)
+    .then((floodAlert) => floodAlert ? floodAlert.view(true) : null)
+    .then(success(res))
+    .catch((error) => {
+      errorHandler(error, res).then((err) => {
+        logger.error('updateAlert: Error updating a flood alert')
+        return res.status(err.error[0].status).send(err)
+      })
+    })
+
+export const deleteAlert = ({ params }, res, next) =>
+  FloodAlert.findById(params.id)
+    .then(notFound(res))
+    .then((floodAlert) => floodAlert ? floodAlert.remove() : null)
+    .then(success(res, 204))
+    .catch((error) => {
+      errorHandler(error, res).then((err) => {
+        logger.error('deleteAlert: Error deleting a flood alert')
+        return res.status(err.error[0].status).send(err)
+      })
+    })
 
 export const searchByDate = (req, res, next) => {
   const query = { createdAt: { $gte: new Date(req.query.start), $lt: new Date(req.query.end) } }
@@ -92,16 +131,26 @@ export const searchByDate = (req, res, next) => {
       }))
     )
     .then(success(res))
-    .catch(next)
+    .catch((error) => {
+      errorHandler(error, res).then((err) => {
+        logger.error('createAlert: Error creating a flood alert')
+        return res.status(err.error[0].status).send(err)
+      })
+    })
 }
 
 export const create = ({ bodymen: { body } }, res, next) =>
   FloodAlert.create(body)
     .then((floodAlert) => floodAlert.view(true))
     .then(success(res, 201))
-    .catch(next)
+    .catch((error) => {
+      errorHandler(error, res).then((err) => {
+        logger.error('createAlert: Error creating a flood alert')
+        return res.status(err.error[0].status).send(err)
+      })
+    })
 
-export const index = ({ querymen: { query, select, cursor } }, res, next) =>
+export const list = ({ querymen: { query, select, cursor } }, res, next) =>
   FloodAlert.count(query)
     .then(count => FloodAlert.find(query, select, cursor)
       .then((floodAlerts) => ({
@@ -110,26 +159,21 @@ export const index = ({ querymen: { query, select, cursor } }, res, next) =>
       }))
     )
     .then(success(res))
-    .catch(next)
+    .catch((error) => {
+      errorHandler(error, res).then((err) => {
+        logger.error('list: Error fetching the list for flood alerts')
+        return res.status(err.error[0].status).send(err)
+      })
+    })
 
 export const show = ({ params }, res, next) =>
   FloodAlert.findById(params.id)
     .then(notFound(res))
     .then((floodAlert) => floodAlert ? floodAlert.view() : null)
     .then(success(res))
-    .catch(next)
-
-export const update = ({ bodymen: { body }, params }, res, next) =>
-  FloodAlert.findById(params.id)
-    .then(notFound(res))
-    .then((floodAlert) => floodAlert ? Object.assign(floodAlert, body).save() : null)
-    .then((floodAlert) => floodAlert ? floodAlert.view(true) : null)
-    .then(success(res))
-    .catch(next)
-
-export const destroy = ({ params }, res, next) =>
-  FloodAlert.findById(params.id)
-    .then(notFound(res))
-    .then((floodAlert) => floodAlert ? floodAlert.remove() : null)
-    .then(success(res, 204))
-    .catch(next)
+    .catch((error) => {
+      errorHandler(error, res).then((err) => {
+        logger.error('createAlert: Error creating a flood alert')
+        return res.status(err.error[0].status).send(err)
+      })
+    })

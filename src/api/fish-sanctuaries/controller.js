@@ -2,6 +2,8 @@ import { success, notFound } from '../../services/response/'
 import { FishSanctuaries } from '.'
 import aws from 'aws-sdk'
 import fs from 'fs'
+import { errorHandler } from '../../services/error'
+const logger = require('../../logger').default
 var UserController = require('../user/controller')
 
 export const uploadToS3 = function (params) {
@@ -216,13 +218,10 @@ export const show = ({ params }, res, next) =>
     .catch(next)
 
 export const update = (req, res) => {
-  console.log('in update')
-  console.log(req.body)
-
-  FishSanctuaries.findById('620cfbbe7ee6030018681377')
-    .then(notFound(res))
-    .then((fishSanctuaries) => fishSanctuaries ? Object.assign(fishSanctuaries, (req.body)).save() : null)
-    .then((fishSanctuaries) => fishSanctuaries ? fishSanctuaries.view(true) : null)
+  // FishSanctuaries.findById('620cfbbe7ee6030018681377')
+  //   .then(notFound(res))
+  //   .then((fishSanctuaries) => fishSanctuaries ? Object.assign(fishSanctuaries, (req.body)).save() : null)
+  //   .then((fishSanctuaries) => fishSanctuaries ? fishSanctuaries.view(true) : null)
   // .then(success(res, 201))
   // .catch(next)
 }

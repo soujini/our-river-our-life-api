@@ -2,19 +2,25 @@ import mongoose, { Schema } from 'mongoose'
 
 const floraFaunaSchema = new Schema({
   userId: {
-    type: String
+    type: String,
+    required: true
   },
   // username: {
   //   type: String
   // },
   latitude: {
-    type: String
+    type: String,
+    required: true,
+    validate: /^[-+]?[0-9]{1,7}(\.[0-9]+)?$/
   },
   longitude: {
-    type: String
+    type: String,
+    required: true,
+    validate: /^[-+]?[0-9]{1,7}(\.[0-9]+)?$/
   },
   location: {
-    type: String
+    type: String,
+    required: true
   },
   flora: {
     type: Array,
@@ -25,13 +31,16 @@ const floraFaunaSchema = new Schema({
     timestamps: true
   },
   commonName: {
-    type: String
+    type: String,
+    required: true
   },
   localName: {
-    type: String
+    type: String,
+    required: true
   },
   scientificName: {
-    type: String
+    type: String,
+    required: true
   },
   contributorName: {
     type: String

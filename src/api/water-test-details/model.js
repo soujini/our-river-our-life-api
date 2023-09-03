@@ -2,7 +2,8 @@ import mongoose, { Schema } from 'mongoose'
 
 const waterTestDetailsSchema = new Schema({
   userId: {
-    type: String
+    type: String,
+    required: true
   },
   contributorName: {
     type: String
@@ -18,27 +19,34 @@ const waterTestDetailsSchema = new Schema({
       type: String
     },
     location: {
-      type: String
+      type: String,
+      required: true
     },
     latitude: {
-      type: String
+      type: String,
+      required: true,
+      validate: /^[-+]?[0-9]{1,7}(\.[0-9]+)?$/
     },
     longitude: {
       type: String,
-      default: ''
+      required: true,
+      validate: /^[-+]?[0-9]{1,7}(\.[0-9]+)?$/
     }
   },
   waterLevelAndWeather: {
     airTemperature: {
       type: String,
+      required: true,
       default: ''
     },
 
     waterLevel: {
-      type: String
+      type: String,
+      required: true
     },
     weather: {
-      type: String
+      type: String,
+      required: true
     }
   },
   waterTesting: {

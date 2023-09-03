@@ -37,8 +37,6 @@ export const uploadToS3 = function (params) {
 // }
 
 export const uploadFlora = function (req) {
-  console.log('uploadFlora')
-  console.log(req.files)
   var bucketName = ''
 
   return new Promise((resolve) => {
@@ -225,9 +223,6 @@ export const uploadActivity = function (req) {
   })
 }
 export const uploadRiver = function (req) {
-  console.log('in upload river')
-  console.log(req.files)
-  console.log(req.files.riverFiles)
   var bucketName = ''
 
   aws.config.setPromisesDependency()
@@ -251,7 +246,6 @@ export const uploadRiver = function (req) {
         const element = await uploadToS3(params)
         // Get description field by comparing file names
         river.push({ imageURL: element, fileName: item.originalname })
-        console.log(element)
         return river
       })
 
@@ -306,10 +300,6 @@ export const uploadSurrounding = function (req) {
   })
 }
 export const createWaterTestDetails = async (req, res, next) => {
-  console.log('creating water test details')
-  console.log(req.body)
-  console.log(typeof (req.body))
-  // console.log(type(req.body.riverPictures))
   req.body.riverPictures = req.body.riverPictures ? JSON.parse(req.body.riverPictures) : req.body.riverPictures
   req.body.surroundingPictures = req.body.surroundingPictures ? JSON.parse(req.body.surroundingPictures) : req.body.surroundingPictures
   req.body.floraPictures = req.body.floraPictures ? JSON.parse(req.body.floraPictures) : req.body.floraPictures
@@ -351,13 +341,9 @@ export const createWaterTestDetails = async (req, res, next) => {
 
       results[5].forEach((element) => {
         req.body.riverPictures.forEach((element2, index2) => {
-          console.log('in river response')
-          console.log(element)
-          console.log(element2)
           if (element.fileName === element2.fileName) {
             req.body.riverPictures[index2].imageURL = element.imageURL
           }
-          console.log(req.body.riverPictures)
         })
       })
 
@@ -366,8 +352,6 @@ export const createWaterTestDetails = async (req, res, next) => {
           if (element.fileName === element2.fileName) { req.body.surroundingPictures[index2].imageURL = element.imageURL }
         })
       })
-      console.log('create vals')
-      console.log(JSON.parse(JSON.stringify(req.body)))
       WaterTestDetails.create(JSON.parse(JSON.stringify(req.body)))
         .then((waterTestDetails) => waterTestDetails.view(true))
         .then(success(res, 201))
@@ -376,10 +360,6 @@ export const createWaterTestDetails = async (req, res, next) => {
 }
 
 export const updateWaterTestDetails = async (req, res, next) => {
-  console.log('updating water test details')
-  console.log('Water test details id: ' + req.params.id)
-  console.log(typeof (req.body))
-  // console.log(req.body.riverPictures)
   req.body.riverPictures = req.body.riverPictures ? JSON.parse(req.body.riverPictures) : req.body.riverPictures
   req.body.surroundingPictures = req.body.surroundingPictures ? JSON.parse(req.body.surroundingPictures) : req.body.surroundingPictures
   req.body.floraPictures = req.body.floraPictures ? JSON.parse(req.body.floraPictures) : req.body.floraPictures
@@ -392,54 +372,41 @@ export const updateWaterTestDetails = async (req, res, next) => {
   Promise.all([uploadFlora(req), uploadFauna(req), uploadArtwork(req), uploadGroupPicture(req), uploadActivity(req), uploadRiver(req), uploadSurrounding(req)])
     .then(results => {
       results[0].forEach((element) => {
-        console.log('in 0000')
         req.body.floraPictures.forEach((element2, index2) => {
           if (element.fileName === element2.fileName) { req.body.floraPictures[index2].imageURL = element.imageURL }
         })
       })
 
       results[1].forEach((element) => {
-        console.log('in 11111')
         req.body.faunaPictures.forEach((element2, index2) => {
-          console.log('11111')
           if (element.fileName === element2.fileName) { req.body.faunaPictures[index2].imageURL = element.imageURL }
         })
       })
 
       results[2].forEach((element) => {
-        console.log('in 222')
         req.body.artworkPictures.forEach((element2, index2) => {
-          console.log('222')
           if (element.fileName === element2.fileName) { req.body.artworkPictures[index2].imageURL = element.imageURL }
         })
       })
       results[3].forEach((element) => {
-        console.log('in 3333')
         req.body.groupPictures.forEach((element2, index2) => {
-          console.log('3333')
           if (element.fileName === element2.fileName) { req.body.groupPictures[index2].imageURL = element.imageURL }
         })
       })
       results[4].forEach((element) => {
-        console.log('in 4444')
         req.body.activityPictures.forEach((element2, index2) => {
-          console.log('4444')
           if (element.fileName === element2.fileName) { req.body.activityPictures[index2].imageURL = element.imageURL }
         })
       })
 
       results[5].forEach((element) => {
-        console.log('in 5555')
         req.body.riverPictures.forEach((element2, index2) => {
-          console.log(' 5555')
           if (element.fileName === element2.fileName) { req.body.riverPictures[index2].imageURL = element.imageURL }
         })
       })
 
       results[6].forEach((element) => {
-        console.log('in 666')
         req.body.surroundingPictures.forEach((element2, index2) => {
-          console.log(' 666')
           if (element.fileName === element2.fileName) { req.body.surroundingPictures[index2].imageURL = element.imageURL }
         })
       })
@@ -453,19 +420,12 @@ export const updateWaterTestDetails = async (req, res, next) => {
       WaterTestDetails.findById({ _id: req.params.id })
         .then(notFound(res))
         .then((waterTestDetails) => {
-          console.log('water test details')
-          console.log(waterTestDetails)
           // waterTestDetails ? Object.assign(waterTestDetails, JSON.parse(JSON.stringify(req.body))).save() : null
-          console.log('object assigned to waterTestDetails')
-          console.log(JSON.parse(JSON.stringify(req.body)))
           // const newObj = Object.assign(waterTestDetails, JSON.parse(JSON.stringify(req.body))).save()
           const newObj = Object.assign(waterTestDetails, req.body).save()
-          console.log('NEW OBJ')
           return newObj
         })
         .then((waterTestDetails) => {
-          console.log('RESULT: ' + waterTestDetails)
-          // waterTestDetails.view(true)
           res.send(200, waterTestDetails)
           // waterTestDetails ? waterTestDetails.view(true) : null
         })
@@ -554,7 +514,6 @@ export const updateImage = ({ params }, res, next) => {
   return new Promise((resolve, reject) => {
     WaterTestDetails.findById(params.id)
       .then((waterTestDetails) => {
-        console.log('updateImage: Successfully retrieved water test details ')
         if (params.fieldName === 'flora') {
           waterTestDetails.flora.push({ imageURL: params.flora, description: params.description })
         } else if (params.fieldName === 'fauna') {
@@ -576,7 +535,6 @@ export const updateImage = ({ params }, res, next) => {
         resolve(waterTestDetails)
       })
       .catch((error) => {
-        console.log('updateImage: ' + error.message)
         return reject(error)
       })
   })

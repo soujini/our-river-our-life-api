@@ -1,7 +1,7 @@
 import { Router } from 'express'
 import { middleware as query } from 'querymen'
 import { middleware as body } from 'bodymen'
-import { createAlert, create, index, show, update, destroy, searchByDate } from './controller'
+import { createAlert, create, list, show, updateAlert, deleteAlert, searchByDate } from './controller'
 import { schema } from './model'
 import multer from 'multer'
 export FloodAlert, { schema } from './model'
@@ -44,7 +44,7 @@ router.post('/',
  */
 router.get('/',
   query(),
-  index)
+  list)
 
 /**
  * @api {get} /flood-alert/:id Retrieve flood alert
@@ -79,7 +79,7 @@ router.get('/searchByDate/search',
  */
 router.put('/:id',
   body({ location, latitude, longitude, date, time, photos, experience }),
-  update)
+  updateAlert)
 
 /**
  * @api {delete} /flood-alert/:id Delete flood alert
@@ -89,6 +89,6 @@ router.put('/:id',
  * @apiError 404 Flood alert not found.
  */
 router.delete('/:id',
-  destroy)
+  deleteAlert)
 
 export default router

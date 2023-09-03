@@ -5,10 +5,14 @@ const floodAlertSchema = new Schema({
     type: String
   },
   latitude: {
-    type: String
+    type: String,
+    required: true,
+    validate: /^[-+]?[0-9]{1,7}(\.[0-9]+)?$/
   },
   longitude: {
-    type: String
+    type: String,
+    required: true,
+    validate: /^[-+]?[0-9]{1,7}(\.[0-9]+)?$/
   },
   date: {
     type: String
@@ -20,7 +24,9 @@ const floodAlertSchema = new Schema({
     type: Array
   },
   experience: {
-    type: String
+    type: String,
+    required: false,
+    maxlength: 400
   }
 }, {
   timestamps: true,
