@@ -76,7 +76,8 @@
     "querymen": "^2.1.4",
     "rand-token": "^0.4.0",
     "request": "^2.88.2",
-    "request-promise": "^4.2.5"
+    "request-promise": "^4.2.5",
+    "winston": "^3.10.0"
   },
   "engines": {
     "node": "14.17.4",
