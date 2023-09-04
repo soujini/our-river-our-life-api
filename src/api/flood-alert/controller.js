@@ -133,7 +133,7 @@ export const searchByDate = (req, res, next) => {
     .then(success(res))
     .catch((error) => {
       errorHandler(error, res).then((err) => {
-        logger.error('createAlert: Error creating a flood alert')
+        logger.error('searchByDate: Error search by date')
         return res.status(err.error[0].status).send(err)
       })
     })
@@ -173,7 +173,7 @@ export const show = ({ params }, res, next) =>
     .then(success(res))
     .catch((error) => {
       errorHandler(error, res).then((err) => {
-        logger.error('createAlert: Error creating a flood alert')
+        logger.error('createAlert: Error showing a flood alert')
         return res.status(err.error[0].status).send(err)
       })
     })

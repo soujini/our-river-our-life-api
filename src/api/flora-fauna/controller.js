@@ -2,6 +2,8 @@ import { success, notFound } from '../../services/response/'
 import { FloraFauna } from '.'
 import aws from 'aws-sdk'
 import fs from 'fs'
+import { errorHandler } from '../../services/error'
+const logger = require('../../logger').default
 var UserController = require('../user/controller')
 
 export const createFlora = (req, res, next) => {
@@ -55,7 +57,12 @@ export const createFlora = (req, res, next) => {
               FloraFauna.create(params)
                 .then((floodAlert) => floodAlert.view(true))
                 .then(success(res, 201))
-                .catch(next)
+                .catch((error) => {
+                  errorHandler(error, res).then((err) => {
+                    logger.error('createFlora: Error creating a flora')
+                    return res.status(err.error[0].status).send(err)
+                  })
+                })
             }
           }
         }
@@ -76,7 +83,12 @@ export const createFlora = (req, res, next) => {
     FloraFauna.create(params)
       .then((floodAlert) => floodAlert.view(true))
       .then(success(res, 201))
-      .catch(next)
+      .catch((error) => {
+        errorHandler(error, res).then((err) => {
+          logger.error('FloraFauna: Error creating a flora')
+          return res.status(err.error[0].status).send(err)
+        })
+      })
   }
 }
 
@@ -133,7 +145,12 @@ export const updateFlora = (req, res, next) => {
                 .then((floraFauna) => floraFauna ? Object.assign(floraFauna, params).save() : null)
                 .then((floraFauna) => floraFauna ? floraFauna.view(true) : null)
                 .then(success(res))
-                .catch(next)
+                .catch((error) => {
+                  errorHandler(error, res).then((err) => {
+                    logger.error('updateFlora: Error updating a flora')
+                    return res.status(err.error[0].status).send(err)
+                  })
+                })
             }
           }
         }
@@ -156,7 +173,12 @@ export const updateFlora = (req, res, next) => {
       .then((floraFauna) => floraFauna ? Object.assign(floraFauna, params).save() : null)
       .then((floraFauna) => floraFauna ? floraFauna.view(true) : null)
       .then(success(res))
-      .catch(next)
+      .catch((error) => {
+        errorHandler(error, res).then((err) => {
+          logger.error('updateFlora: Error updating a flora')
+          return res.status(err.error[0].status).send(err)
+        })
+      })
   }
 }
 
@@ -213,7 +235,12 @@ export const updateFauna = (req, res, next) => {
                 .then((floraFauna) => floraFauna ? Object.assign(floraFauna, params).save() : null)
                 .then((floraFauna) => floraFauna ? floraFauna.view(true) : null)
                 .then(success(res))
-                .catch(next)
+                .catch((error) => {
+                  errorHandler(error, res).then((err) => {
+                    logger.error('updateFauna: Error updating a fauna')
+                    return res.status(err.error[0].status).send(err)
+                  })
+                })
             }
           }
         }
@@ -236,7 +263,12 @@ export const updateFauna = (req, res, next) => {
       .then((floraFauna) => floraFauna ? Object.assign(floraFauna, params).save() : null)
       .then((floraFauna) => floraFauna ? floraFauna.view(true) : null)
       .then(success(res))
-      .catch(next)
+      .catch((error) => {
+        errorHandler(error, res).then((err) => {
+          logger.error('updateFauna: Error updating a fauna')
+          return res.status(err.error[0].status).send(err)
+        })
+      })
   }
 }
 
@@ -292,7 +324,12 @@ export const createFauna = (req, res, next) => {
               FloraFauna.create(params)
                 .then((floodAlert) => floodAlert.view(true))
                 .then(success(res, 201))
-                .catch(next)
+                .catch((error) => {
+                  errorHandler(error, res).then((err) => {
+                    logger.error('createFauna: Error creating a fauna')
+                    return res.status(err.error[0].status).send(err)
+                  })
+                })
             }
           }
         }
@@ -312,7 +349,12 @@ export const createFauna = (req, res, next) => {
     FloraFauna.create(params)
       .then((floodAlert) => floodAlert.view(true))
       .then(success(res, 201))
-      .catch(next)
+      .catch((error) => {
+        errorHandler(error, res).then((err) => {
+          logger.error('createFauna: Error creating a fauna')
+          return res.status(err.error[0].status).send(err)
+        })
+      })
   }
 }
 
@@ -320,7 +362,12 @@ export const createFauna = (req, res, next) => {
 //   FloraFauna.create(body)
 //     .then((floraFauna) => floraFauna.view(true))
 //     .then(success(res, 201))
-//     .catch(next)
+//       .catch((error) => {
+//   errorHandler(error, res).then((err) => {
+//     logger.error('createFlora: Error creating a flora fauna')
+//     return res.status(err.error[0].status).send(err)
+//   })
+// })
 
 export const index = ({ querymen: { query, select, cursor } }, res, next) => {
   FloraFauna.count(query)
@@ -336,7 +383,12 @@ export const index = ({ querymen: { query, select, cursor } }, res, next) => {
       }))
     )
     .then(success(res))
-    .catch(next)
+    .catch((error) => {
+      errorHandler(error, res).then((err) => {
+        logger.error('index: Error an index')
+        return res.status(err.error[0].status).send(err)
+      })
+    })
 }
 
 export const show = ({ params }, res, next) =>
@@ -344,7 +396,12 @@ export const show = ({ params }, res, next) =>
     .then(notFound(res))
     .then((floraFauna) => floraFauna ? floraFauna.view() : null)
     .then(success(res))
-    .catch(next)
+    .catch((error) => {
+      errorHandler(error, res).then((err) => {
+        logger.error('show: Error showing a flora fauna')
+        return res.status(err.error[0].status).send(err)
+      })
+    })
 
 // export const update = ({ bodymen: { body }, params }, res, next) =>
 //   FloraFauna.findById(params.id)
@@ -352,14 +409,24 @@ export const show = ({ params }, res, next) =>
 //     .then((floraFauna) => floraFauna ? Object.assign(floraFauna, body).save() : null)
 //     .then((floraFauna) => floraFauna ? floraFauna.view(true) : null)
 //     .then(success(res))
-//     .catch(next)
+//       .catch((error) => {
+//   errorHandler(error, res).then((err) => {
+//     logger.error('createFlora: Error updating a flora fauna')
+//     return res.status(err.error[0].status).send(err)
+//   })
+// })
 
 export const destroy = ({ params }, res, next) =>
   FloraFauna.findById(params.id)
     .then(notFound(res))
     .then((floraFauna) => floraFauna ? floraFauna.remove() : null)
     .then(success(res, 204))
-    .catch(next)
+    .catch((error) => {
+      errorHandler(error, res).then((err) => {
+        logger.error('destroy: Error deleting a flora fauna')
+        return res.status(err.error[0].status).send(err)
+      })
+    })
 
 export const searchByDate = (req, res, next) => {
   const query = { createdAt: { $gte: new Date(req.query.start), $lt: new Date(req.query.end) } }
@@ -380,5 +447,10 @@ export const searchByDate = (req, res, next) => {
       }))
     )
     .then(success(res))
-    .catch(next)
+    .catch((error) => {
+      errorHandler(error, res).then((err) => {
+        logger.error('searchByDate: Error search by date of flora fauna')
+        return res.status(err.error[0].status).send(err)
+      })
+    })
 }
