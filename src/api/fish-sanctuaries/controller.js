@@ -40,7 +40,12 @@ export const searchByDate = (req, res, next) => {
       }))
     )
     .then(success(res))
-    .catch(next)
+    .catch((error) => {
+      errorHandler(error, res).then((err) => {
+        logger.error('searchByDate: Error search by date')
+        return res.status(err.error[0].status).send(err)
+      })
+    })
 }
 
 // export const deleteFromBucket = function () {
@@ -96,8 +101,11 @@ export const uploadSanctuaryPictures = function (req) {
         .then(() => {
           resolve(sanctuaryPictures)
         })
-        .catch(e => {
-          console.error(e)
+        .catch((error) => {
+          errorHandler(error).then((err) => {
+            logger.error('uploadSanctuaryPictures: Error uploading Sanctuary pictures')
+            return error.status(err.error[0].status).send(err)
+          })
         })
     } else {
       resolve([])
@@ -134,8 +142,11 @@ export const uploadSpeciesPictures = function (req) {
         .then(() => {
           resolve(fishInformation)
         })
-        .catch(e => {
-          console.error(e)
+        .catch((error) => {
+          errorHandler(error).then((err) => {
+            logger.error('uploadSpeciesPictures: Error uploading Species pictures')
+            return error.status(err.error[0].status).send(err)
+          })
         })
     } else {
       resolve([])
@@ -163,7 +174,12 @@ export const createFishSanctuary = async (req, res, next) => {
       FishSanctuaries.create(JSON.parse(JSON.stringify(req.body)))
         .then((fishSanctuaries) => fishSanctuaries.view(true))
         .then(success(res, 201))
-        .catch(next)
+        .catch((error) => {
+          errorHandler(error, res).then((err) => {
+            logger.error('createFishSanctuary: Error creating a FishSanctuary')
+            return res.status(err.error[0].status).send(err)
+          })
+        })
     })
 }
 
@@ -189,7 +205,12 @@ export const updateFishSanctuary = async (req, res, next) => {
         .then((fishSanctuaries) => fishSanctuaries ? Object.assign(fishSanctuaries, JSON.parse(JSON.stringify(req.body))).save() : null)
         .then((fishSanctuaries) => fishSanctuaries ? fishSanctuaries.view(true) : null)
         .then(success(res))
-        .catch(next)
+        .catch((error) => {
+          errorHandler(error, res).then((err) => {
+            logger.error('updateFishSanctuary: Error updating a FishSanctuary')
+            return res.status(err.error[0].status).send(err)
+          })
+        })
     })
 }
 
@@ -197,7 +218,12 @@ export const create = ({ bodymen: { body } }, res, next) =>
   FishSanctuaries.create(body)
     .then((fishSanctuaries) => fishSanctuaries.view(true))
     .then(success(res, 201))
-    .catch(next)
+    .catch((error) => {
+      errorHandler(error, res).then((err) => {
+        logger.error('create: Error creating a fish sanctuary')
+        return res.status(err.error[0].status).send(err)
+      })
+    })
 
 export const index = ({ querymen: { query, select, cursor } }, res, next) =>
   FishSanctuaries.count(query)
@@ -208,14 +234,24 @@ export const index = ({ querymen: { query, select, cursor } }, res, next) =>
       }))
     )
     .then(success(res))
-    .catch(next)
+    .catch((error) => {
+      errorHandler(error, res).then((err) => {
+        logger.error('index: Error an index')
+        return res.status(err.error[0].status).send(err)
+      })
+    })
 
 export const show = ({ params }, res, next) =>
   FishSanctuaries.findById(params.id)
     .then(notFound(res))
     .then((fishSanctuaries) => fishSanctuaries ? fishSanctuaries.view() : null)
     .then(success(res))
-    .catch(next)
+    .catch((error) => {
+      errorHandler(error, res).then((err) => {
+        logger.error('show: Error showing fish sanctaury')
+        return res.status(err.error[0].status).send(err)
+      })
+    })
 
 export const update = (req, res) => {
   // FishSanctuaries.findById('620cfbbe7ee6030018681377')
@@ -223,7 +259,11 @@ export const update = (req, res) => {
   //   .then((fishSanctuaries) => fishSanctuaries ? Object.assign(fishSanctuaries, (req.body)).save() : null)
   //   .then((fishSanctuaries) => fishSanctuaries ? fishSanctuaries.view(true) : null)
   // .then(success(res, 201))
-  // .catch(next)
+  //  .catch((error) => {
+  // errorHandler(error, res).then((err) => {
+  //   logger.error('destroy: Error deleting fish sanctuary')
+  //   return res.status(err.error[0].status).send(err)
+  // })
 }
 
 export const destroy = ({ params }, res, next) =>
@@ -231,4 +271,9 @@ export const destroy = ({ params }, res, next) =>
     .then(notFound(res))
     .then((fishSanctuaries) => fishSanctuaries ? fishSanctuaries.remove() : null)
     .then(success(res, 204))
-    .catch(next)
+    .catch((error) => {
+      errorHandler(error, res).then((err) => {
+        logger.error('destroy: Error deleting fish sanctuary')
+        return res.status(err.error[0].status).send(err)
+      })
+    })

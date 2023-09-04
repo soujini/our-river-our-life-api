@@ -83,3 +83,7 @@
 {"timestamp": "Sep-03-2023 14:00:14" "logLevel": "error" "message": "createMainCategory: Error creating a mainCategory"}
 {"timestamp": "Sep-03-2023 14:00:26" "logLevel": "error" "message": "errorHandler: {"status":400,"code":40001,"fieldName":"experience","message":"Path `experience` (`jasdkgaskdhgadgaskdgka`) is longer than the maximum allowed length (5).","type":"maxlength"}"}
 {"timestamp": "Sep-03-2023 14:00:26" "logLevel": "error" "message": "createMainCategory: Error creating a mainCategory"}
+{"timestamp": "Sep-04-2023 11:28:09" "logLevel": "error" "message": "errorHandler: {"status":500,"fieldName":"","message":"Oops! Something went wrong!"}"}
+{"timestamp": "Sep-04-2023 11:29:45" "logLevel": "error" "message": "errorHandler: {"status":500,"fieldName":"","message":"Oops! Something went wrong!"}"}
+{"timestamp": "Sep-04-2023 11:32:46" "logLevel": "error" "message": "errorHandler: {"status":500,"fieldName":"","message":"Oops! Something went wrong!"}"}
+{"timestamp": "Sep-04-2023 12:30:42" "logLevel": "error" "message": "errorHandler: {"status":500,"fieldName":"","message":"Oops! Something went wrong!"}"}

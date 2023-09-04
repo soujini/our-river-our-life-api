@@ -2,6 +2,8 @@ import { success, notFound } from '../../services/response/'
 import { WaterTestDetails } from '.'
 import aws from 'aws-sdk'
 import fs from 'fs'
+import { errorHandler } from '../../services/error'
+const logger = require('../../logger').default
 var UserController = require('../user/controller')
 
 export const uploadToS3 = function (params) {
@@ -62,8 +64,11 @@ export const uploadFlora = function (req) {
         .then(() => {
           resolve(flora)
         })
-        .catch(e => {
-          console.error(e)
+        .catch((error) => {
+          errorHandler(error).then((err) => {
+            logger.error('uploadFlora: Error uploading flora')
+            return error.status(err.error[0].status).send(err)
+          })
         })
     } else {
       resolve([])
@@ -100,8 +105,11 @@ export const uploadFauna = function (req) {
         .then(() => {
           resolve(fauna)
         })
-        .catch(e => {
-          console.error(e)
+        .catch((error) => {
+          errorHandler(error).then((err) => {
+            logger.error('uploadFauna: Error uploading fauna')
+            return error.status(err.error[0].status).send(err)
+          })
         })
     } else {
       resolve([])
@@ -138,8 +146,11 @@ export const uploadArtwork = function (req) {
         .then(() => {
           resolve(artwork)
         })
-        .catch(e => {
-          console.error(e)
+        .catch((error) => {
+          errorHandler(error).then((err) => {
+            logger.error('uploadArtwork: Error uploading artwork')
+            return error.status(err.error[0].status).send(err)
+          })
         })
     } else {
       resolve([])
@@ -176,8 +187,11 @@ export const uploadGroupPicture = function (req) {
         .then(() => {
           resolve(groupPicture)
         })
-        .catch(e => {
-          console.error(e)
+        .catch((error) => {
+          errorHandler(error).then((err) => {
+            logger.error('uploadGroupPicture: Error uploading group picture')
+            return error.status(err.error[0].status).send(err)
+          })
         })
     } else {
       resolve([])
@@ -214,8 +228,11 @@ export const uploadActivity = function (req) {
         .then(() => {
           resolve(activity)
         })
-        .catch(e => {
-          console.error(e)
+        .catch((error) => {
+          errorHandler(error).then((err) => {
+            logger.error('uploadActivity: Error uploading activity')
+            return error.status(err.error[0].status).send(err)
+          })
         })
     } else {
       resolve([])
@@ -253,8 +270,11 @@ export const uploadRiver = function (req) {
         .then(() => {
           resolve(river)
         })
-        .catch(e => {
-          console.error(e)
+        .catch((error) => {
+          errorHandler(error).then((err) => {
+            logger.error('uploadRiver: Error uploading river')
+            return error.status(err.error[0].status).send(err)
+          })
         })
     } else {
       resolve([])
@@ -291,8 +311,11 @@ export const uploadSurrounding = function (req) {
         .then(() => {
           resolve(surrounding)
         })
-        .catch(e => {
-          console.error(e)
+        .catch((error) => {
+          errorHandler(error).then((err) => {
+            logger.error('uploadSurrounding: Error uploading surrounding')
+            return error.status(err.error[0].status).send(err)
+          })
         })
     } else {
       resolve([])
@@ -355,7 +378,12 @@ export const createWaterTestDetails = async (req, res, next) => {
       WaterTestDetails.create(JSON.parse(JSON.stringify(req.body)))
         .then((waterTestDetails) => waterTestDetails.view(true))
         .then(success(res, 201))
-        .catch(next)
+        .catch((error) => {
+          errorHandler(error, res).then((err) => {
+            logger.error('createWaterTestDetails: Error creating a water test details')
+            return res.status(err.error[0].status).send(err)
+          })
+        })
     })
 }
 
@@ -430,7 +458,12 @@ export const updateWaterTestDetails = async (req, res, next) => {
           // waterTestDetails ? waterTestDetails.view(true) : null
         })
         // .then(success(res))
-        .catch(next)
+        .catch((error) => {
+          errorHandler(error, res).then((err) => {
+            logger.error('updateWaterTestDetails: Error updating water test details')
+            return res.status(err.error[0].status).send(err)
+          })
+        })
     })
 }
 
@@ -438,7 +471,12 @@ export const create = (req, res, next) => {
   WaterTestDetails.create(req)
     .then((waterTestDetails) => waterTestDetails.view(true))
     .then(success(res, 201))
-    .catch(next)
+    .catch((error) => {
+      errorHandler(error, res).then((err) => {
+        logger.error('create: Error creating a water test details')
+        return res.status(err.error[0].status).send(err)
+      })
+    })
 }
 
 // export const index = ({ querymen: { query, select, cursor } }, res, next) =>{
@@ -450,7 +488,12 @@ export const create = (req, res, next) => {
 //   }))
 // )
 // .then(success(res))
-// .catch(next)
+//     .catch((error) => {
+//   errorHandler(error, res).then((err) => {
+//     logger.error('createAlert: Error creating a flood alert')
+//     return res.status(err.error[0].status).send(err)
+//   })
+// })
 // }
 export const index = ({ querymen: { query, select, cursor } }, res, next) => {
   WaterTestDetails.count(query)
@@ -468,7 +511,12 @@ export const index = ({ querymen: { query, select, cursor } }, res, next) => {
       }))
     )
     .then(success(res))
-    .catch(next)
+    .catch((error) => {
+      errorHandler(error, res).then((err) => {
+        logger.error('index: Error an index')
+        return res.status(err.error[0].status).send(err)
+      })
+    })
 }
 
 export const searchByDate = (req, res, next) => {
@@ -491,7 +539,12 @@ export const searchByDate = (req, res, next) => {
       }))
     )
     .then(success(res))
-    .catch(next)
+    .catch((error) => {
+      errorHandler(error, res).then((err) => {
+        logger.error('searchByDate: Error search by date a water test details')
+        return res.status(err.error[0].status).send(err)
+      })
+    })
 }
 
 export const show = ({ params }, res, next) => {
@@ -499,7 +552,12 @@ export const show = ({ params }, res, next) => {
     .then(notFound(res))
     .then((waterTestDetails) => waterTestDetails ? waterTestDetails.view() : null)
     .then(success(res))
-    .catch(next)
+    .catch((error) => {
+      errorHandler(error, res).then((err) => {
+        logger.error('show: Error showing a water test details')
+        return res.status(err.error[0].status).send(err)
+      })
+    })
 }
 
 export const getWaterTestDetailsById = ({ params1 }, res, next) => {
@@ -507,6 +565,12 @@ export const getWaterTestDetailsById = ({ params1 }, res, next) => {
     .then(notFound(res))
     .then((waterTestDetails) => {
       return waterTestDetails
+    })
+    .catch((error) => {
+      errorHandler(error, res).then((err) => {
+        logger.error('createAlert: Error creating a water test details')
+        return res.status(err.error[0].status).send(err)
+      })
     })
 }
 
@@ -535,7 +599,10 @@ export const updateImage = ({ params }, res, next) => {
         resolve(waterTestDetails)
       })
       .catch((error) => {
-        return reject(error)
+        errorHandler(error, res).then((err) => {
+          logger.error('createAlert: Error creating a flood alert')
+          return res.status(err.error[0].status).send(err)
+        })
       })
   })
 }
@@ -546,7 +613,12 @@ export const update = ({ params }, res, next) => {
     .then((waterTestDetails) => waterTestDetails ? Object.assign(waterTestDetails).save() : null)
     .then((waterTestDetails) => waterTestDetails ? waterTestDetails.view(true) : null)
     .then(success(res))
-    .catch(next)
+    .catch((error) => {
+      errorHandler(error, res).then((err) => {
+        logger.error('createAlert: Error creating a water test details')
+        return res.status(err.error[0].status).send(err)
+      })
+    })
 }
 
 export const destroy = ({ params }, res, next) =>
@@ -554,4 +626,9 @@ export const destroy = ({ params }, res, next) =>
     .then(notFound(res))
     .then((waterTestDetails) => waterTestDetails ? waterTestDetails.remove() : null)
     .then(success(res, 204))
-    .catch(next)
+    .catch((error) => {
+      errorHandler(error, res).then((err) => {
+        logger.error('createAlert: Error creating a water test details')
+        return res.status(err.error[0].status).send(err)
+      })
+    })
