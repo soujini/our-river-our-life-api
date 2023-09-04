@@ -18,9 +18,9 @@ const fishSanctuariesSchema = new Schema({
       type: String,
       required: true
     },
-    // activityDate: {
-    //   type: String
-    // },
+    activityDate: {
+      type: String
+    },
     testerName: {
       type: String
     },
@@ -214,7 +214,7 @@ fishSanctuariesSchema.methods = {
       locationDetails: {
         name: this.locationDetails.name,
         riverName: this.locationDetails.riverName,
-        // activityDate: this.locationDetails.activityDate,
+        activityDate: this.locationDetails.activityDate,
         testerName: this.locationDetails.testerName,
         location: this.locationDetails.location,
         latitude: this.locationDetails.latitude,
