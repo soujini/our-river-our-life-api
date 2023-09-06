@@ -36,17 +36,17 @@ const waterTestDetailsSchema = new Schema({
   waterLevelAndWeather: {
     airTemperature: {
       type: String,
-      required: true,
+      // required: true,
       default: ''
     },
 
     waterLevel: {
-      type: String,
-      required: true
+      type: String
+      // required: true
     },
     weather: {
-      type: String,
-      required: true
+      type: String
+      // required: true
     }
   },
   waterTesting: {
