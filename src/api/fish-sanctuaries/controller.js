@@ -70,6 +70,35 @@ export const searchByDate = (req, res, next) => {
 //     })
 //   })
 // }
+
+export const deleteSanctuaryPictures = function (res) {
+  var bucketName = 'our-river-our-life-images/fish-sanctuary'
+  const s3 = new aws.S3({
+    accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+    secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY
+  })
+
+  // let fileName =
+
+  // let url = "https://our-river-our-life-images.s3.ap-south-1.amazonaws.com/species/species_1666769752635"
+  const params = {
+    // Bucket: process.env.AWS_BUCKET_NAME,
+    Bucket: bucketName,
+    Key: 'our-river-our-life-images/fish-sanctuary/filename.fileExtension'
+  }
+
+  // https://our-river-our-life-images.s3.ap-south-1.amazonaws.com/species/species_1666769752635
+  s3.deleteObject(params, (error, data) => {
+    if (error) {
+      res.status(500).send(error)
+    }
+    res.status(200).send('Sanctuary file has been deleted successfully')
+  })
+}
+
+export const deleteSpeciesPictures = function () {
+
+}
 export const uploadSanctuaryPictures = function (req) {
   var bucketName = ''
 
