@@ -31,51 +31,11 @@
       margin-top: 28px;
     }
 
-    .location-details {
-      width: 700px;
-      margin-top: 20px;
-      margin-bottom: 20px;
-    }
-
     .card {
       padding: 18px 0px;
       width: 690px;
       background-color: #F7F8FB;
       border-radius: 13px;
-      display: flex;
-      text-align: left;
-      justify-content: left;
-    }
-    .card1 {
-      padding: 18px 0px;
-      width: 690px;
-      background-color: #F7F8FB;
-      border-radius: 13px;
-      margin-top: 100px !important;
-      padding-top: 50px;
-      display: flex;
-      text-align: left;
-      justify-content: left;
-    }
-    .card2 {
-      padding: 18px 0px;
-      width: 690px;
-      background-color: #F7F8FB;
-      border-radius: 13px;
-      margin-top: 100px !important;
-      padding-top: 100px;
-      display: flex;
-      text-align: left;
-      justify-content: left;
-    }
-
-    .card3 {
-      padding: 18px 0px;
-      width: 690px;
-      background-color: #F7F8FB;
-      border-radius: 13px;
-      margin-top: 100px !important;
-      padding-top: 80px;
       display: flex;
       text-align: left;
       justify-content: left;
@@ -132,7 +92,8 @@
 
     .parameter {
       font-family: 'Work Sans', sans-serif;
-      font-size: 14px;
+      font-size: 16px;
+      font-weight: bold;
       color: #303030;
       text-align: left;
     }
@@ -230,52 +191,11 @@
       text-align: left;
       margin-bottom: 10px;
     }
-    .flex1 {
-      display: flex;
-      justify-content: left;
-      text-align: left;
-    }
-    .flex2 {
-      display: flex;
-      align-items: center;
-    }
     .ml-1 {
      padding: 0px 5px;
     }
-    .ml-2 {
-     padding: 0px 5px;
-     margin-top: 17px;
-    }
-    .ml-3 {
-     padding: 0px 15px;
-    }
-    .ml-4 {
-      padding: 0px 53px; 
-    }
-    .ml-5 {
-      padding: 0px 20px; 
-    }
-    .ml-6 {
-      padding: 0px 27px; 
-    }
-    .ml-7 {
-      padding: 0px 37px; 
-    }
-    .mt-1 {
-      margin-top: 30px;
-    }
-    .mt-2 {
-      margin-top: 120px;
-      padding-top: 20px;
-    }
     .mb-1 {
-      margin-bottom: 30px;
-    }
-    .mb-2 {
       margin-bottom: 10px;
-    }
-    .mb-3 {
-      margin-bottom: 50px;
     }
     .hr-border {
       border-top: 5px solid #e2e2e2 !important;
@@ -297,7 +217,7 @@
 
   <body >
     <center>
-  <div class="text-center mt-1">
+  <div class="text-center" style="margin-top: 30px;">
     <img src="https://our-river-our-life-images.s3.ap-south-1.amazonaws.com/static/certificate-icon.svg" alt="ICON">
   </div>
   <p class="heading">OUTSTANDING VOLUNTEER</p>
@@ -305,41 +225,51 @@
     towards the river</p>
 
     <table class="location-details1 text-left">
-      <tr>
+      <tr> 
         <td>
           <p class="WorkSans-14-b">
-            <%= waterTestDetails.generalInformation.activityDate %>
+            <% 
+              const rawDate = waterTestDetails.generalInformation.activityDate;
+              if (rawDate) {
+                const date = new Date(rawDate);
+                const day = date.getDate().toString().padStart(2, '0');
+                const month = (date.getMonth() + 1).toString().padStart(2, '0'); // Month is zero-based
+                const year = date.getFullYear();
+                const formattedDate = `${day}/${month}/${year}`;
+                %>
+                <%= formattedDate %>
+            <% } else { %>
+              Date not available
+            <% } %>
           </p>
           <span class="WorkSans-14">
             <%= waterTestDetails.generalInformation.testerName %>
-          </span></br>
+          </span></br>      
           <span class="WorkSans-14">
             <%= waterTestDetails.generalInformation.location %>
           </span></br />
-          <span class="WorkSans-14">Latitude : </span><span class="WorkSans-14 ml-7">
+          <span class="WorkSans-14">Latitude : </span><span class="WorkSans-14" style="padding: 0px 40px;">
             <%= waterTestDetails.generalInformation.latitude %>
           </span>
-          <span class="WorkSans-14">Longitude : </span><span class="WorkSans-14 ml-6">
+          <span class="WorkSans-14">Longitude : </span><span class="WorkSans-14" style="padding: 0px 40px;">
             <%= waterTestDetails.generalInformation.longitude %>
           </span></br />
           <span class="WorkSans-14">Water Level:</span>
-          <span class="WorkSans-14 ml-5">
+          <span class="WorkSans-14" style=" padding: 0px 20px;">
             <%= waterTestDetails.waterLevelAndWeather.waterLevel %>
           </span></br />
-          <span class="flex2">
-          <span class="WorkSans-14">Surroundings: </span>
-          <span class="WorkSans-14  ml-3">
-          <% if (waterTestDetails.surroundings.length> 0) { %>
-            <% waterTestDetails.surroundings.forEach(surrounding=> {%>
-              <p class="tag">
-                <%= surrounding %>
-              </p>
-              <% });%>
-              <% }%>
+          <span>
+          <span class="WorkSans-14 text-center" style="display: flex; justify-content: center;">Surroundings: </span> 
+          <span class="WorkSans-14" style="padding: 0px 15px;display: flex; justify-content: center; ">
+              <% for (let i = 0; i < waterTestDetails.surroundings.length; i++) { %>
+                <p class="tag" style="display: inline-block;">
+                  <%= waterTestDetails.surroundings[i] %>
+                </p>
+              <% } %>
               </span>
             </span>
         </td>
-        <td class="text-right" style="border-left:1px solid #e2e2e2; padding: 0px 10px">
+        <td class="text-right" style="border-left:5px solid #e2e2e2; padding: 0px 10px">
           <span class="air-temperature">
             <%= waterTestDetails.waterLevelAndWeather.airTemperature %>
           </span><span class="air-temperature-degree">&#x2103;</span>
@@ -374,12 +304,12 @@
     <p class="WorkSans-20 text-center">Water Quality </p>
     <table class="card">
       <tr class="water-temp">
-        <td class="flex1">
+        <td style="display: flex;justify-content: left;text-align: left;">
           <div>
           <img class="img-height"
             src="https://our-river-our-life-images.s3.ap-south-1.amazonaws.com/static/temperature-icon.svg" alt="ICON">
           </div>
-          <div class="ml-2">
+          <div style="padding: 0px 6px;margin-top: 17px;">
           <span class="parameter">Water Temperature</span><br />
            </div>
         </td>
@@ -399,7 +329,7 @@
           <span class="range">6.5 - 8.5</span>
         </div>
       </td>
-        <td class="text-right mb-2">
+        <td class="text-right mb-1">
           <% if (parseInt(waterTestDetails.waterTesting.pH) * 1>= 6.5 && parseInt(waterTestDetails.waterTesting.pH) * 1 <= 8.5) { %>
               <span class="row"><span class="value-green1">
                   <%= waterTestDetails.waterTesting.pH %>
@@ -437,7 +367,7 @@
           <span class="range">20 mg/L - 250 mg/L</span>
         </div>
         </td>
-        <td class="text-right mb-2">
+        <td class="text-right mb-1">
           <% if (parseInt(waterTestDetails.waterTesting.alkalinity) * 1>= 20 && parseInt(waterTestDetails.waterTesting.alkalinity) * 1 <=
               250) { %>
               <span class="row"><span class="value-green1">
@@ -455,7 +385,7 @@
       </tr>
       <tr>
         <td colspan="3" class="hr-border">
-          <p class="info mb-1">
+          <p class="info" style="margin-bottom: 30px;">
             Alkalinity is important for fish and aquatic life because it protects or buffers against rapid pH changes in
             the water. For protection of aquatic life alkalinity should be at least 20mg/L.
           </p>
@@ -463,7 +393,7 @@
       </tr>
     </table>
 
-    <table class="card1">
+    <table class="card" style="margin-top: 100px !important; padding-top: 50px;">
       <tr>
         <td class="flex">
         <div>
@@ -477,7 +407,7 @@
           <span class="range">1 mg/L</span>
         </div>
       </td>
-        <td class="text-right mb-2">
+        <td class="text-right mb-1">
           <% if (parseInt(waterTestDetails.waterTesting.nitrate) * 1 <=1) { %>
             <span class="row"><span class="value-green1">
                 <%= waterTestDetails.waterTesting.nitrate %>
@@ -515,7 +445,7 @@
           <span class="range">1 mg/L</span>
         </div>
       </td>
-        <td class="text-right mb-2">
+        <td class="text-right mb-1">
           <% if (parseInt(waterTestDetails.waterTesting.nitrite) * 1 <=1) { %>
             <span class="row"><span class="value-green1">
                 <%= waterTestDetails.waterTesting.nitrite %>
@@ -556,7 +486,7 @@
           <span class="reason">Very Hard: </span><span class="range">-180 and over</span>
         </div>
       </td>
-        <td class="text-right mb-2">
+        <td class="text-right mb-1">
           <span class="row"><span class="value-green1">
               <%= waterTestDetails.waterTesting.hardness %>
             </span> <span class="value-green2">mg/L</span> </span>
@@ -587,7 +517,7 @@
           <span class="range">0.2 - 1.0 mg/L</span>
          </div>
         </td>
-        <td class="text-right mb-2">
+        <td class="text-right mb-1">
           <% if (parseInt(waterTestDetails.waterTesting.chlorine) * 1>= 0.2 && parseInt(waterTestDetails.waterTesting.chlorine) * 1 <= 1.0)
               { %>
               <span class="row"><span class="value-green1">
@@ -613,7 +543,7 @@
       </tr>
     </table>
 
-    <table class="card2">
+    <table class="card"  style="margin-top: 100px !important; padding-top: 100px;">
       <tr>
         <td class="flex">
         <div style="display: flex; align-items: center;">
@@ -626,7 +556,7 @@
           <span class="range">4.0 - 20.0 mg/L</span>
         </div>
       </td>
-        <td class="text-right mb-2">
+        <td class="text-right mb-1">
           <% if (parseInt(waterTestDetails.waterTesting.dissolvedOxygen) * 1>= 4.0 &&
           parseInt(waterTestDetails.waterTesting.dissolvedOxygen) * 1 <= 20.0) { %>
               <span class="row"><span class="value-green1">
@@ -666,7 +596,7 @@
           <span class="range">0.2 - 2.0 mg/L</span>
         </div>
       </td>
-        <td class="text-right mb-2">
+        <td class="text-right mb-1">
           <% if (parseInt(waterTestDetails.waterTesting.iron) * 1>= 0.2 && parseInt(waterTestDetails.waterTesting.iron) * 1 <= 2.0) { %>
               <span class="row"><span class="value-green1">
                   <%= waterTestDetails.waterTesting.iron %>
@@ -704,7 +634,7 @@
           <span class="reason">Presence indicates sources of human or animal fecal waste</span><br />
         </div>
       </td>
-        <td class="text-right mb-2">
+        <td class="text-right mb-1">
           <% if (waterTestDetails.waterTesting.bacteria=='Absent' ) { %>
             <span class="row"><span class="value-green1">
                 <%= waterTestDetails.waterTesting.bacteria %>
@@ -742,7 +672,7 @@
           <span class="range">Upto 15,000 NTU</span>
         </div>
       </td>
-        <td class="text-right mb-2">
+        <td class="text-right mb-1">
           <% if (parseInt(waterTestDetails.waterTesting.turbidity) * 1 <=15000) { %>
             <span class="row"><span class="value-green1">
                 <%= waterTestDetails.waterTesting.turbidity %>
@@ -757,7 +687,7 @@
       </tr>
       <tr>
         <td colspan="3" class="hr-border">
-          <p class="info mb-1">
+          <p class="info" style="margin-bottom: 30px;">
             Turbidity is the result of the fine solids in water, like silt, clay, sand, industrial waste, sewage,
             organic matter, phytoplankton and the microscopic organisms. Turbidity makes water unfit for domestic and
             industrial purposes, it also restricts light penetration for photosynthesis. Extremely high levels affect
@@ -766,20 +696,20 @@
         </td>
       </tr>
     </table>
-    <table class="card3">
+    <table class="card"  style="margin-top: 100px !important; padding-top: 80px;">
       <tr>
         <td class="flex">
         <div style="display: flex;align-items: center;">
           <img src="https://our-river-our-life-images.s3.ap-south-1.amazonaws.com/static/nitrates-nitrites-icon.svg"
             alt="ICON">
           </div>
-          <div class="ml-3">
+          <div style="padding: 0px 15px;">
           <span class="parameter">Ammonia</span><br />
           <span class="reason">Acceptable Standards</span><br />
           <span class="range">0.2 - 1.2 mg/L</span>
         </div>
       </td>
-        <td class="text-right mb-2">
+        <td class="text-right mb-1">
           <% if (parseInt(waterTestDetails.waterTesting.ammonia) * 1>= 0.2 && parseInt(waterTestDetails.waterTesting.ammonia) * 1 <= 1.2) {
               %>
               <span class="row"><span class="value-green1">
@@ -822,7 +752,7 @@
           <span class="range">Upto 0.1 mg/L</span>
         </div>
       </td>
-        <td class="text-right mb-2">
+        <td class="text-right mb-1">
           <% if (parseInt(waterTestDetails.waterTesting.phosphate) * 1 <= 0.1) { %>
             <span class="row"><span class="value-green1">
                 <%= waterTestDetails.waterTesting.phosphate %>
@@ -863,7 +793,7 @@
           <span class="reason">Lead contamination in any amount is unsafe</span><br />
         </div>
       </td>
-        <td class="text-right mb-2">
+        <td class="text-right mb-1">
           <% if (parseInt(waterTestDetails.waterTesting.lead) * 1== 0) { %>
             <span class="row"><span class="value-green1">
                 <%= waterTestDetails.waterTesting.lead %>
@@ -903,7 +833,7 @@
           <span class="reason">Unacceptable: </span><span class="range">Above 1200</span><br />
         </div>
       </td>
-        <td class="text-right mb-2">
+        <td class="text-right mb-1">
           <% if (parseInt(waterTestDetails.waterTesting.totalDissolvedSolids) * 1 < 900) { %>
             <span class="row"><span class="value-green1">
                 <%= waterTestDetails.waterTesting.totalDissolvedSolids %>
@@ -918,7 +848,7 @@
       </tr>
       <tr>
         <td colspan="3" class="hr-border">
-          <p class="info">
+          <p class="info" style="margin-bottom: 50px;">
             Total dissolved solids is a measure of the dissolved combined content of inorganic salts, as well as organic
             matter. Common inorganic salts that can be found in water include calcium, magnesium, potassium and sodium,
             which are all cations, and carbonates, nitrates, bicarbonates, chlorides and sulfates, which are all anions.
@@ -926,23 +856,22 @@
         </td>
       </tr>
     </table>
-    <table class="card">
+    <table class="card" >
       <tr>
         <td class="flex">
-        <div class="mt-1">
+        <div>
           <img class="img-height"
             src="https://our-river-our-life-images.s3.ap-south-1.amazonaws.com/static/conductivity-icon.svg" alt="ICON">
           </div>
-          <div class="ml-1 mt-1">
+          <div class="ml-1">
           <span class="parameter">Conductivity</span><br />
-          <span class="reason"><span class="value-red1">*</span> High conductivity (1000 to 10,000 µS/cm) is an indicator of saline conditions. Waters
+          <span class="reason"><span class="value-red1">*</span> High conductivity (1000 to 10,000 µS/cm) is an indicator of saline conditions.</br> Waters
             that have been heavily impacted by industry can fall into this range.
           </span><br />
         </div>
       </td>
-        <td class="text-right mb-2">
-          <% if (parseInt(waterTestDetails.waterTesting.conductivity) * 1 < 1000 && parseInt(waterTestDetails.waterTesting.conductivity) *
-            1> 10000) { %>
+        <td class="text-right mb-1" >
+          <% if (parseInt(waterTestDetails.waterTesting.conductivity) * 1 < 1000) { %>
             <span class="row"><span class="value-green1">
                 <%= waterTestDetails.waterTesting.conductivity %>
               </span> <span class="value-green2">μS</span> </span>
@@ -957,7 +886,7 @@
       </tr>
       <tr>
         <td colspan="3" class="hr-border">
-          <p class="info mb-1">
+          <p class="info" style="margin-bottom: 30px;">
             Conductivity is a measure of the ability of water to pass an electrical current. Because dissolved salts and
             other inorganic chemicals conduct electrical current. Conductivity is useful as a general measure of water
             quality. Each water body tends to have a relatively constant range of conductivity that, once established,
@@ -968,45 +897,68 @@
         </td>
       </tr>
     </table>
-
-    <p class="WorkSans-20 text-center">Flora</p>
-    <% if (waterTestDetails.floraPictures.length> 0) { %>
+   <table style="width: 690px;">
+    <div style="padding: 10px 0px;">
+    <% if (waterTestDetails.floraPictures.length > 0) { %>
+      <p class="WorkSans-20 text-center">Flora Pictures</p>
+      <div style="display: flex; justify-content: center; flex-wrap: wrap;">
       <% waterTestDetails.floraPictures.forEach(flora=> {%>
-        <img src="<%= flora.imageURL %>" style="width:350px; height:auto">
+        <img src="<%= flora.imageURL %>" style="width:auto; height:150px;">
         <% });%>
+      </div>
           <% }%>
-
-            <p class="WorkSans-20 text-center">Fauna</p>
-            <% if (waterTestDetails.faunaPictures.length> 0) { %>
+        </div>
+        <div style="padding: 10px 0px;">
+            <% if (waterTestDetails.faunaPictures.length > 0) { %>
+              <p class="WorkSans-20 text-center">Fauna Pictures</p>
+              <div style="display: flex; justify-content: center; flex-wrap: wrap;">
               <% waterTestDetails.faunaPictures.forEach(fauna=> {%>
-                <img src="<%= fauna.imageURL %>" style="width:350px; height:auto">
+                <img src="<%= fauna.imageURL %>" style="width:auto; height:150px">
                 <% });%>
+              </div>
                   <% }%>
-                    <p class="WorkSans-20 text-center">Artwork</p>
-                    <% if (waterTestDetails.artworkPictures.length> 0) { %>
+                </div>
+                  <div style="padding: 10px 0px;">
+                    <% if (waterTestDetails.artworkPictures.length > 0) { %>
+                      <p class="WorkSans-20 text-center">Artwork Pictures</p>
+                      <div style="display: flex; justify-content: center; flex-wrap: wrap;">
                       <% waterTestDetails.artworkPictures.forEach(artwork=> {%>
-                        <img src="<%= artwork.imageURL %>" style="width:350px; height:auto">
+                        <img src="<%= artwork.imageURL %>" style="width:auto; height:150px">
                         <% });%>
+                      </div>
                           <% }%>
-                            <p class="WorkSans-20 text-center">Group Picture</p>
-                            <% if (waterTestDetails.groupPictures.length> 0) { %>
+                        </div>
+                          <div style="padding: 10px 0px; margin-top: 30px;">
+                            <% if (waterTestDetails.groupPictures.length > 0) { %>
+                              <p class="WorkSans-20 text-center">Group Pictures</p>
+                              <div style="display: flex; justify-content: center; flex-wrap: wrap;">
                               <% waterTestDetails.groupPictures.forEach(groupPicture=> {%>
-                                <img src="<%= groupPicture.imageURL %>" style="width:350px; height:auto">
+                                <img src="<%= groupPicture.imageURL %>" style="width:auto; height:150px">
                                 <% });%>
+                              </div>
                                   <% }%>
-                                    <p class="WorkSans-20 text-center">Activity</p>
-                                    <% if (waterTestDetails.activityPictures.length> 0) { %>
-                                      <% waterTestDetails.activityPictures.forEach(activity=> {%>
-                                        <img src="<%= activity.imageURL %>" style="width:350px; height:auto">
-                                        <% });%>
-                                          <% }%>
-
-                                            <p class="WorkSans-20 text-center">River</p>
-                                            <% if (waterTestDetails.riverPictures.length> 0) { %>
+                                </div>
+                                  <div style="padding: 10px 0px;">
+                                  <% if (waterTestDetails.activityPictures.length > 0) { %>
+                                    <p class="WorkSans-20 text-center">Activity Pictures</p>
+                                    <div style="display: flex; justify-content: center; flex-wrap: wrap;">
+                                    <% waterTestDetails.activityPictures.forEach(activity => { %>
+                                      <img src="<%= activity.imageURL %>" style="width:auto; height:150px">
+                                      <% }); %>
+                                     </div>
+                                        <% } %>
+                                      </div>
+                                        <div style="padding: 10px 0px;">
+                                            <% if (waterTestDetails.riverPictures.length > 0) { %>
+                                              <p class="WorkSans-20 text-center">River Pictures</p>
+                                              <div style="display: flex; justify-content: center; flex-wrap: wrap;">
                                               <% waterTestDetails.riverPictures.forEach(river=> {%>
-                                                <img src="<%= river.imageURL %>" style="width:350px; height:auto">
+                                                <img src="<%= river.imageURL %>" style="width:auto; height:150px">
                                                 <% });%>
+                                               </div>
                                                   <% }%>
+                                                </div>
+                                                </table>
                                                 </center>
   </body>
 </html>
