@@ -47,6 +47,18 @@
       justify-content: left;
     }
 
+    .card1 {
+      padding: 18px 0px;
+      width: 690px;
+      background-color: #F7F8FB;
+      border-radius: 13px;
+      display: flex;
+      text-align: left;
+      justify-content: left;
+      margin-top: 30px;
+    }
+    
+
     .WorkSans-14 {
       font-family: 'Work Sans', sans-serif;
       font-weight: 400;
@@ -267,14 +279,6 @@
       line-height: 1.25rem;
     }
 
-    .info1 {
-      font-family: 'Work Sans', sans-serif;
-      font-weight: 500;
-      font-size: 14px;
-      line-height: 1.25rem;
-      margin-bottom: 30px;
-    }
-
     .iconBox {
       display: flex; 
       align-items: center;
@@ -452,7 +456,7 @@
       </tr>
       <tr>
         <td colspan="3" class="borderBottom">
-          <p class="info1">
+          <p class="info">
             pH is a measure of a solutions acidity. At the extreme ends of pH scale (2 or 13) physical damage to gills,
             fins in fishes and exoskeleton in other aquatic animal will occur. Also decrease in pH (below 6) may
             increase in mercury level (if present) in water and increase in pH (above 8.5) results in conversion of
@@ -462,7 +466,8 @@
         </td>
       </tr>
     </table>
-    <table class="card" style="margin-top: 100px !important; padding-top: 80px;">
+    <br><div style="page-break-after:always;"></div>
+    <table class="card1">
       <tr>
         <td class="flex">
           <div class="iconBox">
@@ -601,7 +606,7 @@
       </tr>
       <tr>
         <td colspan="3" class="borderBottom">
-          <p class="info" style="margin-bottom: 50px;">
+          <p class="info">
             Water described as hard is high in minerals like calcium and magnesium. Hard water is not a health risk, but
             can cause various problems like mineral build up, poor soap and detergent performance, greying of fabrics,
             soap curds can deposit on dishes, utensils, machines, water using appliances and also causes clogging of
@@ -610,8 +615,8 @@
         </td>
       </tr>
     </table>
-
-    <table class="card"  style="margin-top: 100px !important; padding-top: 60px;">
+    <br><div style="page-break-after:always;"></div>
+    <table class="card1">
       <tr>
         <td class="flex">
         <div>
@@ -756,7 +761,7 @@
       </tr>
       <tr>
         <td colspan="3" class="borderBottom">
-          <p class="info" style="margin-bottom: 100px;">
+          <p class="info">
             Total coliforms include faecal and also other bacteria with similar properties which originate in soil.
             Where E. coli are present in large numbers, the inference is that heavy, recent pollution by human or animal
             wastes has occurred. Their presence in a water supply is proof that faecal contamination has occurred and it
@@ -765,8 +770,8 @@
         </td>
       </tr>
     </table>
-
-    <table class="card" style="margin-top: 100px !important; padding-top: 55px;">
+    <br><div style="page-break-after:always;"></div>
+    <table class="card1">
       <tr>
         <td class="flex">
         <div  class="iconBox">
@@ -915,7 +920,7 @@
       </tr>
       <tr>
         <td colspan="3" class="borderBottom">
-          <p class="info" style="margin-bottom: 60px;">
+          <p class="info">
             Important sources of environmental contamination include mining, smelting, manufacturing and recycling
             activities, and, in some countries, the continued use of leaded paint, leaded gasoline, and leaded aviation
             fuel. More than three quarters of global lead consumption is for the manufacture of lead-acid batteries for
@@ -926,7 +931,8 @@
         </td>
       </tr>
     </table>
-    <table class="card" style="padding-top: 20px;">
+    <br><div style="page-break-after:always;"></div>
+    <table class="card1">
       <tr>
         <td class="flex">
         <div>
@@ -1004,7 +1010,9 @@
         </td>
       </tr>
     </table>
-   <table class="section1">
+   
+   <div class="section1">
+    <br><div style="page-break-after:always;"></div>
     <div class="imgSection" >
     <% if (waterTestDetails.floraPictures.length > 0) { %>
       <h1 class="surrondingTitle">Flora Pictures</h1>
@@ -1017,6 +1025,7 @@
       </div>
           <% }%>
         </div>
+        <br><div style="page-break-after:always;"></div>
         <div class="imgSection" >
             <% if (waterTestDetails.faunaPictures.length > 0) { %>
               <h1 class="surrondingTitle">Fauna Pictures</h1>
@@ -1029,6 +1038,7 @@
               </div>
                   <% }%>
                 </div>
+                <br><div style="page-break-after:always;"></div>
                   <div class="imgSection">
                     <% if (waterTestDetails.artworkPictures.length > 0) { %>
                       <h1 class="surrondingTitle">Artwork Pictures</h1>
@@ -1041,6 +1051,7 @@
                       </div>
                           <% }%>
                         </div>
+                        <br><div style="page-break-after:always;"></div>
                           <div class="imgSection">
                             <% if (waterTestDetails.groupPictures.length > 0) { %>
                               <h1 class="surrondingTitle">Group Pictures</h1>
@@ -1053,6 +1064,7 @@
                               </div>
                                   <% }%>
                                 </div>
+                                <br><div style="page-break-after:always;"></div>
                                   <div class="imgSection" >
                                   <% if (waterTestDetails.activityPictures.length > 0) { %>
                                     <h1 class="surrondingTitle">Activity Pictures</h1>
@@ -1065,6 +1077,7 @@
                                      </div>
                                         <% } %>
                                       </div>
+                                      <br><div style="page-break-after:always;"></div>
                                         <div class="imgSection" >
                                             <% if (waterTestDetails.riverPictures.length > 0) { %>
                                               <h1 class="surrondingTitle">River Pictures</h1>
@@ -1077,7 +1090,7 @@
                                                </div>
                                                   <% }%>
                                                 </div>
-                                                </table>
+                                                </div>
                                                 </center>
   </body>
 </html>
