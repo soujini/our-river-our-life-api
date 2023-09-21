@@ -467,6 +467,120 @@ export const updateWaterTestDetails = async (req, res, next) => {
     })
 }
 
+export const updateMobileWaterTestDetails = async (req, res, next) => {
+  req.body.riverPictures = req.body.riverPictures ? JSON.parse(req.body.riverPictures) : req.body.riverPictures
+  req.body.surroundingPictures = req.body.surroundingPictures ? JSON.parse(req.body.surroundingPictures) : req.body.surroundingPictures
+  req.body.floraPictures = req.body.floraPictures ? JSON.parse(req.body.floraPictures) : req.body.floraPictures
+  req.body.faunaPictures = req.body.faunaPictures ? JSON.parse(req.body.faunaPictures) : req.body.faunaPictures
+  req.body.groupPictures = req.body.groupPictures ? JSON.parse(req.body.groupPictures) : req.body.groupPictures
+  req.body.activityPictures = req.body.activityPictures ? JSON.parse(req.body.activityPictures) : req.body.activityPictures
+  req.body.artworkPictures = req.body.artworkPictures ? JSON.parse(req.body.artworkPictures) : req.body.artworkPictures
+  req.body.surroundings = req.body.surroundings ? JSON.parse(req.body.surroundings) : req.body.surroundings
+
+  Promise.all([uploadFlora(req), uploadFauna(req), uploadArtwork(req), uploadGroupPicture(req), uploadActivity(req), uploadRiver(req), uploadSurrounding(req)])
+    .then(results => {
+      results[0].forEach((element) => {
+        req.body.floraPictures.forEach((element2, index2) => {
+          if (element.fileName === element2.fileName) { req.body.floraPictures[index2].imageURL = element.imageURL }
+        })
+      })
+
+      results[1].forEach((element) => {
+        req.body.faunaPictures.forEach((element2, index2) => {
+          if (element.fileName === element2.fileName) { req.body.faunaPictures[index2].imageURL = element.imageURL }
+        })
+      })
+
+      results[2].forEach((element) => {
+        req.body.artworkPictures.forEach((element2, index2) => {
+          if (element.fileName === element2.fileName) { req.body.artworkPictures[index2].imageURL = element.imageURL }
+        })
+      })
+      results[3].forEach((element) => {
+        req.body.groupPictures.forEach((element2, index2) => {
+          if (element.fileName === element2.fileName) { req.body.groupPictures[index2].imageURL = element.imageURL }
+        })
+      })
+      results[4].forEach((element) => {
+        req.body.activityPictures.forEach((element2, index2) => {
+          if (element.fileName === element2.fileName) { req.body.activityPictures[index2].imageURL = element.imageURL }
+        })
+      })
+
+      results[5].forEach((element) => {
+        req.body.riverPictures.forEach((element2, index2) => {
+          if (element.fileName === element2.fileName) { req.body.riverPictures[index2].imageURL = element.imageURL }
+        })
+      })
+
+      results[6].forEach((element) => {
+        req.body.surroundingPictures.forEach((element2, index2) => {
+          if (element.fileName === element2.fileName) { req.body.surroundingPictures[index2].imageURL = element.imageURL }
+        })
+      })
+      WaterTestDetails.findById({ _id: req.params.id })
+        .then(notFound(res))
+        .then((waterTestDetails) => {
+          const updatedReqBody = {
+            userId: req.body.userId,
+            generalInformation: {
+              activityDate: req.body['generalInformation.activityDate'],
+              activityTime: req.body['generalInformation.activityTime'],
+              testerName: req.body['generalInformation.testerName'],
+              location: req.body['generalInformation.location'],
+              latitude: req.body['generalInformation.latitude'],
+              longitude: req.body['generalInformation.longitude']
+            },
+            waterLevelAndWeather: {
+              airTemperature: req.body['waterLevelAndWeather.airTemperature'],
+              waterLevel: req.body['waterLevelAndWeather.waterLevel'],
+              weather: req.body['waterLevelAndWeather.weather']
+            },
+            waterTesting: {
+              dissolvedOxygen: req.body['waterTesting.dissolvedOxygen'],
+              waterLevel: req.body['waterTesting.waterLevel'],
+              waterTemperature: req.body['waterTesting.waterTemperature'],
+              pH: req.body['waterTesting.pH'],
+              hardness: req.body['waterTesting.hardness'],
+              nitrate: req.body['waterTesting.nitrate'],
+              nitrite: req.body['waterTesting.nitrite'],
+              chlorine: req.body['waterTesting.chlorine'],
+              alkalinity: req.body['waterTesting.alkalinity'],
+              iron: req.body['waterTesting.iron'],
+              bacteria: req.body['waterTesting.bacteria'],
+              turbidity: req.body['waterTesting.turbidity'],
+              phosphate: req.body['waterTesting.phosphate'],
+              ammonia: req.body['waterTesting.ammonia'],
+              lead: req.body['waterTesting.lead'],
+              conductivity: req.body['waterTesting.conductivity'],
+              totalDissolvedSolids: req.body['waterTesting.totalDissolvedSolids']
+            },
+            surroundings: req.body.surroundings,
+            riverPictures: req.body.riverPictures,
+            surroundingPictures: req.body.surroundingPictures,
+            activityPictures: req.body.activityPictures,
+            groupPictures: req.body.groupPictures,
+            artworkPictures: req.body.artworkPictures,
+            floraPictures: req.body.floraPictures,
+            faunaPictures: req.body.faunaPictures
+          }
+          const newObj = Object.assign(waterTestDetails, updatedReqBody).save()
+          return newObj
+        })
+        .then((waterTestDetails) => {
+          res.send(200, waterTestDetails)
+          // waterTestDetails ? waterTestDetails.view(true) : null
+        })
+        // .then(success(res))
+        .catch((error) => {
+          errorHandler(error, res).then((err) => {
+            logger.error('updateWaterTestDetails: Error updating water test details')
+            return res.status(err.error[0].status).send(err)
+          })
+        })
+    })
+}
+
 export const create = (req, res, next) => {
   WaterTestDetails.create(req)
     .then((waterTestDetails) => waterTestDetails.view(true))
