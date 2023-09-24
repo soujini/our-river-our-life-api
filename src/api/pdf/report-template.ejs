@@ -57,7 +57,17 @@
       justify-content: left;
       margin-top: 30px;
     }
-    
+    .totaldissolved {
+      padding: 18px 0px;
+      width: 690px;
+      background-color: #F7F8FB;
+      border-radius: 13px;
+      display: flex;
+      text-align: left;
+      justify-content: left;
+      /* margin-top: 80px; */
+      padding-top: 55px;
+    }
 
     .WorkSans-14 {
       font-family: 'Work Sans', sans-serif;
@@ -927,8 +937,7 @@
         </td>
       </tr>
     </table>
-    <br><div style="page-break-after:always;"></div>
-    <table class="card1">
+    <table class="totaldissolved">
       <tr>
         <td class="flex">
         <div>
@@ -1008,9 +1017,9 @@
     </table>
    
    <div class="section1">
-    <br><div style="page-break-after:always;"></div>
     <div class="imgSection" >
     <% if (waterTestDetails.floraPictures.length > 0) { %>
+      <br><div style="page-break-after:always;"></div>
       <h1 class="surrondingTitle">Flora Pictures</h1>
       <div class="imgContainer">
       <% waterTestDetails.floraPictures.forEach(flora=> {%> 
@@ -1021,9 +1030,9 @@
       </div>
           <% }%>
         </div>
-        <br><div style="page-break-after:always;"></div>
         <div class="imgSection" >
             <% if (waterTestDetails.faunaPictures.length > 0) { %>
+              <br><div style="page-break-after:always;"></div>
               <h1 class="surrondingTitle">Fauna Pictures</h1>
               <div class="imgContainer">
               <% waterTestDetails.faunaPictures.forEach(fauna=> {%>
@@ -1034,9 +1043,9 @@
               </div>
                   <% }%>
                 </div>
-                <br><div style="page-break-after:always;"></div>
                   <div class="imgSection">
                     <% if (waterTestDetails.artworkPictures.length > 0) { %>
+                      <br><div style="page-break-after:always;"></div>
                       <h1 class="surrondingTitle">Artwork Pictures</h1>
                       <div class="imgContainer">
                       <% waterTestDetails.artworkPictures.forEach(artwork=> {%>
@@ -1047,9 +1056,9 @@
                       </div>
                           <% }%>
                         </div>
-                        <br><div style="page-break-after:always;"></div>
                           <div class="imgSection">
                             <% if (waterTestDetails.groupPictures.length > 0) { %>
+                              <br><div style="page-break-after:always;"></div>
                               <h1 class="surrondingTitle">Group Pictures</h1>
                               <div class="imgContainer">
                               <% waterTestDetails.groupPictures.forEach(groupPicture=> {%>                              
@@ -1060,9 +1069,9 @@
                               </div>
                                   <% }%>
                                 </div>
-                                <br><div style="page-break-after:always;"></div>
                                   <div class="imgSection" >
                                   <% if (waterTestDetails.activityPictures.length > 0) { %>
+                                    <br><div style="page-break-after:always;"></div>
                                     <h1 class="surrondingTitle">Activity Pictures</h1>
                                     <div class="imgContainer">
                                     <% waterTestDetails.activityPictures.forEach(activity => { %>
@@ -1073,9 +1082,9 @@
                                      </div>
                                         <% } %>
                                       </div>
-                                      <br><div style="page-break-after:always;"></div>
                                         <div class="imgSection" >
                                             <% if (waterTestDetails.riverPictures.length > 0) { %>
+                                              <br><div style="page-break-after:always;"></div>
                                               <h1 class="surrondingTitle">River Pictures</h1>
                                               <div  class="imgContainer">
                                                   <% waterTestDetails.riverPictures.forEach(river => { %>

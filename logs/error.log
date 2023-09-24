@@ -144,3 +144,4 @@
 {"timestamp": "Sep-21-2023 16:34:08" "logLevel": "error" "message": "updateWaterTestDetails: Error updating water test details"}
 {"timestamp": "Sep-21-2023 16:35:37" "logLevel": "error" "message": "errorHandler: {"status":500,"fieldName":"","message":"Oops! Something went wrong!"}"}
 {"timestamp": "Sep-21-2023 16:35:37" "logLevel": "error" "message": "updateWaterTestDetails: Error updating water test details"}
+{"timestamp": "Sep-24-2023 09:41:17" "logLevel": "error" "message": "errorHandler: {"status":500,"fieldName":"","message":"Oops! Something went wrong!"}"}
