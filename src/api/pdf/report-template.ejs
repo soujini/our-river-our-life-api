@@ -1095,6 +1095,19 @@
                                                </div>
                                                   <% }%>
                                                 </div>
+                                                <div class="imgSection" >
+                                                  <% if (waterTestDetails.surroundingPictures.length > 0) { %>
+                                                    <br><div style="page-break-after:always;"></div>
+                                                    <h1 class="surrondingTitle">Surroundings Pictures</h1>
+                                                    <div  class="imgContainer">
+                                                        <% waterTestDetails.surroundingPictures.forEach(river => { %>
+                                                          <div class="image-wrapper" style="display: flex; flex-wrap: wrap;">
+                                                            <img src="<%= river.imageURL %>" class="images">
+                                                          </div>
+                                                        <% }); %>
+                                                     </div>
+                                                        <% }%>
+                                                      </div>
                                                 </div>
                                                 </center>
   </body>
