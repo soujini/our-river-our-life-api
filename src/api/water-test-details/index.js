@@ -1,7 +1,7 @@
 import { Router } from 'express'
 import { middleware as query } from 'querymen'
 import { middleware as body } from 'bodymen'
-import { create, index, show, destroy, createWaterTestDetails, updateWaterTestDetails, searchByDate } from './controller'
+import { create, index, show, destroy, createWaterTestDetails, updateWaterTestDetails, searchByDate, updateMobileWaterTestDetails } from './controller'
 import { schema } from './model'
 import multer from 'multer'
 export WaterTestDetails, { schema } from './model'
@@ -181,6 +181,41 @@ router.put('/:id', authenticateJWT,
     certificateURL
   }),
   updateWaterTestDetails)
+
+router.put('/update-mobile/:id', authenticateJWT,
+  multer({ dest: 'temp/', limits: { fieldSize: 8 * 1024 * 1024 } }).fields([{
+    name: 'floraFiles', maxCount: 5
+  }, {
+    name: 'faunaFiles', maxCount: 5
+  }, {
+    name: 'artworkFiles', maxCount: 5
+  }, {
+    name: 'groupFiles', maxCount: 5
+  }, {
+    name: 'activityFiles', maxCount: 5
+  }, {
+    name: 'riverFiles', maxCount: 5
+  },
+  {
+    name: 'surroundingFiles', maxCount: 5
+  }
+  ]),
+  body({
+    userId,
+    generalInformation,
+    waterLevelAndWeather,
+    surroundings,
+    waterTesting,
+    floraPictures,
+    faunaPictures,
+    artworkPictures,
+    groupPictures,
+    activityPictures,
+    riverPictures,
+    surroundingPictures,
+    certificateURL
+  }),
+  updateMobileWaterTestDetails)
 /**
 * @api {delete} /water-test-details/:id Delete water test details
 * @apiName DeleteWaterTestDetails

@@ -133,3 +133,16 @@
 {"timestamp": "Sep-07-2023 13:46:22" "logLevel": "error" "message": "errorHandler: {"status":500,"fieldName":"","message":"Oops! Something went wrong!"}"}
 {"timestamp": "Sep-07-2023 14:11:44" "logLevel": "error" "message": "errorHandler: {"status":500,"fieldName":"","message":"Oops! Something went wrong!"}"}
 {"timestamp": "Sep-07-2023 14:12:38" "logLevel": "error" "message": "errorHandler: {"status":500,"fieldName":"","message":"Oops! Something went wrong!"}"}
+{"timestamp": "Sep-21-2023 16:02:00" "logLevel": "error" "message": "errorHandler: {"status":500,"fieldName":"","message":"Oops! Something went wrong!"}"}
+{"timestamp": "Sep-21-2023 16:02:00" "logLevel": "error" "message": "updateWaterTestDetails: Error updating water test details"}
+{"timestamp": "Sep-21-2023 16:30:05" "logLevel": "error" "message": "errorHandler: {"status":500,"fieldName":"","message":"Oops! Something went wrong!"}"}
+{"timestamp": "Sep-21-2023 16:30:05" "logLevel": "error" "message": "updateWaterTestDetails: Error updating water test details"}
+{"timestamp": "Sep-21-2023 16:31:18" "logLevel": "error" "message": "errorHandler: {"status":500,"fieldName":"","message":"Oops! Something went wrong!"}"}
+{"timestamp": "Sep-21-2023 16:31:18" "logLevel": "error" "message": "updateWaterTestDetails: Error updating water test details"}
+{"timestamp": "Sep-21-2023 16:32:41" "logLevel": "error" "message": "errorHandler: {"status":500,"fieldName":"","message":"Oops! Something went wrong!"}"}
+{"timestamp": "Sep-21-2023 16:32:41" "logLevel": "error" "message": "updateWaterTestDetails: Error updating water test details"}
+{"timestamp": "Sep-21-2023 16:34:08" "logLevel": "error" "message": "errorHandler: {"status":500,"fieldName":"","message":"Oops! Something went wrong!"}"}
+{"timestamp": "Sep-21-2023 16:34:08" "logLevel": "error" "message": "updateWaterTestDetails: Error updating water test details"}
+{"timestamp": "Sep-21-2023 16:35:37" "logLevel": "error" "message": "errorHandler: {"status":500,"fieldName":"","message":"Oops! Something went wrong!"}"}
+{"timestamp": "Sep-21-2023 16:35:37" "logLevel": "error" "message": "updateWaterTestDetails: Error updating water test details"}
+{"timestamp": "Sep-24-2023 09:41:17" "logLevel": "error" "message": "errorHandler: {"status":500,"fieldName":"","message":"Oops! Something went wrong!"}"}

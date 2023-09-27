@@ -377,7 +377,9 @@ export const index = ({ querymen: { query, select, cursor } }, res, next) => {
         rows: await Promise.all(floraFaunas.map(async (floraFauna) => {
           var params = { userId: floraFauna.userId }
           var user = await UserController.getUser({ params })
-          floraFauna.contributorName = user.firstName + ' ' + user.lastName
+          if (user != null) {
+            floraFauna.contributorName = user.firstName + ' ' + user.lastName
+          }
           return floraFauna.view()
         }))
       }))
