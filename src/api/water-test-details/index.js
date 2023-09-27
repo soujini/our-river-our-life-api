@@ -129,7 +129,7 @@ router.get('/searchByDate',
 * @apiError {Object} 400 Some parameters may contain invalid values.
 * @apiError 404 Water test details not found.
 */
-router.get('/:id', authenticateJWT,
+router.get('/:id',
   show)
 
 /**
