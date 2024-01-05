@@ -242,8 +242,12 @@ fishSanctuariesSchema.methods = {
           type: this.managementActions.foodProvisioning.type,
           description: this.managementActions.foodProvisioning.description
         },
-        fishingAnglingAllowed: this.managementActions.fishingAnglingAllowed,
-        swimmingAllowed: this.managementActions.fishingAnglingAllowed,
+        fishingAnglingAllowed: {
+          type: this.managementActions.fishingAnglingAllowed.type
+        },
+        swimmingAllowed: {
+          type: this.managementActions.swimmingAllowed.type
+        },
         patrollingAllowed: {
           type: this.managementActions.patrollingAllowed.type,
           description: this.managementActions.patrollingAllowed.description
